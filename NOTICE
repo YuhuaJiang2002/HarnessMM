@@ -1,0 +1,13 @@
+HarnessMM
+Copyright 2026 PhiAgent-0 contributors
+
+This repository extracts the HarnessMM implementation from the PhiAgent research
+workspace maintained by Yuhua Jiang. Original Python namespace and protocol
+identifiers are preserved for compatibility. Deployment paths and hostnames
+were replaced with placeholders for this public release.
+
+The project source retains its Apache License, Version 2.0 terms. Upstream
+agent runtimes, benchmarks, datasets, model weights and separately installed
+dependencies are governed by their respective licenses and access terms.
+No upstream model weights, benchmark datasets or native runtime checkouts are
+redistributed in this repository.

@@ -1,0 +1,3080 @@
+{
+  "snapshot_date": "2026-10-26",
+  "origin": "https://github.com/YuhuaJiang2002/PhiAgent",
+  "description": "Current local HarnessMM source, including uncommitted research code. This is a new repository without parent Git history.",
+  "release_changes": "Deployment paths and worker hostnames use placeholders; scientific policies, model identities and algorithm constants retain their source values. The package namespace initializer omits unrelated robotics exports.",
+  "files": [
+    {
+      "path": "integrations/deepseek_harness/action_evidence_checkpoint.mjs",
+      "source_sha256": "310c66e7325e3ea322ced4d8ac7ff813a0d8bffcca8fd755c49d56bc2e73ee44",
+      "published_sha256": "310c66e7325e3ea322ced4d8ac7ff813a0d8bffcca8fd755c49d56bc2e73ee44",
+      "release_edits": []
+    },
+    {
+      "path": "integrations/deepseek_harness/bridge_plugin.mjs",
+      "source_sha256": "8629222414dc1fe96e40b56a155b89a9bf9cbbc593b5ff30d8fd8276dab5dbfd",
+      "published_sha256": "8629222414dc1fe96e40b56a155b89a9bf9cbbc593b5ff30d8fd8276dab5dbfd",
+      "release_edits": []
+    },
+    {
+      "path": "integrations/deepseek_harness/chisel_plugin.mjs",
+      "source_sha256": "7e3eb575de416cbc305cf7a849a430ad4fd41d80ea26280f5f5f8524808dee6b",
+      "published_sha256": "7e3eb575de416cbc305cf7a849a430ad4fd41d80ea26280f5f5f8524808dee6b",
+      "release_edits": []
+    },
+    {
+      "path": "integrations/deepseek_harness/codex_bank_contract.mjs",
+      "source_sha256": "56ae8a208f6d2d0775fdfa53b8cedd3eb43563b6b9f237a907076f777ad30742",
+      "published_sha256": "56ae8a208f6d2d0775fdfa53b8cedd3eb43563b6b9f237a907076f777ad30742",
+      "release_edits": []
+    },
+    {
+      "path": "integrations/deepseek_harness/completion_guard.py",
+      "source_sha256": "0e8c51be1161be9db6c89e6d2a7a4bce2dfc8ed7ba5d4e107cb0bbb3436eb369",
+      "published_sha256": "0e8c51be1161be9db6c89e6d2a7a4bce2dfc8ed7ba5d4e107cb0bbb3436eb369",
+      "release_edits": []
+    },
+    {
+      "path": "integrations/deepseek_harness/cot_jev.mjs",
+      "source_sha256": "94a2b675b62927afb183d89541b97c53b4e1aa73d586a45602ed0f311f6f0a63",
+      "published_sha256": "94a2b675b62927afb183d89541b97c53b4e1aa73d586a45602ed0f311f6f0a63",
+      "release_edits": []
+    },
+    {
+      "path": "integrations/deepseek_harness/cot_jev_policy.py",
+      "source_sha256": "56a2306196bd4726947f2d5bbc91e7293bab5ed4422027477cdfb5175d5eef11",
+      "published_sha256": "56a2306196bd4726947f2d5bbc91e7293bab5ed4422027477cdfb5175d5eef11",
+      "release_edits": []
+    },
+    {
+      "path": "integrations/deepseek_harness/edgebench_backend.py",
+      "source_sha256": "a49c15ca3126ee7d40386c1889d82a10470cc9b8f21b8e85a90f7ae3e2635dbd",
+      "published_sha256": "d2a2c4f08c7c53c4bd409909271e1bc3446e8232b566bf6a3ae5c7ad1907b6f2",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder"
+        }
+      ]
+    },
+    {
+      "path": "integrations/deepseek_harness/edgebench_relay.py",
+      "source_sha256": "5d8c4e22e65dfd992189a9f9644d2a4a909badb039aaba92a9fba44f21db5f1b",
+      "published_sha256": "5d8c4e22e65dfd992189a9f9644d2a4a909badb039aaba92a9fba44f21db5f1b",
+      "release_edits": []
+    },
+    {
+      "path": "integrations/deepseek_harness/gaia2_backend.py",
+      "source_sha256": "e760ac152de0e6a3ab494ebf745a4b0e1ab14574761e033fe53b51996505bedf",
+      "published_sha256": "e760ac152de0e6a3ab494ebf745a4b0e1ab14574761e033fe53b51996505bedf",
+      "release_edits": []
+    },
+    {
+      "path": "integrations/deepseek_harness/harbor_agent.py",
+      "source_sha256": "77910f522ec7a0762d884ebf076ddc55a79a49eb2dcf7cae2f7aae4a77a18d57",
+      "published_sha256": "77910f522ec7a0762d884ebf076ddc55a79a49eb2dcf7cae2f7aae4a77a18d57",
+      "release_edits": []
+    },
+    {
+      "path": "integrations/deepseek_harness/jev_v2.mjs",
+      "source_sha256": "e5f213cdd5d8b4dadb73a81a6cecda6045b9bbd0661169f961b851b16b6c6665",
+      "published_sha256": "e5f213cdd5d8b4dadb73a81a6cecda6045b9bbd0661169f961b851b16b6c6665",
+      "release_edits": []
+    },
+    {
+      "path": "integrations/deepseek_harness/observation_policy.mjs",
+      "source_sha256": "7cadf1562074d8895f0dab534e69fba1bf2062d7347e6f27c4c62d83704a62e0",
+      "published_sha256": "7cadf1562074d8895f0dab534e69fba1bf2062d7347e6f27c4c62d83704a62e0",
+      "release_edits": []
+    },
+    {
+      "path": "integrations/deepseek_harness/public_argument_binding.mjs",
+      "source_sha256": "352807afbe596d5d58c6cbc76db75e2f1833f2498f3e28436788bcf06041a22e",
+      "published_sha256": "352807afbe596d5d58c6cbc76db75e2f1833f2498f3e28436788bcf06041a22e",
+      "release_edits": []
+    },
+    {
+      "path": "integrations/deepseek_harness/qwen_terminal_markup.py",
+      "source_sha256": "9d1bc68bff1f697ae7720b701c003c4d0ef49bdd26685b386a4a9718c6147f0e",
+      "published_sha256": "9d1bc68bff1f697ae7720b701c003c4d0ef49bdd26685b386a4a9718c6147f0e",
+      "release_edits": []
+    },
+    {
+      "path": "integrations/deepseek_harness/runner.py",
+      "source_sha256": "4c288cea6cfb37255f55d4c5f102492fda558d0e5f98374e2788c56ab18dac27",
+      "published_sha256": "ccce86ce15aa64a640544ceed9609c9733947cac17645738148f7d7599c70ec7",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 1
+        },
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 4
+        },
+        {
+          "category": "deployment-placeholder"
+        }
+      ]
+    },
+    {
+      "path": "integrations/deepseek_harness/sar_admission.mjs",
+      "source_sha256": "a223ffe359fff85c63909c8d61f9a9afa182f3dd511cc5ebd219fa2cd750b80a",
+      "published_sha256": "a223ffe359fff85c63909c8d61f9a9afa182f3dd511cc5ebd219fa2cd750b80a",
+      "release_edits": []
+    },
+    {
+      "path": "integrations/deepseek_harness/sar_v2.mjs",
+      "source_sha256": "3f2f665d3f5fc9242d4404d058eef271d7c3527b7def22efb4b138505f2c4ed9",
+      "published_sha256": "3f2f665d3f5fc9242d4404d058eef271d7c3527b7def22efb4b138505f2c4ed9",
+      "release_edits": []
+    },
+    {
+      "path": "integrations/deepseek_harness/session_worker.py",
+      "source_sha256": "39ecabb31380013436a95f226ee6c646b0e4f06ebc453ef812387bb402f7cd66",
+      "published_sha256": "39ecabb31380013436a95f226ee6c646b0e4f06ebc453ef812387bb402f7cd66",
+      "release_edits": []
+    },
+    {
+      "path": "integrations/deepseek_harness/shared_parent_guard.py",
+      "source_sha256": "7eb14022e7dba66172c63d1c753e274f20b12e094bee3d9043f09a290aaddf79",
+      "published_sha256": "6e36b21a25c6cd1d08461bcee83dd945a665f1c574b9402a8b5db56f644af1ac",
+      "release_edits": [
+        {
+          "category": "remove-extra-eof-blank-line"
+        }
+      ]
+    },
+    {
+      "path": "integrations/deepseek_harness/shared_shell_execution.py",
+      "source_sha256": "3a9be39594d1bd7b95510826fa6d2e3af03093f95d76910d0dfdaf43c659fe44",
+      "published_sha256": "3a9be39594d1bd7b95510826fa6d2e3af03093f95d76910d0dfdaf43c659fe44",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/data_engine/provenance.py",
+      "source_sha256": "35e28553f5a619111e770c21f9fc55f5b5a5b1c7aaa3002adba95e324e26d017",
+      "published_sha256": "35e28553f5a619111e770c21f9fc55f5b5a5b1c7aaa3002adba95e324e26d017",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/data_engine/tshirt_camera_mesh.py",
+      "source_sha256": "1cecad657ccb779b7e8916b946caa4f0f29ac2d80a08fe0d6c4cc042236070ce",
+      "published_sha256": "1cecad657ccb779b7e8916b946caa4f0f29ac2d80a08fe0d6c4cc042236070ce",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/evaluation/chisel_component_quality.py",
+      "source_sha256": "314b7a3959b9c511bf748bff0dcb02545b335d626f93869270f282b8d66df921",
+      "published_sha256": "314b7a3959b9c511bf748bff0dcb02545b335d626f93869270f282b8d66df921",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/evaluation/chisel_fixed_seed_statistics.py",
+      "source_sha256": "3118152989da9323a7076cd19a3c262855acf454c933090c449103fc1988c48b",
+      "published_sha256": "3118152989da9323a7076cd19a3c262855acf454c933090c449103fc1988c48b",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/evaluation/component_ablation.py",
+      "source_sha256": "2419a3eaa02257d5e2f1bd4040f39d4eb1086227734e1a51cccd1fbdef5bc908",
+      "published_sha256": "2419a3eaa02257d5e2f1bd4040f39d4eb1086227734e1a51cccd1fbdef5bc908",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/evaluation/deployment_token_accounting.py",
+      "source_sha256": "63ea2d0cef18ea2b17a635d4647d8da3fcafa1b0ca465fe9898b4554f5d28752",
+      "published_sha256": "63ea2d0cef18ea2b17a635d4647d8da3fcafa1b0ca465fe9898b4554f5d28752",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/evaluation/dual_quality_cost.py",
+      "source_sha256": "2cc693658ce21c47caed69030a46fd07ef95b2ad2d28272ee27e4c1bfd11fb96",
+      "published_sha256": "2cc693658ce21c47caed69030a46fd07ef95b2ad2d28272ee27e4c1bfd11fb96",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/evaluation/edgebench_accounting.py",
+      "source_sha256": "eaad41f9f073779cbbe7bf3cd822ac8612e754f5b3590e814629bb29bff874ac",
+      "published_sha256": "eaad41f9f073779cbbe7bf3cd822ac8612e754f5b3590e814629bb29bff874ac",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/evaluation/edgebench_native.py",
+      "source_sha256": "ddf29b786a7fabbbd1e6b372316569c6c5f11e153d71fb183bc42889df531fee",
+      "published_sha256": "ddf29b786a7fabbbd1e6b372316569c6c5f11e153d71fb183bc42889df531fee",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/evaluation/endpoint_circuit_breaker.py",
+      "source_sha256": "a7e23ef77bb0e671ac3690ae30ec81dc802bc817ecc96d4d572b1956a6f5a729",
+      "published_sha256": "a7e23ef77bb0e671ac3690ae30ec81dc802bc817ecc96d4d572b1956a6f5a729",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/evaluation/learned_metric_evaluator.py",
+      "source_sha256": "e1ddb8b6f94d02c50261f06a86632ca9b97fd12e650d7a709da4e768e9cfce48",
+      "published_sha256": "e1ddb8b6f94d02c50261f06a86632ca9b97fd12e650d7a709da4e768e9cfce48",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/evaluation/polyglot_self_evolution_statistics.py",
+      "source_sha256": "c766894ad8bf5c59ebc9e40af827e9841c10765c2c86c2722fcedd950b5d387d",
+      "published_sha256": "c766894ad8bf5c59ebc9e40af827e9841c10765c2c86c2722fcedd950b5d387d",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/evaluation/residual_meta_protocol.py",
+      "source_sha256": "ba4c20796b87572b5af13c1cd26f2f2fc81aa3a1d6f716687c335230d0c739bf",
+      "published_sha256": "ba4c20796b87572b5af13c1cd26f2f2fc81aa3a1d6f716687c335230d0c739bf",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/evaluation/routing_feature_quality.py",
+      "source_sha256": "2b58483af5ad93d8dff0b60895fe95568947b81564b798583042911c489a7099",
+      "published_sha256": "2b58483af5ad93d8dff0b60895fe95568947b81564b798583042911c489a7099",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/experiments.py",
+      "source_sha256": "00a44fbb65c8cb08dbbc629db94358d20b215d21f2c475f991561528a9b5be51",
+      "published_sha256": "00a44fbb65c8cb08dbbc629db94358d20b215d21f2c475f991561528a9b5be51",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/aime_202060.py",
+      "source_sha256": "a67a7794ac0cdde7ad3a974b6f9e8d1d0e16e00fc36b70c5b07c7ad5b54437e7",
+      "published_sha256": "a67a7794ac0cdde7ad3a974b6f9e8d1d0e16e00fc36b70c5b07c7ad5b54437e7",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/aime_202060_rule_audit.py",
+      "source_sha256": "56d2acdb0bc2bfadd9a44d4fbe581f520d0240bfa68bc55f64f8f78c40c7ce9d",
+      "published_sha256": "56d2acdb0bc2bfadd9a44d4fbe581f520d0240bfa68bc55f64f8f78c40c7ce9d",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/aime_202060_structure_gate.py",
+      "source_sha256": "b10472cece3b25abb0471317954787fdc6a7ea2fb57675d229e8b60d58f52836",
+      "published_sha256": "b10472cece3b25abb0471317954787fdc6a7ea2fb57675d229e8b60d58f52836",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/aime_202060_train_loop.py",
+      "source_sha256": "1e54b43b6abdc6f1d2c33b4b1a1230bcd8fa2acb9cd487a430ec253ea6e5c5f2",
+      "published_sha256": "1e54b43b6abdc6f1d2c33b4b1a1230bcd8fa2acb9cd487a430ec253ea6e5c5f2",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/aime_counterfactual.py",
+      "source_sha256": "297a047beed90b64bbc888e1d4f6c41545d6e649d1a80d3160c15986352933ff",
+      "published_sha256": "297a047beed90b64bbc888e1d4f6c41545d6e649d1a80d3160c15986352933ff",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/aime_domain_solver.py",
+      "source_sha256": "229e78fb89054d7131c07366382479d1826ba22204c9749c63964fc7bc23323d",
+      "published_sha256": "229e78fb89054d7131c07366382479d1826ba22204c9749c63964fc7bc23323d",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/aime_domain_validation.py",
+      "source_sha256": "53e758858f67f2de249c077cc9e58cba0a16c6554ffdda985ee0bf5b7b67daea",
+      "published_sha256": "53e758858f67f2de249c077cc9e58cba0a16c6554ffdda985ee0bf5b7b67daea",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/aime_draft_guard.py",
+      "source_sha256": "cbe145cbc58c2fa229eccd7d55ff0cda2f118f9ab920ad1eb3d8c739e896b2f4",
+      "published_sha256": "cbe145cbc58c2fa229eccd7d55ff0cda2f118f9ab920ad1eb3d8c739e896b2f4",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/aime_final_five.py",
+      "source_sha256": "7c98298edaed33e90dcca6f4fac3f1c1abfe9223aec613544670703374759cd8",
+      "published_sha256": "7c98298edaed33e90dcca6f4fac3f1c1abfe9223aec613544670703374759cd8",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/aime_obligation_repair.py",
+      "source_sha256": "e8aba1d332c2933f73324e648860286569793882b7acdc84698908ce2dbad7e4",
+      "published_sha256": "e8aba1d332c2933f73324e648860286569793882b7acdc84698908ce2dbad7e4",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/aime_targeted_development.py",
+      "source_sha256": "6b0ec3e680d9732edb646c16c172f5917f7ac00e8b8cd768522b6ac08100a639",
+      "published_sha256": "6b0ec3e680d9732edb646c16c172f5917f7ac00e8b8cd768522b6ac08100a639",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/aime_transport_recovery.py",
+      "source_sha256": "59296ba3fb6d8452f663dbc5401bfd004575144a8dd2ede7026d21857ab74c9a",
+      "published_sha256": "59296ba3fb6d8452f663dbc5401bfd004575144a8dd2ede7026d21857ab74c9a",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/alfworld_scaleup_tnc.py",
+      "source_sha256": "012bf87f456869bda3f1f4c0d5325ea9356ca7871aade1a6aab993f1bc1169c1",
+      "published_sha256": "012bf87f456869bda3f1f4c0d5325ea9356ca7871aade1a6aab993f1bc1169c1",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/benchmark_partition.py",
+      "source_sha256": "9919b63af2139f371e59f3e9ec3d73de63ed3918af7cd336f002c027736fa4ca",
+      "published_sha256": "9919b63af2139f371e59f3e9ec3d73de63ed3918af7cd336f002c027736fa4ca",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/codex_chisel.py",
+      "source_sha256": "d8231976d3b104f2a8f54364aeae6e6a83e4264f2a6f9de88b98a4361f377dfd",
+      "published_sha256": "d8231976d3b104f2a8f54364aeae6e6a83e4264f2a6f9de88b98a4361f377dfd",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/codex_gaia2.py",
+      "source_sha256": "112d7cb9a8c2a355722c32bf1f949b8c3d404d719c6c1eee80de1b4ae399d70f",
+      "published_sha256": "5bfac1073d3a8837b8ccf6cac4545d4dad795e632d5a74f301bb2c5237f0ebee",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 1
+        },
+        {
+          "category": "deployment-placeholder"
+        }
+      ]
+    },
+    {
+      "path": "phiagent/harness/codex_jev_v2.py",
+      "source_sha256": "18224af54ff64a46f2de0ee106f0a72f63af1fb735985757d35ff4db0b358883",
+      "published_sha256": "18224af54ff64a46f2de0ee106f0a72f63af1fb735985757d35ff4db0b358883",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/codex_native_app_bank.py",
+      "source_sha256": "6db62f0e0549b8bf751b1480f12c1f393516ede1bb98d1306dcc3fe4e4e522ee",
+      "published_sha256": "6db62f0e0549b8bf751b1480f12c1f393516ede1bb98d1306dcc3fe4e4e522ee",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/codex_runtime.py",
+      "source_sha256": "51d054f188b0996f11a8695c82666bbcb61d4435c79b2230587247e16bd8cf8d",
+      "published_sha256": "2a76a8cb90cb789ec8dfc212b4cd2efda22f892f25569139d0a4a40c51656c42",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder"
+        }
+      ]
+    },
+    {
+      "path": "phiagent/harness/codex_terminal_bank.py",
+      "source_sha256": "432b11591358acd86128395057ed40323a8220368646e23e61168c41f3f56cae",
+      "published_sha256": "432b11591358acd86128395057ed40323a8220368646e23e61168c41f3f56cae",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/codex_terminal_bank_contract.py",
+      "source_sha256": "02994017a57e33cf3b92f4ab3815730c1ceeb9067e63f058248668d76f5c1f33",
+      "published_sha256": "fa5de0176debf4a8b9b089480a4adf04170b2087e2f8baee94eebef672f7f8cb",
+      "release_edits": [
+        {
+          "category": "remove-extra-eof-blank-line"
+        }
+      ]
+    },
+    {
+      "path": "phiagent/harness/codex_vqav2.py",
+      "source_sha256": "8464f7afd8d5aae06975b5feb7b47e981c453d34fbbe4d502e40d3232fe54217",
+      "published_sha256": "18d7959ea315f80bad157616d856dd13cfdb746622b04b2e07129b8dba3b39df",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder"
+        }
+      ]
+    },
+    {
+      "path": "phiagent/harness/cross_task_protocol.py",
+      "source_sha256": "bd4b0012b136cb62b47135c26e076c2240ff043e5a3199cd471cd2e0bf5c39fc",
+      "published_sha256": "bd4b0012b136cb62b47135c26e076c2240ff043e5a3199cd471cd2e0bf5c39fc",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/deepseek_bridge.py",
+      "source_sha256": "9eb12152356f96ff5e6062dbc17ff33093086c099db5fd537fd010bf197c8601",
+      "published_sha256": "9eb12152356f96ff5e6062dbc17ff33093086c099db5fd537fd010bf197c8601",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/deepseek_chisel.py",
+      "source_sha256": "a6a6b76db99c880b7b4b1e90336cd89a53c23633d970c4bdfd6018b60f159a4c",
+      "published_sha256": "a6a6b76db99c880b7b4b1e90336cd89a53c23633d970c4bdfd6018b60f159a4c",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/deepseek_chisel_policy.py",
+      "source_sha256": "faab30ecdbaa59640c2be0f2dc4bfc1d0c6940ea1d7caf35188da61700e775c8",
+      "published_sha256": "faab30ecdbaa59640c2be0f2dc4bfc1d0c6940ea1d7caf35188da61700e775c8",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/deepseek_chisel_qa.py",
+      "source_sha256": "0f38aa5061a18661851fba40eb72601b8ace44e8e0dfda33742408be320f7d47",
+      "published_sha256": "0f38aa5061a18661851fba40eb72601b8ace44e8e0dfda33742408be320f7d47",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/deepseek_messages_meter.py",
+      "source_sha256": "1de13ae8f7fd704e1b4f613394cbcb37e21aeedede97862d023503c1f263b080",
+      "published_sha256": "1de13ae8f7fd704e1b4f613394cbcb37e21aeedede97862d023503c1f263b080",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/deferred_observation_pack.py",
+      "source_sha256": "ed57228833df0f10dbd1e5a81e733ecb07c1182487a18955a61105041775fe5d",
+      "published_sha256": "ed57228833df0f10dbd1e5a81e733ecb07c1182487a18955a61105041775fe5d",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/edgebench_protocol.py",
+      "source_sha256": "f3e73a5921ab46e2df165b365cc62aad2495f5e0784b20518ae6f8708a6e80aa",
+      "published_sha256": "f3e73a5921ab46e2df165b365cc62aad2495f5e0784b20518ae6f8708a6e80aa",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/figure3_repetitions.py",
+      "source_sha256": "8fb54e65b4c484089fe69953edba2f413529b86e5685431e4e01650e835205e6",
+      "published_sha256": "8fb54e65b4c484089fe69953edba2f413529b86e5685431e4e01650e835205e6",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/frozen_rollout_auditor.py",
+      "source_sha256": "b1046fadc7ecbd70a072fee13f28ffc8556809e1bc92d47f3d65362c51bd2d67",
+      "published_sha256": "b1046fadc7ecbd70a072fee13f28ffc8556809e1bc92d47f3d65362c51bd2d67",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_202060_components.py",
+      "source_sha256": "e3e4c7fd43ea5dc12de7e2b6dd2e54ac6bd4186ada286c9dcfca4fe8854fcee6",
+      "published_sha256": "e3e4c7fd43ea5dc12de7e2b6dd2e54ac6bd4186ada286c9dcfca4fe8854fcee6",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_202060_firewall.py",
+      "source_sha256": "da18d4657927ce7420034f70a15fa8c97649c1f7a31ac72b17b9015e7b9db073",
+      "published_sha256": "da18d4657927ce7420034f70a15fa8c97649c1f7a31ac72b17b9015e7b9db073",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_202060_optimizer_audit.py",
+      "source_sha256": "3fa4215ab8e4dc693a9e9d7655bdda84f078b740851c2c9451f1daed7360f331",
+      "published_sha256": "3fa4215ab8e4dc693a9e9d7655bdda84f078b740851c2c9451f1daed7360f331",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_202060_progress.py",
+      "source_sha256": "d1d452671792b5ce86aa9e9ac7bfd6ae8d72e84c9dc53ecba970329a84d53f03",
+      "published_sha256": "d1d452671792b5ce86aa9e9ac7bfd6ae8d72e84c9dc53ecba970329a84d53f03",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_202060_protocol.py",
+      "source_sha256": "67b4c0ca1730127144550d5e822e9f38a15f5a4bc89155ab86f30972a8500d47",
+      "published_sha256": "67b4c0ca1730127144550d5e822e9f38a15f5a4bc89155ab86f30972a8500d47",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_202060_ranges.py",
+      "source_sha256": "812e0f38dcc6b8ce1621afa745a1a569f5bc7359e759893c3901e4ac0821cb50",
+      "published_sha256": "812e0f38dcc6b8ce1621afa745a1a569f5bc7359e759893c3901e4ac0821cb50",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_202060_stage_rows.py",
+      "source_sha256": "f7c61a81d04458863450f351d6cf1dc6a6862b50c61149a741b685cdd3169244",
+      "published_sha256": "f7c61a81d04458863450f351d6cf1dc6a6862b50c61149a741b685cdd3169244",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_added_stall.py",
+      "source_sha256": "38c142243223c127bb28fed1818b569c5640938514259eb6e8d112aa3e0d2d83",
+      "published_sha256": "38c142243223c127bb28fed1818b569c5640938514259eb6e8d112aa3e0d2d83",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_added_stall_protocol.py",
+      "source_sha256": "27bffd2260ab446f0e507103c481c925891cb50ab5150ac44824bdffdf6fc9be",
+      "published_sha256": "27bffd2260ab446f0e507103c481c925891cb50ab5150ac44824bdffdf6fc9be",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_added_stall_statistics.py",
+      "source_sha256": "1f2a13997699db19f09bacbd020719e70fe4740e503f7cb2a00575dcfea40b9f",
+      "published_sha256": "1f2a13997699db19f09bacbd020719e70fe4740e503f7cb2a00575dcfea40b9f",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_calendar_family_registration.py",
+      "source_sha256": "16e28aea953c4d66bce332a06738629bebc84d43b2fb42c5bb6a59f6e06e0499",
+      "published_sha256": "16e28aea953c4d66bce332a06738629bebc84d43b2fb42c5bb6a59f6e06e0499",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_calendar_preread_v1.py",
+      "source_sha256": "78fa58f2d4e380536c7fad109383bdfe1f6c7d2f108c19ac7c3f3d996bd715d5",
+      "published_sha256": "78fa58f2d4e380536c7fad109383bdfe1f6c7d2f108c19ac7c3f3d996bd715d5",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_common_prompt.py",
+      "source_sha256": "2cdd5a40802332b0c98916665dbb6e5f0296d5fea02c6927d0bbf116f5d0e2c5",
+      "published_sha256": "2cdd5a40802332b0c98916665dbb6e5f0296d5fea02c6927d0bbf116f5d0e2c5",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_cot_jev.py",
+      "source_sha256": "9f26e905a24fa21a599cc762d740e655f38dec04798b5e0da50713b519bf5e23",
+      "published_sha256": "9f26e905a24fa21a599cc762d740e655f38dec04798b5e0da50713b519bf5e23",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_cot_jev_planner_progress.py",
+      "source_sha256": "a9d1c7d772257c2176fcc085d7d494a7b21d1a109f7d335b33bd9faed19204ad",
+      "published_sha256": "a9d1c7d772257c2176fcc085d7d494a7b21d1a109f7d335b33bd9faed19204ad",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_cot_programs.py",
+      "source_sha256": "70a0275524034d7f807f7f75d4961646d8f16bda9d1c00141b3e90f7aa48ec43",
+      "published_sha256": "70a0275524034d7f807f7f75d4961646d8f16bda9d1c00141b3e90f7aa48ec43",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_declared_bank_contract_v4.py",
+      "source_sha256": "a063288ea349251d65f15238cc6c8be79ea21a0c7529059a06778cd719cf7149",
+      "published_sha256": "a063288ea349251d65f15238cc6c8be79ea21a0c7529059a06778cd719cf7149",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_deferred_recall.py",
+      "source_sha256": "5fd07088f3a7e74006111944c0b8398276596ac38fa6abbfb572fa583cdb4923",
+      "published_sha256": "5fd07088f3a7e74006111944c0b8398276596ac38fa6abbfb572fa583cdb4923",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_dependency_plan.py",
+      "source_sha256": "03bf19b5558ed02102fe67e13676dc778e7bc1e89ebe748493aead44ba3ff127",
+      "published_sha256": "03bf19b5558ed02102fe67e13676dc778e7bc1e89ebe748493aead44ba3ff127",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_direct_bank_author_v8.py",
+      "source_sha256": "43dc9da0dc7db5684a80d092573589c9636f81f8349cfe49d82c8a725c4da6c3",
+      "published_sha256": "43dc9da0dc7db5684a80d092573589c9636f81f8349cfe49d82c8a725c4da6c3",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_dual_rsi.py",
+      "source_sha256": "a0bab38e91d0457504cc236b8ab0be257a82ca5c948dbaaf4da9c0cdf98ad9fd",
+      "published_sha256": "a0bab38e91d0457504cc236b8ab0be257a82ca5c948dbaaf4da9c0cdf98ad9fd",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_executable_source_author_v13.py",
+      "source_sha256": "c69d1ae875653900e3bbbfd75c69173dae3ede6724b3576473e4d3c80badb649",
+      "published_sha256": "c69d1ae875653900e3bbbfd75c69173dae3ede6724b3576473e4d3c80badb649",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_execution_contract.py",
+      "source_sha256": "d83c0f49eef143f60d8a717c4cb660ccaf1805900b7784ad13149e8083827ab0",
+      "published_sha256": "d83c0f49eef143f60d8a717c4cb660ccaf1805900b7784ad13149e8083827ab0",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_fast_public_contract_v12.py",
+      "source_sha256": "7817afe8def097e42103c10aa7f19b8263eb4e56990c2c1304bd712d5d642398",
+      "published_sha256": "7817afe8def097e42103c10aa7f19b8263eb4e56990c2c1304bd712d5d642398",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_figure23_alignment.py",
+      "source_sha256": "bab24fcab1abb0c6f24d4d0d7c56ff67d67710f43140e3b619dfdb7ce4eb284e",
+      "published_sha256": "bab24fcab1abb0c6f24d4d0d7c56ff67d67710f43140e3b619dfdb7ce4eb284e",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_fused_bank_v16.py",
+      "source_sha256": "6b1483815b80b6b7859653bc8b4d3857cb8dd225ed632577c316d7b8703eb9cc",
+      "published_sha256": "6b1483815b80b6b7859653bc8b4d3857cb8dd225ed632577c316d7b8703eb9cc",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_grounded_bank_author_v7.py",
+      "source_sha256": "a46050931734c00ab60eb372796928177964083111e578f5a65e3e31ea99a29b",
+      "published_sha256": "a46050931734c00ab60eb372796928177964083111e578f5a65e3e31ea99a29b",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_jev.py",
+      "source_sha256": "9635298c45fee68e047ca3c6290952f78aea934fefdc70f2090806b96e7c48ef",
+      "published_sha256": "9635298c45fee68e047ca3c6290952f78aea934fefdc70f2090806b96e7c48ef",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_lazy_tool_schemas.py",
+      "source_sha256": "069ed023c11d1e5b61079571e49b0d316288d3009ce7551b9fff94d494069d83",
+      "published_sha256": "069ed023c11d1e5b61079571e49b0d316288d3009ce7551b9fff94d494069d83",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_native_fallback.py",
+      "source_sha256": "dd691743b24b256593054dc3a791f453f23a6fd9382a735bfc09d2ead964479b",
+      "published_sha256": "dd691743b24b256593054dc3a791f453f23a6fd9382a735bfc09d2ead964479b",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_native_schema_projection_v15.py",
+      "source_sha256": "749bccbc46740e84a85d42f078c300e42d89ef76f1b33307f3c74457d3079b2d",
+      "published_sha256": "749bccbc46740e84a85d42f078c300e42d89ef76f1b33307f3c74457d3079b2d",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_no_harness.py",
+      "source_sha256": "4044cf654838af068baa3a3eb4d15a6f714afb28cc3df80995eb552653f1fef0",
+      "published_sha256": "4044cf654838af068baa3a3eb4d15a6f714afb28cc3df80995eb552653f1fef0",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_obligation_control.py",
+      "source_sha256": "22280a34356df32569d3b6571e6cdc3c675dd3d6cd26fa678a6b48ae771dc08f",
+      "published_sha256": "22280a34356df32569d3b6571e6cdc3c675dd3d6cd26fa678a6b48ae771dc08f",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_one_pass_bank_v3.py",
+      "source_sha256": "ee0015314826eccebd4c3db6894b180d7429d4fa2a83ccf2cc00b5c112d53256",
+      "published_sha256": "ee0015314826eccebd4c3db6894b180d7429d4fa2a83ccf2cc00b5c112d53256",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_persistent_bank_v9.py",
+      "source_sha256": "8dd902c3b702c847220dc4b18e8a85739c4747dd2283576b5e9f31a414f6bf30",
+      "published_sha256": "8dd902c3b702c847220dc4b18e8a85739c4747dd2283576b5e9f31a414f6bf30",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_public_context_codec_v14.py",
+      "source_sha256": "2fe02d8b99ec258687ae21df0824ab2079f0b4160cde9d03755c311628d53a14",
+      "published_sha256": "2fe02d8b99ec258687ae21df0824ab2079f0b4160cde9d03755c311628d53a14",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_public_literal_table.py",
+      "source_sha256": "51821fd09b5dae8eabcde9698d5139035e9849cd07b7535ad6cad4ff05665e85",
+      "published_sha256": "51821fd09b5dae8eabcde9698d5139035e9849cd07b7535ad6cad4ff05665e85",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_public_progress.py",
+      "source_sha256": "c5359c8374294b866a65965548a0d149588b4a4afe8bb12dcd6487bb74ff7294",
+      "published_sha256": "c5359c8374294b866a65965548a0d149588b4a4afe8bb12dcd6487bb74ff7294",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_public_read_judge_v11.py",
+      "source_sha256": "42c442d7b08ad0638046f781f836be05387ec9267547202abdadb893e9c8d2d5",
+      "published_sha256": "42c442d7b08ad0638046f781f836be05387ec9267547202abdadb893e9c8d2d5",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_public_source_bank_v10.py",
+      "source_sha256": "af2ae0146035cbc3a688eb806c0dd7d1583055d94fa3e485cadfa0dd6f5e96f6",
+      "published_sha256": "af2ae0146035cbc3a688eb806c0dd7d1583055d94fa3e485cadfa0dd6f5e96f6",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_read_limit_recovery.py",
+      "source_sha256": "3949b00aca4292138b1bbb353cd49d160a4d8dddf8e44f6a0a15d4608a6fcdd0",
+      "published_sha256": "3949b00aca4292138b1bbb353cd49d160a4d8dddf8e44f6a0a15d4608a6fcdd0",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_receipt_complete_author_v12.py",
+      "source_sha256": "e547b1b495026937123b87a8c2f44542a51ad5cb3d888240e360cc34968e493c",
+      "published_sha256": "e547b1b495026937123b87a8c2f44542a51ad5cb3d888240e360cc34968e493c",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_recovery_routing.py",
+      "source_sha256": "000a2b4e3150a7dd86daccaaf5eb0e8d4f2909da05dfaeb213574c0acfb76ddf",
+      "published_sha256": "000a2b4e3150a7dd86daccaaf5eb0e8d4f2909da05dfaeb213574c0acfb76ddf",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_selective_control.py",
+      "source_sha256": "1015ade9bdba3ec87a03d4cbc153dd9891be12c8b4f8ab65e73a4e031d9cde2e",
+      "published_sha256": "1015ade9bdba3ec87a03d4cbc153dd9891be12c8b4f8ab65e73a4e031d9cde2e",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_separate_bank_author_v6.py",
+      "source_sha256": "972a2a9abbfdba9334a6957bfc9d3e216db5f63e729c23a3fa964268058933f1",
+      "published_sha256": "972a2a9abbfdba9334a6957bfc9d3e216db5f63e729c23a3fa964268058933f1",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_solpi.py",
+      "source_sha256": "5290d5a8f96fb39fed9328c3c54478db5948ec00d48b884f70b0214d9b1c8d46",
+      "published_sha256": "5290d5a8f96fb39fed9328c3c54478db5948ec00d48b884f70b0214d9b1c8d46",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_state_ledger.py",
+      "source_sha256": "0ce779d3a4d9d9922dd3a86a23bcb8474aa7ccc306d21bfe58a8250df64cacbc",
+      "published_sha256": "0ce779d3a4d9d9922dd3a86a23bcb8474aa7ccc306d21bfe58a8250df64cacbc",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_state_progress.py",
+      "source_sha256": "c3af6b719a97ab0d253d2fbf39d8520d04e8f9187cfdbe2786fb2d0a312dbe9e",
+      "published_sha256": "c3af6b719a97ab0d253d2fbf39d8520d04e8f9187cfdbe2786fb2d0a312dbe9e",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_structured_bank_v9.py",
+      "source_sha256": "416b59cb546a70f7b9d9c31487430c0b216fb62e9001f1d57b3f5d796f11e368",
+      "published_sha256": "416b59cb546a70f7b9d9c31487430c0b216fb62e9001f1d57b3f5d796f11e368",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_task_context.py",
+      "source_sha256": "534c41014aaf498a953aff41139746a7ba411875d4458cec4217143220359625",
+      "published_sha256": "534c41014aaf498a953aff41139746a7ba411875d4458cec4217143220359625",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_task_literal.py",
+      "source_sha256": "1b6febc4a5007989e28d6a0c62b657f4da5770382300587dc2c5b344c23fb254",
+      "published_sha256": "1b6febc4a5007989e28d6a0c62b657f4da5770382300587dc2c5b344c23fb254",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_token_efficiency.py",
+      "source_sha256": "1d39814c41d0a51ebbde7a211b5462d64f4fbbe2e30f029c403bba6b6f7df449",
+      "published_sha256": "1d39814c41d0a51ebbde7a211b5462d64f4fbbe2e30f029c403bba6b6f7df449",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/gaia2_typed_continuation_bank.py",
+      "source_sha256": "3e8384d9d95f30a0deb4b57b761ca3d638e4e4ea3086a237a8f3fa3b68c28e53",
+      "published_sha256": "3e8384d9d95f30a0deb4b57b761ca3d638e4e4ea3086a237a8f3fa3b68c28e53",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/harbor_paper_reimplementation.py",
+      "source_sha256": "3e993498595700cb60cd8cb441bfd46ac9e9d5b9cb7ac8e9dac7ed6936a11e71",
+      "published_sha256": "3e993498595700cb60cd8cb441bfd46ac9e9d5b9cb7ac8e9dac7ed6936a11e71",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/industrial_autoresearch.py",
+      "source_sha256": "ef951507996c9cc5b82524625fe45b0fa1f67ba8fec37d91f9e672446a5fb577",
+      "published_sha256": "ef951507996c9cc5b82524625fe45b0fa1f67ba8fec37d91f9e672446a5fb577",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/industrial_autosota.py",
+      "source_sha256": "fc426a9b6555f03992f55383c724ff18fd2e656d716e89b34d23f39537b3979f",
+      "published_sha256": "fc426a9b6555f03992f55383c724ff18fd2e656d716e89b34d23f39537b3979f",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/industrial_autosota_instruction.py",
+      "source_sha256": "c74ab6c08d85c96c6097c119aee3a9d95f6923ecfa6cce72fff10cac267531ab",
+      "published_sha256": "c74ab6c08d85c96c6097c119aee3a9d95f6923ecfa6cce72fff10cac267531ab",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/industrial_capacity.py",
+      "source_sha256": "96406dbb5a2c25746f56815aa322492d492ae09d00055ed103525a7d66e9131d",
+      "published_sha256": "96406dbb5a2c25746f56815aa322492d492ae09d00055ed103525a7d66e9131d",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/industrial_coding_confirmation.py",
+      "source_sha256": "638cd074283cc56c10bd95cf7f34733830a9bde4b03dec38e8e21db8d58ff407",
+      "published_sha256": "638cd074283cc56c10bd95cf7f34733830a9bde4b03dec38e8e21db8d58ff407",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/industrial_common_prompt.py",
+      "source_sha256": "c09c6d9a308d00c0cb20b38f93ae34bad0b966968ac8d90eb507bd714e302479",
+      "published_sha256": "c09c6d9a308d00c0cb20b38f93ae34bad0b966968ac8d90eb507bd714e302479",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/industrial_efficiency_rsi.py",
+      "source_sha256": "4ef3aa6e0a4120a7bff63faae184262c0802e9adde6507e4bbb24b1c299b71c6",
+      "published_sha256": "4ef3aa6e0a4120a7bff63faae184262c0802e9adde6507e4bbb24b1c299b71c6",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/industrial_gate_comparison.py",
+      "source_sha256": "1b7271422a112c6972ab181b6ec72a569811000eb3983790c06d2eb205d49bd7",
+      "published_sha256": "1b7271422a112c6972ab181b6ec72a569811000eb3983790c06d2eb205d49bd7",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/industrial_skillopt.py",
+      "source_sha256": "59ebdcef603530df961da22ca0c279b29a0a0159fa00c8158b5a5e51dd7540f6",
+      "published_sha256": "59ebdcef603530df961da22ca0c279b29a0a0159fa00c8158b5a5e51dd7540f6",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/industrial_train_rsi.py",
+      "source_sha256": "fcb4860f2a3f2e9e15c827378076d59355871e9647327819c1856a234d789950",
+      "published_sha256": "fcb4860f2a3f2e9e15c827378076d59355871e9647327819c1856a234d789950",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/jev_interleave.py",
+      "source_sha256": "f007fdb0cb6d41fb0d163b8effd0b4761eeac2fdc24e758ff5d9e664b4072190",
+      "published_sha256": "61bc230a027a1d2c94e0431cbe1dceaa630474c4375fe735940f41c81dfef852",
+      "release_edits": [
+        {
+          "category": "remove-extra-eof-blank-line"
+        }
+      ]
+    },
+    {
+      "path": "phiagent/harness/loopback_http.py",
+      "source_sha256": "3640571cf6c58ee5d1f657582b5e65200b80833ea55aaf7da46a615066b511fd",
+      "published_sha256": "3640571cf6c58ee5d1f657582b5e65200b80833ea55aaf7da46a615066b511fd",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/mixture_router.py",
+      "source_sha256": "1811a672ef8f5d9752bcfbc0d6bdb5696e3f448b70dc25d82e0c826d6ee040be",
+      "published_sha256": "1811a672ef8f5d9752bcfbc0d6bdb5696e3f448b70dc25d82e0c826d6ee040be",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/native_worker_seed.py",
+      "source_sha256": "3120f7d241fff0cc3c67c396bb5b037b03418d8debb1d45292139829c3af1e59",
+      "published_sha256": "3120f7d241fff0cc3c67c396bb5b037b03418d8debb1d45292139829c3af1e59",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/observation_pack.py",
+      "source_sha256": "b4d78c40bb731db4e3345accd9c0dfd95611de5b7332d123b8c701409ad62fa1",
+      "published_sha256": "f592110baed1ca6d27158a6db8ccae760bc47b447918c278793c30980599ec85",
+      "release_edits": [
+        {
+          "category": "remove-extra-eof-blank-line"
+        }
+      ]
+    },
+    {
+      "path": "phiagent/harness/openai_coding_agent.py",
+      "source_sha256": "1cf0116374ad7f936c2eeaf50079d29180a75fa775ac84fbb0b62dcbadeb47f5",
+      "published_sha256": "1cf0116374ad7f936c2eeaf50079d29180a75fa775ac84fbb0b62dcbadeb47f5",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/proof_carrying_code.py",
+      "source_sha256": "b91cbc27e3340e2186f6271380fe89e8ddf00f4d1a7dc2cbccccfc42447ae2a7",
+      "published_sha256": "b91cbc27e3340e2186f6271380fe89e8ddf00f4d1a7dc2cbccccfc42447ae2a7",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/proof_carrying_skill_graph.py",
+      "source_sha256": "09455b92730cfbf2cc9375d734c1b7150845b834fdb98524532992bc1ffe8d47",
+      "published_sha256": "09455b92730cfbf2cc9375d734c1b7150845b834fdb98524532992bc1ffe8d47",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/proposal_necessity.py",
+      "source_sha256": "fcd3713e43da3412448feb083f03f84ed02a63682d585d908c2c286e2ce1c68c",
+      "published_sha256": "fcd3713e43da3412448feb083f03f84ed02a63682d585d908c2c286e2ce1c68c",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/public_exact_reduction.py",
+      "source_sha256": "02d274a2fa843afb447c158e5cc18e67d425a27f4aab58570470b7028b3c4e31",
+      "published_sha256": "02d274a2fa843afb447c158e5cc18e67d425a27f4aab58570470b7028b3c4e31",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/recovery_aware_context.py",
+      "source_sha256": "cccf7e6e931d940fb800fa653fd1b1c08f0bbf8feb1d550e6def4e54167d7164",
+      "published_sha256": "cccf7e6e931d940fb800fa653fd1b1c08f0bbf8feb1d550e6def4e54167d7164",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/rrsi_regularization.py",
+      "source_sha256": "3099b35b01f52e315b60f8dd5deb786693e0a2e32279a50ee09bf27584ce19ee",
+      "published_sha256": "3099b35b01f52e315b60f8dd5deb786693e0a2e32279a50ee09bf27584ce19ee",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/study_wall_budget.py",
+      "source_sha256": "858b6ee693c2decc7b7a93d28e9ce7539b4eb8f569b571e6fb795ead618b0870",
+      "published_sha256": "858b6ee693c2decc7b7a93d28e9ce7539b4eb8f569b571e6fb795ead618b0870",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/task_reasoning.py",
+      "source_sha256": "1feef07210d734d6459d7c5d444d28ab4d7018cdc9c57070c219cc6035b97b6f",
+      "published_sha256": "1feef07210d734d6459d7c5d444d28ab4d7018cdc9c57070c219cc6035b97b6f",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/terminal_scaffold.py",
+      "source_sha256": "82a60074f7c9c002f9b01bfcdac474edd73b17d9817755d686c0855c362c50a2",
+      "published_sha256": "82a60074f7c9c002f9b01bfcdac474edd73b17d9817755d686c0855c362c50a2",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/tshirt_cooperative_repair.py",
+      "source_sha256": "102881d1427e8be146da4d3d66cdaae7c996039fcc35d5e10fcbf67aec594ba0",
+      "published_sha256": "102881d1427e8be146da4d3d66cdaae7c996039fcc35d5e10fcbf67aec594ba0",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/tshirt_fold_strategy.py",
+      "source_sha256": "14e95950dcc5f4e8bf82df078a5ba3a134ba2caa2a546996924bbfd061e65d28",
+      "published_sha256": "14e95950dcc5f4e8bf82df078a5ba3a134ba2caa2a546996924bbfd061e65d28",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/tshirt_positive_reference.py",
+      "source_sha256": "5edd4357923802038c28ea44e26e3218e15b0010c13288671a49430fb8ad6d97",
+      "published_sha256": "5edd4357923802038c28ea44e26e3218e15b0010c13288671a49430fb8ad6d97",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/harness/typed_decisions.py",
+      "source_sha256": "1958c4d1e587a74c4dece4bde593fd8baf01cb3e5ed9ec4429b8ab07015964a4",
+      "published_sha256": "b439f5fd35765e87108affad3edb60aa353f8af079f8aee90f55876da43230f7",
+      "release_edits": [
+        {
+          "category": "remove-extra-eof-blank-line"
+        }
+      ]
+    },
+    {
+      "path": "phiagent/harness/typed_necessity_graph.py",
+      "source_sha256": "4ecdda37e6ad6f37d3670e487d000c3e5760d7ab6a07ec091cb2177fc80b41ae",
+      "published_sha256": "4ecdda37e6ad6f37d3670e487d000c3e5760d7ab6a07ec091cb2177fc80b41ae",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/alfworld_autosaddler_gspo.py",
+      "source_sha256": "643e33c5f9da0022f1a083e7bfbd3dc8e3ea2d22c4f3a219fdb12629b2337335",
+      "published_sha256": "643e33c5f9da0022f1a083e7bfbd3dc8e3ea2d22c4f3a219fdb12629b2337335",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/alfworld_autosaddler_pfn.py",
+      "source_sha256": "b6ceb06b766b152b5daf4ea42a48b945ef45b8aedc4400a1dc4adf66e7514d19",
+      "published_sha256": "b6ceb06b766b152b5daf4ea42a48b945ef45b8aedc4400a1dc4adf66e7514d19",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/alfworld_jev.py",
+      "source_sha256": "a45d08b926035eb17ea297d301e87825fcd3027f403135c70446a7ca3c37d84b",
+      "published_sha256": "e8de1537a16873033aa17eec1c9367ca5a938769fdf9ee122fac23dd0ec5ae61",
+      "release_edits": [
+        {
+          "category": "remove-extra-eof-blank-line"
+        }
+      ]
+    },
+    {
+      "path": "phiagent/learning/alfworld_modular_rsi.py",
+      "source_sha256": "45812deb090a6e634d20199de0473be5b0eae18364337ecac1ba893662d442ca",
+      "published_sha256": "d14c724094d61f19e1b90502f13f23ca62c56bba748e8560d1aa51463f045c80",
+      "release_edits": [
+        {
+          "category": "remove-extra-eof-blank-line"
+        }
+      ]
+    },
+    {
+      "path": "phiagent/learning/alfworld_nested_router.py",
+      "source_sha256": "e075b617980cd9427d3a01aa09d074d5b6a21afb7e0a5512460e828fb9886116",
+      "published_sha256": "e075b617980cd9427d3a01aa09d074d5b6a21afb7e0a5512460e828fb9886116",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/alfworld_set_edit_harness.py",
+      "source_sha256": "7373d573490aae8984b842d7c52682b532a555f3c38302aad39eaa4a57ffca92",
+      "published_sha256": "7373d573490aae8984b842d7c52682b532a555f3c38302aad39eaa4a57ffca92",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/answer_validity_router.py",
+      "source_sha256": "fa3870036623fdf0d073e5a10f8afc29e121c58f20e1d7e8a187378cd82bc564",
+      "published_sha256": "fa3870036623fdf0d073e5a10f8afc29e121c58f20e1d7e8a187378cd82bc564",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/candidate_cost_frontier.py",
+      "source_sha256": "78a448e8ed3a46fe6b5556ff33d8bc55c074d4ac35b9667e938d558d87ab47dd",
+      "published_sha256": "78a448e8ed3a46fe6b5556ff33d8bc55c074d4ac35b9667e938d558d87ab47dd",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/certified_meta_harness.py",
+      "source_sha256": "4847141a1ec79b27b8808f3ed4e4071870354f394e5709a8428791435448120b",
+      "published_sha256": "4847141a1ec79b27b8808f3ed4e4071870354f394e5709a8428791435448120b",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/chisel.py",
+      "source_sha256": "a35c91dc624b8346461cf73b42753365552995721428626766811a51ea6eede4",
+      "published_sha256": "a35c91dc624b8346461cf73b42753365552995721428626766811a51ea6eede4",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/chisel_adam.py",
+      "source_sha256": "fceb4ed40c526ebfa4d411c3c79d498bf951a1167128c1b515e91bb29336bca8",
+      "published_sha256": "fceb4ed40c526ebfa4d411c3c79d498bf951a1167128c1b515e91bb29336bca8",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/chisel_component_quality.py",
+      "source_sha256": "16d9c4856c39337b3d793ff005043583ee646e89006d8f11ac7d7ce3cfd10387",
+      "published_sha256": "16d9c4856c39337b3d793ff005043583ee646e89006d8f11ac7d7ce3cfd10387",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/chisel_cost_repair.py",
+      "source_sha256": "5bd5721eda5c41ac0b506e2932d9f78e40402642bed2fd7a5d5a70a900343659",
+      "published_sha256": "5bd5721eda5c41ac0b506e2932d9f78e40402642bed2fd7a5d5a70a900343659",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/compact_qa_contracts.py",
+      "source_sha256": "5a0c459e13becc001f61b2680da6a74f29519baf18c87f8e395a95ae24c56a11",
+      "published_sha256": "5a0c459e13becc001f61b2680da6a74f29519baf18c87f8e395a95ae24c56a11",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/conditional_microplans.py",
+      "source_sha256": "55bc11a1d74c3c460e1ba05062f08f5065d52bcd867d697494d389ba2f599db9",
+      "published_sha256": "55bc11a1d74c3c460e1ba05062f08f5065d52bcd867d697494d389ba2f599db9",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/constrained_gspo_harness.py",
+      "source_sha256": "9ef61e7c8037e77cfa9c2a5734788b2ef671cdfe7e61b08cc2f35164520dcfb8",
+      "published_sha256": "9ef61e7c8037e77cfa9c2a5734788b2ef671cdfe7e61b08cc2f35164520dcfb8",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/consumer_evidence.py",
+      "source_sha256": "0812e4f5833afec2b02b6ed93b837a381ac17dbf0a185b6e1e7601039168f7da",
+      "published_sha256": "0812e4f5833afec2b02b6ed93b837a381ac17dbf0a185b6e1e7601039168f7da",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/counterfactual_invocation.py",
+      "source_sha256": "e477b2006d116b7f7f87f0776f8cf57668f8509ecd4a5faef46507bb4a462b13",
+      "published_sha256": "e477b2006d116b7f7f87f0776f8cf57668f8509ecd4a5faef46507bb4a462b13",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/counterfactual_repair.py",
+      "source_sha256": "ae636959879fe7b950db8a74114cf7ff565ae210525283b87ea677a0a19b62f2",
+      "published_sha256": "ae636959879fe7b950db8a74114cf7ff565ae210525283b87ea677a0a19b62f2",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/entry_guard_refinement.py",
+      "source_sha256": "2786d2c449cdb63878e6d06448821924021c0a960bc46b5318e5206dce257bc2",
+      "published_sha256": "2786d2c449cdb63878e6d06448821924021c0a960bc46b5318e5206dce257bc2",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/evidence_contracts.py",
+      "source_sha256": "d40dd6653b986e5a17712bfde60321208f3444c5d7d0942c4897368c6a7b33bd",
+      "published_sha256": "d40dd6653b986e5a17712bfde60321208f3444c5d7d0942c4897368c6a7b33bd",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/evidence_guided_genome.py",
+      "source_sha256": "614a34df31f91bbf72dc8b1f563e9063ff8fb2be86a1bf982c9d2d23faa33c7b",
+      "published_sha256": "614a34df31f91bbf72dc8b1f563e9063ff8fb2be86a1bf982c9d2d23faa33c7b",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/experience.py",
+      "source_sha256": "14e344f48de5284cb0064eb57e073d02e0944fb33e085e00c0ae846055e09b8f",
+      "published_sha256": "14e344f48de5284cb0064eb57e073d02e0944fb33e085e00c0ae846055e09b8f",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/fragment_contracts.py",
+      "source_sha256": "3e0ce0db421d574bae15046d95734aaff778cd06c14b326e1be7db760678a02b",
+      "published_sha256": "3e0ce0db421d574bae15046d95734aaff778cd06c14b326e1be7db760678a02b",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/grounded_continuations.py",
+      "source_sha256": "bb1c68ba42e388134f7442c05bafed690d280c985eedc1a2c3dbf423971b6373",
+      "published_sha256": "bb1c68ba42e388134f7442c05bafed690d280c985eedc1a2c3dbf423971b6373",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/grounded_repair.py",
+      "source_sha256": "85c42ec10d3deee5dbec08131fbe4f9d7eb015ec6b443042a1653d684d3cf210",
+      "published_sha256": "85c42ec10d3deee5dbec08131fbe4f9d7eb015ec6b443042a1653d684d3cf210",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/harness_retrieval.py",
+      "source_sha256": "236856ad17eaa8d498fc30d52914c6f2156cc4af0aeb1ccd58a33906bdcd3c9f",
+      "published_sha256": "236856ad17eaa8d498fc30d52914c6f2156cc4af0aeb1ccd58a33906bdcd3c9f",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/local_skill_router.py",
+      "source_sha256": "2ab3955c8daded4290be8bf472baa59fb51c9ccd928553b73e427b176066840f",
+      "published_sha256": "2ab3955c8daded4290be8bf472baa59fb51c9ccd928553b73e427b176066840f",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/meta_disagreement_router.py",
+      "source_sha256": "75ccd57fc7ef1beced73d9934bcf416102c5c6bdb19efdfd5302402edbb6873a",
+      "published_sha256": "75ccd57fc7ef1beced73d9934bcf416102c5c6bdb19efdfd5302402edbb6873a",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/modality_conditional_router.py",
+      "source_sha256": "83f23871d5c8c96a4ee4858d89a0b000270052588e610a6913bb16e7f80a1a47",
+      "published_sha256": "83f23871d5c8c96a4ee4858d89a0b000270052588e610a6913bb16e7f80a1a47",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/observed_feedback_plans.py",
+      "source_sha256": "60699b9ebc215bd7ac29fbefa6d3c776caeedc72c97d17b23c125e672f506ea7",
+      "published_sha256": "60699b9ebc215bd7ac29fbefa6d3c776caeedc72c97d17b23c125e672f506ea7",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/polyglot_wikiskill_adapter.py",
+      "source_sha256": "e4fb848f75e3e9498832535678eca77e1ce21d83d02f59d1c186198e298fb03d",
+      "published_sha256": "e4fb848f75e3e9498832535678eca77e1ce21d83d02f59d1c186198e298fb03d",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/public_evidence_retention.py",
+      "source_sha256": "423d971932c7f7fdb30c141a165976aa9236cde06c8ae17d3bdf90362615f116",
+      "published_sha256": "423d971932c7f7fdb30c141a165976aa9236cde06c8ae17d3bdf90362615f116",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/public_recurrence.py",
+      "source_sha256": "68894723ab240f6c95d3dbf4c43fec43a2717f288aacb7df84a394aae6f96dff",
+      "published_sha256": "68894723ab240f6c95d3dbf4c43fec43a2717f288aacb7df84a394aae6f96dff",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/qa_add_candidates.py",
+      "source_sha256": "030d9005612fc77b224f83242f053f11840163ee82e1bc9baf91e9becce1d597",
+      "published_sha256": "030d9005612fc77b224f83242f053f11840163ee82e1bc9baf91e9becce1d597",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/qa_capability_routing.py",
+      "source_sha256": "bc47ab8726c4ee519179b31f9f1bc7654f2156d08201789280451e4020ca44d8",
+      "published_sha256": "bc47ab8726c4ee519179b31f9f1bc7654f2156d08201789280451e4020ca44d8",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/qa_chisel_light_compression.py",
+      "source_sha256": "1af72739a05a58b81fdea383b5f1cbe6bb6ee4cccce00b825a6190be72a07b4e",
+      "published_sha256": "1af72739a05a58b81fdea383b5f1cbe6bb6ee4cccce00b825a6190be72a07b4e",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/qa_choice_diagnosis.py",
+      "source_sha256": "2c62dac43293487d0887aaef5f9b7c1cbb1b21e4467470bfbe09c9d4ab3883b2",
+      "published_sha256": "2c62dac43293487d0887aaef5f9b7c1cbb1b21e4467470bfbe09c9d4ab3883b2",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/qa_choice_risk.py",
+      "source_sha256": "20ce0b2eb627237706c8d9d5c2a3570af1cb9416f147abfa0a213362aefb12d5",
+      "published_sha256": "20ce0b2eb627237706c8d9d5c2a3570af1cb9416f147abfa0a213362aefb12d5",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/qa_choice_risk_study.py",
+      "source_sha256": "acd3432c2eee4a940c45235d51e98051814b5a57519adf043d3036494bc7695e",
+      "published_sha256": "acd3432c2eee4a940c45235d51e98051814b5a57519adf043d3036494bc7695e",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/qa_compression_calibration.py",
+      "source_sha256": "d2bc32d83b1af849b534343fc6cef8bda1a39cefbc774b1bf1c90d5bb84512bc",
+      "published_sha256": "d2bc32d83b1af849b534343fc6cef8bda1a39cefbc774b1bf1c90d5bb84512bc",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/qa_context_evidence.py",
+      "source_sha256": "14269253b6118b28cc8f9532eef26b5be144ec4edfc4f77892909c78b1a14947",
+      "published_sha256": "14269253b6118b28cc8f9532eef26b5be144ec4edfc4f77892909c78b1a14947",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/qa_context_factorial.py",
+      "source_sha256": "a1ed075fa002083713a8b0714964ea9b66ab017df54767baf2aa6bf147d25616",
+      "published_sha256": "a1ed075fa002083713a8b0714964ea9b66ab017df54767baf2aa6bf147d25616",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/qa_context_sensitivity.py",
+      "source_sha256": "72110b8716e7dd7ad2b1a8cfbab79af4140f664163321e7e9350defc280a6e3a",
+      "published_sha256": "72110b8716e7dd7ad2b1a8cfbab79af4140f664163321e7e9350defc280a6e3a",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/qa_contract_factorial.py",
+      "source_sha256": "eb21f6b7604cc40cbee2c9625a9798c1ed15f3787ef2c53446399102d77dbd4f",
+      "published_sha256": "eb21f6b7604cc40cbee2c9625a9798c1ed15f3787ef2c53446399102d77dbd4f",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/qa_dream_rsi.py",
+      "source_sha256": "e83b6219edd372b693515016615169932e22259656edecbcff80d4ef3a6ed334",
+      "published_sha256": "e83b6219edd372b693515016615169932e22259656edecbcff80d4ef3a6ed334",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/qa_harness_mixture.py",
+      "source_sha256": "6940261b0d33b1c72d9233dc59bfb79c15ab4e1376a002748e0aca008c1942d2",
+      "published_sha256": "6940261b0d33b1c72d9233dc59bfb79c15ab4e1376a002748e0aca008c1942d2",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/qa_interaction_compiler.py",
+      "source_sha256": "ab1ca989db307dc3a09ea2965e5ce8465a216cb25944c4d76bb02e16c9054b8d",
+      "published_sha256": "ab1ca989db307dc3a09ea2965e5ce8465a216cb25944c4d76bb02e16c9054b8d",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/qa_interaction_controls.py",
+      "source_sha256": "b39a0018c23499a8ded71e34687cfc8fe8f0fe9bc00b98f011fdee0e3530e033",
+      "published_sha256": "b39a0018c23499a8ded71e34687cfc8fe8f0fe9bc00b98f011fdee0e3530e033",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/qa_interaction_release.py",
+      "source_sha256": "960d3e7bceb81fddfe81a2c60d1ee1b1a312c73c9cbee7d742f7368062c594ae",
+      "published_sha256": "960d3e7bceb81fddfe81a2c60d1ee1b1a312c73c9cbee7d742f7368062c594ae",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/qa_joint_optimization.py",
+      "source_sha256": "e2d243e8c1d1565985f560b60cc3ff79b6174d261495ec9569c8157352db370a",
+      "published_sha256": "e2d243e8c1d1565985f560b60cc3ff79b6174d261495ec9569c8157352db370a",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/qa_lossless_format_factorial.py",
+      "source_sha256": "bd1cbf39520b21b778ab4e2f8c8e989860e1729cd34b21563b0c45ad6973d790",
+      "published_sha256": "bd1cbf39520b21b778ab4e2f8c8e989860e1729cd34b21563b0c45ad6973d790",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/qa_meta_rsi.py",
+      "source_sha256": "3a3120187171df3b0e659123c7c51141ad20e55e984a0a00a4a3be2730ce0127",
+      "published_sha256": "3a3120187171df3b0e659123c7c51141ad20e55e984a0a00a4a3be2730ce0127",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/qa_normalization_rewrite.py",
+      "source_sha256": "01d357956ffe2290a67ea2b9e66986bb72d41dc41f0ec7d3c3dcf592d1963087",
+      "published_sha256": "01d357956ffe2290a67ea2b9e66986bb72d41dc41f0ec7d3c3dcf592d1963087",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/qa_paid_recheck.py",
+      "source_sha256": "3ae225736a09a9ae6195923787f532bb88c5519555d68915a9094e0f978158ce",
+      "published_sha256": "3ae225736a09a9ae6195923787f532bb88c5519555d68915a9094e0f978158ce",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/qa_postdraft_recheck.py",
+      "source_sha256": "c04c8d36afda494d15091c300d9561b3bc6541dce02b5bad1fa968cd422fec81",
+      "published_sha256": "c04c8d36afda494d15091c300d9561b3bc6541dce02b5bad1fa968cd422fec81",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/qa_postdraft_tree.py",
+      "source_sha256": "d7436563ebfe86ad4e2f9e56ca78708e4e6fc1830b3815734ee28982e272d368",
+      "published_sha256": "d7436563ebfe86ad4e2f9e56ca78708e4e6fc1830b3815734ee28982e272d368",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/qa_profile_compression.py",
+      "source_sha256": "9af74e351016672703d95e243fcda157dede13fd14997b88b5a29d24cb37c33a",
+      "published_sha256": "9af74e351016672703d95e243fcda157dede13fd14997b88b5a29d24cb37c33a",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/qa_quality_cost_router.py",
+      "source_sha256": "625e77164f89bb2ce3798ca94efacaefc30c226915f08d8602729f6adf6b03c9",
+      "published_sha256": "625e77164f89bb2ce3798ca94efacaefc30c226915f08d8602729f6adf6b03c9",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/qa_rule_abstraction.py",
+      "source_sha256": "ab9704aef2e7e96e849196562e3e67e5b7fd2d407e97ad3a210aa3f6d26b4e7d",
+      "published_sha256": "ab9704aef2e7e96e849196562e3e67e5b7fd2d407e97ad3a210aa3f6d26b4e7d",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/qa_rule_compaction.py",
+      "source_sha256": "f28f2b796dd79e6f31ae712f5297796c9233a2aad67dff9684b51b459be1e007",
+      "published_sha256": "f28f2b796dd79e6f31ae712f5297796c9233a2aad67dff9684b51b459be1e007",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/qa_rule_module_interventions.py",
+      "source_sha256": "0417a6be4ddc2f464a2ddc4646cd3be3817a66f51a71b0b93f6197d15f193186",
+      "published_sha256": "0417a6be4ddc2f464a2ddc4646cd3be3817a66f51a71b0b93f6197d15f193186",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/qa_scope_expansion.py",
+      "source_sha256": "b8671b4159c734d5dcfa7148edf9d3f3272bebfe50773f3d4f3eebd52713eb29",
+      "published_sha256": "b8671b4159c734d5dcfa7148edf9d3f3272bebfe50773f3d4f3eebd52713eb29",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/qa_single_module_contrasts.py",
+      "source_sha256": "6ee9d8e714b7df1445df6cf6abacdaa95f8062eb7a04a61f2e968195674c8f28",
+      "published_sha256": "6ee9d8e714b7df1445df6cf6abacdaa95f8062eb7a04a61f2e968195674c8f28",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/qa_single_module_rsi.py",
+      "source_sha256": "9eb85e747809138d10fc6c89db0e42342273333e1cb02d318d1ad419dd01f7a7",
+      "published_sha256": "9eb85e747809138d10fc6c89db0e42342273333e1cb02d318d1ad419dd01f7a7",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/qa_source_answer_fields.py",
+      "source_sha256": "5546dd17f7ec208398248af541b82e32d2ceafbf66517b39592590688990c93a",
+      "published_sha256": "5546dd17f7ec208398248af541b82e32d2ceafbf66517b39592590688990c93a",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/qa_subset_predictors.py",
+      "source_sha256": "b83f71ab6c793aff61e6fcb2ca0c75e5411795fc77e87a93690847c29ce57ac9",
+      "published_sha256": "b83f71ab6c793aff61e6fcb2ca0c75e5411795fc77e87a93690847c29ce57ac9",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/qa_subset_selection.py",
+      "source_sha256": "f521f4e934b6e939bcf29cc592c7fdf99e2ee700e13d6de589de7cf61e100b1b",
+      "published_sha256": "f521f4e934b6e939bcf29cc592c7fdf99e2ee700e13d6de589de7cf61e100b1b",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/qa_typed_recovery.py",
+      "source_sha256": "8f6fc77408512e30f13a79d1b550111055b88059417ecd76c670322d4b7fb228",
+      "published_sha256": "3bc1bbbf6a7dd16bd097ccfbed7935387646034b56272084dd82670863d0bba4",
+      "release_edits": [
+        {
+          "category": "remove-extra-eof-blank-line"
+        }
+      ]
+    },
+    {
+      "path": "phiagent/learning/residual_meta_harness.py",
+      "source_sha256": "100636f874b9dccfbe443cd500a3b94e592268bc9f8b3f34282279aab6730bf2",
+      "published_sha256": "100636f874b9dccfbe443cd500a3b94e592268bc9f8b3f34282279aab6730bf2",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/residual_meta_training.py",
+      "source_sha256": "ec90ef7ce88cf00ddb1b2cb3f12cfcaea74fc0afc9023bffcb6d4bcd1419e201",
+      "published_sha256": "ec90ef7ce88cf00ddb1b2cb3f12cfcaea74fc0afc9023bffcb6d4bcd1419e201",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/residual_programs.py",
+      "source_sha256": "3dfd5930d3e71b31a91af32a34b2bfa6f06400977ce5d503c1c2aab5391a311e",
+      "published_sha256": "3dfd5930d3e71b31a91af32a34b2bfa6f06400977ce5d503c1c2aab5391a311e",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/risk_coverage_skill_evolution.py",
+      "source_sha256": "193ef8c63af57dcd3a6217d3276cc6df7902f3a582ce25aa289e430aad185ddd",
+      "published_sha256": "193ef8c63af57dcd3a6217d3276cc6df7902f3a582ce25aa289e430aad185ddd",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/searchqa_adaptive_adm.py",
+      "source_sha256": "93c135a5b2bb208cb496961f5136d6ca197e02d6c530284f63ab5b694ebe7865",
+      "published_sha256": "93c135a5b2bb208cb496961f5136d6ca197e02d6c530284f63ab5b694ebe7865",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/searchqa_grounded_features.py",
+      "source_sha256": "e135da929ee441d7b669489bc353e6a87f739579cc45c1e28e0ad4a86fcd33b3",
+      "published_sha256": "e135da929ee441d7b669489bc353e6a87f739579cc45c1e28e0ad4a86fcd33b3",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/searchqa_residual_features.py",
+      "source_sha256": "287f6bcf1f3fd47afd0ff8629bcb3982f9492fded73a0fa18b528ba1af4270e6",
+      "published_sha256": "287f6bcf1f3fd47afd0ff8629bcb3982f9492fded73a0fa18b528ba1af4270e6",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/searchqa_skill_poset.py",
+      "source_sha256": "07009a5faeb13558fb29e861f344071e3c67a6067f9e73f57729ee6b2ed3997c",
+      "published_sha256": "07009a5faeb13558fb29e861f344071e3c67a6067f9e73f57729ee6b2ed3997c",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/sparse_retrieval.py",
+      "source_sha256": "881b6a744bfc9c174dee803dad8c7eb5ddb4d139d96b2d6caeace37b05f1c3b2",
+      "published_sha256": "881b6a744bfc9c174dee803dad8c7eb5ddb4d139d96b2d6caeace37b05f1c3b2",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/stage_aware_adm.py",
+      "source_sha256": "0fea82dd5fb6030d527465cf085d3ac01c1a01f4f952620970597223bd3987ed",
+      "published_sha256": "0fea82dd5fb6030d527465cf085d3ac01c1a01f4f952620970597223bd3987ed",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/supported_local_decision.py",
+      "source_sha256": "470e5e238c1a0ac299dcf000b250586b35d2642bf6b0d038100422b8a3729452",
+      "published_sha256": "470e5e238c1a0ac299dcf000b250586b35d2642bf6b0d038100422b8a3729452",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/taco_instruction_adapter.py",
+      "source_sha256": "6dad835a39ecfde2900f630f1cad582cbdd0508db5350ae5459dd88ce72dc9d2",
+      "published_sha256": "6dad835a39ecfde2900f630f1cad582cbdd0508db5350ae5459dd88ce72dc9d2",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/terminal_set_edit_gspo.py",
+      "source_sha256": "57690915883c8d324b6519ae52664182159aaf63ee2a7bd179ab1eab28c2dfb9",
+      "published_sha256": "57690915883c8d324b6519ae52664182159aaf63ee2a7bd179ab1eab28c2dfb9",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/terminal_set_edit_gspo_v2.py",
+      "source_sha256": "d25a5f601591f0f7a30be49e4612ec218b2b0395ff29251fdcc4c337bd8645cf",
+      "published_sha256": "d25a5f601591f0f7a30be49e4612ec218b2b0395ff29251fdcc4c337bd8645cf",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/terminal_set_edit_gspo_v3.py",
+      "source_sha256": "970812f61e7f29bc9a7a1b51e2f5aa7bfa1586838f7c78f9cba7dc3b0c78c1bd",
+      "published_sha256": "970812f61e7f29bc9a7a1b51e2f5aa7bfa1586838f7c78f9cba7dc3b0c78c1bd",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/terminal_set_edit_gspo_v4.py",
+      "source_sha256": "e2f38fe771c5680cce862e46bfd325c0e27c1a3539360a29821e96521658c978",
+      "published_sha256": "e2f38fe771c5680cce862e46bfd325c0e27c1a3539360a29821e96521658c978",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/terminal_set_edit_gspo_v5.py",
+      "source_sha256": "f49eecfc0138a73378a186b44562600c79fe58572564379c696d83cad9c27a49",
+      "published_sha256": "f49eecfc0138a73378a186b44562600c79fe58572564379c696d83cad9c27a49",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/terminal_set_edit_gspo_v5b.py",
+      "source_sha256": "627b409832e8b8b97ca0a94f846d4fc9f462b238f44abc8cfa86a761a2e69eee",
+      "published_sha256": "627b409832e8b8b97ca0a94f846d4fc9f462b238f44abc8cfa86a761a2e69eee",
+      "release_edits": []
+    },
+    {
+      "path": "phiagent/learning/wikiskill_paper_reimplementation.py",
+      "source_sha256": "48857c3488bea6cb169df5e3691e8d883e3e8189a93f9a6c77f0c78d9251c3a3",
+      "published_sha256": "48857c3488bea6cb169df5e3691e8d883e3e8189a93f9a6c77f0c78d9251c3a3",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/advance_deepseek_gaia2_common_parent.py",
+      "source_sha256": "0e605df24931c4b95af0aa243bb95986f20131f8525f29bdec8c5c22feabfd02",
+      "published_sha256": "0e605df24931c4b95af0aa243bb95986f20131f8525f29bdec8c5c22feabfd02",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/aime_client_admission.py",
+      "source_sha256": "b6d808f46f178279028dcef15d20a8c85c3b806d39c1f54caa71ff4ab247558a",
+      "published_sha256": "b6d808f46f178279028dcef15d20a8c85c3b806d39c1f54caa71ff4ab247558a",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/aime_reproducible_runtime.py",
+      "source_sha256": "5270bb295cb8e67c756b148c98ff0501c61b68abca0d9aff44b27c6b22598a60",
+      "published_sha256": "5270bb295cb8e67c756b148c98ff0501c61b68abca0d9aff44b27c6b22598a60",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/alfworld_jev_runtime.py",
+      "source_sha256": "bee0fad2ecded16311e945372ced834808e7b991b2deb603eba3f2b81a904362",
+      "published_sha256": "50c79d0e60c9168a84104828ff375a0e92bcef68ccf7065f8b07002e8ebb4d1c",
+      "release_edits": [
+        {
+          "category": "remove-extra-eof-blank-line"
+        }
+      ]
+    },
+    {
+      "path": "scripts/alfworld_public_progress.py",
+      "source_sha256": "6c6d7c18a3fc6d3c135d1978df76ae78a6f65e7a5d102a1bc451992016bb3469",
+      "published_sha256": "6c6d7c18a3fc6d3c135d1978df76ae78a6f65e7a5d102a1bc451992016bb3469",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/analyze_searchqa_accuracy_headroom.py",
+      "source_sha256": "ca2c28213448a63cfa28fdbe16ce4829aa1732bc79aa95720a9aa106d8654549",
+      "published_sha256": "697831b9c1274a4e50a68efafed435ebd6c29b8ae6f6f93696625940e23b8043",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 1
+        },
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 1
+        }
+      ]
+    },
+    {
+      "path": "scripts/audit_alfworld_controller_forensics.py",
+      "source_sha256": "33d9f517defed5846f38522c142d7632ec8c2a7c92a4c691a863899b8b7e3bf4",
+      "published_sha256": "33d9f517defed5846f38522c142d7632ec8c2a7c92a4c691a863899b8b7e3bf4",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/audit_alfworld_modular_rsi.py",
+      "source_sha256": "49775b74360bbb3bba970d005c1651659a53046d388871d4bcf3fc9dd067c1ed",
+      "published_sha256": "49775b74360bbb3bba970d005c1651659a53046d388871d4bcf3fc9dd067c1ed",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/audit_chisel_repair_alfworld.py",
+      "source_sha256": "c795aaa9e142e410cefe6c9efbeb1b93929976991362661fbb01cc77b7828f11",
+      "published_sha256": "c795aaa9e142e410cefe6c9efbeb1b93929976991362661fbb01cc77b7828f11",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/audit_industrial_capability_recovery.py",
+      "source_sha256": "7f06b38c1d42352b7c1168197794ed668f8d1eea557cb0ac5411bd8c1c07413f",
+      "published_sha256": "db26bc6a4e4a93e318cf527bd845a4de98ce554b6e02e9d1e928818be761e93a",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 8
+        },
+        {
+          "category": "deployment-placeholder"
+        }
+      ]
+    },
+    {
+      "path": "scripts/audit_jev_cost_train.py",
+      "source_sha256": "d472102ad5e4f25ac65a118cfa97c44310256b6fcaf447b6278ea8eee2b59b65",
+      "published_sha256": "d472102ad5e4f25ac65a118cfa97c44310256b6fcaf447b6278ea8eee2b59b65",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/audit_sar_subdag.py",
+      "source_sha256": "1d81debc5720b77cc86067a8c1257fbe2493016b23d56e8fcb2c96efc9ce0aa2",
+      "published_sha256": "1d81debc5720b77cc86067a8c1257fbe2493016b23d56e8fcb2c96efc9ce0aa2",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/audit_searchqa_contrast_native.py",
+      "source_sha256": "d8fe68274897380d84818a929fcbb480b6833371955748972d79456e9d970d5f",
+      "published_sha256": "fa99e62d2eaec9865c2a788f799a388ae181c15d868d1e05d9f49da83e38b9a3",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 1
+        }
+      ]
+    },
+    {
+      "path": "scripts/audit_searchqa_span_union.py",
+      "source_sha256": "a82c8ea3ad20046a4ad08aaa7b8eb2a1cdcda4c53b127f76ea1395ea91f72bca",
+      "published_sha256": "f4669862bb9ea8e38c0232abc677d9587f025c1e6f5c89f4d0dcd2e4d58a42bc",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 1
+        }
+      ]
+    },
+    {
+      "path": "scripts/chisel_alfworld_native_cache.py",
+      "source_sha256": "8b1c9c49ad37d505ea6e363e65ef90f6bf50bad114178183dba4d68eecbefff1",
+      "published_sha256": "8b1c9c49ad37d505ea6e363e65ef90f6bf50bad114178183dba4d68eecbefff1",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/chisel_mmmu_continuation.py",
+      "source_sha256": "cff4f3103bfeb2cab4474eaec070e5a3634558507836438abd8e2ca7bc14e668",
+      "published_sha256": "cff4f3103bfeb2cab4474eaec070e5a3634558507836438abd8e2ca7bc14e668",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/chisel_mmmu_native_schema.py",
+      "source_sha256": "322599b4fd2beb432add0d82ffe43aa681a01443dc6ee33460224926e6be3f1f",
+      "published_sha256": "322599b4fd2beb432add0d82ffe43aa681a01443dc6ee33460224926e6be3f1f",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/chisel_mmmu_official_optimizers.py",
+      "source_sha256": "da4684a0c033d534ccf13523a0641320e909997b8872e821e6f0df0b129e2648",
+      "published_sha256": "da4684a0c033d534ccf13523a0641320e909997b8872e821e6f0df0b129e2648",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/chisel_mmmu_shared_adapter.py",
+      "source_sha256": "60850ba50eacf2f1d589d9466a8376cdd0817698427e43a8fa6b522ef35559f5",
+      "published_sha256": "60850ba50eacf2f1d589d9466a8376cdd0817698427e43a8fa6b522ef35559f5",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/chisel_skillopt_usage_v2.py",
+      "source_sha256": "eed2e2e81a1f32be7677067c5d250e693edc08c4eab21651d403eddea616b015",
+      "published_sha256": "eed2e2e81a1f32be7677067c5d250e693edc08c4eab21651d403eddea616b015",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/codex_terminal_agent.py",
+      "source_sha256": "3191025466ac3602bb618cc6c894a82df05449155767293e5eff5197ceb55591",
+      "published_sha256": "3191025466ac3602bb618cc6c894a82df05449155767293e5eff5197ceb55591",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/collect_codex_chisel.py",
+      "source_sha256": "4bf015e36e579a5a4766c67202302876f1c1cd2c7e170d6455006b296ac050b0",
+      "published_sha256": "58197d3296861570ccca4e65de64844d0a03f852c308ce75b8072172fe44de3c",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 2
+        },
+        {
+          "category": "deployment-placeholder"
+        }
+      ]
+    },
+    {
+      "path": "scripts/collect_deepseek_harness_progress.py",
+      "source_sha256": "47d199447e8cd0fc2b301f1094f28e3a833d7454313f0a6618034ba3ed58ba22",
+      "published_sha256": "47d199447e8cd0fc2b301f1094f28e3a833d7454313f0a6618034ba3ed58ba22",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/collect_industrial_capability.py",
+      "source_sha256": "a71dfe127794fc9ac62054a730355e50ea1bcf76d271b985946002cacf47c2b6",
+      "published_sha256": "381192b9208b741720dd1931108209e9ef89d94af19fab6e3862bb7a1dd0ddf7",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 1
+        }
+      ]
+    },
+    {
+      "path": "scripts/compact_h200_runtime.py",
+      "source_sha256": "84d246cc4e77cd1d5ec6d51df9b1f2908f487f8f3163da734a55d3c77aaa3edf",
+      "published_sha256": "8d9b3704b807454cd3f02386dabd417260963bfe0e502ef797b243c09622d9ca",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 1
+        },
+        {
+          "category": "remove-extra-eof-blank-line"
+        }
+      ]
+    },
+    {
+      "path": "scripts/continue_aime_202060.py",
+      "source_sha256": "fdfcdb738ab584546ed41607b3cb291c3a62f0aa8d6614ad816fc75a9c662478",
+      "published_sha256": "fdfcdb738ab584546ed41607b3cb291c3a62f0aa8d6614ad816fc75a9c662478",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/continue_codex_capability_infrastructure.py",
+      "source_sha256": "d996bbfb64c9c0ce0151f263d1246ab75f3fb9e0755c290d1e36f81c18d3d275",
+      "published_sha256": "2b5a811df8a29575ff123d69d4a358a2967b6d296bef47c4605f902345c5dc4b",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 3
+        },
+        {
+          "category": "deployment-placeholder"
+        }
+      ]
+    },
+    {
+      "path": "scripts/cumulative_token_policy.py",
+      "source_sha256": "b32cd8002f045c5f27f92a62c4b13acadfc5f41b7c2cc7a6d6f72f2b9e9fa6ad",
+      "published_sha256": "b32cd8002f045c5f27f92a62c4b13acadfc5f41b7c2cc7a6d6f72f2b9e9fa6ad",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/cvpr_execution_crossover_leases.py",
+      "source_sha256": "0231d7ae5f5398f59b3ef91e0b75010a89d8703b25a518127d7b559ad68e89f7",
+      "published_sha256": "0231d7ae5f5398f59b3ef91e0b75010a89d8703b25a518127d7b559ad68e89f7",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/cvpr_mmmu_campaign.py",
+      "source_sha256": "1bbf7d1eda61d188f29c194490e1ca44b3e39c1b21e0bcb492e6c22b3357863b",
+      "published_sha256": "1bbf7d1eda61d188f29c194490e1ca44b3e39c1b21e0bcb492e6c22b3357863b",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/cvpr_skillopt_native_bridge.py",
+      "source_sha256": "58ed3f75e90b5187bddd2998ca6df437380b5125df9cb19eae59d4a45e4a548d",
+      "published_sha256": "58ed3f75e90b5187bddd2998ca6df437380b5125df9cb19eae59d4a45e4a548d",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/diagnose_searchqa_strict_jev.py",
+      "source_sha256": "cdd79ad5a383c9ea65eab7c23cff77677a2b0d5ab2afa99265b3650b46ed8e87",
+      "published_sha256": "53fd14c722e083ea11b448e258e9d76ddd4dcbebced1575e37f6df87689a1698",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 1
+        },
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 1
+        }
+      ]
+    },
+    {
+      "path": "scripts/dual_terminal_completion.py",
+      "source_sha256": "adab87b35223abb0f519400e4244a9e3a3e3a289be054aa900d0fce12db2ff4b",
+      "published_sha256": "adab87b35223abb0f519400e4244a9e3a3e3a289be054aa900d0fce12db2ff4b",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/figure2_searchqa_ranker.py",
+      "source_sha256": "b274c12c4e0138e66820f0c1ae33a5ec25cd3bf480e94561a1b7ba2995b0f166",
+      "published_sha256": "b274c12c4e0138e66820f0c1ae33a5ec25cd3bf480e94561a1b7ba2995b0f166",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/figure2_searchqa_recovery.py",
+      "source_sha256": "bdaa7838b49342de022214977502a0b51acd2d5dbd247a318725feb651645af1",
+      "published_sha256": "bdaa7838b49342de022214977502a0b51acd2d5dbd247a318725feb651645af1",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/figure2_searchqa_train.py",
+      "source_sha256": "89a8fe622716dff072c2e0db5ef7ff7674bed6fcf06fc84d290f467ef619d1f9",
+      "published_sha256": "89a8fe622716dff072c2e0db5ef7ff7674bed6fcf06fc84d290f467ef619d1f9",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/figure2_searchqa_v4.py",
+      "source_sha256": "9afbfd7be4ab731aec9409e2e6511b151959f7cdcbbbe3d49ddd685de4da2763",
+      "published_sha256": "9afbfd7be4ab731aec9409e2e6511b151959f7cdcbbbe3d49ddd685de4da2763",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/figure3_codex_native_trial.py",
+      "source_sha256": "a272870c8bb92d44341b596fc0cd174dae7c85737c46c586cea1c798cc617dc6",
+      "published_sha256": "a272870c8bb92d44341b596fc0cd174dae7c85737c46c586cea1c798cc617dc6",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/freeze_aime_202060.py",
+      "source_sha256": "cfe7c2de219b2c3cf1c413b5755506d5fd43ab35878fbb61ab58e74fdac7d63b",
+      "published_sha256": "d0a92e4a8d21e788ee98e3ef5e628258519633bcf8307f627942c37dcfef3bcd",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 1
+        }
+      ]
+    },
+    {
+      "path": "scripts/freeze_chisel_ablation_routes.py",
+      "source_sha256": "f5b44110bf95fec191575c7a2fa96408bb5c6644fc6b5d4822b9582db66247da",
+      "published_sha256": "f5b44110bf95fec191575c7a2fa96408bb5c6644fc6b5d4822b9582db66247da",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/gaia_native_bank_training_revision.py",
+      "source_sha256": "69a038ebd8e2a510310628f151c86728f9194e0ceea30d31aa94078a07d2287f",
+      "published_sha256": "69a038ebd8e2a510310628f151c86728f9194e0ceea30d31aa94078a07d2287f",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/harbor_terminal_agent.py",
+      "source_sha256": "dbc19e6c86fee8156e50e8723ece70937184e4247e1cd42e5296a2601b769033",
+      "published_sha256": "6ad62626bc5cda7045b19f8a3d7177692ca440deae2134e8d6d5fd238257ddce",
+      "release_edits": [
+        {
+          "category": "remove-extra-eof-blank-line"
+        }
+      ]
+    },
+    {
+      "path": "scripts/industrial_deepseek_train_adapter.py",
+      "source_sha256": "9772e831050762957aa6e23a5aed3a439d77b88a1a89d993d7ad0dbc44dbaf32",
+      "published_sha256": "f480d95e2aa9f692960f8d77414993ddd51169b24940a20fe64f6ae2cd68f21b",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 2
+        },
+        {
+          "category": "deployment-placeholder"
+        }
+      ]
+    },
+    {
+      "path": "scripts/industrial_terminal_agents.py",
+      "source_sha256": "c3d0cec30d5e129acd036f5dffc4e062b1d99580af4cc980d5b7ad55c4b45dd2",
+      "published_sha256": "c3d0cec30d5e129acd036f5dffc4e062b1d99580af4cc980d5b7ad55c4b45dd2",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/prepare_aime_202060.py",
+      "source_sha256": "14cd07152d0f4b010f163be7a0f43f7dcf18b11cb674f5e1381eb10289830be3",
+      "published_sha256": "9a5ba22782c811300f68264d683b425d8a4e62b7327fd1866e5188b261db1478",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 1
+        }
+      ]
+    },
+    {
+      "path": "scripts/prepare_chisel_component_quality_data.py",
+      "source_sha256": "a7d912a7d69e1bee3b0e0827d1fd40b3b7d1397e00a81cd39591233f9492ffd6",
+      "published_sha256": "ff5ff28db73cbd5aeb1b3a9a3c6c817b5de5a225a31d1134ff59d598430907d3",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 1
+        }
+      ]
+    },
+    {
+      "path": "scripts/prepare_chisel_core_compiler_recovery.py",
+      "source_sha256": "715c79bbb5558008b6fee81e7f39a2722fca8e0663863c8e7ae27a6e574e9545",
+      "published_sha256": "715c79bbb5558008b6fee81e7f39a2722fca8e0663863c8e7ae27a6e574e9545",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/prepare_chisel_mmmu_shared_202060.py",
+      "source_sha256": "75ceb9733ac45434d5548377db89d19473dcb21fbe394246d12eb9e6471e09f9",
+      "published_sha256": "75ceb9733ac45434d5548377db89d19473dcb21fbe394246d12eb9e6471e09f9",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/prepare_compact_harness_training_pilot.py",
+      "source_sha256": "6b1ee9ab573f69ce2cac55cc1b61a45f7bd55281d1dc4518972fab9f2c1ff446",
+      "published_sha256": "6b1ee9ab573f69ce2cac55cc1b61a45f7bd55281d1dc4518972fab9f2c1ff446",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/prepare_deepseek_terminal_recovery.py",
+      "source_sha256": "8955b05aa175e8030ff14bb4528c6aad3e563f6d72999097f9823610067b6c5c",
+      "published_sha256": "29aae7b50cb78e7c3c7d05bcd0992f7f47075c7d1bed37965fbe8baa58d81948",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 1
+        }
+      ]
+    },
+    {
+      "path": "scripts/prepare_qa_aa_calibration.py",
+      "source_sha256": "2c3f25a95b076692cc353c3bcc36a901858e3f68445e4fd33b0b0e22d6f42bdb",
+      "published_sha256": "2c3f25a95b076692cc353c3bcc36a901858e3f68445e4fd33b0b0e22d6f42bdb",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/prepare_qa_capability_cost_config.py",
+      "source_sha256": "c423c63460420dc16d40f735b776852d155a33e4eee85fe3a5e5c8cf43315986",
+      "published_sha256": "c423c63460420dc16d40f735b776852d155a33e4eee85fe3a5e5c8cf43315986",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/prepare_qa_chisel_preservation_config.py",
+      "source_sha256": "e94fcc814b24ba310967f473495a6c708604495e0dcae7aa1f5900f53631d2f6",
+      "published_sha256": "e94fcc814b24ba310967f473495a6c708604495e0dcae7aa1f5900f53631d2f6",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/prepare_qa_lossless_native.py",
+      "source_sha256": "c361867e5aca5deeb35d00deb6298e4b9b3ac8b0a0f00d7b86d8ba52f1f9759c",
+      "published_sha256": "24490d80e59b0e871ae259a3fdf3d431cae9f741657dbc714e7fdb874e224914",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 1
+        }
+      ]
+    },
+    {
+      "path": "scripts/prepare_qa_lossless_routing_config.py",
+      "source_sha256": "4e42c8a305a07895eeac911353e3d42d82b1e9d40ee128eee160652b73d54e37",
+      "published_sha256": "4e42c8a305a07895eeac911353e3d42d82b1e9d40ee128eee160652b73d54e37",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/prepare_qa_profile_compression.py",
+      "source_sha256": "1f461de1163d12fada6097b71702e5841622a4055923713aaf708cfc71c2692a",
+      "published_sha256": "1f461de1163d12fada6097b71702e5841622a4055923713aaf708cfc71c2692a",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/prepare_sar_public_verifier_cache.py",
+      "source_sha256": "488f18961595d09f8d460aff0914b270b4c55b24a9dc33546bf79b497361ac9f",
+      "published_sha256": "9229cb67eb1f5b758a98487eba559f43a410351b0ff1ced68ac8df6fdf2a33ce",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 1
+        }
+      ]
+    },
+    {
+      "path": "scripts/prepare_terminal_bench_solpi_campaign.py",
+      "source_sha256": "1a32e9f6bd8e353c4b09b5c644237f4edb9ef5841a3b1148a39d32eda8a20079",
+      "published_sha256": "f9d7ba80059aa65c9c6a46cbb0ed1e8d191591ffba2dd67bdeb09af260239b66",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder"
+        },
+        {
+          "category": "remove-extra-eof-blank-line"
+        }
+      ]
+    },
+    {
+      "path": "scripts/probe_chisel_model_fidelity.py",
+      "source_sha256": "7ace5755114ea51b7ab26dad4fe501f1da7b1e049e216570f753073f043693a3",
+      "published_sha256": "0918b6513ace9fdbb1eca784cff97e2c2c57d70531676dfac02e8ededa3257f8",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 1
+        }
+      ]
+    },
+    {
+      "path": "scripts/qa_aa_calibration_protocol.py",
+      "source_sha256": "5a71b36350739a6e44eff80dbc835408dd52a9643454af09ebd16a824ded687f",
+      "published_sha256": "5a71b36350739a6e44eff80dbc835408dd52a9643454af09ebd16a824ded687f",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/qa_capability_cost_protocol.py",
+      "source_sha256": "d8e322965e3ce058e76356c48b5e5fc95dc26cbbab0082a51e3664658f28e328",
+      "published_sha256": "d8e322965e3ce058e76356c48b5e5fc95dc26cbbab0082a51e3664658f28e328",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/qa_chisel_preservation_protocol.py",
+      "source_sha256": "ca45473e77e6d0aaf070cba6727507fe0b480fdd2a5b72de8a924633c868c031",
+      "published_sha256": "ca45473e77e6d0aaf070cba6727507fe0b480fdd2a5b72de8a924633c868c031",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/qa_harness_mixture_protocol.py",
+      "source_sha256": "42bddc3bdbe590d61c717716eff6ceca6cbb8e0fc08cb381004c9e1da6d6e2a8",
+      "published_sha256": "42bddc3bdbe590d61c717716eff6ceca6cbb8e0fc08cb381004c9e1da6d6e2a8",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/qa_lossless_format_protocol.py",
+      "source_sha256": "325ad32855791c08e1afddcd21cd3af6f730cac95b385f2ef0d6b48d01016053",
+      "published_sha256": "d6f96958ab20cdf2762b2667d30349df9461226274ba04dfea891e51e473eb6a",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 1
+        }
+      ]
+    },
+    {
+      "path": "scripts/qa_lossless_routing_protocol.py",
+      "source_sha256": "8db5f78d3d1f8ee2398622ae8f7d3c7cb0c3a1239115652b0525e002e1bcc9a6",
+      "published_sha256": "982e765b5c7e544a795485187e816493ed658a9b0cfafa941781ca41ffff7099",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 1
+        }
+      ]
+    },
+    {
+      "path": "scripts/qa_profile_compression_protocol.py",
+      "source_sha256": "8785b647665281c29c3b8f3fcbbe390934b278c4d4fa8844d251177fc428a6bf",
+      "published_sha256": "fa31870a807b255885ab6107a174bc002af06310ed3f78a25512971485cd0192",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 1
+        }
+      ]
+    },
+    {
+      "path": "scripts/queue_aime_202060.py",
+      "source_sha256": "e1fb09238e7d3be738bde71b13b59a50361f99ce5027f5824e3896bbf444e17f",
+      "published_sha256": "e1fb09238e7d3be738bde71b13b59a50361f99ce5027f5824e3896bbf444e17f",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/recover_codex_gaia_native_judge.py",
+      "source_sha256": "c59015da6cc7e574fd511d9129883955fb3761cc6df49bdbc0576f14f71e3c86",
+      "published_sha256": "c59015da6cc7e574fd511d9129883955fb3761cc6df49bdbc0576f14f71e3c86",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/recover_codex_sam_verifier.py",
+      "source_sha256": "4a893270e69935a9b92e9df4219ec97777bd2ebcc5bf08a3b69489d795cc79eb",
+      "published_sha256": "dba3d251a69d8f121fa656925fd7ae53cf0b632ad091f3096d3b062af47d8d90",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 2
+        },
+        {
+          "category": "deployment-placeholder"
+        }
+      ]
+    },
+    {
+      "path": "scripts/recover_terminal_verifier.py",
+      "source_sha256": "c0c4fdba7ec1157cb5b2e6467356a348cd561fd9d1cee56bd2c9e055f059e70c",
+      "published_sha256": "c9a7c717060e58cec47bd145a5469c3e94e8b9029373fbc84f2dd88a31c54890",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 1
+        },
+        {
+          "category": "deployment-placeholder"
+        }
+      ]
+    },
+    {
+      "path": "scripts/relocate_aime_202060.py",
+      "source_sha256": "baa48c71f1c0e880e30da5e097a2f594d165f322d647ec2aff20d7fb0262f9b6",
+      "published_sha256": "a8443691d5d5013019cfb5684bcebee826c143fab53ac2b64cbe2267e7998cd4",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 1
+        }
+      ]
+    },
+    {
+      "path": "scripts/render_qa_aa_calibration.py",
+      "source_sha256": "dbb67e8d267d42597a612691d66be8b95b2bb7584440501f0036767ccb94d235",
+      "published_sha256": "dbb67e8d267d42597a612691d66be8b95b2bb7584440501f0036767ccb94d235",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/render_qa_capability_cost.py",
+      "source_sha256": "ff558ff4fecf925e45e97ec94df50988e42804df3096f4611d1ea748044ed674",
+      "published_sha256": "ff558ff4fecf925e45e97ec94df50988e42804df3096f4611d1ea748044ed674",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/render_qa_chisel_preservation.py",
+      "source_sha256": "490a214876c38b890c680169161185b215d3c24e0032accbec53fe4dfddb5fe7",
+      "published_sha256": "490a214876c38b890c680169161185b215d3c24e0032accbec53fe4dfddb5fe7",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/render_qa_harness_mixture.py",
+      "source_sha256": "079b8b05b3d0a3df44275db79015477f24868bb402e99640be2ea4adbe9ba810",
+      "published_sha256": "079b8b05b3d0a3df44275db79015477f24868bb402e99640be2ea4adbe9ba810",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/run_aime_202060.py",
+      "source_sha256": "364efc5f6f7e425cedf6bd1af65150573628457778988901ffff4be456ec873d",
+      "published_sha256": "364efc5f6f7e425cedf6bd1af65150573628457778988901ffff4be456ec873d",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/run_aime_chisel_202060.py",
+      "source_sha256": "41bc51f0f935f53634a6b60e05219a08fd606c2d67c997046618dbd4ef2c0aeb",
+      "published_sha256": "41bc51f0f935f53634a6b60e05219a08fd606c2d67c997046618dbd4ef2c0aeb",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/run_aime_four_method.py",
+      "source_sha256": "4e14486d084aaeba96e9433151fcd88e3231f803b28770da72abf02b4307d746",
+      "published_sha256": "4e14486d084aaeba96e9433151fcd88e3231f803b28770da72abf02b4307d746",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/run_aime_proof_development.py",
+      "source_sha256": "edaeb32aab098f9a5a55f89737febbf79d6dd41c8aaf582ec86afbd2d4405e0f",
+      "published_sha256": "edaeb32aab098f9a5a55f89737febbf79d6dd41c8aaf582ec86afbd2d4405e0f",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/run_alfworld_ablation_rerun.py",
+      "source_sha256": "7cd41023cff8005ebf226ae7ca3be91d75b2ad47f40045c95c4bc77a13081890",
+      "published_sha256": "7cd41023cff8005ebf226ae7ca3be91d75b2ad47f40045c95c4bc77a13081890",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/run_alfworld_autosaddler_worker.py",
+      "source_sha256": "bb06720e975e6f63931d2622605bfddfdcf449f975dc251c12a84e921cc71637",
+      "published_sha256": "bb06720e975e6f63931d2622605bfddfdcf449f975dc251c12a84e921cc71637",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/run_alfworld_modular_rsi.py",
+      "source_sha256": "5af730f3be8bc5f4231f014a69359ef01915d9264af6ddf2df3938430b96d4e8",
+      "published_sha256": "5af730f3be8bc5f4231f014a69359ef01915d9264af6ddf2df3938430b96d4e8",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/run_chisel_autosaddler_corrected_loop.py",
+      "source_sha256": "64b0ce539add7e6ad86e21fece8f3af9205d6ba627355f1f19e07a09c8bb528e",
+      "published_sha256": "64b0ce539add7e6ad86e21fece8f3af9205d6ba627355f1f19e07a09c8bb528e",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/run_chisel_component_quality.py",
+      "source_sha256": "74737e7013ff3c5d143127a9a3b4f56c0a7ecfac8499974399a484a67835ab08",
+      "published_sha256": "de27ba7f33b0931673023fd9133af69a2fe5cf794437b76b3510d145cfff3f10",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 1
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_chisel_core_ablation.py",
+      "source_sha256": "09db606da2ced6e4d4e17c2c7044c4a20e686255a69a9e9ee852324ec5f3fe2a",
+      "published_sha256": "3c03fc2bede1315ed73a69cfcdbecb9905cc07f175a057c048029f56d7fe3133",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 1
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_chisel_efficiency_train.py",
+      "source_sha256": "cf7724433881056f155fde3e5d19c1cbaf6317df6106a5790dc20725ceacfacd",
+      "published_sha256": "cf7724433881056f155fde3e5d19c1cbaf6317df6106a5790dc20725ceacfacd",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/run_chisel_efficiency_validation.py",
+      "source_sha256": "332e2fa55d728a922a13196aca5d268e3f99ba0c9e3b47884bd500b5c03869c1",
+      "published_sha256": "332e2fa55d728a922a13196aca5d268e3f99ba0c9e3b47884bd500b5c03869c1",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/run_chisel_four_method_test.py",
+      "source_sha256": "243d0231d52620d44df6c35210602335ffaf545534bcdb3bcdbf40700805c76f",
+      "published_sha256": "243d0231d52620d44df6c35210602335ffaf545534bcdb3bcdbf40700805c76f",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/run_chisel_instruction_only_validation.py",
+      "source_sha256": "fedfce5340044efe7654d2e49c426e76ca9fe1b4b501f00cacd33e070226624d",
+      "published_sha256": "72fd6ab52bb95ca9254e99a758c4ac94bc25e1745a9185596850bcac6dd2d6ca",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 1
+        },
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 1
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_chisel_interactive_complete_optimizers.py",
+      "source_sha256": "f5ce2e685893785e1e07dd86f3ee5ea0369a60047898e00e422145451246a59a",
+      "published_sha256": "f5ce2e685893785e1e07dd86f3ee5ea0369a60047898e00e422145451246a59a",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/run_chisel_interactive_shared226.py",
+      "source_sha256": "c050b48534d81e6fd6736b085889dace1344ffa81ff4f4a164845171b59b54fb",
+      "published_sha256": "853f37011ad830d17662ed4591a757db1c3ed64ad89ce07a1caab24c5caf9c8a",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 1
+        },
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 1
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_chisel_mmmu_shared.py",
+      "source_sha256": "d03782b5516e141fe8c91d686af754df15a0a804664d3bbaeef07ed24c93a217",
+      "published_sha256": "d03782b5516e141fe8c91d686af754df15a0a804664d3bbaeef07ed24c93a217",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/run_chisel_repair_alfworld.py",
+      "source_sha256": "8d5b0542053a14e8ae23c95fc88b4ebeeda773d4ff1eb259e39fe623d3940d69",
+      "published_sha256": "8d5b0542053a14e8ae23c95fc88b4ebeeda773d4ff1eb259e39fe623d3940d69",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/run_codex_chisel_terminal.py",
+      "source_sha256": "8783eff1e07ad48506f00dfbe5cc0919ba7e088841cfbb86e901c5143de792e7",
+      "published_sha256": "af18a305c05f8659c31c80ad5c5b6fecc270d6e3f692a0d114f2e90a1b66c5ad",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder"
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_codex_context_control.py",
+      "source_sha256": "2b9b879041c48bd2538ce96040be29b7959decf6b7149dbe4697dc0d72f5b3cb",
+      "published_sha256": "7268541307d3391dad7ba5a42c5b659d698653b6a2ba1893404d627872ed0fcf",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 2
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_codex_gaia2.py",
+      "source_sha256": "b16f3daba1a11ec71a91fb7cace4090ac5abff517fbc8bb611dd1978b66bbeea",
+      "published_sha256": "b16f3daba1a11ec71a91fb7cace4090ac5abff517fbc8bb611dd1978b66bbeea",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/run_codex_gaia2_campaign.py",
+      "source_sha256": "16b071bdc864f447c58339a029e0d8de91ae41394e5781849afa5b8cebe5b5c2",
+      "published_sha256": "5353ffc3fc232761bdb20a3f932d5bedc2697b7cf3d207f7d7e2814acbbb8f6e",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder"
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_codex_native_app_bank_campaign.py",
+      "source_sha256": "ad5059163903fbfb02426d7a455f999a894c86f8468d268326c14bcd38f5b4a3",
+      "published_sha256": "32e30dd0ed3c909e9d2cf0110b71e90dde4c30fd29a07c877279cf810074e1e2",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder"
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_codex_terminal.py",
+      "source_sha256": "e6cc840f5af880ead65042cff9edbd4e8506b3c9338607478c6a1c35b749ca4e",
+      "published_sha256": "6f5a4c91c41cd3128cb12d30c601b01cf970976c477846c624ec6b3bd5f83c08",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder"
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_codex_terminal_bank_campaign.py",
+      "source_sha256": "74113533a724ec1a113a7b11adf7cf370f1aab3f828c699eedb935bd1f56ae68",
+      "published_sha256": "74113533a724ec1a113a7b11adf7cf370f1aab3f828c699eedb935bd1f56ae68",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/run_compact_harness_refinement.py",
+      "source_sha256": "eeeeaf1ac5569cfd2c5296742deaa9ebcc2e3f9ccf76f8b976a0e237f1e674eb",
+      "published_sha256": "165609e046c9cb27259181d0c18eb833f0635e0b37c1ea84c093a68543639383",
+      "release_edits": [
+        {
+          "category": "remove-extra-eof-blank-line"
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_compact_harness_training_pilot.py",
+      "source_sha256": "42fe56378ff86cf325fe16a9ed6fbbfd6b33dd943d4e167f1aa50a9b76ce768e",
+      "published_sha256": "42fe56378ff86cf325fe16a9ed6fbbfd6b33dd943d4e167f1aa50a9b76ce768e",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/run_deepseek_gaia2.py",
+      "source_sha256": "d185c66cff704c34aa2afaa8adc0c1db2de254717099265cd0fab74382ab3eff",
+      "published_sha256": "486a59e17abc2698022add1acaef3aa696959e4865679ecf213240a2fa436d2f",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 2
+        },
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 1
+        },
+        {
+          "category": "deployment-placeholder"
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_deepseek_gaia2_campaign.py",
+      "source_sha256": "03c33a002984608e54ff99b4580ab7b152fffe766f0ecb86a51de4a03c5d10a7",
+      "published_sha256": "03c33a002984608e54ff99b4580ab7b152fffe766f0ecb86a51de4a03c5d10a7",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/run_deepseek_terminal.py",
+      "source_sha256": "542deb64c752a655e06b17d691a62b4438f61c92cf2b078dd26789d71985f9a2",
+      "published_sha256": "f0baf17a97e4d1cb40b8181bc9745c06a834a6303bf4855554310bbdfd774405",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 1
+        },
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 1
+        },
+        {
+          "category": "deployment-placeholder"
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_deepseek_terminal_campaign.py",
+      "source_sha256": "9d6f045bb0b846bc3c394df5b49b58acbc4bc9ddc48fd4b100f36bec31c7c311",
+      "published_sha256": "9d6f045bb0b846bc3c394df5b49b58acbc4bc9ddc48fd4b100f36bec31c7c311",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/run_ewmbench_pilot_metrics.py",
+      "source_sha256": "02cfa925dfe4ecb3e2d56b881e57062415c4e657402171bf086375d387b9fe93",
+      "published_sha256": "02cfa925dfe4ecb3e2d56b881e57062415c4e657402171bf086375d387b9fe93",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/run_figure3_codex_recovery.py",
+      "source_sha256": "3c85ca4f4fb20bb85b5c7624c208cd00ca422e4518e6e6be274bd0c0f433e091",
+      "published_sha256": "26db8b23d742c1e8de26bc24baa2b06eff627850b4efdeefdd58607b97a93dba",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 1
+        },
+        {
+          "category": "deployment-placeholder"
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_figure3_deepseek_protected.py",
+      "source_sha256": "ece0f4698fbd6b0e9cf3312981624a2fb3f13ab43642c03ada1834c318fce47e",
+      "published_sha256": "c1eefa9be753829334f3e8bd87a476cd77032218bfc8d86ecad67409bb301986",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 1
+        },
+        {
+          "category": "deployment-placeholder"
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_gaia2_202060.py",
+      "source_sha256": "6b8b4426bc9e607e9ec9e77399075242108c97d114444abddce5b8ed8bf7e6c3",
+      "published_sha256": "6b8b4426bc9e607e9ec9e77399075242108c97d114444abddce5b8ed8bf7e6c3",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/run_gaia2_four_method.py",
+      "source_sha256": "3457f7d9834315d545dfee0b4004e029da4db463cd66c05bdb1dd80a389820b5",
+      "published_sha256": "3457f7d9834315d545dfee0b4004e029da4db463cd66c05bdb1dd80a389820b5",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/run_gaia2_jev.py",
+      "source_sha256": "02231a9af3320c55858888847d6145cc26d276ca41877477275b8f9683f7414a",
+      "published_sha256": "02231a9af3320c55858888847d6145cc26d276ca41877477275b8f9683f7414a",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/run_industrial_capability_baselines.py",
+      "source_sha256": "30cde132cc186d0e63c175494240e616a16a9ddfb6e14bd42cf95d15fc06037c",
+      "published_sha256": "fc638f47445bafe3c882596eff50d702730e0ed0da7de9bee7b959ef05e39ec9",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 1
+        },
+        {
+          "category": "deployment-placeholder"
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_industrial_coding_confirmation.py",
+      "source_sha256": "6edb40081c7c25b1beae0f09d88bc6222f0f3f3de262cd3047db8ca3813f7fc7",
+      "published_sha256": "47be07fdcbbdedbce7a0570b322d45cb94c84342afa6f766bd0128e581a7e593",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 1
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_industrial_efficiency_rsi.py",
+      "source_sha256": "cea388fc6da5323abc2b37c7e2e4fe08313d586abf1825db0bf310b14caac7b1",
+      "published_sha256": "004856a986f6f2587f6a15c5524f35bc5a32e5314ec6a7944e62f9a56350dc5d",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder"
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_industrial_train_rsi.py",
+      "source_sha256": "26af8334df3d77dae042085d1306ac76d885fdc33a98461b32003bee77312d4b",
+      "published_sha256": "791866a1619b63280388e703809e2b42e477c42d594c1953aeacc217f9e72a4a",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 1
+        },
+        {
+          "category": "deployment-placeholder"
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_qa_lossless_guarded.py",
+      "source_sha256": "bd59a8e161d3676b77578d1c47a15fbee40e33bec11804b9724c097bb814854f",
+      "published_sha256": "9974bbdda0cf23ad5792dea4833c5ba5149a1bcf4e2e75b9adc1925810573246",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 1
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_sar_subdag_smoke.py",
+      "source_sha256": "06ef21931480e389b488b191c32b6d6f1e44cdba42d16848596b690aec1aaeeb",
+      "published_sha256": "06ef21931480e389b488b191c32b6d6f1e44cdba42d16848596b690aec1aaeeb",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/run_sar_v2_terminal_train.py",
+      "source_sha256": "5bdfccc66d593c75d44528f6cda29cdd68d612b3166632ac5f2931d929aaa217",
+      "published_sha256": "5bdfccc66d593c75d44528f6cda29cdd68d612b3166632ac5f2931d929aaa217",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/run_searchqa_residual_meta_campaign.py",
+      "source_sha256": "3fdb8af8a74a6e6a4126fbead6a6e3a4b0360f18f53d73abd876ccca5d705700",
+      "published_sha256": "3fdb8af8a74a6e6a4126fbead6a6e3a4b0360f18f53d73abd876ccca5d705700",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/run_searchqa_span_union.py",
+      "source_sha256": "0e74a7f1ae775bfd33cde564981e62dfe060666987223438db3a4ffee3d70c94",
+      "published_sha256": "0e74a7f1ae775bfd33cde564981e62dfe060666987223438db3a4ffee3d70c94",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/run_searchqa_strict_jev.py",
+      "source_sha256": "1b36b83311d88ed0797402a1750f7567a769d2325a6dbee2e026283853cf6ddf",
+      "published_sha256": "442728aebe901129c488a13682e5b5123b610a55f8d5e8feb397b189de6114a3",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 1
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_terminal_bench_autosaddler_dev.py",
+      "source_sha256": "9b47e8479e8b5bd5e57701a49b710f53602f80f4c0a3ee4e45aa927f13b9121e",
+      "published_sha256": "9b47e8479e8b5bd5e57701a49b710f53602f80f4c0a3ee4e45aa927f13b9121e",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/run_terminal_bench_jev.py",
+      "source_sha256": "3bdee664816c2c3a755d02341e807b2d347dd2217335543f9fdd0f38c9603fc9",
+      "published_sha256": "21956ecfbf0ae58bd0d22f7e4585daa893753b558000c169fc4ae2bdd8556baf",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder"
+        },
+        {
+          "category": "remove-extra-eof-blank-line"
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_terminal_bench_native.py",
+      "source_sha256": "edd21c774f37df91e22898442103f833c6ac1e239822b05147f8c7ed877ce75a",
+      "published_sha256": "2126e0a7167b9313c4bb909598fdcc9f038cfe43934e16b9d2c51c96f29968ef",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 1
+        },
+        {
+          "category": "deployment-placeholder"
+        },
+        {
+          "category": "remove-extra-eof-blank-line"
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_terminal_bench_qwen35_4b_direct.py",
+      "source_sha256": "9b0c18aa6a95ae2983ebe157d6ff7c7a013780e2b969d6eeeed5a5f7dc8f210a",
+      "published_sha256": "9b0c18aa6a95ae2983ebe157d6ff7c7a013780e2b969d6eeeed5a5f7dc8f210a",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/searchqa_autosota.py",
+      "source_sha256": "acac805e5e56091b388f7bb0aba42905bb32857c81449dd995814337fb4b9e7d",
+      "published_sha256": "acac805e5e56091b388f7bb0aba42905bb32857c81449dd995814337fb4b9e7d",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/searchqa_official_admission.py",
+      "source_sha256": "aeaa5b8054c298bc06f3a3e772ea75e3dcda6c371a2d7c0f36d833ddeaefe3e7",
+      "published_sha256": "aeaa5b8054c298bc06f3a3e772ea75e3dcda6c371a2d7c0f36d833ddeaefe3e7",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/searchqa_span_union.py",
+      "source_sha256": "a6f2e7eb2e49f93c018148c547d766a313eadfc998c64289f72d7bfaebc022ed",
+      "published_sha256": "a6f2e7eb2e49f93c018148c547d766a313eadfc998c64289f72d7bfaebc022ed",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/searchqa_strict_jev.py",
+      "source_sha256": "e4330efaa73c5eb29a5eab3698987e93ea5d4c9fd4ccdfb8d7e7ff8347c32f22",
+      "published_sha256": "e4330efaa73c5eb29a5eab3698987e93ea5d4c9fd4ccdfb8d7e7ff8347c32f22",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/serve_codex_deepseek.py",
+      "source_sha256": "c41895563af90f88f232a1a93a2ee59389376539afc14c81fbb9c09fd5bedef4",
+      "published_sha256": "4800b053cbb9ebe5e105845e3363340b1fe5303f96f6094ac5277b4584b31dbd",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder"
+        }
+      ]
+    },
+    {
+      "path": "scripts/serve_deepseek_durable_capture.py",
+      "source_sha256": "b47053b892a9925c1d3d4df855c33ba68275ea6382fe61a9c351c4100621080f",
+      "published_sha256": "b47053b892a9925c1d3d4df855c33ba68275ea6382fe61a9c351c4100621080f",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/serve_terminal_apt_cache.py",
+      "source_sha256": "6d6e7401e32fb1b0a11f66f31e0122ffca68d4cb42e964e867acf3d2cb28ca30",
+      "published_sha256": "779cfcb3a15e5202099da92678f3e174b4bca3de4e50fffa634e269282c5532f",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 1
+        },
+        {
+          "category": "deployment-placeholder"
+        },
+        {
+          "category": "remove-extra-eof-blank-line"
+        }
+      ]
+    },
+    {
+      "path": "scripts/serve_terminal_bench_model.py",
+      "source_sha256": "43bd960ba76ff99bf0c2531daae87302910137a627c1223f77bb6274f62a342d",
+      "published_sha256": "05367abe1c17da2158ef1e065535b1267d8c9ac7c12110bb2b764a3f167276db",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 1
+        },
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 1
+        },
+        {
+          "category": "remove-extra-eof-blank-line"
+        }
+      ]
+    },
+    {
+      "path": "scripts/serve_terminal_dependency_cache.py",
+      "source_sha256": "1a92600d7611ad3c818964bb30cc04eda021c52029ac806832341491d0ff29fe",
+      "published_sha256": "a353d21bf40aaa6fea2f7c201f8157855fa8931528b73f7cc89cf42d09b9cf00",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder"
+        },
+        {
+          "category": "remove-extra-eof-blank-line"
+        }
+      ]
+    },
+    {
+      "path": "scripts/terminal_action_capsules.py",
+      "source_sha256": "af3a9c02af5c868e8f3ba939cea7590b4464668c21d5a8ac2c906ba41b833a4d",
+      "published_sha256": "af3a9c02af5c868e8f3ba939cea7590b4464668c21d5a8ac2c906ba41b833a4d",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/terminal_consumer_evidence.py",
+      "source_sha256": "54798c9cd10a72e65fe90b7ec48c2256f9050ee053f79fd63c4444aec4b39c84",
+      "published_sha256": "54798c9cd10a72e65fe90b7ec48c2256f9050ee053f79fd63c4444aec4b39c84",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/terminal_cpu_runtime.py",
+      "source_sha256": "c8dc6f35b485e8a1a214b2373a69394bb4dd3a91a14464b8fe8d8ddd648418f7",
+      "published_sha256": "17d77e27f6e16218cf55cc19135393e52105bfc59e5594fa8417b02d4c73d435",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder"
+        }
+      ]
+    },
+    {
+      "path": "scripts/terminal_docker_network.py",
+      "source_sha256": "97cfd7fa685468b6573a8d85bf4105c9a724ca9cd875b3e95ea96ecf53552f54",
+      "published_sha256": "f2d24c7199c72e770f5478cad97e20c5c0fa0a275e32fa5b0cce5eb7cefb04ed",
+      "release_edits": [
+        {
+          "category": "remove-extra-eof-blank-line"
+        }
+      ]
+    },
+    {
+      "path": "scripts/terminal_durable_recovery.py",
+      "source_sha256": "67600e9cb074d8b0e9b7ce7c198489aadfbde4172d1c48b768db53a10dfaa413",
+      "published_sha256": "67600e9cb074d8b0e9b7ce7c198489aadfbde4172d1c48b768db53a10dfaa413",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/terminal_evidence_contracts.py",
+      "source_sha256": "177a66e9bfea324f1d4353d3601c4f437dcb91c5261fb64d3364f1705fda4ac7",
+      "published_sha256": "177a66e9bfea324f1d4353d3601c4f437dcb91c5261fb64d3364f1705fda4ac7",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/terminal_jev.py",
+      "source_sha256": "c9480c59160d65761f0621eb90162cfdf8d52700d3cb4808998ee897944f9c52",
+      "published_sha256": "06c49a311394a0b38c63eb35a28de86dc44a977c9a1507d1ab472153e7f1dba6",
+      "release_edits": [
+        {
+          "category": "remove-extra-eof-blank-line"
+        }
+      ]
+    },
+    {
+      "path": "scripts/terminal_network_lifecycle.py",
+      "source_sha256": "3e2c3f66963a3e914bc3b95580e321ab7e1ce8dd2e366f0cff19ed1486e96799",
+      "published_sha256": "3ee3e79dfb342761c9d6ae8310ffeb9f221acfe28985229461aecc9462fdc0d4",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 1
+        },
+        {
+          "category": "deployment-placeholder"
+        }
+      ]
+    },
+    {
+      "path": "scripts/terminal_prefix_fidelity.py",
+      "source_sha256": "880ad403cfdc141104bbcc406911d18c63759293215b3e242f5673b9e117a6ff",
+      "published_sha256": "6a672922f1ae8ac4efc7d501d1bd1b32d62309105fa9b6ef5af71759f9eab5c6",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder"
+        }
+      ]
+    },
+    {
+      "path": "scripts/terminal_public_progress.py",
+      "source_sha256": "2d1b074e6279b225a06a0819463a343b469a1ff75524b50f0dccc56405d17187",
+      "published_sha256": "2d1b074e6279b225a06a0819463a343b469a1ff75524b50f0dccc56405d17187",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/terminal_recovery_routing.py",
+      "source_sha256": "2f19f142faedf60eb4326ee23f567493d9e54c23982b323d29b7167b9888431f",
+      "published_sha256": "2f19f142faedf60eb4326ee23f567493d9e54c23982b323d29b7167b9888431f",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/terminal_solpi.py",
+      "source_sha256": "cb6dc96ee1fb4be3d2648331c48093948aac2ac8b98a2614cb055f49d48ecb75",
+      "published_sha256": "6955920c90be0f0424f8962cdb662be43a0096710344930f1a1ce246ada2e2d7",
+      "release_edits": [
+        {
+          "category": "remove-extra-eof-blank-line"
+        }
+      ]
+    },
+    {
+      "path": "scripts/train_searchqa_confidence_router.py",
+      "source_sha256": "6277a3c197cdab0a39dc6769867854d7f610b7d67564538de1ec1cb4aaec07c7",
+      "published_sha256": "673ae9d25e5103d86d05940bef802f175a0e1e82c451a67aaa2a5c9b207ae1c7",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 1
+        }
+      ]
+    },
+    {
+      "path": "scripts/validate_figure3_deepseek_manifest.py",
+      "source_sha256": "521f0004e04e6ed6515c5a7779a82de313ec8da595b0f4544d6eb728128bd4ae",
+      "published_sha256": "521f0004e04e6ed6515c5a7779a82de313ec8da595b0f4544d6eb728128bd4ae",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/verify_compact_harness_training_pilot.py",
+      "source_sha256": "6d260483228044a86fb91c1ed2e606b4c20de77dfde3c33b618e007abaff4117",
+      "published_sha256": "6d260483228044a86fb91c1ed2e606b4c20de77dfde3c33b618e007abaff4117",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/verify_cvpr_qwen35_cache.py",
+      "source_sha256": "2e665806ef58ca75758bdf083966f09cbb77e00f35167ccde5f5cb0e6c4f70f1",
+      "published_sha256": "f3673cca154045fe05624a5390f583f87dbba5cbb8f37d7f28b3844e200b3480",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 1
+        }
+      ]
+    },
+    {
+      "path": "scripts/verify_deepseek_terminal_shutdown.py",
+      "source_sha256": "b5fe06efdb01588f52b69918091a0a144f0e5f96c9a6ec1cc709f3c7d3b13d4a",
+      "published_sha256": "b5fe06efdb01588f52b69918091a0a144f0e5f96c9a6ec1cc709f3c7d3b13d4a",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/verify_qa_aa_calibration.py",
+      "source_sha256": "afdbd7ef0f7d0033191f4dde42236c7f1333030fa5bf07b4417700d367074f07",
+      "published_sha256": "afdbd7ef0f7d0033191f4dde42236c7f1333030fa5bf07b4417700d367074f07",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/verify_qa_harness_mixture.py",
+      "source_sha256": "8989c15262aa24948ee470dd26c01b81c9e07b57fb3c0f2b4dbe4316222d21ab",
+      "published_sha256": "8989c15262aa24948ee470dd26c01b81c9e07b57fb3c0f2b4dbe4316222d21ab",
+      "release_edits": []
+    },
+    {
+      "path": "scripts/watch_industrial_research.py",
+      "source_sha256": "7a8ccbeff9cb0f20d45beb3b737fe67cc2d5abbe3bf1d39442ad3e731e40a027",
+      "published_sha256": "7a8ccbeff9cb0f20d45beb3b737fe67cc2d5abbe3bf1d39442ad3e731e40a027",
+      "release_edits": []
+    },
+    {
+      "path": "tests/action_evidence_checkpoint.test.mjs",
+      "source_sha256": "a8741bd2c1428d231831ecba7a0f1d85c814580fb9861ed7a97a3ebd29b3fb47",
+      "published_sha256": "a8741bd2c1428d231831ecba7a0f1d85c814580fb9861ed7a97a3ebd29b3fb47",
+      "release_edits": []
+    },
+    {
+      "path": "tests/deepseek_cot_jev.test.mjs",
+      "source_sha256": "3eafe875cdf5f41ab1f0a0e2aa27652de9f36437a93c6f479afe303eb36a1aa4",
+      "published_sha256": "3eafe875cdf5f41ab1f0a0e2aa27652de9f36437a93c6f479afe303eb36a1aa4",
+      "release_edits": []
+    },
+    {
+      "path": "tests/deepseek_cot_jev_apps.test.mjs",
+      "source_sha256": "3f1abdf999a758953364df5d633bf0a347f494f38bfa56ae8eaa66d19220946f",
+      "published_sha256": "3f1abdf999a758953364df5d633bf0a347f494f38bfa56ae8eaa66d19220946f",
+      "release_edits": []
+    },
+    {
+      "path": "tests/deepseek_harness_plugin.test.mjs",
+      "source_sha256": "2f608f312547d7caab99865f2c8265a60e8d69e0198e7a2a8df96cdfdade0fa2",
+      "published_sha256": "2f608f312547d7caab99865f2c8265a60e8d69e0198e7a2a8df96cdfdade0fa2",
+      "release_edits": []
+    },
+    {
+      "path": "tests/jev_v2.test.mjs",
+      "source_sha256": "a0fe46431e081da9709496c642c033378e6d5a40533b67c454d50aef90ad326d",
+      "published_sha256": "a0fe46431e081da9709496c642c033378e6d5a40533b67c454d50aef90ad326d",
+      "release_edits": []
+    },
+    {
+      "path": "tests/native_observation_policy.test.mjs",
+      "source_sha256": "62f03859cfbeb6670df491f6363dd2990b053a496e5e2f76eeb04e2f0a83ed13",
+      "published_sha256": "62f03859cfbeb6670df491f6363dd2990b053a496e5e2f76eeb04e2f0a83ed13",
+      "release_edits": []
+    },
+    {
+      "path": "tests/public_argument_binding.test.mjs",
+      "source_sha256": "7bbffdf2497ddc059d9af53b3c50bb6eceec300bc016170f43e0888d0bd636d4",
+      "published_sha256": "7bbffdf2497ddc059d9af53b3c50bb6eceec300bc016170f43e0888d0bd636d4",
+      "release_edits": []
+    },
+    {
+      "path": "tests/sar_admission.test.mjs",
+      "source_sha256": "53198135266ae1c58c9ec1829801ab45257b330e1dd794cf74ec28f6340170b4",
+      "published_sha256": "53198135266ae1c58c9ec1829801ab45257b330e1dd794cf74ec28f6340170b4",
+      "release_edits": []
+    },
+    {
+      "path": "tests/sar_subdag.test.mjs",
+      "source_sha256": "a072ea507675b6dd5ebbb6a0fc3171ef5c4223d36e56e09ab7bfcf7c4ee0b355",
+      "published_sha256": "a072ea507675b6dd5ebbb6a0fc3171ef5c4223d36e56e09ab7bfcf7c4ee0b355",
+      "release_edits": []
+    },
+    {
+      "path": "tests/sar_v2.test.mjs",
+      "source_sha256": "73d32f77de10b0f523928dd0a86da846adec1fdec825e7a3fb06c45849d3c737",
+      "published_sha256": "73d32f77de10b0f523928dd0a86da846adec1fdec825e7a3fb06c45849d3c737",
+      "release_edits": []
+    },
+    {
+      "path": "tests/test_aime_202060.py",
+      "source_sha256": "da4fe371564bcc31da00ea0b3b1ae0042e6f6b5c463e6cd5352f559751fe6c67",
+      "published_sha256": "da4fe371564bcc31da00ea0b3b1ae0042e6f6b5c463e6cd5352f559751fe6c67",
+      "release_edits": []
+    },
+    {
+      "path": "tests/test_aime_domain_solver.py",
+      "source_sha256": "3f528447940ef3d23866149d5467a0059a0f32623702654044dfd4f3118d6c03",
+      "published_sha256": "3f528447940ef3d23866149d5467a0059a0f32623702654044dfd4f3118d6c03",
+      "release_edits": []
+    },
+    {
+      "path": "tests/test_benchmark_partition.py",
+      "source_sha256": "f5c46f660cbfe8859ab53594a8ccf5d95b548c65a5187acb01f99451277e7ce3",
+      "published_sha256": "f5c46f660cbfe8859ab53594a8ccf5d95b548c65a5187acb01f99451277e7ce3",
+      "release_edits": []
+    },
+    {
+      "path": "tests/test_chisel.py",
+      "source_sha256": "8e4d29a77d89ea6392c0e007d91c7e4e3d2e6d07a428c31c410bc7c5bc2a4cae",
+      "published_sha256": "8e4d29a77d89ea6392c0e007d91c7e4e3d2e6d07a428c31c410bc7c5bc2a4cae",
+      "release_edits": []
+    },
+    {
+      "path": "tests/test_codex_chisel.py",
+      "source_sha256": "b64334226e216e12837814fa0c4b671971712037636720ec6b8b6d6cda6e981f",
+      "published_sha256": "b64334226e216e12837814fa0c4b671971712037636720ec6b8b6d6cda6e981f",
+      "release_edits": []
+    },
+    {
+      "path": "tests/test_codex_jev_v2.py",
+      "source_sha256": "a93593469f9c3626b7e6c5898380fbbcab4c234f3a8342c7ca85cfb2b0b711fe",
+      "published_sha256": "a93593469f9c3626b7e6c5898380fbbcab4c234f3a8342c7ca85cfb2b0b711fe",
+      "release_edits": []
+    },
+    {
+      "path": "tests/test_codex_native_app_bank.py",
+      "source_sha256": "5e97b9ef74ec34725d2ce8ecc9aebd5cef67af0f5efcf593685737b9d7194d17",
+      "published_sha256": "5e97b9ef74ec34725d2ce8ecc9aebd5cef67af0f5efcf593685737b9d7194d17",
+      "release_edits": []
+    },
+    {
+      "path": "tests/test_codex_terminal_bank.py",
+      "source_sha256": "83704966ac4fb7ee11d0c4bbed686ea9394378a7dd0f85aca34ad574a6371de2",
+      "published_sha256": "83704966ac4fb7ee11d0c4bbed686ea9394378a7dd0f85aca34ad574a6371de2",
+      "release_edits": []
+    },
+    {
+      "path": "tests/test_codex_terminal_bank_contract.py",
+      "source_sha256": "4adbcb95c37e32b6bc850a290f1345731fa7c246e3d7359c09b207db53bcd691",
+      "published_sha256": "4adbcb95c37e32b6bc850a290f1345731fa7c246e3d7359c09b207db53bcd691",
+      "release_edits": []
+    },
+    {
+      "path": "tests/test_conditional_microplans.py",
+      "source_sha256": "8f23072ded3e3653e5b75d84624a78f0f4fb856e08a7fbdb48dd769aaddc28b6",
+      "published_sha256": "8f23072ded3e3653e5b75d84624a78f0f4fb856e08a7fbdb48dd769aaddc28b6",
+      "release_edits": []
+    },
+    {
+      "path": "tests/test_consumer_evidence.py",
+      "source_sha256": "6faaf3fa2ea292a63f4e257ab69931ae09a27e5692ef3e2c3062af21b3b6074a",
+      "published_sha256": "6faaf3fa2ea292a63f4e257ab69931ae09a27e5692ef3e2c3062af21b3b6074a",
+      "release_edits": []
+    },
+    {
+      "path": "tests/test_deepseek_chisel.py",
+      "source_sha256": "d4d422a89dda034147c601cb1b23d8253c9267ac2023bfbbbd59c117661170cb",
+      "published_sha256": "d4d422a89dda034147c601cb1b23d8253c9267ac2023bfbbbd59c117661170cb",
+      "release_edits": []
+    },
+    {
+      "path": "tests/test_deepseek_chisel_policy.py",
+      "source_sha256": "afd020e4607f2f23de2152bc0a281588cfad08ae059f1ef0df34582621bba5ba",
+      "published_sha256": "afd020e4607f2f23de2152bc0a281588cfad08ae059f1ef0df34582621bba5ba",
+      "release_edits": []
+    },
+    {
+      "path": "tests/test_deployment_token_accounting.py",
+      "source_sha256": "1bb0ce32ed766d958e5bad7d9ea4f93a4b59f9fc8336eedbfd5429970c45c912",
+      "published_sha256": "1bb0ce32ed766d958e5bad7d9ea4f93a4b59f9fc8336eedbfd5429970c45c912",
+      "release_edits": []
+    },
+    {
+      "path": "tests/test_dual_quality_cost.py",
+      "source_sha256": "920afa7bcc5668c82ee3b1891f4ab2ae0eb5b56fbc60cbfc7ed64352e93ca38f",
+      "published_sha256": "920afa7bcc5668c82ee3b1891f4ab2ae0eb5b56fbc60cbfc7ed64352e93ca38f",
+      "release_edits": []
+    },
+    {
+      "path": "tests/test_evidence_contracts.py",
+      "source_sha256": "c9456d772ae377cb7d556eb38bf83b8230064396cc774542243fafc9711a97b8",
+      "published_sha256": "c9456d772ae377cb7d556eb38bf83b8230064396cc774542243fafc9711a97b8",
+      "release_edits": []
+    },
+    {
+      "path": "tests/test_gaia2_execution_contract.py",
+      "source_sha256": "91d80d74b95ee4ab3251ed2670b9e0566c76cf617a145a4d348d3a0d57c550b0",
+      "published_sha256": "91d80d74b95ee4ab3251ed2670b9e0566c76cf617a145a4d348d3a0d57c550b0",
+      "release_edits": []
+    },
+    {
+      "path": "tests/test_gaia2_typed_continuation_bank.py",
+      "source_sha256": "d124270ccd43ec324ea0377cd0da3b4df8e95320067bc9e95e2e599b07206f65",
+      "published_sha256": "d124270ccd43ec324ea0377cd0da3b4df8e95320067bc9e95e2e599b07206f65",
+      "release_edits": []
+    },
+    {
+      "path": "tests/test_grounded_continuations.py",
+      "source_sha256": "f48fff01d72d27a916a17e4e9b75ac6ccb69a548332c6cae0b4d22d3705ba93d",
+      "published_sha256": "f48fff01d72d27a916a17e4e9b75ac6ccb69a548332c6cae0b4d22d3705ba93d",
+      "release_edits": []
+    },
+    {
+      "path": "tests/test_industrial_efficiency_rsi.py",
+      "source_sha256": "6c96356f3ceeee48fa0344dc95a2a990137fdb324b24bf6501cf9e61348edc2c",
+      "published_sha256": "079fe35061ab1661932b273d858b607a8a556037d3ad731d9ab92ae9909378d7",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder",
+          "occurrences": 1
+        },
+        {
+          "category": "package-relative-test-fixture-import"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_industrial_train_rsi.py",
+      "source_sha256": "81ef034a111bdd8e7f79a3247d5a9c06b9c9459b96950dd4122bb74a2186fce6",
+      "published_sha256": "46ca71ebdeafcc281a30559c7e40b9234405540e9dc342b53ff05e53df886da5",
+      "release_edits": [
+        {
+          "category": "package-relative-test-fixture-import"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_public_recurrence.py",
+      "source_sha256": "c0f6cd05ec82e6f0bfa2e1f2853c6df3d89067a7cee8e85dcb5b97a10213248f",
+      "published_sha256": "c0f6cd05ec82e6f0bfa2e1f2853c6df3d89067a7cee8e85dcb5b97a10213248f",
+      "release_edits": []
+    },
+    {
+      "path": "tests/test_residual_meta_harness.py",
+      "source_sha256": "d7581743d980db94f8b447b4c9b777251a1d68ced89e4156cfcb6ab0f03d7f52",
+      "published_sha256": "d7581743d980db94f8b447b4c9b777251a1d68ced89e4156cfcb6ab0f03d7f52",
+      "release_edits": []
+    },
+    {
+      "path": "tests/test_residual_meta_training.py",
+      "source_sha256": "e5e58381dfde82f29176dc7a5ee310be1f75f9b78e77f5b4b11c3b946b773329",
+      "published_sha256": "e5e58381dfde82f29176dc7a5ee310be1f75f9b78e77f5b4b11c3b946b773329",
+      "release_edits": []
+    },
+    {
+      "path": "configs/industrial_terminal_train_rsi_v1.json",
+      "source_sha256": "89b378a9428b934b1c5e01fe09e637a2cd8a424712b04d6669b5ea63d84e3a4a",
+      "published_sha256": "ddf5056714b09bec3d2f9d9491def3408acf0f96c104d48b0b8d3a23e4cd5959",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder"
+        }
+      ]
+    },
+    {
+      "path": "configs/deepseek_gaia2_campaign_v1.json",
+      "source_sha256": "7b0b985e5f4c5fb1159c773c6cafcf712e14cd24ff0f54120b931d265ddfa837",
+      "published_sha256": "c7041339f54e06f5d3f18d604a5c24a04616b37365a585b0871cb2eaeb9e536c",
+      "release_edits": [
+        {
+          "category": "deployment-placeholder"
+        }
+      ]
+    }
+  ],
+  "release_only_files": [
+    ".github/workflows/ci.yml",
+    ".gitignore",
+    "CITATION.cff",
+    "LICENSE",
+    "MANIFEST.in",
+    "NOTICE",
+    "README.md",
+    "SOURCE_MANIFEST.json",
+    "docs/CODE_MAP.md",
+    "docs/INTEGRATION.md",
+    "docs/RELEASE_CHECKS.md",
+    "docs/REPRODUCIBILITY.md",
+    "examples/guarded_reuse.mjs",
+    "examples/partition.py",
+    "integrations/__init__.py",
+    "integrations/deepseek_harness/__init__.py",
+    "package.json",
+    "phiagent/__init__.py",
+    "phiagent/harness/__init__.py",
+    "pyproject.toml",
+    "scripts/__init__.py",
+    "scripts/verify_release.py",
+    "tests/__init__.py"
+  ]
+}

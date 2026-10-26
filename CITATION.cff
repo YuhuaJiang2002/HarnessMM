@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use HarnessMM, please cite this repository and the accompanying paper."
+type: software
+title: "HarnessMM: Recursive Self-Improvement for Harness Token Efficiency"
+authors:
+  - family-names: Jiang
+    given-names: Yuhua
+  - family-names: Xu
+    given-names: Chang
+  - family-names: Gao
+    given-names: Feifei
+  - family-names: Zhao
+    given-names: Li
+version: 0.1.0
+date-released: 2026-10-26
+license: Apache-2.0
+repository-code: "https://github.com/YuhuaJiang2002/HarnessMM"
+url: "https://github.com/YuhuaJiang2002/HarnessMM"

@@ -1,0 +1,61 @@
+{
+  "schema": "industrial-terminal-train-instruction-rsi/v1",
+  "owner": "industrial-native-rsi-af25aeab",
+  "benchmark": "terminal-bench-2.0",
+  "phase": "train",
+  "split_counts": {"train": 18, "validation": 18, "test": 53},
+  "model": "deepseek-flash",
+  "shared_prompt_version": "industrial-coding-completion/v1",
+  "shared_prompt_sha256": "f2755a7b715e692b6fe794cdf7b316dfb58b301759dade0bf3f67c2ae02e57e5",
+  "optimization_iterations": 1,
+  "executor_workers": 1,
+  "minimum_distinct_train_support": 2,
+  "maximum_oof_harmful_rate": 0.0,
+  "crossfit_folds": 2,
+  "maximum_residual_characters": 1200,
+  "maximum_residual_words": 180,
+  "cumulative_token_limit": null,
+  "token_usage_mode": "unlimited",
+  "validation_access": false,
+  "test_access": false,
+  "heartbeat_seconds": 15,
+  "full_cot_jev": false,
+  "runtime_decision_layer": "cross-fitted lexical linear routing head with abstention",
+  "hosted_readout_gate": "Native callbacks lack a verified finite-choice probability/readout contract; no substitute model or fake activation",
+  "quality_gate": "Same or higher native successes across all 18 TRAIN identities",
+  "joint_efficiency_gate": "Quality gate plus strictly lower all-attempt actor and control tokens",
+  "development_cost": "Retain all proposer, reflection, failed, fallback and intervention costs separately",
+  "parents": {
+    "deepseek": {
+      "sealed_root": "/path/to/data/phiagent/work/harness-terminal-recovery/industrial-capability-20261001-v4-adoption/sealed-deepseek",
+      "binding_sha256": "a67b4792c0fd309f5cbabc761e6ecb0fa5513708513bcbe87d316dde0743ac78",
+      "seal_sha256": "2d1aa44652fecc8f0426d526a99f72c77b958290f49a2287243937a9ddcd1198",
+      "native_scored": 18,
+      "native_successes": 10,
+      "selected18_tokens": 29907333,
+      "all_attempt_tokens": 29907333
+    },
+    "codex": {
+      "continuation_handoff": "industrial-accuracy/20261001-codex-infrastructure-continuation-v1/HANDOFF.json",
+      "native_scored": 18,
+      "native_successes": 10,
+      "selected18_tokens": 43444021,
+      "all_attempt_tokens": 43824255,
+      "paid_attempts": 20
+    }
+  },
+  "python": {
+    "codex": "/path/to/data/phiagent/work/terminalbench-official89-wheel-closure/20260911-v1/runtime-env/bin/python",
+    "deepseek": "/opt/phiagent/work/deepseek-harness/20260929-v1/terminal-runtime/bin/python"
+  },
+  "admission_dependency": {
+    "owner": "d32e3482-3af0-4414-aad6-0ef55c3750d2",
+    "required_files": ["ADMISSION.json", "TRAIN_INPUT.json"],
+    "required_callback_owner_approval": "Hash-pinned industrial-native-callback-owner-approval/v1 artifact issued separately by parent/native callback owner and binding exact factory, source hashes, TRAIN input and contracts",
+    "capability_ready_is_callback_approval": false,
+    "preparation_output": "ADMISSION_DRAFT.json is not a release; preparation never writes a READY admission",
+    "required_native_contract": "Owner-bound callback factory accepting run, admission, train_input; execute and optimize callbacks with complete all-attempt usage",
+    "source_rule": "Use the recorded stronger parent continuation/binding and unchanged native verifier; never re-audit or repair owned infrastructure",
+    "completion_trigger": "After the native owner releases READY exclusive source-bound admission, execute STATE.json command exactly once under OWNER.lock"
+  }
+}
