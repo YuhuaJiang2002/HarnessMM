@@ -1,5 +1,7 @@
 # HarnessMM
 
+[![Tests](https://github.com/YuhuaJiang2002/HarnessMM/actions/workflows/ci.yml/badge.svg)](https://github.com/YuhuaJiang2002/HarnessMM/actions/workflows/ci.yml)
+
 **Recursive Self-Improvement for Harness Token Efficiency**
 
 HarnessMM (Harness Minus Minus) reuses decisions that an agent has already made.

@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=69", "wheel"]
+requires = ["setuptools>=77", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -8,7 +8,8 @@ version = "0.1.0"
 description = "Guarded decision reuse and recursive self-improvement for agent harness token efficiency"
 readme = "README.md"
 requires-python = ">=3.10,<3.15"
-license = {text = "Apache-2.0"}
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
 authors = [{name = "Yuhua Jiang"}]
 dependencies = []
 keywords = ["agents", "harness", "decision-reuse", "token-efficiency", "recursive-self-improvement"]

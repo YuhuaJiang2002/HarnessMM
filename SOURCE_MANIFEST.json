@@ -2932,8 +2932,13 @@
     {
       "path": "tests/test_conditional_microplans.py",
       "source_sha256": "8f23072ded3e3653e5b75d84624a78f0f4fb856e08a7fbdb48dd769aaddc28b6",
-      "published_sha256": "8f23072ded3e3653e5b75d84624a78f0f4fb856e08a7fbdb48dd769aaddc28b6",
-      "release_edits": []
+      "published_sha256": "45d628877667734356b63166df9a629f250da53a98710e4e2bc53006b5f0f16b",
+      "release_edits": [
+        {
+          "category": "cross-python-source-fingerprint-test",
+          "description": "Freeze the original non-generation source segments instead of version-dependent AST dump output; implementation is unchanged."
+        }
+      ]
     },
     {
       "path": "tests/test_consumer_evidence.py",

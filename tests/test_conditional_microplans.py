@@ -123,13 +123,17 @@ def test_generation_revision_changes_only_schema_descriptions_not_original_const
 
 
 def test_generation_revision_leaves_parser_state_helpers_and_constants_unchanged():
-    tree = ast.parse(Path(micro.__file__).read_bytes())
-    unchanged = ast.Module(body=[
+    source = Path(micro.__file__).read_text()
+    tree = ast.parse(source)
+    unchanged = [
         node for node in tree.body
         if not isinstance(node, ast.FunctionDef) or node.name not in {"response_schema", "prompt_contract"}
-    ], type_ignores=[])
-    fingerprint = hashlib.sha256(ast.dump(unchanged, include_attributes=False).encode()).hexdigest()
-    assert fingerprint == "532da4d08089f6cee172122d1367d8398e4d3556cc3e47ed4fbb9a7abe053498"
+    ]
+    # AST fields and ast.dump defaults differ across Python versions. Preserve
+    # the same frozen code boundary using its original source segments instead.
+    payload = "\n\n".join(ast.get_source_segment(source, node) for node in unchanged)
+    fingerprint = hashlib.sha256(payload.encode()).hexdigest()
+    assert fingerprint == "65f22ad1de0c7cfe6a7a5544d016286b8306d239bb426243fc493bb6df2ffff8"
 
 
 @pytest.mark.parametrize("mode", micro.MODES)
