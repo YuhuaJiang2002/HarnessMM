@@ -1,0 +1,104 @@
+{
+  "benchmark": "MiniWoB++",
+  "model": "Qwen3.5-9B",
+  "method_variant": "HarnessMM-V visual extension",
+  "phase": "test",
+  "tasks_per_method": 96,
+  "training_tasks": 32,
+  "validation_tasks": 32,
+  "cost_scope": "Complete test execution input-plus-output tokens, including authorship, control, fallback, reducer/compaction calls and unsuccessful executions; offline learning/setup and training/validation verification excluded. No all-in RSI saving claimed.",
+  "population_policy": "Full shared test population, one execution per task per method. No task filtering.",
+  "public_method_name_mapping": {
+    "VIGRACE": "HarnessMM-V"
+  },
+  "source_figure_provenance_sha256": "66c2354f9ded9bf95114586003bf861ffac741117c007876351146b8d88ce6bb",
+  "figure_methods": [
+    "HarnessMM-V",
+    "HarnessPro",
+    "SoL-Pi",
+    "Codex Harness",
+    "DeepSeek Harness"
+  ],
+  "rows": [
+    {
+      "method": "baseline harness",
+      "tasks": 96,
+      "successes": 58,
+      "execution_tokens": 706454,
+      "source_file": "visual_rsi_admitted_comparisons.json",
+      "source_sha256": "f891aed0c86b232c89ed204a5f0a7b9be484c17135e3b7b8ea0eb0920aa7d7a9"
+    },
+    {
+      "method": "SkillOpt",
+      "tasks": 96,
+      "successes": 62,
+      "execution_tokens": 765253,
+      "source_file": "visual_rsi_admitted_comparisons.json",
+      "source_sha256": "f891aed0c86b232c89ed204a5f0a7b9be484c17135e3b7b8ea0eb0920aa7d7a9"
+    },
+    {
+      "method": "AutoSaddler",
+      "tasks": 96,
+      "successes": 58,
+      "execution_tokens": 755339,
+      "source_file": "visual_rsi_admitted_comparisons.json",
+      "source_sha256": "f891aed0c86b232c89ed204a5f0a7b9be484c17135e3b7b8ea0eb0920aa7d7a9"
+    },
+    {
+      "method": "SoL-Pi",
+      "tasks": 96,
+      "successes": 58,
+      "execution_tokens": 4030845,
+      "source_file": "miniwob_solpi_complete96.json",
+      "source_sha256": "289d782941ed623048dad4be36ec2ef9f2d4a754f58e9d80bdc061c887e46ba5"
+    },
+    {
+      "method": "Prompt Compaction",
+      "tasks": 96,
+      "successes": 57,
+      "execution_tokens": 709918,
+      "source_file": "visual_rsi_admitted_comparisons.json",
+      "source_sha256": "f891aed0c86b232c89ed204a5f0a7b9be484c17135e3b7b8ea0eb0920aa7d7a9"
+    },
+    {
+      "method": "DeepSeek Harness",
+      "tasks": 96,
+      "successes": 59,
+      "execution_tokens": 1923265,
+      "source_file": "deepseek_miniwob_native_observation_final_review.json",
+      "source_sha256": "04221a365193d0853817cb11003de7778e9858ad0a90f818f5967279240a6475"
+    },
+    {
+      "method": "Codex Harness",
+      "tasks": 96,
+      "successes": 57,
+      "execution_tokens": 4297921,
+      "source_file": "miniwob_codex_native_budget_v5_complete96.json",
+      "source_sha256": "ce42ac01057a886fb5a4c2d6f4f965a5d67030473dbf7cd1e4dcc56b1dde6ba6"
+    },
+    {
+      "method": "RHO",
+      "tasks": 96,
+      "successes": 56,
+      "execution_tokens": 873351,
+      "source_file": "main_miniwob_rho_complete_pipeline_review.json",
+      "source_sha256": "a9418144c9f0a67cac369a0adb46bb55f2209a38f964bc1e01e401df19b6d609"
+    },
+    {
+      "method": "HarnessPro",
+      "tasks": 96,
+      "successes": 59,
+      "execution_tokens": 962464,
+      "source_file": "miniwob_harnesspro_complete96.json",
+      "source_sha256": "966b9762da5b3aa72aa02a971ec977f0abcedff04b9b32bfd406e78b40db1c35"
+    },
+    {
+      "method": "HarnessMM-V",
+      "tasks": 96,
+      "successes": 60,
+      "execution_tokens": 486820,
+      "source_file": "visual_rsi_admitted_comparisons.json",
+      "source_sha256": "f891aed0c86b232c89ed204a5f0a7b9be484c17135e3b7b8ea0eb0920aa7d7a9"
+    }
+  ]
+}

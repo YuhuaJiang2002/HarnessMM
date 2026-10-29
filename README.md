@@ -7,6 +7,38 @@
   <a href="https://arxiv.org/pdf/2610.32813"><img src="https://img.shields.io/badge/PDF-Download-B31B1B" alt="Download paper PDF"></a>
 </p>
 
+HarnessMM reduces harness token consumption through guarded decision reuse.
+Its visual extension, **HarnessMM-V**, achieves **higher success and lower
+execution cost than HarnessPro, SoL-Pi, Codex Harness and DeepSeek Harness**
+on the same 96 MiniWoB++ test tasks. The coding results below also show lower
+cost with preserved or improved success for Codex and DeepSeek Harness.
+
+## HarnessPro, SoL-Pi, Codex and DeepSeek comparisons
+
+![HarnessMM-V on 96 MiniWoB++ test tasks: 62.50% success with Tokens/task (k) of 5.07. Execution token savings are 49.42% versus HarnessPro, 87.92% versus SoL-Pi, 88.67% versus Codex Harness and 74.69% versus DeepSeek Harness; success is higher than all four.](docs/assets/readme/competitor-results.svg)
+
+| Method | Success (%) | Tokens/task (k) | HarnessMM-V token saving (%) |
+| --- | ---: | ---: | ---: |
+| **HarnessMM-V (ours)** | **62.50** | **5.07** | — |
+| HarnessPro | 61.46 | 10.03 | **49.42** |
+| SoL-Pi | 60.42 | 41.99 | **87.92** |
+| Codex Harness | 59.38 | 44.77 | **88.67** |
+| DeepSeek Harness | 61.46 | 20.03 | **74.69** |
+
+These additional visual-extension experiments use Qwen3.5-9B, the same full
+test population, native screenshots, tools and scorer, a 15-action limit and
+a 180-second episode allowance. All methods receive the objective of reducing
+complete-task input-plus-output tokens while preserving performance. Costs
+include every test execution call, including authorship, control, fallback,
+compaction and unsuccessful executions; offline learning and training/validation
+verification are separate. HarnessPro uses a configured visual reproduction of
+its Medium tier. See the [protocol and full comparison](docs/VISUAL_COMPARISON.md)
+for all ten methods, runtime details and cost definitions. These are
+HarnessMM-V results, separate from the HarnessMM coding experiments in the
+linked paper.
+
+## How it works
+
 ![HarnessMM overview: the slow actor authors an executable graph, receipt guards select eligible actions, and native execution records callback substitutions. Training, validation and testing remain separate.](docs/assets/readme/overview.svg)
 
 HarnessMM (Harness Minus Minus) reuses decisions that an agent has already made.
@@ -29,7 +61,12 @@ Existing Python imports use `phiagent`; `CHISEL`, `SAR`, `Jev` and
 retained so existing controllers, configurations and tests continue to work.
 See the [code map](docs/CODE_MAP.md) for the paper-to-code correspondence.
 
-## Main results
+## Codex and DeepSeek coding harnesses
+
+On HumanEval, HarnessMM uses **29.54% fewer tokens with Codex** at the same
+90.82% success, and **87.93% fewer tokens with DeepSeek Harness** while raising
+success from 71.43% to 85.71%. On MBPP-sanitized, it uses **80.35% fewer tokens
+with DeepSeek Harness (Qwen)** while raising success from 90.27% to 91.83%.
 
 HarnessMM reduces token consumption while preserving or improving coding
 success in these published comparisons. Values show the original harness →

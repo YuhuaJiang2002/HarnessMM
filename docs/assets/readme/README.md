@@ -11,6 +11,14 @@ are separate experiments. No new experiments or uncertainty estimates were
 introduced; all quantitative bar axes begin at zero. The original data tables
 and scope statements remain next to the images in the main README.
 
+`visual-comparison.json` separately records all ten complete MiniWoB++ visual
+extension arms, including exact integer task and token totals. The new
+`competitor-results` figure highlights HarnessMM-V against HarnessPro, SoL-Pi,
+Codex Harness and DeepSeek Harness. Its savings are computed from exact
+execution totals before rounding. The [visual protocol](../../VISUAL_COMPARISON.md)
+retains the complete comparison, method adaptations and cost scope. These
+visual results are separate from the HarnessMM coding paper data in `results.json`.
+
 `overview` depicts EDG authorship, GDR receipt checking, CCS native execution,
 the receipt loop, return to the slow actor, and the separate train/validation/test
 lifecycle. Arrows describe control flow and do not encode measured rates.

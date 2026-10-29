@@ -13,6 +13,7 @@ from matplotlib.patches import FancyBboxPatch, FancyArrowPatch
 
 ROOT = Path(__file__).resolve().parent
 DATA = json.loads((ROOT / "results.json").read_text())
+VISUAL = json.loads((ROOT / "visual-comparison.json").read_text())
 NAVY = "#172B4D"
 MUTED = "#526277"
 TEAL = "#087F8C"
@@ -25,6 +26,7 @@ plt.rcParams.update({
     "xtick.color": MUTED, "ytick.color": NAVY,
     "figure.facecolor": "white", "axes.facecolor": "white",
     "svg.fonttype": "path", "savefig.facecolor": "white",
+    "svg.hashsalt": "harnessmm-readme",
 })
 
 
@@ -145,7 +147,44 @@ def ablation():
     export(fig, "ablation")
 
 
+def competitor_results():
+    rows_by_name = {r["method"]: r for r in VISUAL["rows"]}
+    rows = [rows_by_name[name] for name in VISUAL["figure_methods"]]
+    ours = rows[0]
+    fig = plt.figure(figsize=(14, 8.2))
+    fig.text(.045, .94, "Higher success. Fewer tokens.", fontsize=27, weight="bold")
+    fig.text(.045, .885, "HarnessMM-V visual extension · MiniWoB++ · 96 test tasks per method · Qwen3.5-9B",
+             fontsize=12, color=MUTED)
+    cards = fig.add_axes([0, 0, 1, 1], zorder=-1)
+    cards.set(xlim=(0, 1), ylim=(0, 1)); cards.axis("off")
+    for x, row in zip([.055, .29, .525, .76], rows[1:]):
+        saving = 100 * (1 - ours["execution_tokens"] / row["execution_tokens"])
+        box(cards, x, .735, .205, .10, PALE)
+        text(cards, x+.013, .805, f'vs {row["method"]}', 10, MUTED)
+        text(cards, x+.013, .765, f"{saving:.2f}% fewer tokens", 15, TEAL, "bold")
+    axes = [fig.add_axes([.235, .17, .32, .48]), fig.add_axes([.62, .17, .32, .48])]
+    for ax, field in zip(axes, ["tokens", "success"]):
+        for y, row in zip([4, 3, 2, 1, 0], rows):
+            color = TEAL if row is ours else BLUE
+            value = (row["execution_tokens"] / row["tasks"] / 1000
+                     if field == "tokens" else row["successes"] / row["tasks"] * 100)
+            ax.barh(y, value, height=.5, color=color)
+            ax.text(value+(.65 if field == "tokens" else 1.3), y, f"{value:.2f}",
+                    va="center", color=color, weight="bold", fontsize=11)
+        ax.set_ylim(-.6, 4.6)
+    axes[0].set_yticks([4, 3, 2, 1, 0], [r["method"] + (" (ours)" if r is ours else "") for r in rows], fontsize=12)
+    axes[1].set_yticks([])
+    style_axis(axes[0], 51, "Tokens/task (k)")
+    style_axis(axes[1], 100, "Success (%)")
+    axes[0].set_xticks([0, 10, 20, 30, 40, 50])
+    axes[1].set_xticks([0, 25, 50, 75, 100])
+    fig.text(.235, .055, "Complete test execution costs; offline learning and verification accounted for separately.",
+             fontsize=10, color=MUTED)
+    export(fig, "competitor-results")
+
+
 if __name__ == "__main__":
     overview()
     main_results()
     ablation()
+    competitor_results()
