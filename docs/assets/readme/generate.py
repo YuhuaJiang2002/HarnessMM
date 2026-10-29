@@ -29,7 +29,9 @@ plt.rcParams.update({
 
 
 def export(fig, name):
-    fig.savefig(ROOT / f"{name}.svg")
+    svg_path = ROOT / f"{name}.svg"
+    fig.savefig(svg_path, metadata={"Date": None})
+    svg_path.write_text("\n".join(line.rstrip() for line in svg_path.read_text().splitlines()) + "\n")
     fig.savefig(ROOT / f"{name}.png", dpi=150)
     plt.close(fig)
 
