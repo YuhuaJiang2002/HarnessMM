@@ -7,6 +7,8 @@
   <a href="https://arxiv.org/pdf/2610.32813"><img src="https://img.shields.io/badge/PDF-Download-B31B1B" alt="Download paper PDF"></a>
 </p>
 
+![HarnessMM overview: the slow actor authors an executable graph, receipt guards select eligible actions, and native execution records callback substitutions. Training, validation and testing remain separate.](docs/assets/readme/overview.svg)
+
 HarnessMM (Harness Minus Minus) reuses decisions that an agent has already made.
 A slow model call writes exact future tool actions into an Executable Decision
 Graph (EDG). After each tool result, Guarded Decision Reuse (GDR) checks whether
@@ -35,6 +37,8 @@ HarnessMM on the same test tasks. Each pair shares its backbone, tools and
 scorer. All arms receive prompts to reduce complete-task input-plus-output
 tokens while preserving performance.
 
+![Published benchmark comparisons: HarnessMM reduces tokens per task on HumanEval and MBPP-sanitized while preserving or improving success. Exact values and task counts are in the table below.](docs/assets/readme/benchmark-results.svg)
+
 | Benchmark | Tasks | Harness | Success (%) | Tokens/task (k) | Token saving (%) |
 | --- | ---: | --- | ---: | ---: | ---: |
 | HumanEval | 98 | Codex | 90.82 → 90.82 | 66.72 → 47.02 | 29.54 |
@@ -50,6 +54,8 @@ optimization and validation costs are reported separately. See
 
 A separate MBPP-sanitized ablation uses the same 257 test tasks and execution
 settings across conditions:
+
+![MBPP-sanitized ablation: HarnessMM reaches 93.77% success with Tokens/task (k) of 13.17; removing GDR or CCS increases token consumption. Exact values are in the table below.](docs/assets/readme/ablation.svg)
 
 | Configuration | Success (%) | Tokens/task (k) |
 | --- | ---: | ---: |

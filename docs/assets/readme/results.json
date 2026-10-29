@@ -1,0 +1,15 @@
+{
+  "source": "README.md, Main results and Decision reuse and callback substitution; arXiv:2610.32813, Sections 5.3 and 5.5",
+  "scope": "Complete-task actor input and output, including authorship, selectors, finalization, retries, fallbacks and unsuccessful executions. Offline optimization and validation are separate.",
+  "precision": "Published values rounded to two decimal places; savings use the published percentages, not ratios of rounded values.",
+  "main": [
+    {"benchmark": "HumanEval", "harness": "Codex", "tasks": 98, "tokens": [66.72, 47.02], "success": [90.82, 90.82], "saving": 29.54},
+    {"benchmark": "HumanEval", "harness": "DeepSeek Harness", "tasks": 98, "tokens": [96.28, 11.62], "success": [71.43, 85.71], "saving": 87.93},
+    {"benchmark": "MBPP-sanitized", "harness": "DeepSeek Harness (Qwen)", "tasks": 257, "tokens": [53.98, 10.61], "success": [90.27, 91.83], "saving": 80.35}
+  ],
+  "ablation": [
+    {"configuration": "HarnessMM", "tokens": 13.17, "success": 93.77},
+    {"configuration": "W/o GDR", "tokens": 18.03, "success": 93.00},
+    {"configuration": "W/o CCS", "tokens": 16.37, "success": 93.39}
+  ]
+}
