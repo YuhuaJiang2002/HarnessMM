@@ -1,10 +1,11 @@
 # HarnessMM
 
-[![Tests](https://github.com/YuhuaJiang2002/HarnessMM/actions/workflows/ci.yml/badge.svg)](https://github.com/YuhuaJiang2002/HarnessMM/actions/workflows/ci.yml)
-
 **Recursive Self-Improvement for Harness Token Efficiency**
 
-[Paper (arXiv:2610.32813)](http://arxiv.org/abs/2610.32813) · [PDF](https://arxiv.org/pdf/2610.32813)
+<p align="center">
+  <a href="https://arxiv.org/abs/2610.32813"><img src="https://img.shields.io/badge/Paper-arXiv%3A2610.32813-B31B1B?logo=arxiv&amp;logoColor=white" alt="Paper (arXiv:2610.32813)"></a>
+  <a href="https://arxiv.org/pdf/2610.32813"><img src="https://img.shields.io/badge/PDF-Download-B31B1B" alt="Download paper PDF"></a>
+</p>
 
 HarnessMM (Harness Minus Minus) reuses decisions that an agent has already made.
 A slow model call writes exact future tool actions into an Executable Decision
