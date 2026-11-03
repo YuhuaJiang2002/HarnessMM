@@ -4,7 +4,7 @@ import re
 
 import pytest
 
-from phiagent.harness.aime_domain_solver import (
+from harnessmm.harness.aime_domain_solver import (
     DOMAIN_RULES, inherited_calls, run_domain_solver, solver_prompt,
 )
 

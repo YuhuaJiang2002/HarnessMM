@@ -35,24 +35,24 @@ FACTORIAL = {
     "skill_with_harness_router": ["full_mixture", "without_skill_router"],
 }
 IMPORT_CLOSURE_FILES = (
-    "phiagent/harness/task_reasoning.py",
-    "phiagent/harness/tshirt_fold_strategy.py",
-    "phiagent/harness/tshirt_positive_reference.py",
-    "phiagent/evaluation/__init__.py",
-    "phiagent/evaluation/component_ablation.py",
-    "phiagent/evaluation/polyglot_self_evolution_statistics.py",
-    "phiagent/learning/chisel_component_quality.py",
-    "phiagent/learning/residual_meta_harness.py",
-    "phiagent/learning/residual_meta_training.py",
-    "phiagent/learning/searchqa_grounded_features.py",
-    "phiagent/learning/stage_aware_adm.py",
+    "harnessmm/harness/task_reasoning.py",
+    "harnessmm/harness/tshirt_fold_strategy.py",
+    "harnessmm/harness/tshirt_positive_reference.py",
+    "harnessmm/evaluation/__init__.py",
+    "harnessmm/evaluation/component_ablation.py",
+    "harnessmm/evaluation/polyglot_self_evolution_statistics.py",
+    "harnessmm/learning/chisel_component_quality.py",
+    "harnessmm/learning/residual_meta_harness.py",
+    "harnessmm/learning/residual_meta_training.py",
+    "harnessmm/learning/searchqa_grounded_features.py",
+    "harnessmm/learning/stage_aware_adm.py",
     "scripts/run_chisel_component_quality.py",
     "scripts/probe_chisel_model_fidelity.py",
     "scripts/run_searchqa_residual_meta_campaign.py",
 )
 OVERLAY_FILES = (
-    "phiagent/harness/__init__.py", "phiagent/harness/mixture_router.py",
-    "phiagent/learning/qa_harness_mixture.py",
+    "harnessmm/harness/__init__.py", "harnessmm/harness/mixture_router.py",
+    "harnessmm/learning/qa_harness_mixture.py",
     "scripts/qa_harness_mixture_protocol.py", "scripts/verify_qa_harness_mixture.py",
     "tests/test_mixture_router.py", "tests/test_qa_harness_mixture.py",
     "tests/test_qa_harness_mixture_protocol.py",
@@ -247,8 +247,8 @@ class FrozenOriginalChisel:
         routes, protocol = _self_hashed(paths["routes"]), _self_hashed(paths["protocol"])
         original_sources = protocol["source_state"]["source_files_sha256"]
         source_keys = {
-            "harness_source": "phiagent/learning/residual_meta_harness.py",
-            "training_source": "phiagent/learning/residual_meta_training.py",
+            "harness_source": "harnessmm/learning/residual_meta_harness.py",
+            "training_source": "harnessmm/learning/residual_meta_training.py",
             "runner_source": "scripts/run_searchqa_residual_meta_campaign.py",
         }
         if any(file_sha(paths[key]) != original_sources[relative] for key, relative in source_keys.items()):
@@ -269,8 +269,8 @@ class FrozenOriginalChisel:
         # Restore the live package namespace after importing the archived trio.
         # Returned functions retain their original module globals, not new code.
         names = {
-            "harness_source": "phiagent.learning.residual_meta_harness",
-            "training_source": "phiagent.learning.residual_meta_training",
+            "harness_source": "harnessmm.learning.residual_meta_harness",
+            "training_source": "harnessmm.learning.residual_meta_training",
             "runner_source": "scripts.run_searchqa_residual_meta_campaign",
         }
         previous = {name: sys.modules.get(name) for name in names.values()}
@@ -330,8 +330,8 @@ class FrozenOriginalChisel:
 
 
 def prepare_cells(tokenizer: Any, items: list[dict], prompts: dict, config: dict, source: Path) -> tuple[list[dict], dict]:
-    from phiagent.harness.mixture_router import count_matched_random_routes
-    from phiagent.learning.qa_harness_mixture import build_mixture_request, mixture_arm_prompt
+    from harnessmm.harness.mixture_router import count_matched_random_routes
+    from harnessmm.learning.qa_harness_mixture import build_mixture_request, mixture_arm_prompt
 
     validate_config(config)
     ids = [item["id"] for item in items]
@@ -580,7 +580,7 @@ def target_gate(methods: dict, config: dict, bounds: dict | None = None) -> dict
 
 
 def diagnostic_bounds(scores: dict, groups: dict[str, str], config: dict) -> dict:
-    from phiagent.evaluation.chisel_component_quality import paired_finite_sample_lower_bound
+    from harnessmm.evaluation.chisel_component_quality import paired_finite_sample_lower_bound
 
     if set(scores) != set(config["arms"]) or any(set(rows) != set(groups) for rows in scores.values()):
         raise ProtocolError("Bounds require every declared task in every matched arm")

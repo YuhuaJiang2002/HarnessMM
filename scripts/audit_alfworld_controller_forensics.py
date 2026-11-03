@@ -170,7 +170,7 @@ def replay_episode(config: dict, job: dict, output: Path) -> dict:
 def model_free_episode(config: dict, job: dict, output: Path) -> dict:
     item = job["item"]
     build_env, _ = native_runtime(config)
-    from phiagent.learning.alfworld_jev import native_action_response, progress_choices
+    from harnessmm.learning.alfworld_jev import native_action_response, progress_choices
 
     env = build_env(1, "train", config["seed"], True, [item["gamefile"]])
     history = []

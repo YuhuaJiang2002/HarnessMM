@@ -2,8 +2,8 @@ from __future__ import annotations
 
 import pytest
 
-from phiagent.learning.residual_meta_harness import FeatureKind, FeatureSpec
-from phiagent.learning.residual_meta_training import (
+from harnessmm.learning.residual_meta_harness import FeatureKind, FeatureSpec
+from harnessmm.learning.residual_meta_training import (
     fit_cross_fitted_linear_head,
     select_calibration_records,
 )

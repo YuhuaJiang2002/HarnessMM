@@ -25,7 +25,7 @@ from urllib.parse import urlsplit
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from phiagent.data_engine.provenance import capture_provenance, write_json_atomic  # noqa: E402
+from harnessmm.data_engine.provenance import capture_provenance, write_json_atomic  # noqa: E402
 from scripts.terminal_network_lifecycle import network_owner, retire_networks  # noqa: E402
 
 HOST = "harnessmm-api-worker"
@@ -939,8 +939,8 @@ def figure3_codex_bank_train_input(callback: Path) -> tuple[dict, dict, dict, Pa
     """Bind a drained core-bank TRAIN actor to a separate scorer, without replay."""
     from scripts import run_industrial_capability_baselines as native
     from scripts.run_codex_terminal_bank_campaign import audit_physical_usage
-    from phiagent.harness.codex_terminal_bank_contract import CORE_METHODS, PARTITION_SHA256
-    from phiagent.harness.industrial_common_prompt import PROMPT_SHA256
+    from harnessmm.harness.codex_terminal_bank_contract import CORE_METHODS, PARTITION_SHA256
+    from harnessmm.harness.industrial_common_prompt import PROMPT_SHA256
 
     controller = callback.parents[5]
     hashes = load(controller / "SOURCE_SHA256.json")

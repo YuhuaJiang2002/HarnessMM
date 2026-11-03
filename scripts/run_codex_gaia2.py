@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Run one frozen GAIA2 scenario with official Codex CLI and native ARE scoring.
 
-See phiagent.harness.codex_gaia2 for the freeze, MCP, provider, isolation and
+See harnessmm.harness.codex_gaia2 for the freeze, MCP, provider, isolation and
 accounting contracts. Run only on authorized A800-4 in a new campaign directory.
 """
 
@@ -15,7 +15,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from phiagent.harness.codex_gaia2 import RunConfig, run_episode  # noqa: E402
+from harnessmm.harness.codex_gaia2 import RunConfig, run_episode  # noqa: E402
 
 
 def parser() -> argparse.ArgumentParser:

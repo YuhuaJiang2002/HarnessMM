@@ -8,8 +8,8 @@ import shlex
 
 from harbor.agents.installed.codex import Codex
 
-from phiagent.data_engine.provenance import write_json_atomic
-from phiagent.harness.codex_runtime import CODEX_SHA256, codex_config
+from harnessmm.data_engine.provenance import write_json_atomic
+from harnessmm.harness.codex_runtime import CODEX_SHA256, codex_config
 from scripts.serve_codex_deepseek import read_credential, trial_token
 
 

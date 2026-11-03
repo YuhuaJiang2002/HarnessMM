@@ -8,11 +8,11 @@ import re
 import shlex
 from collections.abc import Mapping
 
-from phiagent.learning.consumer_evidence import (
+from harnessmm.learning.consumer_evidence import (
     MODES, VERSION, CommittedBranch, ConsumerResolution, PublicAction, PublicReport,
     commit_branch, resolve_branch,
 )
-from phiagent.learning.evidence_contracts import canonical_json
+from harnessmm.learning.evidence_contracts import canonical_json
 
 
 CAPSULE_BUDGET_BYTES = 2304

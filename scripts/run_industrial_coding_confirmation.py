@@ -26,8 +26,8 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from phiagent.data_engine.provenance import capture_provenance, utc_now, write_json_atomic  # noqa: E402
-from phiagent.harness import industrial_coding_confirmation as protocol  # noqa: E402
+from harnessmm.data_engine.provenance import capture_provenance, utc_now, write_json_atomic  # noqa: E402
+from harnessmm.harness import industrial_coding_confirmation as protocol  # noqa: E402
 from scripts import run_industrial_capability_baselines as native  # noqa: E402
 from scripts.run_codex_context_control import source_bound_parent_evidence  # noqa: E402
 from scripts.run_codex_terminal import executed_native_verdict  # noqa: E402
@@ -36,7 +36,7 @@ from scripts.serve_codex_deepseek import usage_summary  # noqa: E402
 RUN_ROOT = Path("/path/to/data/phiagent/work/industrial-coding-confirmation")
 SOURCE_ENTRIES = (
     "scripts/run_industrial_coding_confirmation.py",
-    "phiagent/harness/industrial_coding_confirmation.py",
+    "harnessmm/harness/industrial_coding_confirmation.py",
     "tests/test_industrial_coding_confirmation.py",
 )
 

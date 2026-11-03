@@ -157,7 +157,7 @@ class Handler(BaseHTTPRequestHandler):
                         chat_template_kwargs={'enable_thinking':False})
             context_changes=[]
             if config.get('optimizer_context_repair') and parts[0] in ('autosaddler_optimizer','skillopt_optimizer'):
-                from phiagent.harness.aime_transport_recovery import fit_optimizer_context
+                from harnessmm.harness.aime_transport_recovery import fit_optimizer_context
                 def count(payload):
                     token_request={k:payload[k] for k in ('model','messages','tools','chat_template_kwargs') if k in payload}
                     token_request['add_generation_prompt']=True
@@ -286,7 +286,7 @@ class Study:
         base.write(self.root/'SKILLOPT_CONFIG.json',cfg)
         ReflACTTrainer(cfg,Adapter()).train()
         if self.config.get('strict_optimizer_completion'):
-            from phiagent.harness.aime_transport_recovery import skillopt_completion
+            from harnessmm.harness.aime_transport_recovery import skillopt_completion
             proof=skillopt_completion(self.root/'skillopt',4)
             base.write(self.root/'SKILLOPT_OPTIMIZER_AUDIT.json',proof)
             if proof['status']!='PASS':
@@ -310,7 +310,7 @@ class Study:
                 def session(self,kind,context):
                     spec=super().session(kind,context)
                     if kind!='diagnose_patch' or not workspace_repair:return spec
-                    from phiagent.harness.aime_transport_recovery import readable_training_evidence
+                    from harnessmm.harness.aime_transport_recovery import readable_training_evidence
                     files=dict(spec.workspace_files)
                     files.update(readable_training_evidence(json.loads(files['training_evidence.json'])))
                     return replace(spec,workspace_files=files,task_prompt=spec.task_prompt+
@@ -390,7 +390,7 @@ class Study:
                 'official_engine_modified':False,'recovery_session_retries':self.config['recovery_session_retries']})
         result=runtime.engine.run();base.write(self.root/'AUTOSADDLER_SELECTED.json',{'id':result.selected_candidate_id,'development_score':result.development_score,'iterations':result.iterations})
         if self.config.get('strict_optimizer_completion'):
-            from phiagent.harness.aime_transport_recovery import autosaddler_completion
+            from harnessmm.harness.aime_transport_recovery import autosaddler_completion
             events=[json.loads(line) for line in runtime.store.events_path.read_text().splitlines() if line.strip()]
             proof=autosaddler_completion(events,4)
             proof['events_sha256']=base.digest(runtime.store.events_path)
@@ -428,7 +428,7 @@ class Study:
             row['draft_usage']=dict(row['usage']);row['confidence']=confidence;row['fallback']=False
             valid=True
             if self.config.get('chisel_draft_guard')=='complete_integer_v1':
-                from phiagent.harness.aime_draft_guard import inspect_draft
+                from harnessmm.harness.aime_draft_guard import inspect_draft
                 row['draft_guard']=inspect_draft(row['response'],row['raw_response']['choices'][0].get('finish_reason'))
                 valid=row['draft_guard']['accepted']
                 confidence=row['draft_guard']['confidence'];row['confidence']=confidence
@@ -578,7 +578,7 @@ def audit(config,root):
         total+=usage['total_tokens']
     if total!=ledger['known_tokens']:raise RuntimeError('Cumulative cost mismatch')
     if config.get('strict_optimizer_completion'):
-        from phiagent.harness.aime_transport_recovery import autosaddler_completion,skillopt_completion
+        from harnessmm.harness.aime_transport_recovery import autosaddler_completion,skillopt_completion
         locations=config.get('frozen_optimizer_roots',{})
         auto_root=Path(locations.get('autosaddler',root));skill_root=Path(locations.get('skillopt',root))
         path=auto_root/'autosaddler/aime2024-development/events.jsonl'

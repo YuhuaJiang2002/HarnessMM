@@ -28,7 +28,7 @@ def write(path, value):
 
 
 def open_frozen_test(partition_root, freeze_root, manifest_sha256, *, read_json=read, sha_file=sha):
-    from phiagent.harness.aime_202060 import validate_policy_freeze
+    from harnessmm.harness.aime_202060 import validate_policy_freeze
 
     frozen_path = freeze_root / "POLICY_FREEZE.json"
     frozen = read_json(frozen_path)
@@ -116,7 +116,7 @@ def main():
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(bundle / name, target)
     sys.path.insert(0, str(root / "source"))
-    from phiagent.harness.aime_202060 import validate_data
+    from harnessmm.harness.aime_202060 import validate_data
     from scripts.aime_client_admission import serial_configuration
 
     partition = read(split_path)

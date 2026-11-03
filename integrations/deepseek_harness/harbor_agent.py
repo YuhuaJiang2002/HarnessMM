@@ -24,7 +24,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from phiagent.harness.deepseek_bridge import ToolBridge
+from harnessmm.harness.deepseek_bridge import ToolBridge
 
 try:
     from harbor.agents.base import BaseAgent

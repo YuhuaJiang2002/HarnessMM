@@ -13,8 +13,8 @@ from pathlib import Path
 import socket
 import time
 
-from phiagent.learning.qa_chisel_light_compression import light_compression_request
-from phiagent.learning.qa_source_answer_fields import source_answer_field
+from harnessmm.learning.qa_chisel_light_compression import light_compression_request
+from harnessmm.learning.qa_source_answer_fields import source_answer_field
 from scripts.prepare_chisel_component_quality_data import canonical_hash, write_json
 from scripts.qa_capability_cost_protocol import (
     BASELINES, INCUMBENT, MIXTURE_ARMS, OVERLAY_FILES as CAPABILITY_FILES,
@@ -41,8 +41,8 @@ DIRECT_EXECUTION_KIND = "deterministic_source_field"
 ZERO_USAGE = {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0}
 NATIVE_FILES = ("decision.json", "output.txt", "execution.json", "record.json")
 IMPLEMENTATION_FILES = (
-    "phiagent/learning/qa_source_answer_fields.py",
-    "phiagent/learning/qa_chisel_light_compression.py",
+    "harnessmm/learning/qa_source_answer_fields.py",
+    "harnessmm/learning/qa_chisel_light_compression.py",
 )
 
 
@@ -65,14 +65,14 @@ class LightReadinessError(ProtocolError):
 
 OVERLAY_FILES = (
     *CAPABILITY_FILES,
-    "phiagent/learning/qa_chisel_light_compression.py",
-    "phiagent/learning/qa_source_answer_fields.py",
+    "harnessmm/learning/qa_chisel_light_compression.py",
+    "harnessmm/learning/qa_source_answer_fields.py",
     "scripts/qa_chisel_preservation_protocol.py",
     "scripts/prepare_qa_chisel_preservation_config.py",
     "scripts/render_qa_chisel_preservation.py",
     "scripts/render_qa_capability_cost.py",
     "scripts/render_qa_harness_mixture.py",
-    "phiagent/evaluation/dual_quality_cost.py",
+    "harnessmm/evaluation/dual_quality_cost.py",
     "tests/test_qa_chisel_light_compression.py",
     "tests/test_qa_source_answer_fields.py",
     "tests/test_qa_chisel_preservation_protocol.py",
@@ -438,7 +438,7 @@ def target_gate(methods: dict, config: dict, bounds: dict | None = None) -> dict
 
 
 def diagnostic_bounds(scores: dict, groups: dict[str, str], config: dict) -> dict:
-    from phiagent.evaluation.chisel_component_quality import paired_finite_sample_lower_bound
+    from harnessmm.evaluation.chisel_component_quality import paired_finite_sample_lower_bound
 
     if set(scores) != set(config["arms"]) or any(set(rows) != set(groups) for rows in scores.values()):
         raise ProtocolError("Paired inference statistics require every frozen method and task")

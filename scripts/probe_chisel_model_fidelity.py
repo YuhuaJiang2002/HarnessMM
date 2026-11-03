@@ -17,7 +17,7 @@ import time
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
-from phiagent.learning.stage_aware_adm import canonical_hash
+from harnessmm.learning.stage_aware_adm import canonical_hash
 
 
 def load(path: Path):

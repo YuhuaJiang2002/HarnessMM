@@ -119,7 +119,7 @@ def split_tasks(items: Sequence[Mapping[str, Any]], seed: int) -> dict[str, Any]
 
 def freeze(args: argparse.Namespace) -> int:
     """Source-only manifest preparation; never imports a benchmark or reads scores."""
-    from phiagent.learning.alfworld_autosaddler_pfn import render_task_skill
+    from harnessmm.learning.alfworld_autosaddler_pfn import render_task_skill
 
     output = args.output_dir.resolve()
     output.mkdir(parents=True, exist_ok=False)
@@ -292,7 +292,7 @@ def runtime_check(args: argparse.Namespace) -> int:
     })
     from run_alfworld_autosaddler_worker import install_alfworld_unused_expert_guard
     from skillopt.envs.alfworld.rollout import build_alfworld_env
-    from phiagent.learning.counterfactual_repair import parse_patch  # noqa: F401
+    from harnessmm.learning.counterfactual_repair import parse_patch  # noqa: F401
 
     guard = install_alfworld_unused_expert_guard()
     first = next(item for item in manifest["task_inventory"]
@@ -431,16 +431,16 @@ def bind(args: argparse.Namespace) -> int:
     if any(args.model_id not in {entry["id"] for entry in result.get("data", [])} for result in responses):
         raise RuntimeError("Served model list disagrees with frozen actor model ID")
     runner_hashes = {"scripts/run_chisel_repair_alfworld.py": file_hash(Path(__file__))}
-    for name in ("phiagent/learning/counterfactual_repair.py",
-                 "phiagent/learning/stage_aware_adm.py",
-                 "phiagent/learning/alfworld_autosaddler_pfn.py",
+    for name in ("harnessmm/learning/counterfactual_repair.py",
+                 "harnessmm/learning/stage_aware_adm.py",
+                 "harnessmm/learning/alfworld_autosaddler_pfn.py",
                  "scripts/run_alfworld_autosaddler_worker.py"):
         path = ROOT / name
         runner_hashes[name] = file_hash(path)
     sys.path.insert(0, str(ROOT / "scripts"))
     from run_alfworld_autosaddler_worker import install_alfworld_unused_expert_guard
     from skillopt.envs.alfworld.rollout import build_alfworld_env
-    from phiagent.learning.counterfactual_repair import parse_patch  # noqa: F401
+    from harnessmm.learning.counterfactual_repair import parse_patch  # noqa: F401
 
     guard = install_alfworld_unused_expert_guard()
     eval_dataset, is_train = alfworld_environment_mode(manifest)
@@ -480,7 +480,7 @@ def bind(args: argparse.Namespace) -> int:
         "adapter_source_hashes": runner_hashes, "packages": packages,
         "git_head": capture(["git", "rev-parse", "HEAD"], cwd=ROOT),
         "git_diff": capture(["git", "diff", "--", "scripts/run_chisel_repair_alfworld.py",
-                             "phiagent/learning/counterfactual_repair.py"], cwd=ROOT),
+                             "harnessmm/learning/counterfactual_repair.py"], cwd=ROOT),
         "command": sys.argv, "environment": {"CUDA_VISIBLE_DEVICES": args.visible_devices},
     }
     binding["harness_hashes"] = {
@@ -615,7 +615,7 @@ def run_episode(job: Mapping[str, Any]) -> dict[str, Any]:
     os.chdir(output)
     seed = budget["seed"] + int(digest(["episode-seed", item["id"]])[:7], 16)
     if "alfworld_modular_rsi" in job:
-        from phiagent.learning.alfworld_modular_rsi import episode_settings
+        from harnessmm.learning.alfworld_modular_rsi import episode_settings
 
         budget, seed = episode_settings(budget, job["alfworld_modular_rsi"])
     row = {
@@ -670,7 +670,7 @@ def run_episode(job: Mapping[str, Any]) -> dict[str, Any]:
 
         row["infrastructure_guard"] = install_alfworld_unused_expert_guard()
         if arm in PATCH_ARMS:
-            from phiagent.learning.counterfactual_repair import RepairMode, RepairSession, parse_patch
+            from harnessmm.learning.counterfactual_repair import RepairMode, RepairSession, parse_patch
 
             patch = parse_patch(read_json(study / "proposal/patch.json"))
             session = RepairSession(
@@ -1059,7 +1059,7 @@ def extract_json_object(content: str) -> dict[str, Any]:
 def propose(args: argparse.Namespace) -> int:
     study = args.study_dir.resolve()
     manifest, binding = load_bound(study)
-    from phiagent.learning.counterfactual_repair import parse_patch
+    from harnessmm.learning.counterfactual_repair import parse_patch
 
     parent_record = read_json(study / "parent_selection.json")
     parent = parent_record["selected_parent"]

@@ -21,7 +21,7 @@ import traceback
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from phiagent.harness.aime_202060 import (  # noqa: E402
+from harnessmm.harness.aime_202060 import (  # noqa: E402
     MODEL_REVISION, MODEL_SEED, score_only, usage_sum, validate_data, validate_policy_freeze,
 )
 from scripts import run_aime_four_method as aime  # noqa: E402
@@ -144,7 +144,7 @@ class ResplitStudy(aime.Study):
         from phiagent_autosaddler.text_skill import (
             TextSkillEvidenceBuilder, TextSkillHarnessSpace, TextSkillPromptPack,
         )
-        from phiagent.harness.aime_transport_recovery import (
+        from harnessmm.harness.aime_transport_recovery import (
             autosaddler_completion, readable_training_evidence,
         )
         import yaml

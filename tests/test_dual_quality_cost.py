@@ -4,7 +4,7 @@ from dataclasses import replace
 
 import pytest
 
-from phiagent.evaluation.dual_quality_cost import (
+from harnessmm.evaluation.dual_quality_cost import (
     VerifiedAggregate, benchmark_dual_gate, campaign_dual_gate,
 )
 

@@ -239,20 +239,20 @@ def verify_context_sources(
     source: Path, origin: dict, planned: list[dict], public: list[dict], config: dict, spec: dict,
 ) -> dict:
     from transformers import AutoTokenizer
-    from phiagent.learning import qa_context_evidence as context_module
-    from phiagent.learning.qa_context_evidence import reconstruct_context
+    from harnessmm.learning import qa_context_evidence as context_module
+    from harnessmm.learning.qa_context_evidence import reconstruct_context
 
     for relative in (
-        "phiagent/learning/qa_context_evidence.py",
-        "phiagent/learning/public_evidence_retention.py",
-        "phiagent/learning/sparse_retrieval.py",
+        "harnessmm/learning/qa_context_evidence.py",
+        "harnessmm/learning/public_evidence_retention.py",
+        "harnessmm/learning/sparse_retrieval.py",
         "scripts/run_compact_harness_training_pilot.py",
     ):
         if sha(source / relative) != origin["source_sha256"][relative]:
             raise RuntimeError("Frozen context-selector source changed")
     if (
         sha(Path(context_module.__file__))
-        != origin["source_sha256"]["phiagent/learning/qa_context_evidence.py"]
+        != origin["source_sha256"]["harnessmm/learning/qa_context_evidence.py"]
         or sha(Path(controlled_context.__code__.co_filename))
         != origin["source_sha256"]["scripts/run_compact_harness_training_pilot.py"]
     ):
@@ -433,7 +433,7 @@ def output_compliance(rows: dict) -> dict:
 
 
 def verify_compression_sources(source: Path, origin: dict, planned: list[dict], public: list[dict], config: dict) -> dict:
-    from phiagent.learning.compact_qa_contracts import COMPACT_CONTRACTS, cost_source_contracts, delete_compression_contracts
+    from harnessmm.learning.compact_qa_contracts import COMPACT_CONTRACTS, cost_source_contracts, delete_compression_contracts
 
     prompts = {arm: (source / "prompts" / f"{arm}.system.txt").read_text() for arm in config["arms"]}
     relatives = [f"prompts/{arm}.system.txt" for arm in config["arms"]] + ["DELETE_COMPRESSION_MAP.json"]
@@ -694,8 +694,8 @@ def verify(root: Path, output: Path) -> dict:
             for relative in (
                 "scripts/verify_compact_harness_training_pilot.py",
                 "scripts/run_chisel_component_quality.py",
-                "phiagent/evaluation/chisel_component_quality.py",
-                "phiagent/learning/residual_meta_harness.py",
+                "harnessmm/evaluation/chisel_component_quality.py",
+                "harnessmm/learning/residual_meta_harness.py",
             )
         },
         "requests_verified": len(planned), "real_provider_tokens": known_tokens,
@@ -721,7 +721,7 @@ def verify(root: Path, output: Path) -> dict:
 
 
 def cost_source_report(output: Path, config: dict, verified: dict, result: dict, diagnostic: dict) -> dict:
-    from phiagent.evaluation.chisel_component_quality import quality_matched_costs
+    from harnessmm.evaluation.chisel_component_quality import quality_matched_costs
 
     methods = result["methods"]
     settings = config["quality_matched_cost"]
@@ -861,7 +861,7 @@ def cost_source_report(output: Path, config: dict, verified: dict, result: dict,
 def compression_fidelity_report(
     output: Path, config: dict, verified: dict, result: dict, diagnostic: dict, scores: dict, groups: dict,
 ) -> dict:
-    from phiagent.evaluation.chisel_component_quality import quality_matched_costs
+    from harnessmm.evaluation.chisel_component_quality import quality_matched_costs
 
     if verified["source_compression_verified"] is None:
         raise RuntimeError("Source identity and complete clause coverage must be independently verified first")
@@ -987,7 +987,7 @@ def compression_fidelity_report(
 
 
 def development_diagnostic(root: Path, output: Path, candidate: str) -> dict:
-    from phiagent.evaluation.chisel_component_quality import fixed_input_token_saving_bound, paired_finite_sample_lower_bound
+    from harnessmm.evaluation.chisel_component_quality import fixed_input_token_saving_bound, paired_finite_sample_lower_bound
 
     require_cpu_client()
     verified = checked(output / "VERIFIED.json")
@@ -1050,7 +1050,7 @@ def development_diagnostic(root: Path, output: Path, candidate: str) -> dict:
         "status": "DEVELOPMENT_DIAGNOSTIC_NOT_INDEPENDENT_PUBLIC_CONFIRMATION",
         "at_utc": datetime.now(timezone.utc).isoformat(), "hostname": socket.gethostname(),
         "candidate": candidate, "family_size": plan["family_size"], "familywise_alpha": plan["alpha"], "contrasts": contrasts,
-        "source_statistics_sha256": sha(Path(__file__).resolve().parents[1] / "phiagent/evaluation/chisel_component_quality.py"),
+        "source_statistics_sha256": sha(Path(__file__).resolve().parents[1] / "harnessmm/evaluation/chisel_component_quality.py"),
         "statistical_guarantee_established": False, "paper_admitted": False,
         "limitation": limitation,
     }

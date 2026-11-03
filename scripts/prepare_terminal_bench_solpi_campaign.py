@@ -192,8 +192,8 @@ def main() -> int:
     sources = (
         "scripts/prepare_terminal_bench_solpi_campaign.py", "scripts/terminal_solpi.py",
         "scripts/run_terminal_bench_qwen35_4b_direct.py", "scripts/run_terminal_bench_autosaddler_dev.py",
-        "phiagent/harness/observation_pack.py", "phiagent/learning/stage_aware_adm.py",
-        "phiagent/learning/residual_meta_harness.py",
+        "harnessmm/harness/observation_pack.py", "harnessmm/learning/stage_aware_adm.py",
+        "harnessmm/learning/residual_meta_harness.py",
     )
     for relative in sources:
         target = args.output / "source" / relative

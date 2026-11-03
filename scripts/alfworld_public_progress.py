@@ -10,8 +10,8 @@ import json
 import re
 from typing import Any, Mapping
 
-from phiagent.learning.counterfactual_repair import RepairSession, parse_patch
-from phiagent.learning.public_recurrence import has_no_progress_recurrence
+from harnessmm.learning.counterfactual_repair import RepairSession, parse_patch
+from harnessmm.learning.public_recurrence import has_no_progress_recurrence
 
 
 TRACKER_VERSION = "alfworld-public-progress/v1"

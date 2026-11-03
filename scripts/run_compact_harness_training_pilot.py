@@ -21,7 +21,7 @@ from urllib.error import HTTPError
 from urllib.parse import urlparse
 from urllib.request import ProxyHandler, build_opener
 
-from phiagent.learning.qa_context_evidence import select_context
+from harnessmm.learning.qa_context_evidence import select_context
 from scripts.run_chisel_component_quality import (
     ProtocolError,
     atomic_json,

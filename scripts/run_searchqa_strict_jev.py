@@ -232,7 +232,7 @@ def policy(item, predictor, router, profiles, original, provider, config):
 
 
 def load_inputs(root, config):
-    from phiagent.learning import qa_meta_rsi
+    from harnessmm.learning import qa_meta_rsi
     from scripts.figure2_searchqa_train import official_scorer
     from scripts.qa_harness_mixture_protocol import FrozenOriginalChisel
     from scripts.searchqa_official_admission import population

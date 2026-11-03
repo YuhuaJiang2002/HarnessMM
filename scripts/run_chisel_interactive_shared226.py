@@ -213,7 +213,7 @@ def prepare(config_path: Path) -> None:
             "A different partition was substituted")
     require(protocol["checkpoint"]["revision"] == REVISION, "Checkpoint revision differs")
     from scripts import run_alfworld_modular_rsi as core
-    from phiagent.learning import supported_local_decision
+    from harnessmm.learning import supported_local_decision
 
     require(hasattr(supported_local_decision, "SupportedCandidates")
             and hasattr(supported_local_decision, "execute_supported_decision"),
@@ -221,7 +221,7 @@ def prepare(config_path: Path) -> None:
     output = Path(config["prepared_directory"])
     output.mkdir(parents=True, exist_ok=False)
     names = tuple(dict.fromkeys((
-        *core.SOURCE_FILES, "phiagent/learning/supported_local_decision.py",
+        *core.SOURCE_FILES, "harnessmm/learning/supported_local_decision.py",
         "scripts/run_chisel_interactive_shared226.py",
     )))
     hashes = {name: file_hash(ROOT / name) for name in names}

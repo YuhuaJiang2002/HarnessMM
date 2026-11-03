@@ -27,8 +27,8 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from phiagent.data_engine.provenance import write_json_atomic  # noqa: E402
-from phiagent.harness.industrial_common_prompt import PROMPT_SHA256  # noqa: E402
+from harnessmm.data_engine.provenance import write_json_atomic  # noqa: E402
+from harnessmm.harness.industrial_common_prompt import PROMPT_SHA256  # noqa: E402
 
 REMOTE_ROOT = "/path/to/data/phiagent/work/deepseek-harness/industrial-capability/20260930-v1"
 ARTIFACT_ROOT = ROOT / "artifacts/industrial-capability/20260930-v1"

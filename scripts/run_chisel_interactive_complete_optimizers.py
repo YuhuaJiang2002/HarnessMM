@@ -80,7 +80,7 @@ def internal_feedback_roles(items: list[dict], size: int, seed: int) -> dict:
 
 
 def global_policy(skill: str) -> dict:
-    from phiagent.learning.alfworld_autosaddler_pfn import TASK_FAMILIES
+    from harnessmm.learning.alfworld_autosaddler_pfn import TASK_FAMILIES
     value = {"skills": dict.fromkeys(TASK_FAMILIES, skill)}
     value["harness_sha256"] = native.digest(value)
     return value
@@ -258,7 +258,7 @@ def evaluate_request(request_path: Path, output_path: Path) -> None:
     })
     policies = request.get("policies")
     if policies is None:
-        from phiagent.learning.alfworld_autosaddler_pfn import TASK_FAMILIES
+        from harnessmm.learning.alfworld_autosaddler_pfn import TASK_FAMILIES
         policies = {
             config["method"]: {
                 "skills": {family: candidate_skill(

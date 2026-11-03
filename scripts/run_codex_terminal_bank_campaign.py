@@ -6,10 +6,10 @@ from datetime import datetime,timezone
 from pathlib import Path
 import argparse,fcntl,hashlib,json,os,secrets,socket,subprocess,sys,threading,time,traceback
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
-from phiagent.harness.codex_terminal_bank import TerminalBankProvider,POLICY,decision_packet,compile_response
-from phiagent.harness.codex_terminal_bank_contract import CORE_METHODS,PARTITION_SHA256
-from phiagent.harness.industrial_common_prompt import append_common_prompt,PROMPT_SHA256,PROMPT_VERSION
-from phiagent.harness.codex_native_app_bank import instruction
+from harnessmm.harness.codex_terminal_bank import TerminalBankProvider,POLICY,decision_packet,compile_response
+from harnessmm.harness.codex_terminal_bank_contract import CORE_METHODS,PARTITION_SHA256
+from harnessmm.harness.industrial_common_prompt import append_common_prompt,PROMPT_SHA256,PROMPT_VERSION
+from harnessmm.harness.codex_native_app_bank import instruction
 from scripts.serve_codex_deepseek import make_server,read_credential,usage_summary,native_receipt_fields
 from scripts.run_codex_terminal import executed_native_verdict
 from scripts import run_industrial_capability_baselines as native
@@ -110,8 +110,8 @@ class Campaign:
   if accepted['status']!='VERIFIED_CODEX_NATIVE_TERMINAL_BANK_INTERFACE'or set(accepted['cases'])!={'cot_jev','cot_only','cot_jev_abstention'}:
    raise ValueError('All actual native CLI interface cases required')
   accepted_hashes=load(self.acceptance_path.parent.parent/'SOURCE_SHA256.json')
-  for n in ('phiagent/harness/codex_terminal_bank.py','scripts/serve_codex_deepseek.py','phiagent/harness/codex_runtime.py',
-            'phiagent/harness/codex_native_app_bank.py','integrations/deepseek_harness/cot_jev.mjs','integrations/deepseek_harness/codex_bank_contract.mjs'):
+  for n in ('harnessmm/harness/codex_terminal_bank.py','scripts/serve_codex_deepseek.py','harnessmm/harness/codex_runtime.py',
+            'harnessmm/harness/codex_native_app_bank.py','integrations/deepseek_harness/cot_jev.mjs','integrations/deepseek_harness/codex_bank_contract.mjs'):
    if self.hashes[n]!=accepted_hashes[n]:raise ValueError('Accepted terminal boundary changed: '+n)
   self.rows=[];self.active={};self.phase='preparation';self.author_tokens=0
 
@@ -160,7 +160,7 @@ class Campaign:
   return retained,profiles
 
  def author(self,profiles):
-  from phiagent.harness.codex_runtime import run_codex_trial
+  from harnessmm.harness.codex_runtime import run_codex_trial
   self.phase='train_author';self.state()
   prompt={'phase':'train','training_ids':self.partition['splits']['train'],'public_native_train_profiles':profiles,
    'objective':'Author exactly ONE concise reusable native Codex terminal action-bank skill from all18 complete TRAIN public tasks and traces. '

@@ -2,7 +2,7 @@
 from contextlib import nullcontext
 import json
 import pytest
-from phiagent.harness.codex_native_app_bank import NativeBankBoundary, POLICY, instruction, fast_request, public_user_text
+from harnessmm.harness.codex_native_app_bank import NativeBankBoundary, POLICY, instruction, fast_request, public_user_text
 
 TOOLS=[{'name':'Files__cat','inputSchema':{'type':'object','properties':{'path':{'type':'string'}},'required':['path'],'additionalProperties':False}},
        {'name':'Files__exists','inputSchema':{'type':'object','properties':{'path':{'type':'string'}},'required':['path'],'additionalProperties':False}}]

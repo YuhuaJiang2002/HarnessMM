@@ -12,7 +12,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from phiagent.harness.aime_202060 import (  # noqa: E402
+from harnessmm.harness.aime_202060 import (  # noqa: E402
     CHISEL_VARIANTS, select_candidate, usage_sum, validate_manifest, validate_policy_freeze,
 )
 

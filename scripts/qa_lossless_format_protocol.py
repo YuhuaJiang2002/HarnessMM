@@ -54,14 +54,14 @@ from pathlib import Path
 import shutil
 import socket
 
-from phiagent.learning import qa_lossless_format_factorial as design
+from harnessmm.learning import qa_lossless_format_factorial as design
 
 
 SCHEMA = "phiagent-qa-lossless-format/v1"
 RESULT_STATUS = "COMPLETE_TRAIN_FORMAT_CAP_DIAGNOSTIC_NOT_CONFIRMATION"
 DEVELOPMENT_STATUS = "FORMAT_CAP_DIAGNOSTIC_ONLY_NO_AUTOMATIC_ADVANCEMENT"
 OWN_FILES = (
-    "phiagent/learning/qa_lossless_format_factorial.py",
+    "harnessmm/learning/qa_lossless_format_factorial.py",
     "scripts/qa_lossless_format_protocol.py",
     "tests/test_qa_lossless_format_factorial.py",
     "tests/test_qa_lossless_format_protocol.py",
@@ -72,18 +72,18 @@ OVERLAY_FILES = (*OWN_FILES, "scripts/qa_harness_mixture_protocol.py",
                  "scripts/run_chisel_component_quality.py",
                  "scripts/probe_chisel_model_fidelity.py",
                  "scripts/run_searchqa_residual_meta_campaign.py",
-                 "phiagent/evaluation/chisel_component_quality.py",
-                 "phiagent/evaluation/component_ablation.py",
-                 "phiagent/evaluation/polyglot_self_evolution_statistics.py",
-                 "phiagent/evaluation/__init__.py",
-                 "phiagent/learning/chisel_component_quality.py",
-                 "phiagent/learning/residual_meta_harness.py",
-                 "phiagent/learning/residual_meta_training.py",
-                 "phiagent/learning/searchqa_grounded_features.py",
-                 "phiagent/learning/stage_aware_adm.py",
-                 "phiagent/harness/task_reasoning.py",
-                 "phiagent/harness/tshirt_fold_strategy.py",
-                 "phiagent/harness/tshirt_positive_reference.py",
+                 "harnessmm/evaluation/chisel_component_quality.py",
+                 "harnessmm/evaluation/component_ablation.py",
+                 "harnessmm/evaluation/polyglot_self_evolution_statistics.py",
+                 "harnessmm/evaluation/__init__.py",
+                 "harnessmm/learning/chisel_component_quality.py",
+                 "harnessmm/learning/residual_meta_harness.py",
+                 "harnessmm/learning/residual_meta_training.py",
+                 "harnessmm/learning/searchqa_grounded_features.py",
+                 "harnessmm/learning/stage_aware_adm.py",
+                 "harnessmm/harness/task_reasoning.py",
+                 "harnessmm/harness/tshirt_fold_strategy.py",
+                 "harnessmm/harness/tshirt_positive_reference.py",
                  "scripts/verify_qa_harness_mixture.py",
                  "scripts/run_qa_lossless_guarded.py",
                  "scripts/cvpr_execution_crossover_leases.py",

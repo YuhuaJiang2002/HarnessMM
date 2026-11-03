@@ -490,7 +490,7 @@ def train_autosaddler(study, *, prepare_only=False):
         provider._post_json, provider.OpenAIFunctionTransport.run = original_post, original_run
     if study.client.failed or result.iterations != profile["iterations"]:
         raise RuntimeError("Incomplete official AutoSaddler loop cannot release a candidate")
-    from phiagent.harness.aime_transport_recovery import autosaddler_completion
+    from harnessmm.harness.aime_transport_recovery import autosaddler_completion
     events = [json.loads(line) for line in runtime.store.events_path.read_text().splitlines() if line.strip()]
     completion = autosaddler_completion(events, profile["iterations"])
     write(directory / "OFFICIAL_COMPLETION_AUDIT.json", completion)

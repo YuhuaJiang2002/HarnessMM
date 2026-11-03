@@ -18,7 +18,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from phiagent.data_engine.provenance import write_json_atomic  # noqa: E402
+from harnessmm.data_engine.provenance import write_json_atomic  # noqa: E402
 from scripts.run_codex_terminal import native_reward  # noqa: E402
 from scripts.serve_codex_deepseek import native_response_usage, usage_summary  # noqa: E402
 from scripts.collect_deepseek_harness_progress import controller_running  # noqa: E402

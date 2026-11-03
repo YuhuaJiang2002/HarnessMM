@@ -50,7 +50,7 @@ def prepare(root: Path, config: dict, host: dict, *, selector=packing):
         if config[field] != old_config[field]:
             raise ValueError("Common execution identity differs: " + field)
     for relative in (
-        "phiagent/learning/qa_typed_recovery.py", "phiagent/learning/qa_meta_rsi.py",
+        "harnessmm/learning/qa_typed_recovery.py", "harnessmm/learning/qa_meta_rsi.py",
         "scripts/qa_harness_mixture_protocol.py",
     ):
         if sha(ROOT / relative) != sha(parent / "source" / relative):
@@ -102,7 +102,7 @@ def prepare(root: Path, config: dict, host: dict, *, selector=packing):
 def study(root: Path, config: dict, prepared: tuple, state: dict, *,
           request_builder=packing.request):
     from transformers import AutoTokenizer
-    from phiagent.learning import qa_meta_rsi
+    from harnessmm.learning import qa_meta_rsi
     from scripts.qa_harness_mixture_protocol import FrozenOriginalChisel
 
     items, labels, references, partition, predictor, profiles, ordered, extra = prepared

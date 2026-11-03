@@ -2,7 +2,7 @@
 from copy import deepcopy
 import json
 import pytest
-from phiagent.harness.codex_terminal_bank import decision_packet,compile_response,encode_response,request_for
+from harnessmm.harness.codex_terminal_bank import decision_packet,compile_response,encode_response,request_for
 from scripts.serve_codex_deepseek import terminal_response
 
 
@@ -70,7 +70,7 @@ def test_abstention_retains_its_paid_control_and_invalid_labels_fail_closed():
 
 def test_paid_selector_is_once_per_exact_request_and_native_receipt_is_observed(tmp_path,monkeypatch):
     import hashlib
-    import phiagent.harness.codex_terminal_bank as module
+    import harnessmm.harness.codex_terminal_bank as module
     calls=[]
     class Received:
         headers={'X-PhiAgent-Call-ID':'unique-physical-fast'}

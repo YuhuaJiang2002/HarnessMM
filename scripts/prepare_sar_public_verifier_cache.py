@@ -1,7 +1,7 @@
 """Verified public fixtures after actor exit, before unchanged native scoring."""
 from pathlib import Path
 import hashlib,json,shlex
-from phiagent.data_engine.provenance import write_json_atomic
+from harnessmm.data_engine.provenance import write_json_atomic
 BASE=Path('/path/to/experiment-data/figure23')
 def load(p):return json.loads(Path(p).read_text())
 def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()

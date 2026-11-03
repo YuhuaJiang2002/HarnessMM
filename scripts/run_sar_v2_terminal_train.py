@@ -4,7 +4,7 @@ import argparse,json,os,sys,fcntl,subprocess,hashlib,time,csv
 from concurrent.futures import ThreadPoolExecutor,as_completed
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
 from scripts import run_industrial_capability_baselines as native
-from phiagent.data_engine.provenance import write_json_atomic as write,utc_now
+from harnessmm.data_engine.provenance import write_json_atomic as write,utc_now
 POLICY={'version':5,'enabled':True,'maximum_candidates':8,'maximum_fast_steps':8,'maximum_public_bytes':32768}
 def ref(p):return {'path':str(p),'sha256':native.digest(p)}
 def events_of(row):

@@ -7,7 +7,7 @@ import json
 from pathlib import Path
 from typing import Any, Mapping, Sequence
 
-from phiagent.harness.observation_pack import ObservationPack
+from harnessmm.harness.observation_pack import ObservationPack
 
 
 UPSTREAM_REVISION = "bd005888b9b8a3fcdb511feb91fc27d3dfa8f2b1"

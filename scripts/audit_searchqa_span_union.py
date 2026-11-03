@@ -57,7 +57,7 @@ def check_summary(observed: dict, reported: dict) -> None:
 
 def audit(root: Path) -> dict:
     from transformers import AutoTokenizer
-    from phiagent.learning import qa_meta_rsi
+    from harnessmm.learning import qa_meta_rsi
     from scripts.qa_harness_mixture_protocol import FrozenOriginalChisel
 
     config, freeze, result = (

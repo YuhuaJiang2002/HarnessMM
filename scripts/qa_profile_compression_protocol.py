@@ -11,7 +11,7 @@ import os
 from pathlib import Path
 import socket
 
-from phiagent.learning import qa_profile_compression as design
+from harnessmm.learning import qa_profile_compression as design
 from scripts.prepare_chisel_component_quality_data import canonical_hash
 from scripts.qa_harness_mixture_protocol import (
     FrozenOriginalChisel, OVERLAY_FILES as INCUMBENT_FILES,
@@ -48,7 +48,7 @@ RESULT_SCOPE = "Prospectively frozen TRAIN-source profile compression; not full 
 RECORD_CLIENT_TIMING = True
 OVERLAY_FILES = tuple(dict.fromkeys((
     *INCUMBENT_FILES,
-    "phiagent/learning/qa_profile_compression.py",
+    "harnessmm/learning/qa_profile_compression.py",
     "scripts/qa_profile_compression_protocol.py",
     "scripts/prepare_qa_profile_compression.py",
     "tests/test_qa_profile_compression.py",
@@ -424,7 +424,7 @@ def attest_runtime(binding: dict, config: dict) -> dict:
 
 
 def diagnostic_bounds(scores: dict, groups: dict, config: dict) -> dict:
-    from phiagent.evaluation.chisel_component_quality import paired_finite_sample_lower_bound
+    from harnessmm.evaluation.chisel_component_quality import paired_finite_sample_lower_bound
 
     validate_config(config)
     require(set(scores) == set(arms_for(config)) and all(set(rows) == set(groups) for rows in scores.values())

@@ -768,7 +768,7 @@ def prepare(args):
           'source_files_sha256': {name: sha256(ROOT / name) for name in (
               'scripts/run_terminal_bench_native.py', 'scripts/harbor_terminal_agent.py',
               'scripts/run_terminal_bench_qwen35_4b_direct.py', 'scripts/terminal_solpi.py',
-              'phiagent/harness/observation_pack.py')}})
+              'harnessmm/harness/observation_pack.py')}})
     print(json.dumps({'status': 'FROZEN_NATIVE_TRIALS', 'trials': len(configs), 'root': str(root)}), flush=True)
 
 

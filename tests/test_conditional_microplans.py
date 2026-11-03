@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pytest
 
-from phiagent.learning import conditional_microplans as micro
+from harnessmm.learning import conditional_microplans as micro
 
 
 FIRST = "select alpha"

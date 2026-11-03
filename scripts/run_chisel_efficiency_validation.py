@@ -24,7 +24,7 @@ SCHEMA = "chisel-efficiency-validation/v1"
 METHOD = "memory_guarded64"
 LABEL = "CHISEL memory_guarded64 / TRAIN-selected validation"
 TRAIN_SOURCE = "scripts/run_chisel_efficiency_train.py"
-PROMPT_SOURCE = "phiagent/learning/alfworld_modular_rsi.py"
+PROMPT_SOURCE = "harnessmm/learning/alfworld_modular_rsi.py"
 REFERENCE_FILES = (
     "RESULT.json", "INDEPENDENT_COMPLETION_AUDIT.json", "POLICY_FREEZE.json",
     "config.json", "manifest.json", "CHECKPOINT.json",

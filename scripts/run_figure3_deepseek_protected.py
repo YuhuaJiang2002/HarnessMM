@@ -21,7 +21,7 @@ import time
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
-from phiagent.harness.figure3_repetitions import test_seeds  # noqa: E402
+from harnessmm.harness.figure3_repetitions import test_seeds  # noqa: E402
 
 ARMS = ("native", "cot_jev")
 FIELDS = ("input_tokens", "output_tokens", "total_tokens")

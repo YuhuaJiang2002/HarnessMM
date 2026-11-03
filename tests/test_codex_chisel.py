@@ -9,9 +9,9 @@ from threading import Barrier, Lock
 
 import pytest
 
-from phiagent.harness.benchmark_partition import build_partition
-from phiagent.harness import codex_chisel as chisel
-from phiagent.learning.residual_meta_harness import canonical_hash, deterministic_group_folds
+from harnessmm.harness.benchmark_partition import build_partition
+from harnessmm.harness import codex_chisel as chisel
+from harnessmm.learning.residual_meta_harness import canonical_hash, deterministic_group_folds
 
 
 EXECUTOR_IDENTITY = {"model": "synthetic-model", "runtime": "synthetic-codex-callback"}
@@ -969,7 +969,7 @@ def test_rehashed_configuration_changes_cannot_override_the_source_freeze():
 def test_source_drift_prevents_routing_and_does_not_open_test_loader(monkeypatch):
     instance, _, splits, policy = fitted()
     changed = deepcopy(chisel.implementation_provenance())
-    changed["executable_sources"]["phiagent/harness/codex_chisel.py"] = "0" * 64
+    changed["executable_sources"]["harnessmm/harness/codex_chisel.py"] = "0" * 64
     monkeypatch.setattr(chisel, "implementation_provenance", lambda: deepcopy(changed))
     with pytest.raises(RuntimeError, match="sources changed"):
         policy.route(splits["test"][0]["public_prompt"])
@@ -987,7 +987,7 @@ def test_source_drift_during_a_callback_preserves_usage_and_stops_the_next_call(
     def changing_executor(request):
         result = callbacks.execute(request)
         changed = deepcopy(original)
-        changed["executable_sources"]["phiagent/harness/codex_chisel.py"] = "1" * 64
+        changed["executable_sources"]["harnessmm/harness/codex_chisel.py"] = "1" * 64
         monkeypatch.setattr(chisel, "implementation_provenance", lambda: deepcopy(changed))
         return result
 
@@ -1341,6 +1341,6 @@ def test_implementation_provenance_identifies_actual_reused_chisel_sources():
     assert provenance["max_residuals_per_task"] == 1
     assert "phiagent/harness/mixture_router.py" in provenance["inspected_design_sources"]
     assert all(len(value) == 64 for value in provenance["executable_sources"].values())
-    assert provenance["executable_sources"]["phiagent/harness/codex_chisel.py"] == (
+    assert provenance["executable_sources"]["harnessmm/harness/codex_chisel.py"] == (
         hashlib.sha256(chisel.Path(chisel.__file__).read_bytes()).hexdigest()
     )

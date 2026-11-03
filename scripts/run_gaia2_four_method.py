@@ -26,7 +26,7 @@ ROOT=Path(__file__).resolve().parents[1]
 sys.path[:0]=[str(ROOT),str(ROOT/'external/SkillOpt'),str(ROOT/'external/AutoSaddler/src'),str(ROOT/'integrations/autosaddler_phiagent/src')]
 from scripts import run_aime_four_method as lifecycle
 from scripts import run_gaia2_jev as base
-from phiagent.harness.gaia2_common_prompt import shared_actor_request
+from harnessmm.harness.gaia2_common_prompt import shared_actor_request
 METHODS=('native','skillopt','autosaddler','chisel')
 OBLIGATION_POLICIES=('task_literal_feedback_v12','task_literal_feedback_control_v12','task_literal_v11','task_literal_control_v11','qualified_binding_v10','qualified_advice_v10','literal_binding_isolated_v9','literal_advice_isolated_v9','literal_binding_v8','literal_advice_v8','dependency_recovery_v7','dependency_plan_only_v7','read_recovery_only_v7',
                     'obligation_review_v3','obligation_memory_v3','obligation_residual_v4','obligation_structured_v5',
@@ -115,7 +115,7 @@ class Handler(BaseHTTPRequestHandler):
             base.write(call/'tokenize.json',tokenized);count=tokenized['count']
             if type(count)!=int or count<1:raise RuntimeError('Invalid native token count')
             if config.get('optimizer_context_repair') and role in ('skillopt_optimizer','autosaddler_optimizer'):
-                from phiagent.harness.aime_transport_recovery import fit_optimizer_context
+                from harnessmm.harness.aime_transport_recovery import fit_optimizer_context
                 def count_payload(payload):
                     token_request={k:payload[k] for k in ('model','messages','tools','chat_template_kwargs') if k in payload}
                     token_request['add_generation_prompt']=True
@@ -145,8 +145,8 @@ class Handler(BaseHTTPRequestHandler):
 def install_adapter(config,directory,role,mode,skill):
     from are.simulation.agents.default_agent.base_agent import BaseAgent
     from are.simulation.agents.llm.litellm.litellm_engine import LiteLLMEngine
-    from phiagent.harness.gaia2_jev import Gaia2Engine
-    from phiagent.harness.gaia2_obligation_control import ObligationEngine
+    from harnessmm.harness.gaia2_jev import Gaia2Engine
+    from harnessmm.harness.gaia2_obligation_control import ObligationEngine
     old_step=BaseAgent.step;lock=threading.Lock()
     def record(value):
         with lock,(directory/'decisions.jsonl').open('a') as f:f.write(json.dumps(value,default=str)+'\n')
@@ -154,18 +154,18 @@ def install_adapter(config,directory,role,mode,skill):
         converted=[engine._convert_message_to_litellm_format(m) for m in messages];endpoint=engine.model_config.endpoint
         if not endpoint or not endpoint.startswith(f"http://127.0.0.1:{config['resource']['capture_port']}/{role}/"):raise RuntimeError('Unmetered model route')
         if mode=='jev' and '/actor/' in endpoint and config.get('chisel_policy') not in (*OBLIGATION_POLICIES,'selective_evidence_v1','selective_recovery_v1'):
-            from phiagent.harness.gaia2_task_context import project
+            from harnessmm.harness.gaia2_task_context import project
             converted,projection=project(converted,memory=True,
                 preserve_reasoning=config.get('chisel_policy')=='stall_preserve_v2')
             record({'source':'public_context_projection','projection':projection})
         start=time.monotonic()
         body={'model':config['model']['served_name'],'messages':converted,'stop':list(stop_sequences)}
         if config.get('chisel_policy')=='obligation_structured_v5' and '/actor/' in endpoint:
-            from phiagent.harness.gaia2_obligation_control import STRUCTURED_RESIDUAL_PREFIX,residual_response_format
+            from harnessmm.harness.gaia2_obligation_control import STRUCTURED_RESIDUAL_PREFIX,residual_response_format
             if converted and str(converted[0].get('content','')).startswith(STRUCTURED_RESIDUAL_PREFIX):
                 body['response_format']=residual_response_format(json.loads(converted[-1]['content']))
         if config.get('chisel_policy') in ('effect_contract_v6','effect_contract_only_v6') and '/actor/' in endpoint:
-            from phiagent.harness.gaia2_obligation_control import CONTRACT_PREFIX,contract_response_format
+            from harnessmm.harness.gaia2_obligation_control import CONTRACT_PREFIX,contract_response_format
             if converted and str(converted[0].get('content','')).startswith(CONTRACT_PREFIX):
                 body['response_format']=contract_response_format(json.loads(converted[-1]['content']))
         raw=base.get_json(endpoint.rstrip('/')+'/chat/completions',body,timeout=1830)
@@ -175,7 +175,7 @@ def install_adapter(config,directory,role,mode,skill):
         return base.native_response_text(raw['choices'][0]['message']['content'],stop_sequences,judge='/judge/' in endpoint),{**usage,'completion_duration':time.monotonic()-start}
     def step(agent):
         if mode=='jev' and config.get('chisel_policy') in ('selective_evidence_v1','selective_recovery_v1'):
-            from phiagent.harness.gaia2_selective_control import SelectiveEngine
+            from harnessmm.harness.gaia2_selective_control import SelectiveEngine
             if not isinstance(agent.llm_engine,SelectiveEngine):
                 agent.llm_engine=SelectiveEngine(agent,agent.llm_engine,skill=skill,record=record,
                     completion=config['chisel_policy']=='selective_evidence_v1')
@@ -381,7 +381,7 @@ class Study:
         base.write(self.root/'SKILLOPT_CONFIG.json',cfg)
         ReflACTTrainer(cfg,Adapter()).train()
         if self.config.get('strict_optimizer_completion'):
-            from phiagent.harness.aime_transport_recovery import skillopt_completion
+            from harnessmm.harness.aime_transport_recovery import skillopt_completion
             proof=skillopt_completion(self.root/'skillopt',4)
             base.write(self.root/'SKILLOPT_OPTIMIZER_AUDIT.json',proof)
             if proof['status']!='PASS':raise RuntimeError('SkillOpt did not complete all optimizer updates')
@@ -402,7 +402,7 @@ class Study:
                 def session(self,kind,context):
                     spec=super().session(kind,context)
                     if kind!='diagnose_patch':return spec
-                    from phiagent.harness.aime_transport_recovery import readable_training_evidence
+                    from harnessmm.harness.aime_transport_recovery import readable_training_evidence
                     files=dict(spec.workspace_files)
                     files.update(readable_training_evidence(json.loads(files['training_evidence.json'])))
                     return replace(spec,workspace_files=files,task_prompt=spec.task_prompt+
@@ -460,7 +460,7 @@ class Study:
         runtime=build_runtime(path,run_id='gaia2-execution-development',registry=registry)
         result=runtime.engine.run();base.write(self.root/'AUTOSADDLER_SELECTED.json',{'id':result.selected_candidate_id,'development_score':result.development_score,'iterations':result.iterations})
         if self.config.get('strict_optimizer_completion'):
-            from phiagent.harness.aime_transport_recovery import autosaddler_completion
+            from harnessmm.harness.aime_transport_recovery import autosaddler_completion
             events=[json.loads(line) for line in runtime.store.events_path.read_text().splitlines() if line.strip()]
             proof=autosaddler_completion(events,4);proof['events_sha256']=base.digest(runtime.store.events_path)
             base.write(self.root/'AUTOSADDLER_OPTIMIZER_AUDIT.json',proof)

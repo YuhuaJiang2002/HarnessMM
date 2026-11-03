@@ -4,7 +4,7 @@ from itertools import product
 
 import pytest
 
-from phiagent.learning.public_recurrence import has_no_progress_recurrence
+from harnessmm.learning.public_recurrence import has_no_progress_recurrence
 
 
 def frozen_reference(history, index, context, stalled, window=16, separation=2, visits=2):

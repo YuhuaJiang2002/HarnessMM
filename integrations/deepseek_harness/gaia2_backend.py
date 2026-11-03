@@ -9,7 +9,7 @@ import threading
 import time
 from typing import Any
 
-from phiagent.data_engine.provenance import write_json_atomic
+from harnessmm.data_engine.provenance import write_json_atomic
 
 
 HIDDEN_AUI_TOOLS = frozenset({

@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from phiagent.evaluation.deployment_token_accounting import (
+from harnessmm.evaluation.deployment_token_accounting import (
     ALFWORLD_SYSTEM_PROMPT,
     ActorCallRecorder,
     RecordedActorCall,

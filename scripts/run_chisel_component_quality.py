@@ -47,15 +47,15 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from phiagent.evaluation.chisel_component_quality import (  # noqa: E402
+from harnessmm.evaluation.chisel_component_quality import (  # noqa: E402
     adjust_primary_family,
     paired_quality_effect,
 )
-from phiagent.learning.chisel_component_quality import (  # noqa: E402
+from harnessmm.learning.chisel_component_quality import (  # noqa: E402
     fit_quality_heads,
     freeze_quality_routes,
 )
-from phiagent.learning.residual_meta_harness import canonical_hash, canonical_json  # noqa: E402
+from harnessmm.learning.residual_meta_harness import canonical_hash, canonical_json  # noqa: E402
 from scripts.probe_chisel_model_fidelity import response_identity  # noqa: E402
 from scripts.run_searchqa_residual_meta_campaign import (  # noqa: E402
     FEATURE_SCHEMA,
@@ -193,7 +193,7 @@ def git_provenance(root: Path, source_state: Path | None) -> dict:
 
 
 def source_paths() -> list[Path]:
-    return sorted(set(ROOT.joinpath("phiagent").rglob("*.py")) | {
+    return sorted(set(ROOT.joinpath("harnessmm").rglob("*.py")) | {
         Path(__file__).resolve(),
         ROOT / "scripts/run_searchqa_residual_meta_campaign.py",
         ROOT / "scripts/probe_chisel_model_fidelity.py",

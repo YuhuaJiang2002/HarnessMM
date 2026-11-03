@@ -4,7 +4,7 @@ from itertools import product
 
 import pytest
 
-from phiagent.learning.evidence_contracts import (
+from harnessmm.learning.evidence_contracts import (
     Answer, CapsuleEntry, Edit, EditKind, Gap, Invalidation, Observation, Obligation,
     PublicHistory, QueryScope, apply_edit, apply_transaction, canonical_json, capsule_sha256, diagnose,
     plan_context_repair,

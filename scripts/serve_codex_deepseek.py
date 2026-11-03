@@ -34,8 +34,8 @@ from collections.abc import Callable
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from phiagent.data_engine.provenance import write_json_atomic  # noqa: E402
-from phiagent.experiments import create_frozen_experiment_directory  # noqa: E402
+from harnessmm.data_engine.provenance import write_json_atomic  # noqa: E402
+from harnessmm.experiments import create_frozen_experiment_directory  # noqa: E402
 
 TRIAL_PATTERN = re.compile(r"[A-Za-z0-9][A-Za-z0-9_.-]{0,159}")
 TERMINAL_EVENTS = {"response.completed", "response.incomplete", "response.failed"}

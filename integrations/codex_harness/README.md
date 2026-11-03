@@ -1,15 +1,16 @@
 # Codex harness
 
 This package exposes the Codex integration already implemented under
-`phiagent.harness`. Its exports are the original classes and functions, so
-existing imports, protocol versions and source seals keep their identities.
+`harnessmm.harness`. Its exports are the original classes and functions, so
+existing imports and protocol versions keep their identities. New deployments
+freeze the current source hashes; see [package migration](../../docs/PACKAGE_MIGRATION.md).
 
 | Interface | Implementation | Use |
 | --- | --- | --- |
-| `codex_config`, `run_codex_trial` | [`codex_runtime.py`](../../phiagent/harness/codex_runtime.py) | Pinned official CLI v0.142.5, isolated workspace and provider metering |
-| `NativeBankBoundary` | [`codex_native_app_bank.py`](../../phiagent/harness/codex_native_app_bank.py) | Guarded literal actions at the native MCP boundary |
-| `TerminalBankProvider` | [`codex_terminal_bank.py`](../../phiagent/harness/codex_terminal_bank.py) | Native Responses terminal history, action banks and metered selection |
-| `ChiselConfig`, `CodexChiselController` | [`codex_chisel.py`](../../phiagent/harness/codex_chisel.py) | Training, protected selection, source freeze and held-out evaluation |
+| `codex_config`, `run_codex_trial` | [`codex_runtime.py`](../../harnessmm/harness/codex_runtime.py) | Pinned official CLI v0.142.5, isolated workspace and provider metering |
+| `NativeBankBoundary` | [`codex_native_app_bank.py`](../../harnessmm/harness/codex_native_app_bank.py) | Guarded literal actions at the native MCP boundary |
+| `TerminalBankProvider` | [`codex_terminal_bank.py`](../../harnessmm/harness/codex_terminal_bank.py) | Native Responses terminal history, action banks and metered selection |
+| `ChiselConfig`, `CodexChiselController` | [`codex_chisel.py`](../../harnessmm/harness/codex_chisel.py) | Training, protected selection, source freeze and held-out evaluation |
 
 ```python
 from integrations.codex_harness import NativeBankBoundary

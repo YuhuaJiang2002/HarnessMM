@@ -1,5 +1,21 @@
 # Release checks
 
+## 2026-11-03 Python namespace migration
+
+- Version 0.2.0 uses `harnessmm` for source files, imports and documentation.
+  The `phiagent` package provides a compatibility bridge to the same modules.
+- 700 Python tests and 92 Node.js tests passed locally. New namespace tests
+  cover both import orders, namespace subpackages, shared state, reload,
+  legacy pickle paths and module execution in fresh interpreters.
+- All 449 source-manifest entries and eight archived HumanEval modules pass
+  digest verification. Original source paths and digests remain recorded;
+  archived reproduction files are unchanged.
+- The source distribution and wheel build successfully. A clean environment
+  installs the wheel and imports both namespaces outside the checkout, including
+  the native Node bank contract. All local examples and documentation links pass.
+- This release changes the public Python namespace. Native benchmark scores
+  were not re-evaluated, and new deployments require a new source freeze.
+
 ## 2026-11-03 Codex and baseline entry points
 
 - 693 Python tests and 92 Node.js tests passed locally.

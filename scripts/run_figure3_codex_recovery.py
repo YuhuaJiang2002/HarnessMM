@@ -30,7 +30,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from phiagent.harness.figure3_repetitions import test_seeds  # noqa: E402
+from harnessmm.harness.figure3_repetitions import test_seeds  # noqa: E402
 
 SCHEMA = "figure3-codex-native-reacquisition/v1"
 KEYS = ("input_tokens", "output_tokens", "total_tokens")
@@ -151,7 +151,7 @@ def plan(run, config, partition, phase, arms):
 
 
 def modules():
-    from phiagent.harness import industrial_coding_confirmation as protocol
+    from harnessmm.harness import industrial_coding_confirmation as protocol
     from scripts import run_industrial_capability_baselines as native
     from scripts import run_codex_terminal as trial
     from scripts import serve_codex_deepseek as meter
@@ -522,7 +522,7 @@ def prepare(config_path):
             "HISTORY.json", "NATIVE_RUNTIME.json", "SPLIT_MANIFEST.json", "TASK_SOURCE_BINDING.json",
         )
     })
-    from phiagent.data_engine.provenance import capture_provenance
+    from harnessmm.data_engine.provenance import capture_provenance
     save(run / "PROVENANCE.json", capture_provenance(ROOT, sys.argv, 20260928))
     save(run / "PACKAGES.json", {
         "python": sys.version,

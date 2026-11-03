@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from phiagent.learning.alfworld_modular_rsi import (
+from harnessmm.learning.alfworld_modular_rsi import (
     EDITABLE_SPANS, compact_action_contract, compact_boilerplate, paired_gate, replace_history,
 )
 from scripts.audit_chisel_repair_alfworld import validate_feedback_signals, validate_row
@@ -28,7 +28,7 @@ from scripts.run_alfworld_modular_rsi import (
     hash_file, validate_predecode_rejection, recovery_ablation_summary, recovery_ablation_activation, recovery_ablation_full_arm,
     RECOVERY_ABLATION_ARMS,
 )
-from phiagent.learning.alfworld_jev import LOCAL_BACKEND, RuleMemory, local_choice_messages, provider_usage as jev_usage
+from harnessmm.learning.alfworld_jev import LOCAL_BACKEND, RuleMemory, local_choice_messages, provider_usage as jev_usage
 from scripts.alfworld_jev_runtime import (
     ENDPOINT as JEV_ENDPOINT, InterleavedActor, episode_ledger, require_local_binding,
 )

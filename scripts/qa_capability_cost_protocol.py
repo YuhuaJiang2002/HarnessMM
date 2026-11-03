@@ -5,8 +5,8 @@ from __future__ import annotations
 from collections import Counter
 from pathlib import Path
 
-from phiagent.learning.qa_capability_routing import CAPABILITY_MODES, capability_request
-from phiagent.learning.qa_harness_mixture import mixture_arm_prompt
+from harnessmm.learning.qa_capability_routing import CAPABILITY_MODES, capability_request
+from harnessmm.learning.qa_harness_mixture import mixture_arm_prompt
 from scripts.prepare_chisel_component_quality_data import canonical_hash
 from scripts.qa_harness_mixture_protocol import (
     BASELINES, INCUMBENT, OVERLAY_FILES as LEGACY_OVERLAY_FILES,
@@ -30,7 +30,7 @@ FACTORIAL = {
 }
 OVERLAY_FILES = (
     *LEGACY_OVERLAY_FILES,
-    "phiagent/learning/qa_capability_routing.py",
+    "harnessmm/learning/qa_capability_routing.py",
     "scripts/qa_capability_cost_protocol.py",
     "scripts/prepare_qa_capability_cost_config.py",
     "tests/test_qa_capability_routing.py",
@@ -223,7 +223,7 @@ def target_gate(methods: dict, config: dict, bounds: dict | None = None) -> dict
 
 
 def diagnostic_bounds(scores: dict, groups: dict[str, str], config: dict) -> dict:
-    from phiagent.evaluation.chisel_component_quality import paired_finite_sample_lower_bound
+    from harnessmm.evaluation.chisel_component_quality import paired_finite_sample_lower_bound
 
     if set(scores) != set(config["arms"]) or any(set(rows) != set(groups) for rows in scores.values()):
         raise ProtocolError("Every paired task and declared method is required")

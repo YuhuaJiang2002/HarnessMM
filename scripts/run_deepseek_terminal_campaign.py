@@ -60,7 +60,7 @@ from integrations.deepseek_harness.harbor_agent import (  # noqa: E402
     recover_runner_accounting, utc_now, TerminalBackend, TERMINAL_TOOL,
     build_worker_job, stop_owned_process,
 )
-from phiagent.harness.deepseek_bridge import ToolBridge  # noqa: E402
+from harnessmm.harness.deepseek_bridge import ToolBridge  # noqa: E402
 from scripts.terminal_network_lifecycle import (  # noqa: E402
     attest_undispatched_network_failure, network_owner, retire_networks,
 )
@@ -85,8 +85,8 @@ NATIVE_FILES = (
     "integrations/deepseek_harness/chisel_plugin.mjs",
     "integrations/deepseek_harness/observation_policy.mjs",
     "integrations/deepseek_harness/action_evidence_checkpoint.mjs",
-    "phiagent/harness/deepseek_bridge.py",
-    "phiagent/data_engine/provenance.py",
+    "harnessmm/harness/deepseek_bridge.py",
+    "harnessmm/data_engine/provenance.py",
     "scripts/run_deepseek_terminal.py",
 )
 CONTROLLER_FILES = (
@@ -105,14 +105,14 @@ CONTROLLER_FILES = (
     "configs/deepseek_terminal_campaign_v4.json",
     "configs/deepseek_terminal_campaign_v5.json",
     "configs/deepseek_terminal_campaign_v8.json",
-    "phiagent/harness/deepseek_chisel.py",
-    "phiagent/harness/codex_chisel.py",
-    "phiagent/harness/codex_runtime.py",
-    "phiagent/harness/benchmark_partition.py",
-    "phiagent/harness/industrial_common_prompt.py",
-    "phiagent/experiments.py",
-    "phiagent/learning/residual_meta_harness.py",
-    "phiagent/learning/residual_meta_training.py",
+    "harnessmm/harness/deepseek_chisel.py",
+    "harnessmm/harness/codex_chisel.py",
+    "harnessmm/harness/codex_runtime.py",
+    "harnessmm/harness/benchmark_partition.py",
+    "harnessmm/harness/industrial_common_prompt.py",
+    "harnessmm/experiments.py",
+    "harnessmm/learning/residual_meta_harness.py",
+    "harnessmm/learning/residual_meta_training.py",
 )
 PRIVATE_TRACE = re.compile(
     r"(?i)(?:/tests(?:/|\b)|/verifier(?:/|\b)|test_outputs\.py|reward\.txt|"
@@ -1089,7 +1089,7 @@ def validate_config(config: dict[str, Any]) -> None:
         raise ValueError("Heartbeat/capacity audits must remain durable and timely")
     shared = config.get("shared_parent_prompt")
     if shared is not None:
-        from phiagent.harness.industrial_common_prompt import prompt_manifest
+        from harnessmm.harness.industrial_common_prompt import prompt_manifest
 
         if shared != {
             key: prompt_manifest(
@@ -1287,7 +1287,7 @@ class Campaign:
                 raise CampaignBlocked(f"Frozen partition file changed: {filename}")
         if self.partition["counts"] != self.config["counts"]:
             raise CampaignBlocked("Partition population differs")
-        from phiagent.harness.benchmark_partition import validate_partition
+        from harnessmm.harness.benchmark_partition import validate_partition
         from integrations.deepseek_harness.runner import verify_runtime
         validate_partition(self.partition)
         acceptance = load(Path(self.config["acceptance_receipt"]))
@@ -2258,7 +2258,7 @@ class Campaign:
 
     def lifecycle(self) -> int:
         self.preflight()
-        from phiagent.harness.deepseek_chisel import ChiselConfig, DeepSeekChiselController
+        from harnessmm.harness.deepseek_chisel import ChiselConfig, DeepSeekChiselController
         config = ChiselConfig(
             application="system_section", optimization_iterations=2,
             executor_workers=self.config["executor_workers"],

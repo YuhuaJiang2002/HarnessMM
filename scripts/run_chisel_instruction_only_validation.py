@@ -246,7 +246,7 @@ def freeze_sources(config: dict, prior: dict, run: Path) -> dict:
             expected = config["shared_helper_sha256"]
         if name == "scripts/run_alfworld_modular_rsi.py" and "service_helper_sha256" in config:
             expected = config["service_helper_sha256"]
-        if name == "phiagent/learning/alfworld_modular_rsi.py" and "prompt_module_sha256" in config:
+        if name == "harnessmm/learning/alfworld_modular_rsi.py" and "prompt_module_sha256" in config:
             expected = config["prompt_module_sha256"]
         native.require(native.file_hash(ROOT / name) == expected, f"Common source changed: {name}")
         checksums[name] = expected

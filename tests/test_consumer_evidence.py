@@ -4,10 +4,10 @@ from copy import deepcopy
 
 import pytest
 
-from phiagent.learning.consumer_evidence import (
+from harnessmm.learning.consumer_evidence import (
     HistoricalSelector, PublicAction, PublicReport, commit_branch, resolve_branch,
 )
-from phiagent.learning.evidence_contracts import canonical_json
+from harnessmm.learning.evidence_contracts import canonical_json
 
 
 def validate_action(value):

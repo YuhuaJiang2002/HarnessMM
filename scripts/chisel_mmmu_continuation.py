@@ -70,7 +70,7 @@ def inherit_completed_training(root, config):
     if any(old["model"][key] != config["model"][key] for key in model_fields):
         raise RuntimeError("Inherited actor configuration changed")
     for relative in (
-            "source/phiagent/learning/supported_local_decision.py",
+            "source/harnessmm/learning/supported_local_decision.py",
             "source/scripts/chisel_mmmu_shared_adapter.py", "source/scripts/cvpr_mmmu_campaign.py"):
         if sha_file(source / relative) != sha_file(root / relative):
             raise RuntimeError("Inherited method actor/guard/prompt code changed: " + relative)

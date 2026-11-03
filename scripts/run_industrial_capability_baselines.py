@@ -33,14 +33,14 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from phiagent.data_engine.provenance import utc_now, write_json_atomic  # noqa: E402
-from phiagent.harness.benchmark_partition import (  # noqa: E402
+from harnessmm.data_engine.provenance import utc_now, write_json_atomic  # noqa: E402
+from harnessmm.harness.benchmark_partition import (  # noqa: E402
     canonical_sha256, validate_partition,
 )
-from phiagent.harness.industrial_common_prompt import (  # noqa: E402
+from harnessmm.harness.industrial_common_prompt import (  # noqa: E402
     BENCHMARK, PROMPT_SHA256, PROMPT_VERSION, prompt_manifest, prompt_receipt,
 )
-from phiagent.harness.industrial_capacity import task_admission, validate_workers  # noqa: E402
+from harnessmm.harness.industrial_capacity import task_admission, validate_workers  # noqa: E402
 from scripts.run_codex_terminal import executed_native_verdict, native_reward  # noqa: E402
 from scripts.run_deepseek_terminal import (  # noqa: E402
     build_native_job, read_command, resource_inventory, task_file_hashes,
@@ -138,7 +138,7 @@ def source_files(root: Path = ROOT, *, extra_entries: tuple[str, ...] = ()) -> l
                 module = ".".join([*prefix, *([node.module] if node.module else [])])
                 modules = [module, *(module + "." + alias.name for alias in node.names)]
             for module in modules:
-                if module.split(".")[0] not in ("phiagent", "scripts", "integrations"):
+                if module.split(".")[0] not in ("harnessmm", "phiagent", "scripts", "integrations"):
                     continue
                 name = module.replace(".", "/") + ".py"
                 if (root / name).is_file() and name not in found:
@@ -265,7 +265,7 @@ def prepare(
                      "agents/installed/codex.py", "models/task/task.py")
     }
     if track == "codex":
-        from phiagent.harness.codex_runtime import CODEX_REVISION, CODEX_SHA256
+        from harnessmm.harness.codex_runtime import CODEX_REVISION, CODEX_SHA256
 
         native_files[config["codex"]["binary"]] = digest(Path(config["codex"]["binary"]))
         if (

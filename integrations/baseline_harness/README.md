@@ -54,12 +54,12 @@ have separate implementations and deployment requirements:
 
 | Method | Existing implementation |
 | --- | --- |
-| GAIA2 native baseline | [`gaia2_no_harness.py`](../../phiagent/harness/gaia2_no_harness.py) |
+| GAIA2 native baseline | [`gaia2_no_harness.py`](../../harnessmm/harness/gaia2_no_harness.py) |
 | Codex Harness | [`integrations/codex_harness`](../codex_harness/README.md) |
 | DeepSeek Harness | [`integrations/deepseek_harness`](../deepseek_harness/) and [configuration](../../docs/DEEPSEEK_REPRODUCTION.md) |
-| SkillOpt | [`industrial_skillopt.py`](../../phiagent/harness/industrial_skillopt.py) and [`cvpr_skillopt_native_bridge.py`](../../scripts/cvpr_skillopt_native_bridge.py) |
+| SkillOpt | [`industrial_skillopt.py`](../../harnessmm/harness/industrial_skillopt.py) and [`cvpr_skillopt_native_bridge.py`](../../scripts/cvpr_skillopt_native_bridge.py) |
 | AutoSaddler | [`run_chisel_autosaddler_corrected_loop.py`](../../scripts/run_chisel_autosaddler_corrected_loop.py) |
-| SoL-Pi | [`gaia2_solpi.py`](../../phiagent/harness/gaia2_solpi.py) and [`terminal_solpi.py`](../../scripts/terminal_solpi.py) |
+| SoL-Pi | [`gaia2_solpi.py`](../../harnessmm/harness/gaia2_solpi.py) and [`terminal_solpi.py`](../../scripts/terminal_solpi.py) |
 
 These links identify released research code; benchmark-specific visual
 adapters and upstream optimizers still need their own configurations. RHO,

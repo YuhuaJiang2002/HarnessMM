@@ -218,7 +218,7 @@ class Provider:
 
 
 def current_chisel(item, router, profiles, original, call, prefix):
-    from phiagent.learning import qa_typed_recovery
+    from harnessmm.learning import qa_typed_recovery
 
     branch = router.route(item)["variant"]
     full = ranker.messages(item, item["context"], profiles[branch])
@@ -237,7 +237,7 @@ def current_chisel(item, router, profiles, original, call, prefix):
 
 def study(root, config, prepared, state):
     from transformers import AutoTokenizer
-    from phiagent.learning import qa_meta_rsi
+    from harnessmm.learning import qa_meta_rsi
     from scripts.qa_harness_mixture_protocol import FrozenOriginalChisel
     items, labels, partition, predictor, gate_ids = prepared
     reference = root/"inputs/reference"

@@ -18,7 +18,7 @@ import threading
 import uuid
 from urllib.error import HTTPError
 from urllib.request import ProxyHandler, Request, build_opener
-from phiagent.harness.loopback_http import FetchCompatibleHTTPServer
+from harnessmm.harness.loopback_http import FetchCompatibleHTTPServer
 
 SCHEMA = "deepseek-native-durable-capture/v1"
 MODEL = "deepseek-flash"

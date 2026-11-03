@@ -8,7 +8,7 @@ import json
 import re
 from collections.abc import Mapping, Sequence
 
-from phiagent.learning.evidence_contracts import (
+from harnessmm.learning.evidence_contracts import (
     CapsuleEntry, Obligation, Observation, PublicHistory, QueryScope, canonical_json,
     encoded_capsule, plan_context_repair,
 )

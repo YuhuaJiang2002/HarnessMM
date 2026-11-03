@@ -16,7 +16,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from phiagent.data_engine.provenance import capture_provenance, write_json_atomic  # noqa: E402
+from harnessmm.data_engine.provenance import capture_provenance, write_json_atomic  # noqa: E402
 
 
 def network_owner(container: dict) -> dict:

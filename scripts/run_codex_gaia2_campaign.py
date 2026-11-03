@@ -20,13 +20,13 @@ import traceback
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from phiagent.data_engine.provenance import capture_provenance, write_json_atomic  # noqa: E402
-from phiagent.harness.codex_chisel import (  # noqa: E402
+from harnessmm.data_engine.provenance import capture_provenance, write_json_atomic  # noqa: E402
+from harnessmm.harness.codex_chisel import (  # noqa: E402
     ChiselConfig, CodexChiselController, execution_result_from_receipt,
 )
-from phiagent.harness.benchmark_partition import canonical_sha256  # noqa: E402
-from phiagent.harness.codex_gaia2 import SOURCE_FILES  # noqa: E402
-from phiagent.harness.codex_runtime import CODEX_SHA256  # noqa: E402
+from harnessmm.harness.benchmark_partition import canonical_sha256  # noqa: E402
+from harnessmm.harness.codex_gaia2 import SOURCE_FILES  # noqa: E402
+from harnessmm.harness.codex_runtime import CODEX_SHA256  # noqa: E402
 from scripts.run_codex_chisel_terminal import TerminalComparison  # noqa: E402
 from scripts.serve_codex_deepseek import read_credential, usage_summary  # noqa: E402
 
@@ -297,7 +297,7 @@ class GAIAComparison(TerminalComparison):
                 ):
                     raise RuntimeError("Validation accounting incomplete; held-out test stays sealed")
                 policy = controller.freeze(source_hashes={
-                    "codex_cli": CODEX_SHA256, "executor": digest(ROOT / "phiagent/harness/codex_gaia2.py"),
+                    "codex_cli": CODEX_SHA256, "executor": digest(ROOT / "harnessmm/harness/codex_gaia2.py"),
                     "optimizer": digest(ROOT / "scripts/run_codex_chisel_terminal.py"),
                     "scorer": self.freeze["are_source_sha256"], "adapter": digest(Path(__file__)),
                     "partition": digest(self.partition_path),

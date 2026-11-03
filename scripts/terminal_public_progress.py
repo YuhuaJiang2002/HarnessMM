@@ -10,9 +10,9 @@ from pathlib import PurePosixPath
 import re
 import shlex
 
-from phiagent.learning.counterfactual_repair import RepairSession, parse_patch
-from phiagent.learning.public_recurrence import has_no_progress_recurrence
-from phiagent.learning.stage_aware_adm import canonical_hash
+from harnessmm.learning.counterfactual_repair import RepairSession, parse_patch
+from harnessmm.learning.public_recurrence import has_no_progress_recurrence
+from harnessmm.learning.stage_aware_adm import canonical_hash
 
 
 VERSION = "terminal-public-observation-progress/v1"

@@ -1,7 +1,7 @@
 from contextlib import nullcontext
 import json
 import pytest
-from phiagent.harness.codex_jev_v2 import CodexJevV2, prepare_packet
+from harnessmm.harness.codex_jev_v2 import CodexJevV2, prepare_packet
 from tests.test_codex_native_app_bank import TOOLS, response, candidate, fast
 
 CONFIG={'phase':'train','harness':'codex','fast_families':['Files__exists'],'max_fast_bytes':4096}

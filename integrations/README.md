@@ -6,7 +6,7 @@
 | Codex Harness | [`codex_harness`](codex_harness/README.md) | Official CLI runtime, native MCP/terminal bank adapters and RSI lifecycle |
 | DeepSeek Harness | [`deepseek_harness`](deepseek_harness/) | SDK streaming bridge, graph authoring, guards and native execution |
 
-Codex exports refer to the existing `phiagent.harness` implementations.
+Codex exports refer to the existing `harnessmm.harness` implementations.
 Baseline action-contract definitions are extracted from the visual research
 workspace. Both packages leave benchmark execution and physical usage
 accounting with the host. Their READMEs distinguish integration code from

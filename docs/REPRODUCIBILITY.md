@@ -9,8 +9,11 @@ and their published versions. The repository starts with a new Git history.
 Release edits replace workstation paths and worker hostnames with deployment
 placeholders, add packaging and documentation, and simplify namespace
 initializers. The extracted algorithm implementations retain their model
-identities, protocol constants and native interfaces. Original experimental
-workspaces and paid records remain outside this repository.
+identities, protocol constants and native interfaces. The Python package is
+named `harnessmm`; legacy `phiagent` imports remain
+supported. The [migration guide](PACKAGE_MIGRATION.md) describes source paths
+and compatibility. Original experimental workspaces and paid records remain
+outside this repository.
 
 ## Local checks
 

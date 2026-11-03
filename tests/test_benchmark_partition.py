@@ -3,7 +3,7 @@ from copy import deepcopy
 
 import pytest
 
-from phiagent.harness.benchmark_partition import (
+from harnessmm.harness.benchmark_partition import (
     build_partition,canonical_sha256,materialize_partition,validate_partition,
 )
 

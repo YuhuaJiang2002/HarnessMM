@@ -56,9 +56,16 @@ Model weights stay fixed.
 
 This repository contains the current implementation extracted from the
 [PhiAgent research workspace](https://github.com/YuhuaJiang2002/PhiAgent).
-Existing Python imports use `phiagent`; `CHISEL`, `SAR`, `Jev` and
-`<CHISEL_PLAN>` remain internal implementation and protocol names. They are
-retained so existing controllers, configurations and tests continue to work.
+The Python package is `harnessmm`, matching the project name:
+
+```python
+from harnessmm.harness.codex_chisel import CodexChiselController
+from harnessmm.harness.benchmark_partition import build_partition
+```
+
+Existing `phiagent` imports remain supported through a compatibility bridge.
+`CHISEL`, `SAR`, `Jev` and `<CHISEL_PLAN>` retain their internal implementation
+and protocol names. See [package migration](docs/PACKAGE_MIGRATION.md) for details.
 See the [code map](docs/CODE_MAP.md) for the paper-to-code correspondence.
 
 ## Codex and DeepSeek coding harnesses
@@ -146,9 +153,10 @@ or token-saving measurements.
 | `integrations/baseline_harness/` | Original screenshot-based decision boundary, literal action contract and baseline implementation index |
 | `integrations/codex_harness/` | Public exports for the existing official CLI runtime, native MCP/terminal bank adapters and RSI lifecycle |
 | `integrations/deepseek_harness/` | Native streaming bridge, action-bank contract, receipt guards, graph execution and certificates |
-| `phiagent/harness/` | Codex adapters, protected training/selection lifecycle, benchmark-specific controllers and RSI |
-| `phiagent/learning/` | Residual fitting, cross-fitting, public-evidence contracts, routing and companion configuration methods |
-| `phiagent/evaluation/` | Native score checks, quality/cost comparisons and complete token accounting |
+| `harnessmm/harness/` | Codex adapters, protected training/selection lifecycle, benchmark-specific controllers and RSI |
+| `harnessmm/learning/` | Residual fitting, cross-fitting, public-evidence contracts, routing and companion configuration methods |
+| `harnessmm/evaluation/` | Native score checks, quality/cost comparisons and complete token accounting |
+| `phiagent/` | Compatibility bridge for older Python imports |
 | `scripts/` | Research runners, preparation, metering and analysis dependencies |
 | `configs/` | Two reference configurations used by the unit tests |
 | `examples/` | Local examples requiring no provider credentials |

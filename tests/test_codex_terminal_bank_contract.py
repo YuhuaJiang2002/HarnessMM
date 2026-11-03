@@ -2,9 +2,9 @@
 import hashlib
 from copy import deepcopy
 import pytest
-from phiagent.harness.codex_terminal_bank import POLICY
-from phiagent.harness.codex_terminal_bank_contract import validate_trial_contract,PARTITION_SHA256
-from phiagent.harness.industrial_common_prompt import PROMPT_SHA256
+from harnessmm.harness.codex_terminal_bank import POLICY
+from harnessmm.harness.codex_terminal_bank_contract import validate_trial_contract,PARTITION_SHA256
+from harnessmm.harness.industrial_common_prompt import PROMPT_SHA256
 from scripts.run_codex_terminal import context_control
 
 def contract():

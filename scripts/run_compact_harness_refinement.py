@@ -23,7 +23,7 @@ import time
 from urllib.request import ProxyHandler, build_opener
 from urllib.error import HTTPError
 
-from phiagent.learning.compact_qa_contracts import (
+from harnessmm.learning.compact_qa_contracts import (
     COMPACT_CONTRACTS, COMPACT_REFINEMENTS, COMPACT_SLOT_CONTRACTS,
     cost_source_contracts, delete_compression_contracts,
 )
@@ -36,7 +36,7 @@ from scripts.run_compact_harness_training_pilot import (
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = Path("configs/compact_harness_refinement_v2.json")
 OVERLAY_FILES = (
-    CONFIG.as_posix(), "phiagent/learning/compact_qa_contracts.py",
+    CONFIG.as_posix(), "harnessmm/learning/compact_qa_contracts.py",
     "scripts/run_compact_harness_training_pilot.py",
     "scripts/run_compact_harness_refinement.py",
     "tests/test_compact_qa_contracts.py", "tests/test_compact_harness_training_pilot.py",
@@ -44,11 +44,11 @@ OVERLAY_FILES = (
     "scripts/prepare_compact_harness_training_pilot.py",
     "scripts/prepare_chisel_component_quality_data.py",
     "scripts/verify_compact_harness_training_pilot.py",
-    "phiagent/evaluation/chisel_component_quality.py",
+    "harnessmm/evaluation/chisel_component_quality.py",
     "scripts/compact_h200_runtime.py",
-    "phiagent/learning/qa_context_evidence.py",
-    "phiagent/learning/public_evidence_retention.py",
-    "phiagent/learning/sparse_retrieval.py",
+    "harnessmm/learning/qa_context_evidence.py",
+    "harnessmm/learning/public_evidence_retention.py",
+    "harnessmm/learning/sparse_retrieval.py",
     "tests/test_qa_context_evidence.py",
     "tests/test_qa_context_campaign_contract.py",
 )
@@ -202,7 +202,7 @@ def seal_remote(campaign: Path, config_path: Path = ROOT / CONFIG) -> None:
     derived = {**COMPACT_CONTRACTS, **COMPACT_REFINEMENTS, **COMPACT_SLOT_CONTRACTS}
     mixture_files = []
     if mixture is not None:
-        from phiagent.learning.qa_harness_mixture import mixture_arm_prompt
+        from harnessmm.learning.qa_harness_mixture import mixture_arm_prompt
 
         mixture_files = mixture.stage_incumbent(ROOT, config)
         derived.update({arm: mixture_arm_prompt() for arm in config["candidate_arms"]})

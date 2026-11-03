@@ -500,11 +500,11 @@ def verify(root: Path, output: Path, *, verifier_amendment: Path | None = None) 
         "scripts/run_chisel_component_quality.py",
         "scripts/prepare_compact_harness_training_pilot.py",
         "scripts/prepare_chisel_component_quality_data.py",
-        "phiagent/learning/qa_context_evidence.py",
-        "phiagent/learning/public_evidence_retention.py",
-        "phiagent/learning/sparse_retrieval.py",
-        "phiagent/learning/compact_qa_contracts.py",
-        "phiagent/evaluation/chisel_component_quality.py",
+        "harnessmm/learning/qa_context_evidence.py",
+        "harnessmm/learning/public_evidence_retention.py",
+        "harnessmm/learning/sparse_retrieval.py",
+        "harnessmm/learning/compact_qa_contracts.py",
+        "harnessmm/evaluation/chisel_component_quality.py",
     }
     amendment = checked(verifier_amendment) if verifier_amendment is not None else None
     dependency_binding = audit_dependency_binding(

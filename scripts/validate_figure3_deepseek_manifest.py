@@ -8,7 +8,7 @@ import hashlib
 import json
 from pathlib import Path
 
-from phiagent.harness.figure3_repetitions import test_seeds
+from harnessmm.harness.figure3_repetitions import test_seeds
 
 ARMS = ("native", "cot_jev")
 FIELDS = ("input_tokens", "output_tokens", "total_tokens")

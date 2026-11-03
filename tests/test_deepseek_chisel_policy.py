@@ -4,8 +4,8 @@ import copy
 
 import pytest
 
-from phiagent.evaluation.edgebench_native import validate_native_outcome
-from phiagent.harness.deepseek_chisel_policy import (
+from harnessmm.evaluation.edgebench_native import validate_native_outcome
+from harnessmm.harness.deepseek_chisel_policy import (
     fit_candidate, measured_pair, route, seal_stage, select_validation, validate_proposal,
     verify_stage,
 )

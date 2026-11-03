@@ -25,14 +25,14 @@ from typing import Any
 from urllib.error import HTTPError
 from urllib.request import Request, urlopen
 
-import phiagent.learning.stage_aware_adm as stage_aware_adm_module
-import phiagent.learning.residual_meta_harness as residual_meta_harness_module
-from phiagent.learning.residual_meta_harness import (
+import harnessmm.learning.stage_aware_adm as stage_aware_adm_module
+import harnessmm.learning.residual_meta_harness as residual_meta_harness_module
+from harnessmm.learning.residual_meta_harness import (
     PolicySession as ResidualPolicySession,
     parse_policy as parse_residual_policy,
     policy_to_dict as residual_policy_to_dict,
 )
-from phiagent.learning.stage_aware_adm import (
+from harnessmm.learning.stage_aware_adm import (
     PolicySession as ADMPolicySession,
     Stage as ADMStage,
     compact_messages as compact_adm_messages,
@@ -140,8 +140,8 @@ def public_progress_source_hashes() -> dict[str, str]:
         relative: file_sha256(root / relative)
         for relative in (
             "scripts/terminal_public_progress.py",
-            "phiagent/learning/public_recurrence.py",
-            "phiagent/learning/counterfactual_repair.py",
+            "harnessmm/learning/public_recurrence.py",
+            "harnessmm/learning/counterfactual_repair.py",
         )
     }
 
@@ -152,7 +152,7 @@ def evidence_contract_source_hashes() -> dict[str, str]:
         relative: file_sha256(root / relative)
         for relative in (
             "scripts/terminal_evidence_contracts.py",
-            "phiagent/learning/evidence_contracts.py",
+            "harnessmm/learning/evidence_contracts.py",
         )
     }
 
@@ -163,8 +163,8 @@ def consumer_evidence_source_hashes() -> dict[str, str]:
         relative: file_sha256(root / relative)
         for relative in (
             "scripts/terminal_consumer_evidence.py",
-            "phiagent/learning/consumer_evidence.py",
-            "phiagent/learning/evidence_contracts.py",
+            "harnessmm/learning/consumer_evidence.py",
+            "harnessmm/learning/evidence_contracts.py",
         )
     }
 
@@ -798,7 +798,7 @@ def run_agent(
             seed=int(model["seed"]), config=progress_value["config"],
         )
     if repair_value is not None:
-        from phiagent.learning.counterfactual_repair import (
+        from harnessmm.learning.counterfactual_repair import (
             RepairMode,
             RepairSession,
             parse_patch,
@@ -2814,7 +2814,7 @@ def run_experiment(experiment: Path) -> tuple[dict[str, Any], int]:
             raise RuntimeError("common transport normalizer differs from frozen source")
         shutil.copy2(source, source_snapshot / source.name)
     if config["agent"].get("counterfactual_repair") is not None:
-        import phiagent.learning.counterfactual_repair as repair_module
+        import harnessmm.learning.counterfactual_repair as repair_module
 
         repair_source = Path(repair_module.__file__).resolve()
         if file_sha256(repair_source) != config.get("counterfactual_repair_source_sha256"):

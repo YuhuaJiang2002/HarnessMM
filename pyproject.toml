@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "harnessmm"
-version = "0.1.0"
+version = "0.2.0"
 description = "Guarded decision reuse and recursive self-improvement for agent harness token efficiency"
 readme = "README.md"
 requires-python = ">=3.10,<3.15"
@@ -23,7 +23,7 @@ dev = ["pytest==8.3.5", "jsonschema==4.26.0", "build>=1.2,<2"]
 analysis = ["numpy>=2,<3"]
 
 [tool.setuptools.packages.find]
-include = ["phiagent*", "integrations*", "scripts*"]
+include = ["harnessmm*", "phiagent", "integrations*", "scripts*"]
 exclude = ["tests*", "examples*", "docs*"]
 namespaces = true
 

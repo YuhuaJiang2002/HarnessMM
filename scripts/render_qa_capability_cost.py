@@ -9,7 +9,7 @@ import html
 import json
 from pathlib import Path
 
-from phiagent.evaluation.dual_quality_cost import VerifiedAggregate, benchmark_dual_gate
+from harnessmm.evaluation.dual_quality_cost import VerifiedAggregate, benchmark_dual_gate
 from scripts.render_qa_harness_mixture import FIELDS, aggregate_table, sha
 
 

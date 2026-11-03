@@ -6,8 +6,8 @@ from pathlib import Path
 
 import pytest
 
-from phiagent.harness.codex_chisel import ChiselConfig
-from phiagent.harness.industrial_train_rsi import (
+from harnessmm.harness.codex_chisel import ChiselConfig
+from harnessmm.harness.industrial_train_rsi import (
     CODING_OBJECTIVE, IDENTITY, IndustrialTrainRSIController, quality_cost_gate,
 )
 from scripts.run_industrial_train_rsi import DurableTrainCallbacks, stage, verify_admission
@@ -339,7 +339,7 @@ def test_staging_freezes_new_source_config_and_exact_blocker(tmp_path):
     assert state["pid"] is None
     assert state["new_native_requests"] == 0
     assert state["status"] == "STAGED_AWAITING_NATIVE_OWNER_ADMISSION"
-    assert (run / "source/phiagent/harness/industrial_train_rsi.py").is_file()
+    assert (run / "source/harnessmm/harness/industrial_train_rsi.py").is_file()
     original = deepcopy(state)
     with pytest.raises(ValueError, match="fresh"):
         stage(run, config, harness="deepseek")

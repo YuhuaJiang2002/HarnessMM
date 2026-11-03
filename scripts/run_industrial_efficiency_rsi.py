@@ -28,7 +28,7 @@ import traceback
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from phiagent.data_engine.provenance import write_json_atomic  # noqa: E402
+from harnessmm.data_engine.provenance import write_json_atomic  # noqa: E402
 
 HOST = "harnessmm-api-worker"
 CODEX = Path("/opt/phiagent/work/codex-chisel/20260929-v1/gaia2/full-comparison-v4")
@@ -39,8 +39,8 @@ DEEPSEEK = Path(
 NEW_FILES = (
     "scripts/run_industrial_efficiency_rsi.py",
     "scripts/run_deepseek_gaia2_campaign.py",
-    "phiagent/harness/industrial_efficiency_rsi.py",
-    "phiagent/harness/codex_chisel.py",
+    "harnessmm/harness/industrial_efficiency_rsi.py",
+    "harnessmm/harness/codex_chisel.py",
 )
 
 
@@ -130,7 +130,7 @@ def prepare(root, harness, staging, pool, continuation=None):
     for name in NEW_FILES:
         if continuation is not None and name not in (
                 "scripts/run_industrial_efficiency_rsi.py",
-                "phiagent/harness/industrial_efficiency_rsi.py"):
+                "harnessmm/harness/industrial_efficiency_rsi.py"):
             continue
         destination = root / "source" / name
         destination.parent.mkdir(parents=True, exist_ok=True)
@@ -226,8 +226,8 @@ def prepare(root, harness, staging, pool, continuation=None):
 
 def worker(root):
     remote_only()
-    from phiagent.harness.codex_chisel import ChiselConfig
-    from phiagent.harness.industrial_efficiency_rsi import (
+    from harnessmm.harness.codex_chisel import ChiselConfig
+    from harnessmm.harness.industrial_efficiency_rsi import (
         IndustrialEfficiencyController, actor_only_result,
     )
 
@@ -332,7 +332,7 @@ def worker(root):
             native_name, native_hash = "codex_cli", sha(Path(adapter.config["codex"]["binary"]))
         else:
             from scripts.run_deepseek_gaia2_campaign import Campaign
-            from phiagent.harness.deepseek_chisel import adapt_request
+            from harnessmm.harness.deepseek_chisel import adapt_request
             from scripts.run_codex_gaia2_campaign import GAIAComparison
 
             adapter = Campaign(root)
@@ -425,7 +425,7 @@ def worker(root):
                 write_json_atomic(root / "VALIDATION_SELECTION.json", selection)
                 policy = controller.freeze(source_hashes={
                     native_name: native_hash, "executor": sha(Path(__file__)),
-                    "optimizer": sha(root / "source/phiagent/harness/industrial_efficiency_rsi.py"),
+                    "optimizer": sha(root / "source/harnessmm/harness/industrial_efficiency_rsi.py"),
                     "scorer": hashlib.sha256(json.dumps(hashes, sort_keys=True).encode()).hexdigest(),
                     "all_sources": sha(root / "SOURCE_SHA256.json"),
                 })

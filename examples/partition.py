@@ -1,7 +1,7 @@
 """Build a reproducible 20/20/60 partition of synthetic independent tasks."""
 import json
 
-from phiagent.harness.benchmark_partition import build_partition, canonical_sha256
+from harnessmm.harness.benchmark_partition import build_partition, canonical_sha256
 
 
 def main():

@@ -8,7 +8,8 @@ entry points. Import `VisualBaseline` from `integrations.baseline_harness`
 for a fresh screenshot decision, or import `NativeBankBoundary`,
 `TerminalBankProvider` and `CodexChiselController` from
 `integrations.codex_harness` for the existing Codex implementations.
-The original `phiagent.harness` imports remain supported.
+Use `harnessmm.harness` for direct implementation imports. Legacy
+`phiagent.harness` imports remain supported; see [package migration](PACKAGE_MIGRATION.md).
 
 1. Pass the actual public task, tool catalog and observed native receipts.
 2. Let a slow actor author literal tool arguments and dependencies using the
@@ -55,12 +56,12 @@ semantics across both routes.
 
 ## Python interfaces
 
-`phiagent.harness.codex_native_app_bank.NativeBankBoundary` accepts callbacks
+`harnessmm.harness.codex_native_app_bank.NativeBankBoundary` accepts callbacks
 for `judge`, `execute`, `generation`, `finished` and `audit`. Register the slow
 actor response with `register`, then invoke the original native tool via
 `call`. See `tests/test_codex_native_app_bank.py` for callback shapes.
 
-`phiagent.harness.codex_terminal_bank.TerminalBankProvider` integrates with the
+`harnessmm.harness.codex_terminal_bank.TerminalBankProvider` integrates with the
 native Responses terminal boundary. Its tests cover request attribution,
 complete usage and fallback behavior. Both Python bank adapters invoke the
 packaged JavaScript contract with Node.js.

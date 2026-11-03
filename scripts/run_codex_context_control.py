@@ -23,7 +23,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from phiagent.data_engine.provenance import utc_now, write_json_atomic  # noqa: E402
+from harnessmm.data_engine.provenance import utc_now, write_json_atomic  # noqa: E402
 from scripts import audit_industrial_capability_recovery as recovery  # noqa: E402
 from scripts import run_industrial_capability_baselines as native  # noqa: E402
 from scripts.collect_industrial_capability import read_run_packet, verify_packet  # noqa: E402

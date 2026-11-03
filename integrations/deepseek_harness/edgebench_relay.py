@@ -20,9 +20,9 @@ from integrations.deepseek_harness import runner
 from integrations.deepseek_harness.harbor_agent import (
     TERMINAL_TOOL as HARBOR_TERMINAL_TOOL, terminal_arguments,
 )
-from phiagent.data_engine.provenance import capture_provenance, write_json_atomic
-from phiagent.harness.deepseek_bridge import ToolBridge
-from phiagent.harness.deepseek_messages_meter import DeepSeekMessagesMeter
+from harnessmm.data_engine.provenance import capture_provenance, write_json_atomic
+from harnessmm.harness.deepseek_bridge import ToolBridge
+from harnessmm.harness.deepseek_messages_meter import DeepSeekMessagesMeter
 
 
 TERMINAL_TOOL = {

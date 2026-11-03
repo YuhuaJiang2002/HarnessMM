@@ -4,9 +4,9 @@ import json
 
 import pytest
 
-from phiagent.learning import grounded_continuations as grounded
-from phiagent.learning.counterfactual_invocation import build_policy
-from phiagent.learning.fragment_contracts import compile_library
+from harnessmm.learning import grounded_continuations as grounded
+from harnessmm.learning.counterfactual_invocation import build_policy
+from harnessmm.learning.fragment_contracts import compile_library
 
 
 def state(task, observation, actions, history=None):

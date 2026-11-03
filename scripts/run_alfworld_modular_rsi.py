@@ -25,8 +25,8 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from phiagent.learning.alfworld_autosaddler_pfn import TASK_FAMILIES, render_task_skill
-from phiagent.learning.alfworld_modular_rsi import (
+from harnessmm.learning.alfworld_autosaddler_pfn import TASK_FAMILIES, render_task_skill
+from harnessmm.learning.alfworld_modular_rsi import (
     EDITABLE_SPANS, IDENTITY, module_candidate, paired_gate, replace_history,
     compact_action_contract, compact_boilerplate,
 )
@@ -38,14 +38,14 @@ PROVIDER_CALL = repair.UNMETERED_PROVIDER_CALL
 RECOVERY_ABLATION_ARMS = ("parent", "cot_local", "no_skill", "no_stall_gate", "no_progress_filter",
                           "no_periodic_refresh", "no_typed_selector")
 SOURCE_FILES = (
-    "phiagent/__init__.py", "phiagent/learning/alfworld_autosaddler_pfn.py",
-    "phiagent/learning/alfworld_modular_rsi.py", "scripts/run_alfworld_modular_rsi.py",
+    "phiagent/__init__.py", "harnessmm/learning/alfworld_autosaddler_pfn.py",
+    "harnessmm/learning/alfworld_modular_rsi.py", "scripts/run_alfworld_modular_rsi.py",
     "scripts/run_chisel_repair_alfworld.py", "scripts/run_alfworld_autosaddler_worker.py",
-    "scripts/alfworld_public_progress.py", "phiagent/learning/counterfactual_repair.py",
-    "phiagent/learning/public_recurrence.py",
-    "phiagent/learning/stage_aware_adm.py", "scripts/audit_alfworld_modular_rsi.py",
+    "scripts/alfworld_public_progress.py", "harnessmm/learning/counterfactual_repair.py",
+    "harnessmm/learning/public_recurrence.py",
+    "harnessmm/learning/stage_aware_adm.py", "scripts/audit_alfworld_modular_rsi.py",
     "scripts/audit_chisel_repair_alfworld.py",
-    "phiagent/learning/alfworld_jev.py", "scripts/alfworld_jev_runtime.py",
+    "harnessmm/learning/alfworld_jev.py", "scripts/alfworld_jev_runtime.py",
 )
 
 
@@ -469,7 +469,7 @@ def context_review_schema(support_ids: list[str]) -> dict:
 
 def context_candidates(run: Path, config: dict, binding: dict, profiles: dict, cases: list[dict]) -> dict:
     import inspect
-    from phiagent.learning.alfworld_modular_rsi import json_text, public_memory_lines
+    from harnessmm.learning.alfworld_modular_rsi import json_text, public_memory_lines
 
     variants = config.get("module_variants") or config["context_variants"]
     functions = (json_text, public_memory_lines, replace_history)
@@ -761,7 +761,7 @@ def direct_development_policies(config: dict, profiles: dict) -> dict:
         return {"parent": compile_policy(profiles),
                 variants[0]: compile_policy(profiles, boilerplate_variant=variants[0])}
     if variants == ["cot_jev"]:
-        from phiagent.learning.alfworld_jev import Gate, JEV_MODEL
+        from harnessmm.learning.alfworld_jev import Gate, JEV_MODEL
 
         protocol = config["jev"]
         if protocol.get("model") != JEV_MODEL:
@@ -773,7 +773,7 @@ def direct_development_policies(config: dict, profiles: dict) -> dict:
         candidate["harness_sha256"] = repair.digest(candidate)
         return {"parent": compile_policy(profiles), "cot_jev": candidate}
     if variants == ["cot_local"]:
-        from phiagent.learning.alfworld_jev import LOCAL_BACKEND
+        from harnessmm.learning.alfworld_jev import LOCAL_BACKEND
         from scripts.alfworld_jev_runtime import readiness
 
         protocol = config["local_discriminator"]
@@ -786,7 +786,7 @@ def direct_development_policies(config: dict, profiles: dict) -> dict:
         policies = {"parent": compile_policy(profiles), "cot_local": candidate}
         study = config.get("recovery_ablation_study")
         if study is not None:
-            from phiagent.learning.alfworld_jev import PROGRESS_RECOVERY_MODE
+            from harnessmm.learning.alfworld_jev import PROGRESS_RECOVERY_MODE
 
             if (protocol.get("context_mode") != PROGRESS_RECOVERY_MODE
                     or protocol.get("recovery_ablation", "none") != "none"
@@ -912,7 +912,7 @@ def execute_direct_development(run: Path, config: dict, binding: dict, profiles:
     metered_call(binding, endpoint_index=0, messages=[{"role": "user", "content": "Reply with OK."}],
                  max_tokens=8, seed=config["seed"], output=run / "admission", timeout=180, stage="synthetic_service_admission")
     if config.get("module_variants") == ["cot_local"]:
-        from phiagent.learning.alfworld_jev import LocalGate, local_choice_messages, select_local_decision
+        from harnessmm.learning.alfworld_jev import LocalGate, local_choice_messages, select_local_decision
         from scripts.alfworld_jev_runtime import EpisodeDriver
 
         driver = EpisodeDriver(binding=binding, budget=config["episode_budget"], protocol=config["local_discriminator"],

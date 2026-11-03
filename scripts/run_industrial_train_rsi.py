@@ -22,15 +22,15 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from phiagent.data_engine.provenance import capture_provenance, write_json_atomic  # noqa: E402
-from phiagent.harness.codex_chisel import ChiselConfig  # noqa: E402
-from phiagent.harness.industrial_common_prompt import prompt_manifest  # noqa: E402
-from phiagent.harness.industrial_train_rsi import (  # noqa: E402
+from harnessmm.data_engine.provenance import capture_provenance, write_json_atomic  # noqa: E402
+from harnessmm.harness.codex_chisel import ChiselConfig  # noqa: E402
+from harnessmm.harness.industrial_common_prompt import prompt_manifest  # noqa: E402
+from harnessmm.harness.industrial_train_rsi import (  # noqa: E402
     IDENTITY, SCHEMA, IndustrialTrainRSIController, quality_cost_gate,
 )
 
 NEW_FILES = (
-    "phiagent/harness/industrial_train_rsi.py",
+    "harnessmm/harness/industrial_train_rsi.py",
     "scripts/run_industrial_train_rsi.py",
     "configs/industrial_terminal_train_rsi_v1.json",
     "tests/test_industrial_train_rsi.py",
@@ -38,17 +38,17 @@ NEW_FILES = (
 )
 CORE_FILES = (
     "phiagent/__init__.py",
-    "phiagent/harness/__init__.py",
-    "phiagent/harness/task_reasoning.py",
-    "phiagent/harness/tshirt_fold_strategy.py",
-    "phiagent/harness/tshirt_positive_reference.py",
-    "phiagent/harness/benchmark_partition.py",
-    "phiagent/harness/codex_chisel.py",
-    "phiagent/harness/industrial_common_prompt.py",
-    "phiagent/harness/industrial_efficiency_rsi.py",
-    "phiagent/learning/residual_meta_harness.py",
-    "phiagent/learning/residual_meta_training.py",
-    "phiagent/data_engine/provenance.py",
+    "harnessmm/harness/__init__.py",
+    "harnessmm/harness/task_reasoning.py",
+    "harnessmm/harness/tshirt_fold_strategy.py",
+    "harnessmm/harness/tshirt_positive_reference.py",
+    "harnessmm/harness/benchmark_partition.py",
+    "harnessmm/harness/codex_chisel.py",
+    "harnessmm/harness/industrial_common_prompt.py",
+    "harnessmm/harness/industrial_efficiency_rsi.py",
+    "harnessmm/learning/residual_meta_harness.py",
+    "harnessmm/learning/residual_meta_training.py",
+    "harnessmm/data_engine/provenance.py",
     "tests/test_codex_chisel.py",
     "scripts/run_industrial_capability_baselines.py",
     "scripts/run_codex_terminal.py",
@@ -424,7 +424,7 @@ def run_training(run):
                 with callbacks.lock:
                     routed_rows = [deepcopy(row) for row in callbacks.completed if row["arm"] == arm]
                 summary = execution_summary(routed_rows)
-                from phiagent.harness import codex_chisel as core
+                from harnessmm.harness import codex_chisel as core
 
                 ledger = controller.report()["ledger"]
                 write_json_atomic(run / "ROUTED_TRAIN_COMPARISON.json", {

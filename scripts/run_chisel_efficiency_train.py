@@ -19,7 +19,7 @@ sys.path.insert(0, str(ROOT))
 from scripts import run_chisel_instruction_only_validation as common  # noqa: E402
 from scripts import run_chisel_interactive_shared226 as native  # noqa: E402
 from scripts import run_alfworld_modular_rsi as core  # noqa: E402
-from phiagent.learning.alfworld_modular_rsi import compact_action_contract, public_memory_lines  # noqa: E402
+from harnessmm.learning.alfworld_modular_rsi import compact_action_contract, public_memory_lines  # noqa: E402
 from scripts.alfworld_public_progress import UnsupportedPublicState  # noqa: E402
 
 SCHEMA = "chisel-training-reasoning-cost/v1"

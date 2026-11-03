@@ -29,7 +29,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from phiagent.learning.residual_meta_harness import (  # noqa: E402
+from harnessmm.learning.residual_meta_harness import (  # noqa: E402
     FeatureKind,
     FeatureSpec,
     Operation,
@@ -43,11 +43,11 @@ from phiagent.learning.residual_meta_harness import (  # noqa: E402
     parse_policy,
     policy_to_dict,
 )
-from phiagent.learning.residual_meta_training import (  # noqa: E402
+from harnessmm.learning.residual_meta_training import (  # noqa: E402
     fit_cross_fitted_linear_head,
     select_calibration_records,
 )
-from phiagent.learning.searchqa_grounded_features import (  # noqa: E402
+from harnessmm.learning.searchqa_grounded_features import (  # noqa: E402
     TOKEN_PATTERN,
     content_terms,
     grounded_anchors,

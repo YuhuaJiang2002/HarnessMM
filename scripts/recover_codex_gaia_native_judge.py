@@ -23,7 +23,7 @@ import traceback
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from phiagent.harness import codex_gaia2 as native
+from harnessmm.harness import codex_gaia2 as native
 from scripts.serve_codex_deepseek import make_server, read_credential
 
 
@@ -88,7 +88,7 @@ def verified_native_model_failure(old, result, actor):
               and r.get('usage_status')=='MEASURED']
     if len(physical)!=1:
         raise ValueError('The rejected model response lacks its unique original physical provider binding')
-    from phiagent.harness.codex_native_app_bank import native_name
+    from harnessmm.harness.codex_native_app_bank import native_name
     tools = {t['name'] for t in read(old/'private/native-tools.json')['tools']}
     calls = [x for x in raw.get('output',[]) if x.get('type')=='function_call']
     rejected = [x for x in calls if native_name(x.get('name'),x.get('namespace')) not in tools]

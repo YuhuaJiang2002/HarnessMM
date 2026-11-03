@@ -13,8 +13,8 @@ from urllib.error import HTTPError
 from urllib.parse import urlparse
 from urllib.request import HTTPRedirectHandler, ProxyHandler, Request, build_opener, urlopen
 
-from phiagent.learning import supported_local_decision as local_control
-from phiagent.learning.alfworld_jev import (
+from harnessmm.learning import supported_local_decision as local_control
+from harnessmm.learning.alfworld_jev import (
     Gate, JEV_MODEL, SCHEMA, decision_request, native_action_response,
     provider_usage, routing_reason, select_decision,
     LOCAL_BACKEND, LOCAL_DEFER, LOCAL_LABELS, LocalGate, local_choice_messages, select_local_decision,

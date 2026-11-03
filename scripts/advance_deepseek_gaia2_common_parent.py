@@ -16,7 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from phiagent.harness.gaia2_common_prompt import prompt_identity  # noqa: E402
+from harnessmm.harness.gaia2_common_prompt import prompt_identity  # noqa: E402
 from scripts import run_deepseek_gaia2 as native  # noqa: E402
 from scripts import run_deepseek_gaia2_campaign as campaign  # noqa: E402
 
@@ -50,7 +50,7 @@ def successor_config(
             "Original native tool text, without an additional JSON-string wrapper"
         )
     if execution_alignment:
-        from phiagent.harness.gaia2_execution_contract import aligned_contract
+        from harnessmm.harness.gaia2_execution_contract import aligned_contract
 
         contract = aligned_contract()
         value.update(native_execution_contract=contract,

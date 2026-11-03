@@ -30,7 +30,7 @@ AUTHORITY_SCHEMA = "chisel-four-method-test-authority/v1"
 METHODS = ("no_skill", "skillopt", "autosaddler", "memory_guarded64")
 EXPOSURE = "historical_stall226_previously_exposed_custom_test"
 EXTRA_SOURCES = (
-    "phiagent/learning/supported_local_decision.py",
+    "harnessmm/learning/supported_local_decision.py",
     common.SHARED_SOURCE, "scripts/run_chisel_instruction_only_validation.py",
     "scripts/run_chisel_efficiency_train.py", "scripts/run_chisel_efficiency_validation.py",
     "scripts/run_chisel_four_method_test.py",

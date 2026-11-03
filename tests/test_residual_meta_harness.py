@@ -6,7 +6,7 @@ import math
 
 import pytest
 
-from phiagent.learning.residual_meta_harness import (
+from harnessmm.learning.residual_meta_harness import (
     POLICY_SCHEMA_VERSION,
     Operation,
     PolicySession,
@@ -23,7 +23,7 @@ from phiagent.learning.residual_meta_harness import (
     parse_policy,
     policy_to_dict,
 )
-from phiagent.learning.stage_aware_adm import (
+from harnessmm.learning.stage_aware_adm import (
     PolicySession as StagePolicySession,
     default_policy_value,
     parse_policy as parse_stage_policy,

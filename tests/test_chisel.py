@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import pytest
 
-from phiagent.learning.chisel import (
+from harnessmm.learning.chisel import (
     CalibrationCandidate,
     select_domain_policy,
 )

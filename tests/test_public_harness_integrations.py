@@ -8,8 +8,8 @@ import pytest
 
 from integrations.baseline_harness import NATIVE_INSTRUCTION, VisualBaseline
 from integrations.codex_harness import NativeBankBoundary, TerminalBankProvider
-from phiagent.harness.codex_native_app_bank import NativeBankBoundary as OriginalBoundary
-from phiagent.harness.codex_terminal_bank import TerminalBankProvider as OriginalProvider
+from harnessmm.harness.codex_native_app_bank import NativeBankBoundary as OriginalBoundary
+from harnessmm.harness.codex_terminal_bank import TerminalBankProvider as OriginalProvider
 
 PNG = base64.b64decode(
     "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="
@@ -21,11 +21,11 @@ def test_codex_exports_keep_original_types_and_bank_contract():
     assert NativeBankBoundary is OriginalBoundary
     assert TerminalBankProvider is OriginalProvider
     from integrations.codex_harness import ChiselConfig, CodexChiselController
-    from phiagent.harness.codex_chisel import ChiselConfig as OriginalConfig
-    from phiagent.harness.codex_chisel import CodexChiselController as OriginalController
+    from harnessmm.harness.codex_chisel import ChiselConfig as OriginalConfig
+    from harnessmm.harness.codex_chisel import CodexChiselController as OriginalController
     assert ChiselConfig is OriginalConfig
     assert CodexChiselController is OriginalController
-    from phiagent.harness.codex_native_app_bank import POLICY, instruction
+    from harnessmm.harness.codex_native_app_bank import POLICY, instruction
     assert instruction({**POLICY, "enabled": True}) == instruction({**POLICY, "enabled": False})
 
 

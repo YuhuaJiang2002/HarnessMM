@@ -22,12 +22,12 @@ import warnings
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from phiagent.data_engine.provenance import capture_provenance, write_json_atomic  # noqa: E402
-from phiagent.harness.benchmark_partition import (  # noqa: E402
+from harnessmm.data_engine.provenance import capture_provenance, write_json_atomic  # noqa: E402
+from harnessmm.harness.benchmark_partition import (  # noqa: E402
     canonical_sha256, validate_partition,
 )
-from phiagent.harness.codex_runtime import provider_usage  # noqa: E402
-from phiagent.harness.industrial_common_prompt import prompt_manifest  # noqa: E402
+from harnessmm.harness.codex_runtime import provider_usage  # noqa: E402
+from harnessmm.harness.industrial_common_prompt import prompt_manifest  # noqa: E402
 from scripts.serve_codex_deepseek import read_credential, trial_token, usage_summary  # noqa: E402
 
 HARBOR_VERSION = "0.18.0"
@@ -116,7 +116,7 @@ def context_control(
             "compaction_and_recovery_costs_included": True,
         }
     if method == AUTOSOTA_METHOD:
-        from phiagent.harness.industrial_autosota import validate_trial_binding
+        from harnessmm.harness.industrial_autosota import validate_trial_binding
 
         if autosota is None or confirmation is not None:
             raise ValueError("AutoSOTA compaction requires its separate frozen TRAIN contract")
@@ -136,7 +136,7 @@ def context_control(
     if autosota is not None:
         raise ValueError("An AutoSOTA contract cannot relabel an existing comparison method")
     if method in CONFIRMATION_METHODS:
-        from phiagent.harness.industrial_coding_confirmation import validate_trial_binding
+        from harnessmm.harness.industrial_coding_confirmation import validate_trial_binding
 
         if confirmation is None:
             raise ValueError("Prospective compaction confirmation requires its frozen contract")
@@ -220,7 +220,7 @@ async def execute(args) -> dict:
     confirmation = None
     contract_path = getattr(args, "confirmation_contract", None)
     if contract_path is not None:
-        from phiagent.harness.industrial_coding_confirmation import validate_trial_binding
+        from harnessmm.harness.industrial_coding_confirmation import validate_trial_binding
 
         checksum = hashlib.sha256(contract_path.read_bytes()).hexdigest()
         if checksum != args.confirmation_contract_sha256 or shared is None:
@@ -256,7 +256,7 @@ async def execute(args) -> dict:
     bank_path = getattr(args, "terminal_bank_contract", None)
     bank_binding = None
     if args.method in TERMINAL_BANK_METHODS:
-        from phiagent.harness.codex_terminal_bank_contract import validate_trial_contract
+        from harnessmm.harness.codex_terminal_bank_contract import validate_trial_contract
 
         if bank_path is None or shared is None or hashlib.sha256(bank_path.read_bytes()).hexdigest() != args.terminal_bank_contract_sha256:
             raise ValueError("Native terminal bank requires its source-bound matched contract")
@@ -369,26 +369,26 @@ async def execute(args) -> dict:
     ))
     source_files = (
         "scripts/run_codex_terminal.py", "scripts/codex_terminal_agent.py",
-        "phiagent/harness/codex_runtime.py", "phiagent/harness/benchmark_partition.py",
+        "harnessmm/harness/codex_runtime.py", "harnessmm/harness/benchmark_partition.py",
         "scripts/serve_codex_deepseek.py",
         "scripts/recover_codex_sam_verifier.py",
-        "phiagent/harness/industrial_common_prompt.py",
+        "harnessmm/harness/industrial_common_prompt.py",
         "scripts/industrial_terminal_agents.py",
     )
     if require_executed_tests:
         source_files += ("scripts/audit_industrial_capability_recovery.py",)
     if confirmation is not None:
-        source_files += ("phiagent/harness/industrial_coding_confirmation.py",)
+        source_files += ("harnessmm/harness/industrial_coding_confirmation.py",)
     if autosota is not None:
         source_files += (
-            "phiagent/harness/industrial_autosota.py",
-            "phiagent/harness/industrial_coding_confirmation.py",
+            "harnessmm/harness/industrial_autosota.py",
+            "harnessmm/harness/industrial_coding_confirmation.py",
         )
     if bank_binding is not None:
         source_files += (
-            "phiagent/harness/codex_terminal_bank.py",
-            "phiagent/harness/codex_terminal_bank_contract.py",
-            "phiagent/harness/codex_native_app_bank.py",
+            "harnessmm/harness/codex_terminal_bank.py",
+            "harnessmm/harness/codex_terminal_bank_contract.py",
+            "harnessmm/harness/codex_native_app_bank.py",
             "integrations/deepseek_harness/cot_jev.mjs",
             "integrations/deepseek_harness/codex_bank_contract.mjs",
         )

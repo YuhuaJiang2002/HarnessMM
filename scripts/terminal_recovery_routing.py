@@ -7,7 +7,7 @@ from pathlib import Path
 import re
 from typing import Callable, Mapping, Sequence
 
-from phiagent.harness.recovery_aware_context import (
+from harnessmm.harness.recovery_aware_context import (
     RecoveryAwareObservationPack, RecoveryRoutingPolicy,
 )
 from scripts.terminal_solpi import RECALL_TOOL, TerminalSoLPiSession

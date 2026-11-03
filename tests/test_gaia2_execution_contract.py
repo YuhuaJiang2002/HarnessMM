@@ -6,10 +6,10 @@ from types import SimpleNamespace
 
 import pytest
 
-from phiagent.harness.gaia2_execution_contract import (
+from harnessmm.harness.gaia2_execution_contract import (
     aligned_contract, judge_response_text, user_turn_limit,
 )
-from phiagent.harness.codex_gaia2 import NativeSurface
+from harnessmm.harness.codex_gaia2 import NativeSurface
 from scripts import advance_deepseek_gaia2_common_parent as advance
 from scripts import run_deepseek_gaia2_campaign as campaign
 

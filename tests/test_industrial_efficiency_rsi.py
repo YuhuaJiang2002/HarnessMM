@@ -4,7 +4,7 @@ from copy import deepcopy
 
 import pytest
 
-from phiagent.harness.industrial_efficiency_rsi import (
+from harnessmm.harness.industrial_efficiency_rsi import (
     IndustrialEfficiencyController, OBJECTIVE, actor_only_result, efficiency_gate,
 )
 
@@ -59,7 +59,7 @@ def test_old_test_cannot_be_opened_by_successor():
 
 
 def test_optimizer_objective_rebound_before_request_seal(monkeypatch):
-    from phiagent.harness import codex_chisel as core
+    from harnessmm.harness import codex_chisel as core
 
     controller = object.__new__(IndustrialEfficiencyController)
     controller._execution_identity = {"runtime": "official_codex_cli"}
@@ -81,7 +81,7 @@ def test_full_cost_aware_training_validation_and_freeze():
     from tests.test_codex_chisel import (
         EXECUTOR_IDENTITY, OPTIMIZER_IDENTITY, SOURCE_HASHES, SyntheticCallbacks, population, usage,
     )
-    from phiagent.harness.codex_chisel import ChiselConfig
+    from harnessmm.harness.codex_chisel import ChiselConfig
 
     callbacks = SyntheticCallbacks(score=lambda request: 1.0)
     manifest, index, splits = population(units=50)
@@ -111,7 +111,7 @@ def test_full_cost_aware_training_validation_and_freeze():
 
 
 def test_roundoff_tolerance_does_not_admit_a_real_below_threshold_score():
-    from phiagent.harness import codex_chisel as core
+    from harnessmm.harness import codex_chisel as core
     import math
 
     features = core.public_text_features("Synthetic count task.")
@@ -352,7 +352,7 @@ def test_refit_imports_paid_history_without_replaying_actors_or_proposers():
 
 def test_refit_replaces_old_cost_harm_heads_not_original_instruction_evidence():
     import json
-    from phiagent.harness import codex_chisel as core
+    from harnessmm.harness import codex_chisel as core
 
     fresh, source, splits, options, _, _ = refit_fixture()
     candidate = source["candidate_bank"][1]
@@ -377,7 +377,7 @@ def test_refit_replaces_old_cost_harm_heads_not_original_instruction_evidence():
 ])
 def test_refit_rejects_incomplete_changed_or_unsealed_training(mutation):
     import json
-    from phiagent.harness import codex_chisel as core
+    from harnessmm.harness import codex_chisel as core
 
     fresh, source, splits, options, _, _ = refit_fixture()
     actor = next(row for row in source["ledger"] if row["kind"] == "executor")
@@ -406,7 +406,7 @@ def test_refit_rejects_incomplete_changed_or_unsealed_training(mutation):
 
 
 def test_refit_bank_cannot_change_before_validation():
-    from phiagent.learning.residual_meta_harness import canonical_json
+    from harnessmm.learning.residual_meta_harness import canonical_json
 
     fresh, _, splits, options, _, _ = refit_fixture()
     fresh.refit_training_report(splits["train"], **options)
@@ -449,7 +449,7 @@ def test_population_quality_loss_cannot_be_hidden_outside_oof_overrides(monkeypa
     from tests.test_codex_chisel import (
         EXECUTOR_IDENTITY, OPTIMIZER_IDENTITY, SyntheticCallbacks, population, usage,
     )
-    from phiagent.harness import industrial_efficiency_rsi as module
+    from harnessmm.harness import industrial_efficiency_rsi as module
 
     manifest, index, splits = population(units=50)
     callbacks = SyntheticCallbacks(score=lambda request: 0.0 if request["residual"] else 1.0)

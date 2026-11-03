@@ -4,7 +4,7 @@
 from pathlib import Path
 import shlex
 
-from phiagent.data_engine.provenance import write_json_atomic
+from harnessmm.data_engine.provenance import write_json_atomic
 from scripts import industrial_terminal_agents
 from scripts import run_codex_terminal
 

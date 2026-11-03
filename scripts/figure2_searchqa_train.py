@@ -152,7 +152,7 @@ def prepare(config, run, state):
 
 def study(config, run, state, train, labels, split, predictor, gate_ids):
     from transformers import AutoTokenizer
-    from phiagent.learning import qa_meta_rsi, qa_typed_recovery
+    from harnessmm.learning import qa_meta_rsi, qa_typed_recovery
     from scripts.qa_harness_mixture_protocol import FrozenOriginalChisel
     reference = Path(config["reference_directory"])
     parent = json.loads((reference / "lineage/config.json").read_text())

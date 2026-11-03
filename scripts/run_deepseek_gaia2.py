@@ -55,17 +55,17 @@ BASE_SOURCE_FILES = (
     "SOURCE_PROVENANCE.json",
     "scripts/run_deepseek_gaia2.py", "scripts/run_deepseek_gaia2_campaign.py",
     "configs/deepseek_gaia2_campaign_v1.json", "tests/test_deepseek_gaia2_runner.py",
-    "phiagent/__init__.py", "phiagent/data_engine/__init__.py",
-    "phiagent/data_engine/provenance.py", "phiagent/harness/__init__.py",
-    "phiagent/harness/task_reasoning.py", "phiagent/harness/tshirt_fold_strategy.py",
-    "phiagent/harness/tshirt_positive_reference.py",
-    "phiagent/harness/deepseek_bridge.py", "phiagent/harness/deepseek_chisel.py",
-    "phiagent/harness/loopback_http.py",
-    "phiagent/harness/gaia2_common_prompt.py",
-    "phiagent/harness/gaia2_execution_contract.py",
-    "phiagent/harness/codex_chisel.py", "phiagent/harness/benchmark_partition.py",
-    "phiagent/learning/__init__.py", "phiagent/learning/residual_meta_harness.py",
-    "phiagent/learning/residual_meta_training.py",
+    "phiagent/__init__.py", "harnessmm/data_engine/__init__.py",
+    "harnessmm/data_engine/provenance.py", "harnessmm/harness/__init__.py",
+    "harnessmm/harness/task_reasoning.py", "harnessmm/harness/tshirt_fold_strategy.py",
+    "harnessmm/harness/tshirt_positive_reference.py",
+    "harnessmm/harness/deepseek_bridge.py", "harnessmm/harness/deepseek_chisel.py",
+    "harnessmm/harness/loopback_http.py",
+    "harnessmm/harness/gaia2_common_prompt.py",
+    "harnessmm/harness/gaia2_execution_contract.py",
+    "harnessmm/harness/codex_chisel.py", "harnessmm/harness/benchmark_partition.py",
+    "harnessmm/learning/__init__.py", "harnessmm/learning/residual_meta_harness.py",
+    "harnessmm/learning/residual_meta_training.py",
     "scripts/advance_deepseek_gaia2_common_parent.py",
     "scripts/serve_deepseek_durable_capture.py",
     "tests/test_deepseek_gaia2_common_parent.py",
@@ -919,8 +919,8 @@ def run_native(job_path: Path) -> int:
     )
     from are.simulation.validation.configs import GraphPerEventJudgeConfig
     from integrations.deepseek_harness.gaia2_backend import Gaia2Backend
-    from phiagent.harness.deepseek_bridge import ToolBridge
-    from phiagent.harness.gaia2_common_prompt import public_context
+    from harnessmm.harness.deepseek_bridge import ToolBridge
+    from harnessmm.harness.gaia2_common_prompt import public_context
 
     class NativeConfig(AgentConfigBuilder):
         def build(self, agent_name, **kwargs):
@@ -957,7 +957,7 @@ def run_native(job_path: Path) -> int:
                 "future_user_events_in_prompt": False, "oracle_events_in_prompt": False,
                 **({"shared_prompt": common_receipt} if common_receipt is not None else {}),
             }, immutable=True)
-            from phiagent.harness.gaia2_execution_contract import user_turn_limit
+            from harnessmm.harness.gaia2_execution_contract import user_turn_limit
 
             limit = user_turn_limit(scenario.nb_turns, job["native_max_turns"])
             final, session_started, turns, finish_kind = None, False, [], "completed"
@@ -1063,7 +1063,7 @@ def run_native(job_path: Path) -> int:
     ))
     if job.get("native_execution_contract") is not None:
         from types import MethodType
-        from phiagent.harness.gaia2_execution_contract import (
+        from harnessmm.harness.gaia2_execution_contract import (
             native_judge_completion, validate_contract,
         )
 
@@ -1143,11 +1143,11 @@ def run_episode(config: dict, job: dict, output: Path) -> dict:
                 "scenario_timeout_seconds": config["scenario_timeout_seconds"],
             }
             if "native_execution_contract" in config:
-                from phiagent.harness.gaia2_execution_contract import validate_contract
+                from harnessmm.harness.gaia2_execution_contract import validate_contract
 
                 native_job["native_execution_contract"] = validate_contract(config["native_execution_contract"])
             if "shared_gaia2_prompt" in config:
-                from phiagent.harness.gaia2_common_prompt import validate_prompt_identity
+                from harnessmm.harness.gaia2_common_prompt import validate_prompt_identity
 
                 native_job["shared_gaia2_prompt"] = validate_prompt_identity(
                     config["shared_gaia2_prompt"],

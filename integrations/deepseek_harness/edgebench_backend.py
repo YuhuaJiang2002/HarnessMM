@@ -15,7 +15,7 @@ import tarfile
 from typing import Any
 from urllib.parse import urlsplit
 
-from phiagent.data_engine.provenance import write_json_atomic
+from harnessmm.data_engine.provenance import write_json_atomic
 
 
 def permitted_endpoints(urls: list[str], gateway: str) -> list[tuple[str, int]]:

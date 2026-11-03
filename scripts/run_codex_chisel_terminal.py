@@ -22,16 +22,16 @@ from urllib.request import ProxyHandler, Request, build_opener
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from phiagent.data_engine.provenance import capture_provenance, write_json_atomic  # noqa: E402
-from phiagent.harness.codex_chisel import (  # noqa: E402
+from harnessmm.data_engine.provenance import capture_provenance, write_json_atomic  # noqa: E402
+from harnessmm.harness.codex_chisel import (  # noqa: E402
     ChiselConfig, CodexChiselController, execution_result_from_receipt,
     measured_usage_from_receipt,
 )
-from phiagent.harness.codex_runtime import CODEX_SHA256, provider_usage  # noqa: E402
+from harnessmm.harness.codex_runtime import CODEX_SHA256, provider_usage  # noqa: E402
 from scripts.serve_codex_deepseek import (  # noqa: E402
     read_credential, terminal_response, trial_token, usage_summary,
 )
-from phiagent.harness.industrial_common_prompt import prompt_manifest  # noqa: E402
+from harnessmm.harness.industrial_common_prompt import prompt_manifest  # noqa: E402
 
 
 def sha256(path: Path) -> str:
@@ -455,10 +455,10 @@ class TerminalComparison:
                     ROOT / "scripts/codex_terminal_agent.py",
                     ROOT / "scripts/recover_codex_sam_verifier.py",
                     ROOT / "scripts/terminal_network_lifecycle.py",
-                    ROOT / "phiagent/harness/codex_chisel.py",
-                    ROOT / "phiagent/harness/codex_runtime.py",
-                    ROOT / "phiagent/learning/residual_meta_harness.py",
-                    ROOT / "phiagent/learning/residual_meta_training.py",
+                    ROOT / "harnessmm/harness/codex_chisel.py",
+                    ROOT / "harnessmm/harness/codex_runtime.py",
+                    ROOT / "harnessmm/learning/residual_meta_harness.py",
+                    ROOT / "harnessmm/learning/residual_meta_training.py",
                     self.verifier_environment, scorer,
                 ]
                 if self.config.get("sam_verifier_recovery"):

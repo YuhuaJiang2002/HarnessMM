@@ -354,7 +354,7 @@ def prepare(args):
     native.write(root / "INTERFACE_ADMISSION.json", admission)
     sources = ("scripts/run_terminal_bench_jev.py", "scripts/terminal_jev.py", "scripts/run_terminal_bench_native.py",
                "scripts/harbor_terminal_agent.py", "scripts/run_terminal_bench_qwen35_4b_direct.py",
-               "scripts/terminal_solpi.py", "phiagent/harness/observation_pack.py")
+               "scripts/terminal_solpi.py", "harnessmm/harness/observation_pack.py")
     allocation = protocol["allocation"]
     maximum_seconds = allocation["maximum_seconds"]
     if admission.get("study_deadline_utc"):

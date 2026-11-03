@@ -9,8 +9,8 @@ import argparse, fcntl, hashlib, json, os, secrets, socket, subprocess, sys, thr
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from phiagent.harness.codex_native_app_bank import POLICY, instruction, contract
-from phiagent.harness.codex_gaia2 import mcp_runtime_settings
+from harnessmm.harness.codex_native_app_bank import POLICY, instruction, contract
+from harnessmm.harness.codex_gaia2 import mcp_runtime_settings
 from scripts.serve_codex_deepseek import make_server, read_credential
 
 ARMS = ('native', 'cot_only', 'cot_jev')
@@ -137,9 +137,9 @@ class Campaign:
             raise ValueError('Native Codex bank interface acceptance required')
         accepted_root = Path(self.cfg['native_acceptance']).parent.parent
         accepted_hashes = load(accepted_root/'SOURCE_SHA256.json')
-        for n in ('phiagent/harness/codex_gaia2.py', 'phiagent/harness/codex_native_app_bank.py',
+        for n in ('harnessmm/harness/codex_gaia2.py', 'harnessmm/harness/codex_native_app_bank.py',
                   'scripts/serve_codex_deepseek.py', 'integrations/deepseek_harness/codex_bank_contract.mjs',
-                  'integrations/deepseek_harness/cot_jev.mjs', 'phiagent/harness/codex_runtime.py'):
+                  'integrations/deepseek_harness/cot_jev.mjs', 'harnessmm/harness/codex_runtime.py'):
             if self.hashes[n] != accepted_hashes[n]: raise ValueError('Accepted native execution changed: ' + n)
         self.rows = []; self.active = {}; self.phase = 'preparation'; self.author_tokens = 0
 
@@ -189,7 +189,7 @@ class Campaign:
         return rows, profiles
 
     def author(self, profiles):
-        from phiagent.harness.codex_runtime import run_codex_trial
+        from harnessmm.harness.codex_runtime import run_codex_trial
         from scripts.gaia_native_bank_training_revision import decode_author_json
         folder = self.root/'author'; folder.mkdir()
         prompt = {'objective': 'Author ONE reusable native-app bank skill using only complete TRAIN32 public observations. '
@@ -316,8 +316,8 @@ class Campaign:
     def adopt_bank_train(self):
         predecessor=Path(self.cfg['adopt_bank_train_from']);old_cfg=load(predecessor/'CONFIG.json')
         hashes=load(predecessor/'SOURCE_SHA256.json')
-        for n in ('phiagent/harness/codex_gaia2.py','phiagent/harness/codex_native_app_bank.py',
-                  'scripts/serve_codex_deepseek.py','phiagent/harness/codex_runtime.py',
+        for n in ('harnessmm/harness/codex_gaia2.py','harnessmm/harness/codex_native_app_bank.py',
+                  'scripts/serve_codex_deepseek.py','harnessmm/harness/codex_runtime.py',
                   'integrations/deepseek_harness/cot_jev.mjs','integrations/deepseek_harness/codex_bank_contract.mjs'):
             if hashes[n]!=self.hashes[n]:raise ValueError('Retained actor execution changed: '+n)
         if old_cfg['shared_gaia2_prompt']!=self.cfg['shared_gaia2_prompt']:

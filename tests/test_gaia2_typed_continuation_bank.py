@@ -7,10 +7,10 @@ from types import SimpleNamespace
 from jsonschema import Draft202012Validator
 import pytest
 
-from phiagent.harness.gaia2_cot_jev import (
+from harnessmm.harness.gaia2_cot_jev import (
     cot_response_format, decision_messages, digest, parse_bank, public_state_candidates,
 )
-from phiagent.harness.gaia2_typed_continuation_bank import (
+from harnessmm.harness.gaia2_typed_continuation_bank import (
     bind_arguments, receipt_value,
 )
 

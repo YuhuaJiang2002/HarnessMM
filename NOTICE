@@ -2,8 +2,9 @@ HarnessMM
 Copyright 2026 PhiAgent-0 contributors
 
 This repository extracts the HarnessMM implementation from the PhiAgent research
-workspace maintained by Yuhua Jiang. Original Python namespace and protocol
-identifiers are preserved for compatibility. Deployment paths and hostnames
+workspace maintained by Yuhua Jiang. The Python package is named harnessmm;
+legacy phiagent imports and original protocol identifiers remain supported.
+Deployment paths and hostnames
 were replaced with placeholders for this public release.
 
 The project source retains its Apache License, Version 2.0 terms. Upstream

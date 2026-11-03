@@ -4,8 +4,8 @@ import hashlib
 
 import pytest
 
-from phiagent.harness.benchmark_partition import build_partition, canonical_sha256
-from phiagent.harness.deepseek_chisel import (
+from harnessmm.harness.benchmark_partition import build_partition, canonical_sha256
+from harnessmm.harness.deepseek_chisel import (
     ChiselConfig, DeepSeekChiselController, RUNTIME, adapt_request,
 )
 

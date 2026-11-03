@@ -4,7 +4,7 @@ import argparse,json,os,sys,fcntl,subprocess,hashlib
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
 from scripts import run_industrial_capability_baselines as native
 from scripts.audit_sar_subdag import episode,aggregate
-from phiagent.data_engine.provenance import write_json_atomic as write,utc_now
+from harnessmm.data_engine.provenance import write_json_atomic as write,utc_now
 POLICY={'version':6,'enabled':True,'maximum_candidates':16,'maximum_fast_steps':8,'maximum_public_bytes':65536}
 ARMS=['native','cot_only','cot_jev','sar']
 def run(queue):

@@ -5,11 +5,11 @@ import json
 
 import pytest
 
-from phiagent.harness.aime_202060 import (
+from harnessmm.harness.aime_202060 import (
     METHODS, grounded_repair, ledger_prompt, score_only, select_candidate, usage_sum, validate_data,
     validate_ledger, validate_manifest, validate_policy_freeze,
 )
-from phiagent.harness.benchmark_partition import build_partition, canonical_sha256
+from harnessmm.harness.benchmark_partition import build_partition, canonical_sha256
 
 
 def fixture():
@@ -348,7 +348,7 @@ def test_resource_successors_rewrite_learning_and_freeze_dependencies():
 
 def test_native_schema_tightening_preserves_bounds_and_rejects_control_bytes():
     from jsonschema import ValidationError
-    from phiagent.harness.aime_202060 import (
+    from harnessmm.harness.aime_202060 import (
         diagnosis_schema, parse_structured_response, strict_text_schema,
     )
 

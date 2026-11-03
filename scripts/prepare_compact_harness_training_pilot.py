@@ -14,7 +14,7 @@ import socket
 import subprocess
 import sys
 
-from phiagent.learning.compact_qa_contracts import select_training_groups
+from harnessmm.learning.compact_qa_contracts import select_training_groups
 from scripts.prepare_chisel_component_quality_data import (
     canonical_hash,
     file_hashes,

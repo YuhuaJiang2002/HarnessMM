@@ -220,7 +220,7 @@ def audit(output):
     from scripts.figure2_searchqa_train import official_scorer
     from scripts.qa_harness_mixture_protocol import FrozenOriginalChisel
     from scripts.run_searchqa_span_union import inherited_surface_rule
-    from phiagent.learning import qa_meta_rsi
+    from harnessmm.learning import qa_meta_rsi
     from transformers import AutoTokenizer
 
     helper, helper_path = official_admission_helper()

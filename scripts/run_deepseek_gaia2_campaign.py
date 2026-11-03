@@ -64,11 +64,11 @@ def native_config(config: dict) -> dict:
             raise GateError("Provider durable capture is an explicit opt-in revision")
         fields["provider_durable_capture"] = True
     if "native_execution_contract" in config:
-        from phiagent.harness.gaia2_execution_contract import validate_contract
+        from harnessmm.harness.gaia2_execution_contract import validate_contract
 
         fields["native_execution_contract"] = validate_contract(config["native_execution_contract"])
     if "shared_gaia2_prompt" in config:
-        from phiagent.harness.gaia2_common_prompt import validate_prompt_identity
+        from harnessmm.harness.gaia2_common_prompt import validate_prompt_identity
 
         fields["shared_gaia2_prompt"] = validate_prompt_identity(config["shared_gaia2_prompt"])
     if "native_observation_encoding" in config:
@@ -93,7 +93,7 @@ def validate_config(config: dict) -> None:
         "sampling_seed_supported": False, "scenario_timeout_seconds": 1860,
     }
     if "native_execution_contract" in config:
-        from phiagent.harness.gaia2_execution_contract import validate_contract
+        from harnessmm.harness.gaia2_execution_contract import validate_contract
 
         contract = validate_contract(config["native_execution_contract"])
         required["scenario_timeout_seconds"] = contract["outer_wall_timeout_seconds"]
@@ -460,7 +460,7 @@ def shared_execution_request(adapted: dict) -> dict:
 
 
 def frozen_test_plan(policy: dict, template: dict, tasks: list[dict]) -> list[list[dict]]:
-    from phiagent.harness.deepseek_chisel import adapt_request
+    from harnessmm.harness.deepseek_chisel import adapt_request
 
     candidate = policy["candidate"]
     if (candidate["id"] != "noop" or candidate["instruction"] or candidate["enabled"]
@@ -711,8 +711,8 @@ class Campaign:
         self.native_hashes = {
             name: digest for name, digest in self.hashes.items()
             if name.startswith("integrations/deepseek_harness/")
-            or name in ("scripts/run_deepseek_gaia2.py", "phiagent/harness/deepseek_bridge.py",
-                        "phiagent/data_engine/provenance.py")
+            or name in ("scripts/run_deepseek_gaia2.py", "harnessmm/harness/deepseek_bridge.py",
+                        "harnessmm/data_engine/provenance.py")
         }
         self.protocol_hash = canonical_hash({
             "native_sources": self.native_hashes, "identity": self.identity,
@@ -736,7 +736,7 @@ class Campaign:
         require_remote()
         validate_config(self.config)
         self.check_sources()
-        from phiagent.harness.benchmark_partition import validate_partition
+        from harnessmm.harness.benchmark_partition import validate_partition
         validate_partition(self.partition)
         for name, field in (
             ("SPLIT_MANIFEST.json", "partition_sha256"),
@@ -1240,7 +1240,7 @@ class Campaign:
 
     def lifecycle(self) -> int:
         self.preflight()
-        from phiagent.harness.deepseek_chisel import ChiselConfig, DeepSeekChiselController
+        from harnessmm.harness.deepseek_chisel import ChiselConfig, DeepSeekChiselController
         self.controller = DeepSeekChiselController(
             partition=self.partition, task_index=self.index,
             execute=lambda request: self.guarded("executor", request),
@@ -1393,8 +1393,8 @@ class FrozenTestContinuation(Campaign):
         return result
 
     def preflight(self) -> None:
-        from phiagent.harness.codex_chisel import FrozenPolicy
-        from phiagent.harness.benchmark_partition import validate_partition
+        from harnessmm.harness.codex_chisel import FrozenPolicy
+        from harnessmm.harness.benchmark_partition import validate_partition
 
         require_remote()
         validate_config(self.config)

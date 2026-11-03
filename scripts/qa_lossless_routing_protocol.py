@@ -18,7 +18,7 @@ from pathlib import Path
 import shutil
 import socket
 
-from phiagent.harness.mixture_router import count_matched_random_routes
+from harnessmm.harness.mixture_router import count_matched_random_routes
 from scripts.prepare_chisel_component_quality_data import (
     canonical_hash, question_group, write_json,
 )
@@ -710,7 +710,7 @@ def _validate_scores(scores: dict, groups: dict, config: dict) -> None:
 
 
 def diagnostic_bounds(scores: dict, groups: dict[str, str], config: dict) -> dict:
-    from phiagent.evaluation.chisel_component_quality import paired_finite_sample_lower_bound
+    from harnessmm.evaluation.chisel_component_quality import paired_finite_sample_lower_bound
 
     validate_config(config)
     _validate_scores(scores, groups, config)

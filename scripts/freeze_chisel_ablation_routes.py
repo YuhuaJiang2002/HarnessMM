@@ -10,8 +10,8 @@ import json
 from pathlib import Path
 from typing import Any, Mapping, Sequence
 
-from phiagent.learning.residual_meta_harness import canonical_hash
-from phiagent.learning.residual_meta_training import (
+from harnessmm.learning.residual_meta_harness import canonical_hash
+from harnessmm.learning.residual_meta_training import (
     _fit_ridge,
     _predict,
     _validate_examples,

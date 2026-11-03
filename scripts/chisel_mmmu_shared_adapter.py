@@ -4,7 +4,7 @@ from __future__ import annotations
 import re
 from collections.abc import Callable
 
-from phiagent.learning.supported_local_decision import (
+from harnessmm.learning.supported_local_decision import (
     SupportedCandidates, execute_supported_decision,
 )
 from scripts.cvpr_mmmu_campaign import options_list

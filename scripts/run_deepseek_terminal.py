@@ -149,10 +149,10 @@ def freeze_source(root: Path, destination: Path) -> dict[str, str]:
         root / "scripts" / "run_deepseek_terminal.py",
         root / "requirements" / "deepseek-harness-terminal.txt",
         root / "tests" / "test_deepseek_terminal_adapter.py",
-        root / "phiagent" / "__init__.py",
-        root / "phiagent" / "harness" / "deepseek_bridge.py",
-        root / "phiagent" / "harness" / "loopback_http.py",
-        root / "phiagent" / "data_engine" / "provenance.py",
+        root / "harnessmm" / "__init__.py",
+        root / "harnessmm" / "harness" / "deepseek_bridge.py",
+        root / "harnessmm" / "harness" / "loopback_http.py",
+        root / "harnessmm" / "data_engine" / "provenance.py",
         root / "scripts" / "serve_deepseek_durable_capture.py",
     ]
     # This namespace subset avoids importing unrelated planners from harness/__init__.py.

@@ -14,7 +14,7 @@ sys.path.insert(0, str(ROOT))
 from scripts import run_gaia2_four_method as four  # noqa: E402
 from scripts import run_gaia2_jev as base  # noqa: E402
 from scripts import run_aime_four_method as lifecycle  # noqa: E402
-from phiagent.harness.gaia2_202060_protocol import (  # noqa: E402
+from harnessmm.harness.gaia2_202060_protocol import (  # noqa: E402
     digest, items_gate, native_population_gate, partition_gate, test_gate,
 )
 
@@ -135,7 +135,7 @@ class Study(four.Study):
 
 def install_feedback_firewall(config, root):
     import phiagent_autosaddler.text_skill as adapter
-    from phiagent.harness.gaia2_202060_firewall import optimizer_workspace
+    from harnessmm.harness.gaia2_202060_firewall import optimizer_workspace
     original = adapter.TextSkillPromptPack
 
     class TrainingOnlyPromptPack(original):
@@ -174,7 +174,7 @@ def audit(config, root):
         if usage != call["usage"] or request["role"] != call["role"]:
             raise RuntimeError("Provider evidence binding changed")
         if config.get("cot_jev"):
-            from phiagent.harness.gaia2_cot_jev import audit_native_output_contract
+            from harnessmm.harness.gaia2_cot_jev import audit_native_output_contract
             audit_native_output_contract(
                 request, base.read(folder / "response.json"), config,
             )
@@ -219,7 +219,7 @@ def main():
                       OPENAI_API_KEY="EMPTY", HF_HUB_OFFLINE="1", CUDA_VISIBLE_DEVICES="")
     if args.action == "worker":
         if config["method"] == "chisel":
-            from phiagent.harness.gaia2_202060_progress import install_adapter
+            from harnessmm.harness.gaia2_202060_progress import install_adapter
             four.install_adapter = install_adapter
         four.worker(config, base.read(args.job))
         return

@@ -11,7 +11,7 @@ import traceback
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from phiagent.harness.aime_202060 import (  # noqa: E402
+from harnessmm.harness.aime_202060 import (  # noqa: E402
     CHISEL_VARIANTS, DIAGNOSIS_SYSTEM, MERGE_SYSTEM, diagnosis_schema, grounded_repair,
     ledger_prompt, ledger_schema, parse_structured_response, review_schema,
     strict_text_schema, usage_sum, validate_data, validate_ledger, verifier_prompt,
@@ -140,7 +140,7 @@ class ChiselStudy(campaign.ResplitStudy):
             "verifier_schema": strict_text_schema(review_schema()),
             "native_structured_backend": "xgrammar",
             "variants": list(CHISEL_VARIANTS),
-            "repair_gate_source_sha256": base.digest(ROOT / "phiagent/harness/aime_202060.py"),
+            "repair_gate_source_sha256": base.digest(ROOT / "harnessmm/harness/aime_202060.py"),
             "validation_used_to_generate_rules": False, "test_access": False,
             "selection_rule": "Full validation6 native accuracy, then actual tokens, then candidate ID",
             "new_task_capabilities": [], "max_output_tokens_every_call": 32768,
@@ -166,7 +166,7 @@ class ChiselStudy(campaign.ResplitStudy):
         if (
             library["manifest_sha256"] != self.config["manifest_sha256"]
             or library["training_ids"] != self.manifest["splits"]["train"]
-            or library["repair_gate_source_sha256"] != base.digest(ROOT / "phiagent/harness/aime_202060.py")
+            or library["repair_gate_source_sha256"] != base.digest(ROOT / "harnessmm/harness/aime_202060.py")
         ):
             raise RuntimeError("Candidate training provenance or reference-blind gate changed")
         validate_ledger(library["ledger"], self.manifest["splits"]["train"])

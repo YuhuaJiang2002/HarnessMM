@@ -28,7 +28,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from phiagent.harness.gaia2_jev import Gaia2Engine, PublicContinuation, action_object
+from harnessmm.harness.gaia2_jev import Gaia2Engine, PublicContinuation, action_object
 from scripts.serve_terminal_bench_model import acquire_gpu_leases, runtime_environment, stop_owned
 from scripts.cumulative_token_policy import token_limit_allows
 
@@ -268,7 +268,7 @@ def install_native_adapter(config, root, arm):
         endpoint = engine.model_config.endpoint
         if (config.get('public_context_policy') == 'task_anchor_v1' and arm in ('jev', 'no_stall', 'stall', 'latest_only')
                 and endpoint and '/actor/' in endpoint):
-            from phiagent.harness.gaia2_task_context import project
+            from harnessmm.harness.gaia2_task_context import project
             converted, projection = project(converted, memory=arm != 'latest_only')
             record({'source': 'public_context_projection', 'projection': projection})
         if not endpoint or not endpoint.startswith(f"http://127.0.0.1:{config['resource']['capture_port']}/{arm}/"):
@@ -366,7 +366,7 @@ def paid_activation(config, root):
         return paid_native_progress_activation(config, root)
     from are.simulation.agents.default_agent.tools.action_executor import AgentAction
     from are.simulation.agents.default_agent.tools.json_action_executor import JsonActionExecutor
-    from phiagent.harness.gaia2_jev import PLAN_INSTRUCTION
+    from harnessmm.harness.gaia2_jev import PLAN_INSTRUCTION
 
     message = (
         "This is a synthetic tool-protocol check, not a benchmark task. "
@@ -401,7 +401,7 @@ def paid_activation(config, root):
 
 
 def paid_native_progress_activation(config, root):
-    from phiagent.harness.gaia2_public_progress import NativePublicProgress
+    from harnessmm.harness.gaia2_public_progress import NativePublicProgress
     from are.simulation.agents.default_agent.tools.action_executor import AgentAction
     from are.simulation.agents.default_agent.tools.json_action_executor import JsonActionExecutor
     prompt = ('Synthetic admission: enumerate all emails by first listing offset 0, limit 10. '
@@ -417,7 +417,7 @@ def paid_native_progress_activation(config, root):
     if primary != {"action": "Mail__list_emails", "action_input": {"offset": 0, "limit": 10}}:
         raise RuntimeError("Paid native progress admission did not produce the exact initial native action")
     if config["method_identity"].get("recovery_policy") == "native_enumeration_state_v2":
-        from phiagent.harness.gaia2_state_progress import StatePublicProgress
+        from harnessmm.harness.gaia2_state_progress import StatePublicProgress
         controller = StatePublicProgress(task="Enumerate all emails")
     else:
         controller = NativePublicProgress(task="Enumerate all emails", stalled=True)
@@ -448,7 +448,7 @@ def native_state_activation(root):
     from are.simulation.apps.contacts import ContactsApp, Contact
     from are.simulation.agents.default_agent.tools.action_executor import AgentAction
     from are.simulation.agents.default_agent.tools.json_action_executor import JsonActionExecutor
-    from phiagent.harness.gaia2_state_progress import StatePublicProgress
+    from harnessmm.harness.gaia2_state_progress import StatePublicProgress
     app = ContactsApp(contacts={str(i): Contact(first_name="Fixture", last_name=str(i), contact_id=str(i)) for i in range(25)})
     tools = {"Contacts__get_contacts": app.get_contacts}
     executor = JsonActionExecutor(tools=tools, use_custom_logger=False)
