@@ -1,0 +1,53 @@
+{
+  "tools": {
+    "Items__list": {
+      "offset": {
+        "type": "integer",
+        "default": 0
+      }
+    },
+    "Items__read": {
+      "item_id": {
+        "type": "string"
+      }
+    }
+  },
+  "public_items": [
+    {
+      "id": "visible-a",
+      "name": "blue"
+    },
+    {
+      "id": "visible-b",
+      "name": "blue"
+    }
+  ],
+  "bank": {
+    "note": "Read the publicly listed blue items.",
+    "candidates": [
+      {
+        "when": "The public item remains relevant and has not been read.",
+        "action": "Items__read",
+        "action_input": {
+          "item_id": {
+            "$item": [
+              "id"
+            ]
+          }
+        },
+        "foreach": {
+          "receipt": {
+            "tool": "Items__list",
+            "arguments": {
+              "offset": 0
+            }
+          },
+          "path": [],
+          "where": {
+            "name": "blue"
+          }
+        }
+      }
+    ]
+  }
+}

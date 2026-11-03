@@ -146,6 +146,19 @@ also demonstrates a return to the slow actor after the graph is exhausted.
 These examples demonstrate controller behavior; they are not benchmark scores
 or token-saving measurements.
 
+## Reproduction cases
+
+The [reproduction index](reproduction/README.md) now covers HumanEval,
+MBPP-sanitized, Codex native banks, GAIA2 continuations and the visual baseline.
+MBPP recomputes the published execution metrics from archived integer counts;
+the Codex, GAIA2 and visual cases replay synthetic inputs through the released
+implementation. Each runnable case includes inputs and checked expected output.
+See [REPRODUCE.md](REPRODUCE.md) for the result-to-command map.
+
+```bash
+python reproduction/run_all.py
+```
+
 ## Repository layout
 
 | Path | Contents |
@@ -159,6 +172,7 @@ or token-saving measurements.
 | `phiagent/` | Compatibility bridge for older Python imports |
 | `scripts/` | Research runners, preparation, metering and analysis dependencies |
 | `configs/` | Two reference configurations used by the unit tests |
+| `reproduction/` | Frozen HumanEval reference, MBPP result aggregates and runnable mechanism cases |
 | `examples/` | Local examples requiring no provider credentials |
 | `tests/` | Python and Node.js contract tests |
 | `SOURCE_MANIFEST.json` | Original and published source hashes, including deployment-placeholder edits |

@@ -1,0 +1,11 @@
+{
+  "scope": "synthetic public-receipt binding",
+  "candidate_item_ids": [
+    "visible-a",
+    "visible-b"
+  ],
+  "remaining_item_ids": [
+    "visible-b"
+  ],
+  "opaque_feedback_status": "UNKNOWN"
+}

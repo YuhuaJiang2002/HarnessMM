@@ -1,0 +1,31 @@
+{
+  "scope": "synthetic screenshot boundary",
+  "actions": [
+    {
+      "kind": "click",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "kind": "click",
+      "x": 0,
+      "y": 0
+    }
+  ],
+  "calls": [
+    {
+      "purpose": "native",
+      "callback_id": "step-0"
+    },
+    {
+      "purpose": "paid_parse_fallback",
+      "callback_id": "step-0-fallback"
+    },
+    {
+      "purpose": "native",
+      "callback_id": "step-1"
+    }
+  ],
+  "invalid_responses": 1,
+  "executed_substitutions": 0
+}

@@ -29,4 +29,5 @@ jobs:
       - run: node examples/guarded_reuse.mjs
       - run: python examples/partition.py
       - run: python examples/harness_boundaries.py
+      - run: python reproduction/run_all.py
       - run: python -m build

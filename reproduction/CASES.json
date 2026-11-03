@@ -1,0 +1,95 @@
+{
+  "schema": "harnessmm-reproduction-cases/v1",
+  "cases": [
+    {
+      "name": "mbpp_sanitized",
+      "scope": "archived aggregate",
+      "entrypoint": "reproduction/mbpp_sanitized/run.py",
+      "expected": "reproduction/mbpp_sanitized/expected.json"
+    },
+    {
+      "name": "codex_native_bank",
+      "scope": "synthetic mechanism",
+      "entrypoint": "reproduction/codex_native_bank/run.py",
+      "expected": "reproduction/codex_native_bank/expected.json"
+    },
+    {
+      "name": "gaia2_continuation",
+      "scope": "synthetic mechanism",
+      "entrypoint": "reproduction/gaia2_continuation/run.py",
+      "expected": "reproduction/gaia2_continuation/expected.json"
+    },
+    {
+      "name": "visual_baseline",
+      "scope": "synthetic mechanism",
+      "entrypoint": "reproduction/visual_baseline/run.py",
+      "expected": "reproduction/visual_baseline/expected.json"
+    }
+  ],
+  "files": [
+    {
+      "path": "reproduction/codex_native_bank/README.md",
+      "sha256": "53f3e328307d75527636d4947013ed109ae73933e8271208b54ace38f9db10b8"
+    },
+    {
+      "path": "reproduction/codex_native_bank/expected.json",
+      "sha256": "89f9da81258379a12252a021e70a4388ff51195184101737523b56fde0a59c34"
+    },
+    {
+      "path": "reproduction/codex_native_bank/fixture.json",
+      "sha256": "838e79acab024c313b6a9f9c2d3b15ba01fc65c596768a5715466389093a1057"
+    },
+    {
+      "path": "reproduction/codex_native_bank/run.py",
+      "sha256": "2c321a557cfd413405d2e049745a1f8a61ba4b6283074c35d222941b067108b6"
+    },
+    {
+      "path": "reproduction/gaia2_continuation/README.md",
+      "sha256": "b3ed5ae9acd49bb1a7a5126d2a274998653c1eb6a30bd9cf97fa796c6e03e074"
+    },
+    {
+      "path": "reproduction/gaia2_continuation/expected.json",
+      "sha256": "a2a366d151f80d87696832f518ebabba43c2bd9336fa610bdec94a1d6005b04b"
+    },
+    {
+      "path": "reproduction/gaia2_continuation/fixture.json",
+      "sha256": "fbc318d231a678c11db7d4c26e692904f390bd47330ca324c4155a65d0fee2ca"
+    },
+    {
+      "path": "reproduction/gaia2_continuation/run.py",
+      "sha256": "62336b400c9c4ecbc53028ff1055d291da25d3178a170aa1f18653f23d3baab0"
+    },
+    {
+      "path": "reproduction/mbpp_sanitized/README.md",
+      "sha256": "87056d021d912e874d39a9ec8eadfc35c5dd0d20ccd883505e879d32a9d6c7bd"
+    },
+    {
+      "path": "reproduction/mbpp_sanitized/aggregate.json",
+      "sha256": "1c9dbcd6d57a03f6b79a160e26efccd044556384e8aa2588d6575448c4497e8f"
+    },
+    {
+      "path": "reproduction/mbpp_sanitized/expected.json",
+      "sha256": "a018d495bb5533fa76e717257ee26de45ae04a318c135d2368e82882f17a7539"
+    },
+    {
+      "path": "reproduction/mbpp_sanitized/run.py",
+      "sha256": "947f88dab03dcc4a3d164f0a679a1170f7f83a9bb569d40224b150ff50192118"
+    },
+    {
+      "path": "reproduction/visual_baseline/README.md",
+      "sha256": "849917a7177fa0c2fdc1d3241fb3c75c1d206877fda2cb257c03d61b29e24fa7"
+    },
+    {
+      "path": "reproduction/visual_baseline/expected.json",
+      "sha256": "374983d19bd527319d559d9d793e1583f5903df546f615b3a4852e4b62a819e2"
+    },
+    {
+      "path": "reproduction/visual_baseline/fixture.json",
+      "sha256": "71f83689cddb40f586b3b0e75e5ef039b008d86ee732161e6fd8a171ef2a7362"
+    },
+    {
+      "path": "reproduction/visual_baseline/run.py",
+      "sha256": "529c13c068de1622176cede7a0caef893eb8fa8b85c04d4615eea1733b5f1f8c"
+    }
+  ]
+}

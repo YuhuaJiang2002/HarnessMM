@@ -1,0 +1,7 @@
+{
+  "actor_replies": [
+    "malformed fixture output",
+    "{\"reasoning\": \"Fixture center\", \"action\": {\"kind\": \"click\", \"x\": 0.5, \"y\": 0.5}}",
+    "{\"reasoning\": \"Fixture center\", \"action\": {\"kind\": \"click\", \"x\": 0.5, \"y\": 0.5}}"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "scope": "synthetic native-boundary replay",
+  "calls": [
+    {
+      "tool": "Files__cat",
+      "arguments": {
+        "path": "receipt.txt"
+      }
+    },
+    {
+      "tool": "Files__exists",
+      "arguments": {
+        "path": "done.txt"
+      }
+    },
+    {
+      "tool": "Files__cat",
+      "arguments": {
+        "path": "next-slow.txt"
+      }
+    }
+  ],
+  "selector_calls": 2,
+  "reused_actions": 1,
+  "abstained": true
+}

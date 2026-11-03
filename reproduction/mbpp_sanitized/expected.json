@@ -1,0 +1,25 @@
+{
+  "scope": "archived aggregate recomputation; execution costs only",
+  "benchmark": "MBPP-sanitized",
+  "tasks_per_arm": 257,
+  "rows": [
+    {
+      "arm": "native",
+      "Success (%)": "90.27",
+      "Tokens/task (k)": "53.98",
+      "Token saving vs native (%)": "0.00"
+    },
+    {
+      "arm": "cot-only",
+      "Success (%)": "93.39",
+      "Tokens/task (k)": "15.04",
+      "Token saving vs native (%)": "72.14"
+    },
+    {
+      "arm": "chisel",
+      "Success (%)": "91.83",
+      "Tokens/task (k)": "10.61",
+      "Token saving vs native (%)": "80.35"
+    }
+  ]
+}

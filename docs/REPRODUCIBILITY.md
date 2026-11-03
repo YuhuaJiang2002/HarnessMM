@@ -31,6 +31,15 @@ guard behavior, native callback substitution, fallback, split boundaries, RSI
 selection, source seals and accounting. They do not reproduce paper benchmark
 scores or require a provider key.
 
+## Reproduction cases
+
+[REPRODUCE.md](../REPRODUCE.md) maps released results and mechanisms to commands.
+The [case index](../reproduction/README.md) includes MBPP aggregate recomputation,
+Codex native-bank dispatch, GAIA2 public-receipt binding and the visual baseline.
+Run `python reproduction/run_all.py` to verify input/output digests and compare
+all four cases against their expected JSON. The mechanism fixtures make no
+provider calls; the MBPP case uses archived integer aggregates.
+
 ## Research runner entry points
 
 The [integration index](../integrations/README.md) exposes Baseline, Codex and

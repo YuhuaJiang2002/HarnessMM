@@ -1,0 +1,58 @@
+{
+  "tools": [
+    {
+      "name": "Files__cat",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "path"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "Files__exists",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "path"
+        ],
+        "additionalProperties": false
+      }
+    }
+  ],
+  "response": {
+    "output": [
+      {
+        "type": "message",
+        "role": "assistant",
+        "content": [
+          {
+            "type": "output_text",
+            "text": "<CHISEL_PLAN>{\"candidates\": [{\"label\": \"A\", \"after\": \"root\", \"condition\": \"public receipt is READY\", \"tool\": \"Files__exists\", \"arguments\": {\"path\": \"done.txt\"}}, {\"label\": \"B\", \"after\": \"A\", \"condition\": \"public receipt is READY\", \"tool\": \"Files__cat\", \"arguments\": {\"path\": \"done.txt\"}}]}</CHISEL_PLAN>"
+          },
+          {
+            "type": "reasoning",
+            "text": "private reasoning must never enter fast input"
+          }
+        ]
+      },
+      {
+        "type": "function_call",
+        "call_id": "root-1",
+        "name": "mcp__are__Files__cat",
+        "arguments": "{\"path\":\"receipt.txt\"}"
+      }
+    ]
+  }
+}

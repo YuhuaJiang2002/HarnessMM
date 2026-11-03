@@ -1,0 +1,108 @@
+{
+  "actor_calls": 0,
+  "arms": {
+    "chisel": {
+      "arm": "chisel",
+      "audit_sha256": "d57a57ea868d09dae94c8408e1ef44ddd25486f2f483449cc370892360a9e25c",
+      "certified_substitutions": 472,
+      "expected": 257,
+      "freeze_sha256": "bd4cc99e72f0fa88beaa537a5dac4e70484f3ce46636172dd58fa53840210e10",
+      "mechanism_gate_passed": false,
+      "native_verifier_timeout_receipts": 3,
+      "phase": "test",
+      "sdk_failed_episodes": 5,
+      "settled": 257,
+      "source_sha256": "462681961190ca2422a16cb3697d8d9c82bc6cd95b8cf8193292b2d3b1222f64",
+      "success_percent": 91.82879377431907,
+      "successes": 236,
+      "totals": {
+        "input_tokens": 1757389,
+        "output_tokens": 969349,
+        "physical_provider_attempts": 1088,
+        "total_tokens": 2726738
+      },
+      "unknown_requests": 0
+    },
+    "cot-only": {
+      "arm": "cot-only",
+      "audit_sha256": "76a9af961e3add23aa19d8d7d2617da91af9cd912d989db4e084f4f76f98fdf8",
+      "certified_substitutions": 0,
+      "expected": 257,
+      "freeze_sha256": "905b2d1751cadd730f21f6e7f9112668120541cdc9b0cd94b7aa62d47c92a23e",
+      "mechanism_gate_passed": false,
+      "native_verifier_timeout_receipts": 2,
+      "phase": "test",
+      "sdk_failed_episodes": 4,
+      "settled": 257,
+      "source_sha256": "bf5cba3aeaad3f9bda4d99eaffef78c2899f767c262970c3ec4c64712e5d3aac",
+      "success_percent": 93.3852140077821,
+      "successes": 240,
+      "totals": {
+        "input_tokens": 2879732,
+        "output_tokens": 985996,
+        "physical_provider_attempts": 1690,
+        "total_tokens": 3865728
+      },
+      "unknown_requests": 0
+    },
+    "native": {
+      "arm": "native",
+      "audit_sha256": "0bc80b48e51365d99c6f905f4d4ccc9c02f1793f8e29ab89f79c1cf4288f9eb5",
+      "certified_substitutions": 0,
+      "expected": 257,
+      "freeze_sha256": "53a8acb0ed524def6ccf79b0e99ed89ac9c12c81a011e6f74985002a39b28ede",
+      "mechanism_gate_passed": null,
+      "native_verifier_timeout_receipts": 0,
+      "phase": "test",
+      "sdk_failed_episodes": 0,
+      "settled": 257,
+      "source_sha256": "f3ec70134f1927e04f869a17339001ee075564182215d7c95e4a86c25babe721",
+      "success_percent": 90.27237354085604,
+      "successes": 232,
+      "totals": {
+        "input_tokens": 12953280,
+        "output_tokens": 920816,
+        "physical_provider_attempts": 1633,
+        "total_tokens": 13874096
+      },
+      "unknown_requests": 0
+    }
+  },
+  "at": "2026-10-08T03:55:45.867931+00:00",
+  "attempts_per_task": 1,
+  "benchmark": "MBPP-sanitized",
+  "benefit_claim_eligible": false,
+  "codex_values_borrowed": false,
+  "complete": true,
+  "cot_40pct_gate_passed": false,
+  "cot_only_control_complete": true,
+  "cot_saving_pct": 29.46379052018145,
+  "cumulative_token_limit": null,
+  "development_cost_scope": "Separate retained TRAIN/VAL evidence; no development costs relabeled final execution.",
+  "expected": 257,
+  "figure3_display_eligible": true,
+  "harness": "DeepSeek Harness dsh-v0.2.0-rc.1, Harbor0.18.0 MBPP adapter",
+  "mechanism_gate_passed": false,
+  "model": "Qwen/Qwen3.5-4B",
+  "model_revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+  "native_30pct_admission_passed": true,
+  "native_40pct_gate_passed": true,
+  "native_saving_pct": 80.34655375024073,
+  "partition_sha256": "45b2b538062b2fa79a0bd01f345657cbf4b167405c3da61350aa3891e7a8e0b5",
+  "phase": "test",
+  "quality_gate_passed": true,
+  "quality_vs_exact_cot_passed": false,
+  "registered_campaign_target_complete": false,
+  "reporting": "all_outcomes",
+  "scorer_calls": 0,
+  "selection_sha256": "49e9419d89d4eaddc90be7541c5ae4f9300d9705ab31e1f6b36bd638d2baa8b3",
+  "settled": 257,
+  "test_feedback_to_method": false,
+  "release_provenance": {
+    "source_file": "figure3_qwen_mbpp_sdk_v66_test257.json",
+    "source_sha256": "068d21257a4233f2d003332a86eff71912d7a430332608bc10935f34505a210e",
+    "edits": [
+      "Removed per-arm audit and root deployment paths; all other fields retained."
+    ]
+  }
+}
