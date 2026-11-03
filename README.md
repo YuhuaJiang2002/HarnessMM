@@ -63,6 +63,14 @@ See the [code map](docs/CODE_MAP.md) for the paper-to-code correspondence.
 
 ## Codex and DeepSeek coding harnesses
 
+For the HumanEval result below, **DeepSeek Harness is the host harness;
+the actor is Qwen3.5-4B**, served through a self-hosted endpoint. The selected
+configuration uses a structured `author_bank` adapter, guarded execution,
+public-history compaction and paid finalization. It is different from enabling
+the community plugin on stock dsh with DeepSeek V4.1 Flash/OpenRouter.
+See the [exact configuration and integration notes](docs/DEEPSEEK_REPRODUCTION.md)
+and the [archived HumanEval authoring adapter](reproduction/humaneval_v23/README.md).
+
 On HumanEval, HarnessMM uses **29.54% fewer tokens with Codex** at the same
 90.82% success, and **87.93% fewer tokens with DeepSeek Harness** while raising
 success from 71.43% to 85.71%. On MBPP-sanitized, it uses **80.35% fewer tokens

@@ -30,6 +30,13 @@ scores or require a provider key.
 
 ## Research runner entry points
 
+The HumanEval DeepSeek Harness configuration is documented separately in
+[DEEPSEEK_REPRODUCTION.md](DEEPSEEK_REPRODUCTION.md). Its archived JavaScript
+modules are in `reproduction/humaneval_v23/`. They are separate from the current
+integration code; changing the current code does not modify the reference
+experiment. The initial source release omitted the structured authoring module.
+This update supplies that module and its frozen JavaScript dependencies.
+
 | Study or component | Entry point |
 | --- | --- |
 | Codex residual learning with native terminal execution | `scripts/run_codex_chisel_terminal.py` |

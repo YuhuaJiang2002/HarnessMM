@@ -63,6 +63,35 @@ executor and optimizer callbacks. Their module docstrings define the complete
 callback schemas and source-freeze requirements. Synthetic callback tests
 demonstrate the lifecycle without provider access.
 
+## DeepSeek shell schemas and task completion
+
+For prospective v10/11 shell integrations, call `structuredAuthorTool(tool)`
+**when the host registers the tool**, before constructing the provider request.
+It supports `terminal`, `bash` and `pwsh` object schemas, preserves required
+native fields (including `description`), and adds optional `chisel_plan`
+metadata. A stream listener does not change the schema already sent to the
+model. `structuredAuthorStream` removes authored metadata before native
+dispatch; absent supported shells take the ordinary slow path. Its audit
+records whether the actual registered schema contains the field.
+
+Use `planInstruction(policy, actualTools)` to bind shell examples and required
+argument names to the host catalog. The one-argument form retains the historical
+prompt. These library checks do not certify a stock-dsh plugin integration;
+see [the compatibility notes](DEEPSEEK_REPRODUCTION.md).
+
+The historical `run_with_completion_recovery` handles reasoning-only empty
+finishes. For execution tasks, the optional
+`run_with_task_completion_recovery(session, prompt, task_complete)` also handles
+a visible final plan when a host-owned **public** completion check returns
+`False`. For example, the host can check requested output files and recorded
+native actions. `True` accepts completion; `None` leaves an unknown state alone.
+Do not inspect protected benchmark tests or answers in this check.
+
+The helper requests at most two additional native turns in the same session,
+respects native stops, and never executes plan text or invents tool calls.
+Charge every recovery call and keep the existing episode deadline. This helper
+requires explicit host wiring; installing the package does not enable it.
+
 ## Experimental boundaries
 
 Training can expose task traces to the optimizer. Validation selects among

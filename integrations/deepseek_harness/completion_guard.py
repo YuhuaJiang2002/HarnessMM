@@ -39,3 +39,40 @@ def run_with_completion_recovery(session, prompt, read_stream_events, *, maximum
                     'additional_native_turns': recoveries,
                     'same_session': True, 'same_native_episode_limits': True,
                     'invented_tool_calls': 0, 'cumulative_token_limit': None}
+
+
+def run_with_task_completion_recovery(session, prompt, task_complete, *, maximum_recoveries=2):
+    """Opt-in execution-task guard using a host-owned public completion check.
+
+    ``task_complete(result)`` returns True, False or None (unknown). Only an
+    explicit False requests continuation. The check must use public artifacts
+    or receipts, not protected benchmark answers/tests. It does not execute
+    plan text or assume every conversational answer requires a tool call.
+    All native turns, including recovery, belong in the physical cost ledger.
+    """
+    if not callable(task_complete):
+        raise TypeError('A host-owned public task completion check is required')
+    if type(maximum_recoveries) is not int or not 0 <= maximum_recoveries <= 2:
+        raise ValueError('Use zero, one or two recovery turns within native limits')
+    result = session.run(prompt)
+    recoveries = 0
+    complete = None
+    while result.get('status') == 'completed' and not result.get('stop_requested'):
+        complete = task_complete(result)
+        if complete is not True and complete is not False and complete is not None:
+            raise TypeError('Completion check must return True, False or None')
+        if complete is not False or recoveries >= maximum_recoveries:
+            break
+        result = session.run(
+            'The public task completion check reports that the requested work '
+            'is unfinished. A written plan is not an executed action. Continue '
+            'the original task through the declared native tools, respecting '
+            'permissions and the remaining episode deadline. Ground completion '
+            'in actual public artifacts and receipts.'
+        )
+        recoveries += 1
+    return result, {'identity': 'public-task-completion-recovery-v1',
+                    'additional_native_turns': recoveries,
+                    'task_complete': complete,
+                    'same_session': True, 'same_native_episode_limits': True,
+                    'invented_tool_calls': 0, 'cumulative_token_limit': None}

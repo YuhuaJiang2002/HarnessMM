@@ -169,7 +169,7 @@ export function apply(ctx, config) {
   if (cotJev) {
     ctx.systemPrompt.section({
       name: 'chisel:cot-jev', order: 10400,
-      text: planInstruction(job.cot_jev), interpolate: false,
+      text: planInstruction(job.cot_jev, job.tools), interpolate: false,
     });
     record({ kind: 'jev/identity', policy: job.cot_jev,
       implementation: job.cot_jev.version === 3

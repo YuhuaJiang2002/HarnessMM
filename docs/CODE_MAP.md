@@ -3,6 +3,7 @@
 | Concept | Entry point | Role |
 | --- | --- | --- |
 | EDG authoring and validation | `integrations/deepseek_harness/cot_jev.mjs` | `planInstruction`, `parseBank`, structured authoring and typed bank contracts |
+| HumanEval archived SDK authoring | `reproduction/humaneval_v23/structured_bank_author.mjs` | Frozen v23 `author_bank` adapter and companion JavaScript, separate from current integration fixes |
 | GDR | `integrations/deepseek_harness/sar_v2.mjs` | `PersistentBank`, `localGuard` and `ExecutableSubdag` retain and activate prior decisions |
 | CCS | `ExecutableSubdag.stream` and `ExecutableSubdag.observeTool` | Replace a registered slow boundary, then bind the exact action and native receipt in a certificate |
 | Native action selection | `cot_jev.mjs`, `jev_v2.mjs`, `sar_admission.mjs` | Versioned deterministic and model-assisted selection with abstention |

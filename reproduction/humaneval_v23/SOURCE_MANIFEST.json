@@ -1,0 +1,48 @@
+{
+  "identity": "humaneval-sdk-structured-author-v23",
+  "source_archive_sha256": "fa90d535f2349dbe8c51e149b9aabb7fd7c4587adb0e97d71a6c8ea7a0383bee",
+  "source_scope": "sdk_chisel-test98/source/integrations/deepseek_harness",
+  "release_changes": [],
+  "files": [
+    {
+      "path": "action_evidence_checkpoint.mjs",
+      "archive_member": "sdk_chisel-test98/source/integrations/deepseek_harness/action_evidence_checkpoint.mjs",
+      "sha256": "310c66e7325e3ea322ced4d8ac7ff813a0d8bffcca8fd755c49d56bc2e73ee44"
+    },
+    {
+      "path": "bridge_plugin.mjs",
+      "archive_member": "sdk_chisel-test98/source/integrations/deepseek_harness/bridge_plugin.mjs",
+      "sha256": "614bcca1ec3ee2f2b63516aa8dda60934a944d991f99c54deeafb2b266e8451a"
+    },
+    {
+      "path": "chisel_plugin.mjs",
+      "archive_member": "sdk_chisel-test98/source/integrations/deepseek_harness/chisel_plugin.mjs",
+      "sha256": "7e3eb575de416cbc305cf7a849a430ad4fd41d80ea26280f5f5f8524808dee6b"
+    },
+    {
+      "path": "cot_jev.mjs",
+      "archive_member": "sdk_chisel-test98/source/integrations/deepseek_harness/cot_jev.mjs",
+      "sha256": "403234fcf7b4ede25d67c399c6f1bdc0523ad970988bbe87285e05c040984603"
+    },
+    {
+      "path": "jev_v2.mjs",
+      "archive_member": "sdk_chisel-test98/source/integrations/deepseek_harness/jev_v2.mjs",
+      "sha256": "e5f213cdd5d8b4dadb73a81a6cecda6045b9bbd0661169f961b851b16b6c6665"
+    },
+    {
+      "path": "observation_policy.mjs",
+      "archive_member": "sdk_chisel-test98/source/integrations/deepseek_harness/observation_policy.mjs",
+      "sha256": "7cadf1562074d8895f0dab534e69fba1bf2062d7347e6f27c4c62d83704a62e0"
+    },
+    {
+      "path": "sar_v2.mjs",
+      "archive_member": "sdk_chisel-test98/source/integrations/deepseek_harness/sar_v2.mjs",
+      "sha256": "1aed54a4522445ebaab7cc5f158df868dc81cf2a99022d98571c21ae6005f8de"
+    },
+    {
+      "path": "structured_bank_author.mjs",
+      "archive_member": "sdk_chisel-test98/source/integrations/deepseek_harness/structured_bank_author.mjs",
+      "sha256": "ad491e88d884283cd1c289b53d60cd46e4827581dd45003a10b38f8cb273c4cb"
+    }
+  ]
+}

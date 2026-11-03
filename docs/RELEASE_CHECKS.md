@@ -1,5 +1,20 @@
 # Release checks
 
+## 2026-11-03 integration and reproduction update
+
+- 688 Python tests and 92 Node.js tests passed locally.
+- New regression coverage checks absent shell schemas, `bash`/`pwsh` native
+  required arguments, metadata removal, root-repeat rejection, and plan-only
+  completion recovery through an explicit host check.
+- Archived HumanEval authoring modules match their frozen source digests.
+  Synthetic checks exercise the real `author_bank` schema and preserve the
+  additional paid fallback usage on abstention.
+- The source distribution includes the archived modules and configuration
+  notes. Native benchmark scores and stock-dsh rc.5 compatibility were not
+  re-evaluated by these software checks.
+
+## Original extraction checks
+
 The 2026-10-26 source extraction passed these local checks on macOS with Python
 3.14.7:
 

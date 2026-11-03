@@ -23,7 +23,21 @@ export function validateCotJev(policy) {
   return Object.freeze({ ...policy });
 }
 
-export function planInstruction(policy) {
+// Omitting tools retains the historical prompt bytes. New hosts can explicitly
+// bind examples to their registered shell without renaming native tools.
+export function planInstruction(policy, tools) {
+  const instruction = historicalPlanInstruction(policy);
+  if (!Array.isArray(tools) || policy.version < 3) return instruction;
+  const shell = tools.find(structuredShellTool);
+  if (!shell) return instruction + '\nNo supported shell is registered. Do not copy terminal examples; use only the actual native catalog, or author an empty bank.';
+  return instruction.replace(/\bterminal\b/g, shell.name)
+    + '\nNative shell ' + shell.name + ' requires arguments: '
+    + JSON.stringify(shell.parameters.required ?? [])
+    + '. Include every required argument in each future call, including its description when required. '
+    + 'The bank contains only successors AFTER the separate root call. A plan is not execution: issue the root through the native tool interface and complete the task.';
+}
+
+function historicalPlanInstruction(policy) {
   validateCotJev(policy);
   if (policy.version >= 10) return (
     'Slow CoT authorship: before each terminal call, reason through the task and provide chisel_plan in the terminal JSON arguments. '
@@ -638,12 +652,19 @@ export class NativeCotJev {
 
 // Prospective v10/11: one ordinary charged slow request, structured metadata,
 // exact original native root arguments, and no extra model request.
+function structuredShellTool(tool) {
+  return ['terminal', 'bash', 'pwsh'].includes(tool?.name)
+    && object(tool.parameters?.properties);
+}
+
 export function structuredAuthorTool(tool) {
   const terminal = tool;
-  if (terminal.name !== 'terminal' || !terminal.parameters?.properties) return tool;
+  if (!structuredShellTool(terminal)) return tool;
+  // Repeated registration must not recursively nest metadata in action schemas.
+  if (Object.hasOwn(terminal.parameters.properties, 'chisel_plan')) return tool;
   const nodeProperties = {
     candidate_id:{type:'string',enum:'ABCDEFGH'.split('')}, predecessor_id:{type:'string',enum:['root',...'ABCDEFGH']},
-    tool:{type:'string',enum:['terminal']}, arguments:structuredClone(terminal.parameters),
+    tool:{type:'string',enum:[terminal.name]}, arguments:structuredClone(terminal.parameters),
     guard:{type:'object',properties:{return_code:{type:'integer',enum:[0]},stdout_contains:{type:'string'},stdout_equals:{type:'string'},stderr_empty:{type:'boolean'}},required:['return_code'],additionalProperties:false},
     required_receipt_fields:{type:'array',items:{type:'string',enum:['return_code','stdout','stderr']}},
     expected_local_cost:{type:'object',properties:{selector_upper_tokens:{type:'integer',enum:[2048]}},required:['selector_upper_tokens'],additionalProperties:false},
@@ -656,16 +677,22 @@ export function structuredAuthorTool(tool) {
 }
 
 export async function* structuredAuthorStream(options, next, record, policy) {
-  const terminal=options.tools?.find(t=>t.name==='terminal');
-  record({kind:'sar/structured-author-schema',schema_sha256:hash(JSON.stringify(terminal?.parameters)),
-    schema_source:'native SDK tool registration, optional metadata, frozen request untouched',additional_slow_requests:0});
+  const shells=(options.tools ?? []).filter(structuredShellTool);
+  record({kind:'sar/structured-author-schema',
+    schema_sha256:hash(JSON.stringify(shells.map(t=>({name:t.name,parameters:t.parameters})))),
+    tools:shells.map(t=>({name:t.name,has_chisel_plan:Object.hasOwn(t.parameters.properties,'chisel_plan')})),
+    schema_source:'actual registered SDK schemas; stream listener does not inject fields',additional_slow_requests:0});
+  if (!shells.length) {
+    record({kind:'sar/structured-author-unavailable',reason:'no_supported_registered_shell'});
+    yield* next(); return;
+  }
   const chunks=[];
   for await(const c of next())chunks.push(c);
   const blocks=chunks.filter(c=>c.type==='block-end').map(c=>structuredClone(c.block));
   const roots=blocks.filter(b=>b.type==='tool-call');
   let bank=null;
   for(const root of roots) {
-    if(root.name!=='terminal')continue;
+    if(!shells.some(t=>t.name===root.name))continue;
     let args;try{args=JSON.parse(root.arguments);}catch{yield* chunks;return;}
     if(Object.hasOwn(args,'chisel_plan')) {
       const authored=args.chisel_plan;delete args.chisel_plan;
@@ -676,7 +703,10 @@ export async function* structuredAuthorStream(options, next, record, policy) {
     }
   }
   // No root means native final text or reasoning-only result; preserve it exactly.
-  if(!roots.length){yield* chunks;return;}
+  if(!roots.length){
+    record({kind:'sar/author-no-tool-call',task_completion_verified:false});
+    yield* chunks;return;
+  }
   let index=0;
   for(const block of blocks) {
     if(block.type==='tool-call'&&bank) {

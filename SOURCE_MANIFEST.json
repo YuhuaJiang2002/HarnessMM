@@ -13,8 +13,16 @@
     {
       "path": "integrations/deepseek_harness/bridge_plugin.mjs",
       "source_sha256": "8629222414dc1fe96e40b56a155b89a9bf9cbbc593b5ff30d8fd8276dab5dbfd",
-      "published_sha256": "8629222414dc1fe96e40b56a155b89a9bf9cbbc593b5ff30d8fd8276dab5dbfd",
-      "release_edits": []
+      "published_sha256": "2f0c2f99a6d149b9ecd21c92ac53f8b7b50632aae6e1c8dc50c2364726ac28d5",
+      "release_edits": [
+        "2026-11-03 prospective DeepSeek integration repair; original reference preserved in reproduction/humaneval_v23"
+      ],
+      "published_history": [
+        {
+          "sha256": "8629222414dc1fe96e40b56a155b89a9bf9cbbc593b5ff30d8fd8276dab5dbfd",
+          "reference": "c8f1994"
+        }
+      ]
     },
     {
       "path": "integrations/deepseek_harness/chisel_plugin.mjs",
@@ -31,14 +39,30 @@
     {
       "path": "integrations/deepseek_harness/completion_guard.py",
       "source_sha256": "0e8c51be1161be9db6c89e6d2a7a4bce2dfc8ed7ba5d4e107cb0bbb3436eb369",
-      "published_sha256": "0e8c51be1161be9db6c89e6d2a7a4bce2dfc8ed7ba5d4e107cb0bbb3436eb369",
-      "release_edits": []
+      "published_sha256": "4941ab615cc752fc76bd9f2c08763693133924ea3bdd3a7a69035a58e02bfed4",
+      "release_edits": [
+        "2026-11-03 prospective DeepSeek integration repair; original reference preserved in reproduction/humaneval_v23"
+      ],
+      "published_history": [
+        {
+          "sha256": "0e8c51be1161be9db6c89e6d2a7a4bce2dfc8ed7ba5d4e107cb0bbb3436eb369",
+          "reference": "c8f1994"
+        }
+      ]
     },
     {
       "path": "integrations/deepseek_harness/cot_jev.mjs",
       "source_sha256": "94a2b675b62927afb183d89541b97c53b4e1aa73d586a45602ed0f311f6f0a63",
-      "published_sha256": "94a2b675b62927afb183d89541b97c53b4e1aa73d586a45602ed0f311f6f0a63",
-      "release_edits": []
+      "published_sha256": "9c9e5b31ddc970933da6285d8bab22c1de4b990bb15e03abb637026155654387",
+      "release_edits": [
+        "2026-11-03 prospective DeepSeek integration repair; original reference preserved in reproduction/humaneval_v23"
+      ],
+      "published_history": [
+        {
+          "sha256": "94a2b675b62927afb183d89541b97c53b4e1aa73d586a45602ed0f311f6f0a63",
+          "reference": "c8f1994"
+        }
+      ]
     },
     {
       "path": "integrations/deepseek_harness/cot_jev_policy.py",
@@ -3055,6 +3079,102 @@
           "category": "deployment-placeholder"
         }
       ]
+    },
+    {
+      "path": "tests/deepseek_structured_author.test.mjs",
+      "source_sha256": "0ca0fd2c6dc95e8688c191a91fd31e8918f735a457c05d72a3047d927c84d99f",
+      "published_sha256": "0ca0fd2c6dc95e8688c191a91fd31e8918f735a457c05d72a3047d927c84d99f",
+      "release_edits": [
+        "2026-11-03 addition; archived module origins recorded in reproduction/humaneval_v23/SOURCE_MANIFEST.json"
+      ]
+    },
+    {
+      "path": "tests/humaneval_reference_author.test.mjs",
+      "source_sha256": "94620040060e3d00348a8bda5075e44863c7dbd61e908ef6b4f82d0669cba945",
+      "published_sha256": "94620040060e3d00348a8bda5075e44863c7dbd61e908ef6b4f82d0669cba945",
+      "release_edits": [
+        "2026-11-03 addition; archived module origins recorded in reproduction/humaneval_v23/SOURCE_MANIFEST.json"
+      ]
+    },
+    {
+      "path": "tests/test_completion_guard.py",
+      "source_sha256": "716e719e15a69245cbde05f51e86199ec970e71502cb97e359db3890f96f12e3",
+      "published_sha256": "716e719e15a69245cbde05f51e86199ec970e71502cb97e359db3890f96f12e3",
+      "release_edits": [
+        "2026-11-03 addition; archived module origins recorded in reproduction/humaneval_v23/SOURCE_MANIFEST.json"
+      ]
+    },
+    {
+      "path": "reproduction/humaneval_v23/SOURCE_MANIFEST.json",
+      "source_sha256": "438eb5a850ce434386aeccc1cb49c1e52cdb27a7f8b33db3cc742ecceb1e210c",
+      "published_sha256": "438eb5a850ce434386aeccc1cb49c1e52cdb27a7f8b33db3cc742ecceb1e210c",
+      "release_edits": [
+        "2026-11-03 addition; archived module origins recorded in reproduction/humaneval_v23/SOURCE_MANIFEST.json"
+      ]
+    },
+    {
+      "path": "reproduction/humaneval_v23/action_evidence_checkpoint.mjs",
+      "source_sha256": "310c66e7325e3ea322ced4d8ac7ff813a0d8bffcca8fd755c49d56bc2e73ee44",
+      "published_sha256": "310c66e7325e3ea322ced4d8ac7ff813a0d8bffcca8fd755c49d56bc2e73ee44",
+      "release_edits": [
+        "2026-11-03 addition; archived module origins recorded in reproduction/humaneval_v23/SOURCE_MANIFEST.json"
+      ]
+    },
+    {
+      "path": "reproduction/humaneval_v23/bridge_plugin.mjs",
+      "source_sha256": "614bcca1ec3ee2f2b63516aa8dda60934a944d991f99c54deeafb2b266e8451a",
+      "published_sha256": "614bcca1ec3ee2f2b63516aa8dda60934a944d991f99c54deeafb2b266e8451a",
+      "release_edits": [
+        "2026-11-03 addition; archived module origins recorded in reproduction/humaneval_v23/SOURCE_MANIFEST.json"
+      ]
+    },
+    {
+      "path": "reproduction/humaneval_v23/chisel_plugin.mjs",
+      "source_sha256": "7e3eb575de416cbc305cf7a849a430ad4fd41d80ea26280f5f5f8524808dee6b",
+      "published_sha256": "7e3eb575de416cbc305cf7a849a430ad4fd41d80ea26280f5f5f8524808dee6b",
+      "release_edits": [
+        "2026-11-03 addition; archived module origins recorded in reproduction/humaneval_v23/SOURCE_MANIFEST.json"
+      ]
+    },
+    {
+      "path": "reproduction/humaneval_v23/cot_jev.mjs",
+      "source_sha256": "403234fcf7b4ede25d67c399c6f1bdc0523ad970988bbe87285e05c040984603",
+      "published_sha256": "403234fcf7b4ede25d67c399c6f1bdc0523ad970988bbe87285e05c040984603",
+      "release_edits": [
+        "2026-11-03 addition; archived module origins recorded in reproduction/humaneval_v23/SOURCE_MANIFEST.json"
+      ]
+    },
+    {
+      "path": "reproduction/humaneval_v23/jev_v2.mjs",
+      "source_sha256": "e5f213cdd5d8b4dadb73a81a6cecda6045b9bbd0661169f961b851b16b6c6665",
+      "published_sha256": "e5f213cdd5d8b4dadb73a81a6cecda6045b9bbd0661169f961b851b16b6c6665",
+      "release_edits": [
+        "2026-11-03 addition; archived module origins recorded in reproduction/humaneval_v23/SOURCE_MANIFEST.json"
+      ]
+    },
+    {
+      "path": "reproduction/humaneval_v23/observation_policy.mjs",
+      "source_sha256": "7cadf1562074d8895f0dab534e69fba1bf2062d7347e6f27c4c62d83704a62e0",
+      "published_sha256": "7cadf1562074d8895f0dab534e69fba1bf2062d7347e6f27c4c62d83704a62e0",
+      "release_edits": [
+        "2026-11-03 addition; archived module origins recorded in reproduction/humaneval_v23/SOURCE_MANIFEST.json"
+      ]
+    },
+    {
+      "path": "reproduction/humaneval_v23/sar_v2.mjs",
+      "source_sha256": "1aed54a4522445ebaab7cc5f158df868dc81cf2a99022d98571c21ae6005f8de",
+      "published_sha256": "1aed54a4522445ebaab7cc5f158df868dc81cf2a99022d98571c21ae6005f8de",
+      "release_edits": [
+        "2026-11-03 addition; archived module origins recorded in reproduction/humaneval_v23/SOURCE_MANIFEST.json"
+      ]
+    },
+    {
+      "path": "reproduction/humaneval_v23/structured_bank_author.mjs",
+      "source_sha256": "ad491e88d884283cd1c289b53d60cd46e4827581dd45003a10b38f8cb273c4cb",
+      "published_sha256": "ad491e88d884283cd1c289b53d60cd46e4827581dd45003a10b38f8cb273c4cb",
+      "release_edits": [
+        "2026-11-03 addition; archived module origins recorded in reproduction/humaneval_v23/SOURCE_MANIFEST.json"
+      ]
     }
   ],
   "release_only_files": [
@@ -3081,5 +3201,30 @@
     "scripts/__init__.py",
     "scripts/verify_release.py",
     "tests/__init__.py"
+  ],
+  "updates": [
+    {
+      "date": "2026-11-03",
+      "description": "Repair prospective shell-schema integration and publish frozen HumanEval authoring modules; historical experiments unchanged",
+      "changed_extracted_files": [
+        "integrations/deepseek_harness/bridge_plugin.mjs",
+        "integrations/deepseek_harness/completion_guard.py",
+        "integrations/deepseek_harness/cot_jev.mjs"
+      ],
+      "new_source_files": [
+        "tests/deepseek_structured_author.test.mjs",
+        "tests/humaneval_reference_author.test.mjs",
+        "tests/test_completion_guard.py",
+        "reproduction/humaneval_v23/SOURCE_MANIFEST.json",
+        "reproduction/humaneval_v23/action_evidence_checkpoint.mjs",
+        "reproduction/humaneval_v23/bridge_plugin.mjs",
+        "reproduction/humaneval_v23/chisel_plugin.mjs",
+        "reproduction/humaneval_v23/cot_jev.mjs",
+        "reproduction/humaneval_v23/jev_v2.mjs",
+        "reproduction/humaneval_v23/observation_policy.mjs",
+        "reproduction/humaneval_v23/sar_v2.mjs",
+        "reproduction/humaneval_v23/structured_bank_author.mjs"
+      ]
+    }
   ]
 }

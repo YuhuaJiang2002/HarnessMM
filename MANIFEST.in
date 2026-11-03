@@ -4,6 +4,7 @@ recursive-include examples *.py *.mjs
 recursive-include tests *.py *.mjs
 recursive-include configs *.json
 recursive-include integrations *.mjs
+recursive-include reproduction *.mjs *.json *.md
 prune .venv
 prune outputs
 prune artifacts
