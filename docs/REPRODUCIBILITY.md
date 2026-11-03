@@ -30,6 +30,15 @@ scores or require a provider key.
 
 ## Research runner entry points
 
+The [integration index](../integrations/README.md) exposes Baseline, Codex and
+DeepSeek harnesses. `python examples/harness_boundaries.py` checks the baseline
+callback and Codex imports with synthetic inputs. The baseline package extracts
+the original visual B0 prompt and action contract; it adds a host callback
+boundary and the shared token-efficiency objective. Its source manifest records
+the original visual workspace file digests. Codex exports retain their original
+class/function identities. These additions make no benchmark or provider calls
+and do not replace benchmark-specific frozen reproduction recipes.
+
 The HumanEval DeepSeek Harness configuration is documented separately in
 [DEEPSEEK_REPRODUCTION.md](DEEPSEEK_REPRODUCTION.md). Its archived JavaScript
 modules are in `reproduction/humaneval_v23/`. They are separate from the current

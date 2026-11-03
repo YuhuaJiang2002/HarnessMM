@@ -2,6 +2,8 @@
 
 | Concept | Entry point | Role |
 | --- | --- | --- |
+| Baseline harness | `integrations/baseline_harness/visual.py` | Fresh metered screenshot decision using the extracted B0 literal action contract |
+| Codex public integration | `integrations/codex_harness/__init__.py` | Re-export the existing native runtime, bank boundaries and RSI controller |
 | EDG authoring and validation | `integrations/deepseek_harness/cot_jev.mjs` | `planInstruction`, `parseBank`, structured authoring and typed bank contracts |
 | HumanEval archived SDK authoring | `reproduction/humaneval_v23/structured_bank_author.mjs` | Frozen v23 `author_bank` adapter and companion JavaScript, separate from current integration fixes |
 | GDR | `integrations/deepseek_harness/sar_v2.mjs` | `PersistentBank`, `localGuard` and `ExecutableSubdag` retain and activate prior decisions |

@@ -143,6 +143,8 @@ or token-saving measurements.
 
 | Path | Contents |
 | --- | --- |
+| `integrations/baseline_harness/` | Original screenshot-based decision boundary, literal action contract and baseline implementation index |
+| `integrations/codex_harness/` | Public exports for the existing official CLI runtime, native MCP/terminal bank adapters and RSI lifecycle |
 | `integrations/deepseek_harness/` | Native streaming bridge, action-bank contract, receipt guards, graph execution and certificates |
 | `phiagent/harness/` | Codex adapters, protected training/selection lifecycle, benchmark-specific controllers and RSI |
 | `phiagent/learning/` | Residual fitting, cross-fitting, public-evidence contracts, routing and companion configuration methods |
@@ -160,6 +162,13 @@ tool dispatcher, metered provider access and native scorer. The controller
 validates stored actions against the current tool schema, checks receipt guards
 and either dispatches an eligible action or returns control to the slow actor.
 It records the actual native receipt and the bypassed callback identifier.
+
+Browse the [harness integrations](integrations/README.md), including
+[Baseline harness](integrations/baseline_harness/README.md),
+[Codex Harness](integrations/codex_harness/README.md) and DeepSeek Harness.
+The baseline package makes a fresh model decision at each screenshot boundary;
+the Codex package exports the existing native adapters without duplicating them.
+Run `python examples/harness_boundaries.py` for a synthetic callback example.
 
 Start with the [integration guide](docs/INTEGRATION.md). Python users can use
 `NativeBankBoundary` for native MCP actions or `TerminalBankProvider` for a

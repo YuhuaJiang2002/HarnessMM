@@ -3,6 +3,13 @@
 The controller sits at a model-to-tool boundary. It does not supply an
 independent benchmark loop or replace the native scorer.
 
+The [integration index](../integrations/README.md) lists the three harness
+entry points. Import `VisualBaseline` from `integrations.baseline_harness`
+for a fresh screenshot decision, or import `NativeBankBoundary`,
+`TerminalBankProvider` and `CodexChiselController` from
+`integrations.codex_harness` for the existing Codex implementations.
+The original `phiagent.harness` imports remain supported.
+
 1. Pass the actual public task, tool catalog and observed native receipts.
 2. Let a slow actor author literal tool arguments and dependencies using the
    bank contract for the chosen version.

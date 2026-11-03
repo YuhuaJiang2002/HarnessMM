@@ -28,4 +28,5 @@ jobs:
       - run: node --test tests/*.test.mjs
       - run: node examples/guarded_reuse.mjs
       - run: python examples/partition.py
+      - run: python examples/harness_boundaries.py
       - run: python -m build

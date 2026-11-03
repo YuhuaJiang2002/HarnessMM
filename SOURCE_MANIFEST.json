@@ -3175,6 +3175,48 @@
       "release_edits": [
         "2026-11-03 addition; archived module origins recorded in reproduction/humaneval_v23/SOURCE_MANIFEST.json"
       ]
+    },
+    {
+      "path": "integrations/codex_harness/__init__.py",
+      "source_sha256": "c0916c1343c656c35d7b089f94e4c7a004eb7a2fcf99ab43e9e7b7182f92df03",
+      "published_sha256": "c0916c1343c656c35d7b089f94e4c7a004eb7a2fcf99ab43e9e7b7182f92df03",
+      "source_kind": "release-authored",
+      "release_edits": []
+    },
+    {
+      "path": "integrations/baseline_harness/__init__.py",
+      "source_sha256": "022ac2b3dd8ebd1ed6c4237d3dd288e34eef512a30843dad8560b0d5a4fb9fea",
+      "published_sha256": "022ac2b3dd8ebd1ed6c4237d3dd288e34eef512a30843dad8560b0d5a4fb9fea",
+      "source_kind": "release-authored",
+      "release_edits": []
+    },
+    {
+      "path": "integrations/baseline_harness/visual.py",
+      "source_sha256": "f29e54c49fda4302f4e6a8965844e1c63cc2a6ad9e26c615fdc92f9750793b30",
+      "published_sha256": "f29e54c49fda4302f4e6a8965844e1c63cc2a6ad9e26c615fdc92f9750793b30",
+      "source_kind": "release-authored",
+      "release_edits": []
+    },
+    {
+      "path": "integrations/baseline_harness/_visual_contract.py",
+      "source_sha256": "a04105aed43f17c9a40534489d9b06e26daa68da5bfc0691ab3670888ea36cd3",
+      "published_sha256": "a04105aed43f17c9a40534489d9b06e26daa68da5bfc0691ab3670888ea36cd3",
+      "source_kind": "extracted-definitions",
+      "release_edits": [
+        "Extract NATIVE, compile_coordinates, parse and action_check without changing their definitions; add module documentation and json import."
+      ],
+      "source_files": [
+        {
+          "repository": "cvpr_vigrace_2027",
+          "path": "scripts/run_miniwob.py",
+          "sha256": "916dfa376ace14963d5516304eb488e404fb98ec2a1de6376a7bff9623190989"
+        },
+        {
+          "repository": "cvpr_vigrace_2027",
+          "path": "src/vigrace/core.py",
+          "sha256": "e565965fa1977768295c045e68e7d3117215c32630899e2b59270bf8e76c7ff5"
+        }
+      ]
     }
   ],
   "release_only_files": [

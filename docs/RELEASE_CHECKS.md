@@ -1,5 +1,20 @@
 # Release checks
 
+## 2026-11-03 Codex and baseline entry points
+
+- 693 Python tests and 92 Node.js tests passed locally.
+- The baseline checks preserve the complete screenshot and public history,
+  require a new actor call at each boundary, retain both paid parsing calls,
+  and propagate unsettled provider failures without replay.
+- Extracted B0 prompt, parser, coordinate compiler and action validator match
+  the original visual source definitions. All 447 manifest entries and eight
+  archived HumanEval modules pass digest verification.
+- The source distribution and wheel build successfully. Both integration
+  packages and their documentation are present in the wheel. Imports and the
+  Node bank contract work outside the checkout with Python site packages disabled.
+- The synthetic example and README links pass. These are software checks;
+  no benchmark evaluations or provider calls were made.
+
 ## 2026-11-03 integration and reproduction update
 
 - 688 Python tests and 92 Node.js tests passed locally.
