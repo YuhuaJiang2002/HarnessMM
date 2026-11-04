@@ -1,0 +1,17 @@
+{
+  "name": "HarnessMM",
+  "description": "Guarded decision reuse over the native tool surface: the model authors one CHISEL action bank, each candidate carries a receipt-local guard, and a certified native substitution replaces the slow reasoning callback when a guard is already satisfied.",
+  "config.policy.enabled": "Enable guarded decision reuse. Off by default: the controller only pays off once the plan section is injected and the model authors action banks.",
+  "config.policy.maximum_candidates": "Maximum candidates in one authored action bank (1-16).",
+  "config.policy.maximum_fast_steps": "Maximum substituted steps before the graph is exhausted and the slow actor must run again (1-16).",
+  "config.policy.maximum_public_bytes": "Maximum size of the public selector state in bytes (1024-65536).",
+  "config.policy.admission_threshold_tokens": "Net tokens a step must save before a selector-assisted substitution is admitted (0-65536). The paper uses 1024; a desktop profile whose selector shares the cached prefix can lower it. A single surviving candidate commits deterministically and is never gated by this.",
+  "config.selector.enabled": "Ask a one-token selector which eligible candidate to run. Turn off to decide deterministically.",
+  "config.selector.provider": "Provider for the selector. Empty uses the profile default.",
+  "config.selector.model": "Model for the selector. Empty uses the profile default.",
+  "config.selector.maxTokens": "Token budget for the selector call.",
+  "config.selector.timeoutMs": "Timeout for the selector call in milliseconds.",
+  "config.shellTools": "Shell tools the plan dialect may name. Empty detects bash/pwsh from the active tool catalog.",
+  "config.planSection": "Inject the CHISEL plan section into the system prompt.",
+  "config.receiptsFile": "Receipt JSONL path. Empty writes to $DSH_HOME/harnessmm/receipts.jsonl."
+}
