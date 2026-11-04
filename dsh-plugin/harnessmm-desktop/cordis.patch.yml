@@ -1,0 +1,29 @@
+# dsh-harnessmm bundle patch — one insert over the profile root.
+#
+# Row ids are stable identity in the config tree; a later layer (the user's
+# profile cordis.patch.yml, $DSH_HOME/cordis.patch.yml, --patch overlays)
+# overrides a row by id and replaces the whole `config` (no deep merge).
+#
+# `policy.enabled` gates every hook. It ships ON because the plan section is
+# what makes the controller fire at all: with it on the model is asked to
+# author an action bank, with it off there is nothing to gate. Set it to false
+# to fall back to the plain stock loop while keeping the row installed.
+
+- insert:
+    - id: harnessmm
+      name: 'dsh-harnessmm'
+      config:
+        policy:
+          enabled: true
+          version: 6
+          maximum_candidates: 16
+          maximum_fast_steps: 8
+          maximum_public_bytes: 65536
+          admission_threshold_tokens: 1024
+        selector:
+          enabled: true
+          provider: ''
+          model: ''
+        shellTools: []
+        planSection: true
+        receiptsFile: ''
