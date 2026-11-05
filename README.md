@@ -7,6 +7,10 @@
   <a href="https://arxiv.org/pdf/2610.32813"><img src="https://img.shields.io/badge/PDF-Download-B31B1B" alt="Download paper PDF"></a>
 </p>
 
+![Figure 1 from the HarnessMM paper: recursive self-improvement refines the execution graph through Guarded Decision Reuse (GDR) and Certified Callback Substitution (CCS).](docs/assets/readme/paper-figure-1.png)
+
+*Figure 1. HarnessMM uses task feedback to improve execution graphs, reuse resolved decisions and replace redundant reasoning callbacks with certified native execution.*
+
 HarnessMM reduces harness token consumption through guarded decision reuse.
 Its visual extension, **HarnessMM-V**, achieves **higher success and lower
 execution cost than HarnessPro, SoL-Pi, Codex Harness and DeepSeek Harness**
