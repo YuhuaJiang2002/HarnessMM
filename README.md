@@ -225,7 +225,7 @@ accounting; the former alone does not establish the latter.
 
 If you use this implementation, cite **HarnessMM: Recursive Self-Improvement
 for Harness Token Efficiency**, by Yuhua Jiang, Chang Xu, Feifei Gao and Li Zhao
-([arXiv:2610.32813](http://arxiv.org/abs/2610.32813)).
+([arXiv:2610.32813](https://arxiv.org/abs/2610.32813)).
 
 ```bibtex
 @misc{jiang2026harnessmmrecursiveselfimprovementharness,
@@ -239,7 +239,7 @@ for Harness Token Efficiency**, by Yuhua Jiang, Chang Xu, Feifei Gao and Li Zhao
 }
 ```
 
-Repository citation metadata is provided in [CITATION.cff](CITATION.cff).
+The BibTeX citation is provided in [CITATION.bib](CITATION.bib).
 
 ## License
 
