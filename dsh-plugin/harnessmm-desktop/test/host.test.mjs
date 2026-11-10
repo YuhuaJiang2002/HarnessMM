@@ -140,7 +140,7 @@ test('a slow turn records its bank and a later step commits deterministically', 
   })()));
 
   assert.equal(slowCalled, false, 'the slow actor must not be called for a deterministic commit');
-  const call = second.find(chunk => chunk.type === 'block-end').block;
+  const call = second.find(chunk => chunk.type === 'block-end' && chunk.block.type === 'tool-call').block;
   assert.equal(call.type, 'tool-call');
   assert.equal(call.name, 'pwsh');
   assert.equal(call.arguments, JSON.stringify(CAND.arguments));
@@ -154,6 +154,49 @@ test('a slow turn records its bank and a later step commits deterministically', 
   assert.ok(entries.some(entry => entry.type === 'bank'));
   assert.ok(entries.some(entry => entry.type === 'decision' && entry.kind === 'commit'));
   assert.ok(entries.some(entry => entry.type === 'substitution-issued'));
+});
+
+test('a substituted turn carries the thinking block that thinking mode requires', async (t) => {
+  // Regression: DeepSeek's Anthropic-compatible endpoint rejects an assistant
+  // turn whose `tool_use` has no sibling `thinking` block, so the next request
+  // after the first live substitution died with
+  //   400 ... "The `content[].thinking` in the thinking mode must be passed back to the API."
+  const dir = mkdtempSync(join(tmpdir(), 'harnessmm-'));
+  t.after(() => rmSync(dir, { recursive: true, force: true }));
+  const receipts = join(dir, 'receipts.jsonl');
+  const stream = fakeHost(config(true, receipts)).handlers.get('llm/stream');
+  const user = [{ role: 'user', content: [{ type: 'text', text: 'run the tests' }] }];
+  await collect(stream({ sessionId: SESSION, messages: user, tools: TOOLS }, slowStreamWithBank()));
+
+  const rootArgs = '{"description":"Bootstrap","command":"ls"}';
+  const assistant = {
+    role: 'assistant',
+    content: [
+      { type: 'text', text: '<CHISEL_PLAN>' + JSON.stringify({ candidates: [CAND] }) + '</CHISEL_PLAN>' },
+      { type: 'tool-call', id: 'root_call', name: 'pwsh', arguments: rootArgs },
+    ],
+  };
+  const issued = await collect(stream({
+    sessionId: SESSION,
+    messages: [
+      ...user,
+      assistant,
+      { role: 'tool', toolCallId: 'root_call', content: [{ type: 'text', text: '(no output)' }] },
+    ],
+    tools: TOOLS,
+  }, () => (async function* () {})()));
+
+  const blocks = issued.filter(chunk => chunk.type === 'block-end').map(chunk => chunk.block);
+  assert.deepEqual(blocks.map(block => block.type), ['reasoning', 'tool-call']);
+  assert.match(blocks[0].text, /HarnessMM replay/);
+  assert.equal(blocks[0].text.includes('<CHISEL_PLAN>'), false, 'the synthetic note must not parse as an authored bank');
+  const bank = parseBank(assistant, TOOLS, { maxCandidates: 16 });
+  assert.deepEqual(blocks[1], {
+    type: 'tool-call',
+    id: nativeCallId(bank.sha256, 'A'),
+    name: 'pwsh',
+    arguments: JSON.stringify(CAND.arguments),
+  });
 });
 
 test('the configured maximum_candidates bounds the live parse path', async () => {
@@ -218,7 +261,7 @@ test('a restart mid-turn restores the executable graph, not just the bank hash',
     { sessionId: SESSION, messages, tools: TOOLS },
     () => (async function* () { yield { type: 'finish', reason: { kind: 'stop' } }; })(),
   ));
-  const call = issued.find(chunk => chunk.type === 'block-end').block;
+  const call = issued.find(chunk => chunk.type === 'block-end' && chunk.block.type === 'tool-call').block;
   const bank = parseBank({ role: 'assistant', content: messages[1].content }, TOOLS, { maxCandidates: 16 });
   assert.equal(call.id, nativeCallId(bank.sha256, 'A'));
 
@@ -253,7 +296,7 @@ test('the dispatch guard accepts the authored call and rejects a tampered one', 
     { role: 'tool', toolCallId: 'root_call', content: [{ type: 'text', text: '(no output)' }] },
   ];
   const issued = await collect(stream({ sessionId: SESSION, messages, tools: TOOLS }, () => (async function* () { yield { type: 'finish', reason: { kind: 'stop' } }; })()));
-  const callId = issued.find(chunk => chunk.type === 'block-end').block.id;
+  const callId = issued.find(chunk => chunk.type === 'block-end' && chunk.block.type === 'tool-call').block.id;
   const guard = host.handlers.get('tools/execute');
   let ran = false;
   await guard(
@@ -320,7 +363,7 @@ test('a single surviving candidate commits even while the selector is enabled', 
   })()));
 
   assert.equal(slowCalled, false, 'a single candidate must not need any selector round trip');
-  const call = issued.find(chunk => chunk.type === 'block-end').block;
+  const call = issued.find(chunk => chunk.type === 'block-end' && chunk.block.type === 'tool-call').block;
   assert.equal(call.name, 'pwsh');
   assert.equal(call.arguments, JSON.stringify(CAND.arguments));
 
@@ -353,7 +396,7 @@ test('the certificate carries the native result, not just the execution object',
   const issued = await collect(stream({ sessionId: SESSION, messages, tools: TOOLS }, () => (async function* () {
     yield { type: 'finish', reason: { kind: 'stop' } };
   })()));
-  const call = issued.find(chunk => chunk.type === 'block-end').block;
+  const call = issued.find(chunk => chunk.type === 'block-end' && chunk.block.type === 'tool-call').block;
 
   const certificateOf = async (sessionId, result) => {
     await collect(stream({ sessionId, messages, tools: TOOLS }, () => (async function* () {
@@ -453,7 +496,7 @@ test('the boundary decodes the frozen root receipt, not the rendered text', asyn
     yield { type: 'finish', reason: { kind: 'stop' } };
   })()));
   assert.equal(slowAgain, false);
-  assert.equal(committed.find(chunk => chunk.type === 'block-end').block.name, 'pwsh');
+  assert.equal(committed.find(chunk => chunk.type === 'block-end' && chunk.block.type === 'tool-call').block.name, 'pwsh');
 });
 
 test('unrelated tool calls bypass the guard untouched', async () => {
@@ -631,7 +674,7 @@ test('a two-candidate step asks the selector and runs the letter it answered', a
 
   assert.equal(slowCalled, false, 'the slow actor must not be called once the selector answered');
   assert.equal(selectorCalls, 1, 'one neighbour is exactly one selector call');
-  const call = issued.find(chunk => chunk.type === 'block-end').block;
+  const call = issued.find(chunk => chunk.type === 'block-end' && chunk.block.type === 'tool-call').block;
   assert.equal(call.name, 'pwsh');
   assert.equal(call.arguments, JSON.stringify(OTHER.arguments));
   assert.equal(issued.at(-1).reason.kind, 'tool-calls');
@@ -721,7 +764,7 @@ test('the selector reuses the boundary route and inherits its reasoning level', 
   assert.equal(asked[0].maxTokens, 1024);
   assert.equal(asked[0].messages[0].role, 'system');
 
-  const call = issued.find(chunk => chunk.type === 'block-end').block;
+  const call = issued.find(chunk => chunk.type === 'block-end' && chunk.block.type === 'tool-call').block;
   assert.equal(call.arguments, JSON.stringify(CAND.arguments));
 });
 

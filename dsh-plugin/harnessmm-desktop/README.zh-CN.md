@@ -21,6 +21,13 @@ benchmark 循环，也不替换原生执行器，更不给结果打分。
 4. **出证。** 每次替换都写成一条收据，绑定动作库哈希、候选、被旁路的回调和精确的原生结果。
    动作库耗尽后，控制权回到普通慢路径。
 
+被替换的那一轮并非模型自己生成，因此它会在工具调用旁边带一个很短的合成
+`reasoning` 块。思考模式端点会拒绝「工具调用没有同组 thinking 块」的 assistant
+轮次——DeepSeek 的 Anthropic 兼容端点会回 `400 The content[].thinking in the
+thinking mode must be passed back to the API`——真实会话验证该端点接受替换轮的无签名
+thinking 块，所以这个注记会被接受，并在之后的历史里原样回放。它只陈述发生了什么，
+绝不引用 plan 标签，因此不会被误当成作者声明的动作库。
+
 `tools/execute` 会把每个 `chisel_*` 调用重新对照作者声明的字面动作，所以被篡改的参数
 即使出现在流里，也到不了原生执行器。
 
