@@ -696,18 +696,43 @@ async function* emitSubstitution({
     probability,
     control_usage: usage,
   });
-  yield { type: 'block-start', index: 0, blockType: 'tool-call' };
+  // A substituted step is a turn no model authored, so it carries no native
+  // thinking. DeepSeek's Anthropic-compatible endpoint runs in thinking mode and
+  // rejects any assistant turn whose `tool_use` has no sibling `thinking` block
+  // ("The `content[].thinking` in the thinking mode must be passed back to the
+  // API"), which killed the next request with a 400 after the first live
+  // substitution. That endpoint accepted an unsigned block for a substituted
+  // turn, so this receipt-bound note is the sibling; the host adapter replays it
+  // verbatim on every later request, exactly like native reasoning.
+  const thinking = substitutionThinking(candidate);
+  yield { type: 'block-start', index: 0, blockType: 'reasoning' };
+  yield { type: 'reasoning-delta', index: 0, text: thinking };
+  yield { type: 'block-end', index: 0, block: { type: 'reasoning', text: thinking } };
+  yield { type: 'block-start', index: 1, blockType: 'tool-call' };
   yield {
     type: 'tool-call-delta',
-    index: 0,
+    index: 1,
     id: callId,
     name: candidate.tool,
     argumentsDelta: argumentsText,
   };
-  yield { type: 'block-end', index: 0, block: { type: 'tool-call', id: callId, name: candidate.tool, arguments: argumentsText } };
+  yield { type: 'block-end', index: 1, block: { type: 'tool-call', id: callId, name: candidate.tool, arguments: argumentsText } };
   yield { type: 'usage', usage };
   yield { type: 'finish', reason: { kind: 'tool-calls' } };
   void ctx; void policy; void sessionId; void options;
+}
+
+/**
+ * The `thinking` sibling a substituted assistant turn needs in thinking mode.
+ *
+ * It states what actually happened — a frozen candidate matched its receipt
+ * guard and was replayed — and never quotes a plan tag, so the transcript replay
+ * cannot mistake it for an authored bank. Kept short because it is replayed in
+ * the history of every later request.
+ */
+function substitutionThinking(candidate) {
+  return `HarnessMM replay: frozen candidate ${candidate.candidate_id} matched its receipt guard, `
+    + `so ${candidate.tool} ran without a new model decision.`;
 }
 
 /* ------------------------------------------------------------------------- *

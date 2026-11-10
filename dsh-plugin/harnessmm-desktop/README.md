@@ -29,6 +29,15 @@ benchmark loop, never replaces the native executor and never scores a result.
    hash, the candidate, the bypassed callback and the exact native result. The
    graph exhausts into the ordinary slow path.
 
+A substituted turn is a turn no model authored, so it carries a short synthetic
+`reasoning` block beside its tool call. Thinking-mode endpoints reject an
+assistant turn whose tool call has no sibling thinking block — DeepSeek's
+Anthropic-compatible endpoint answers `400 The content[].thinking in the
+thinking mode must be passed back to the API` — and it accepted an unsigned
+block for a substituted turn in a live session, so the note is accepted and
+replayed verbatim in later history. The note states what happened and never
+quotes a plan tag, so it cannot be mistaken for an authored bank.
+
 `tools/execute` re-checks every `chisel_*` call against the authored literal
 action, so a mutated argument cannot reach the native executor even if it appears
 in the stream.
