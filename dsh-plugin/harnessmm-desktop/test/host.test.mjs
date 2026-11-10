@@ -5,7 +5,7 @@
  */
 
 import assert from 'node:assert/strict';
-import { mkdtempSync, readFileSync, existsSync } from 'node:fs';
+import { mkdtempSync, readFileSync, existsSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import test from 'node:test';
@@ -32,15 +32,16 @@ const CAND = {
 function fakeHost(config, selectorStream = stubSelector('A')) {
   const handlers = new Map();
   const sections = [];
+  const tools = new Map();
   const ctx = {
-    tools: { schemas: () => TOOLS, get: () => undefined },
+    tools: { schemas: () => TOOLS, register: tool => tools.set(tool.name, tool) },
     systemPrompt: { section: entry => sections.push(entry) },
     // The selector answers a single label; the deterministic path never asks it.
     get: service => (service === 'llm' ? { stream: selectorStream } : undefined),
     on: (name, handler) => handlers.set(name, handler),
   };
   const api = apply(ctx, config);
-  return { ctx, handlers, sections, api };
+  return { ctx, handlers, sections, tools, api };
 }
 
 function stubSelector(label) {
@@ -238,9 +239,9 @@ test('a restart mid-turn restores the executable graph, not just the bank hash',
   assert.equal(certificate.exact_native_tool, 'pwsh');
 });
 
-test('the dispatch guard accepts the authored call and rejects a tampered one', async () => {
-  const dir = mkdtempSync(join(tmpdir(), 'harnessmm-'));
-  const host = fakeHost(config(true, join(dir, 'r.jsonl')));
+test('the dispatch guard accepts the authored call and rejects a tampered one', async t => {
+  const receipts = testReceipts(t);
+  const host = fakeHost(config(true, receipts));
   const stream = host.handlers.get('llm/stream');
   await collect(stream({ sessionId: SESSION, messages: [{ role: 'user', content: [{ type: 'text', text: 'run the tests' }] }], tools: TOOLS }, slowStreamWithBank()));
 
@@ -263,11 +264,29 @@ test('the dispatch guard accepts the authored call and rejects a tampered one', 
 
   await assert.rejects(
     () => guard(
-      { agent, callId, name: 'pwsh', arguments: { ...CAND.arguments, command: 'rm -rf /' }, messages, tools: TOOLS },
-      async () => ({ isError: false, content: [] }),
+      { agent, callId, name: 'pwsh', arguments: { ...CAND.arguments, command: 'echo tampered' }, messages, tools: TOOLS },
+      async () => assert.fail('a tampered call must never reach the native executor'),
     ),
     /HarnessMM rejected a substituted call/,
   );
+  assert.equal(readsReceipts(receipts).find(entry => entry.type === 'dispatch-rejected').call_id, callId);
+  const status = host.tools.get('harnessmm_status');
+  assert.deepEqual(await status.execute({}, { agent }), {
+    enabled: true,
+    banks_authored: 1,
+    substitutions_issued: 1,
+    substitutions_certified: 0,
+    boundary_errors: 0,
+    dispatch_rejections: 1,
+  });
+  assert.deepEqual(await status.execute({}, { agent: { id: 'another-session' } }), {
+    enabled: true,
+    banks_authored: 0,
+    substitutions_issued: 0,
+    substitutions_certified: 0,
+    boundary_errors: 0,
+    dispatch_rejections: 0,
+  });
 });
 
 test('a single surviving candidate commits even while the selector is enabled', async () => {
@@ -504,6 +523,79 @@ function projectedMessages(candidates) {
 
 function readsReceipts(path) {
   return readFileSync(path, 'utf8').trim().split('\n').map(line => JSON.parse(line));
+}
+
+test('an asynchronous controller fault falls back to the stock stream once', async t => {
+  const receipts = testReceipts(t);
+  const candidates = [CAND, OTHER];
+  const host = fakeHost(config(true, receipts));
+  const stream = host.handlers.get('llm/stream');
+  await collect(stream({ sessionId: SESSION, tools: TOOLS }, slowWithPlan(candidates)));
+  host.ctx.get = () => { throw new Error('LLM service lookup failed'); };
+
+  const finish = { type: 'finish', reason: { kind: 'stop' } };
+  let requests = 0;
+  const chunks = await collect(stream(
+    { sessionId: SESSION, messages: projectedMessages(candidates), tools: TOOLS },
+    () => {
+      requests++;
+      return (async function* () { yield finish; })();
+    },
+  ));
+
+  assert.equal(requests, 1);
+  assert.deepEqual(chunks, [finish]);
+  const entries = readsReceipts(receipts);
+  assert.equal(entries.filter(entry => entry.type === 'boundary-error').length, 1);
+  assert.equal(entries.find(entry => entry.type === 'boundary-error').reason, 'LLM service lookup failed');
+  assert.equal(entries.some(entry => entry.type === 'substitution-issued'), false);
+});
+
+test('bank bookkeeping errors preserve the stock response already sent to the host', async t => {
+  const receipts = testReceipts(t);
+  const stream = fakeHost(config(true, receipts)).handlers.get('llm/stream');
+  const options = { sessionId: SESSION, tools: TOOLS };
+  const expected = await collect(slowStreamWithBank()());
+  let requests = 0;
+  const chunks = await collect(stream(options, async function* () {
+    requests++;
+    yield* expected;
+    Object.defineProperty(options, 'tools', {
+      get() { throw new Error('tool catalog unavailable after streaming'); },
+    });
+  }));
+
+  assert.equal(requests, 1);
+  assert.deepEqual(chunks, expected);
+  assert.deepEqual(readsReceipts(receipts).map(entry => [entry.type, entry.reason]), [
+    ['boundary-error', 'tool catalog unavailable after streaming'],
+  ]);
+});
+
+test('a stock stream that throws mid-response is never requested again', async t => {
+  const receipts = testReceipts(t);
+  const stream = fakeHost(config(true, receipts)).handlers.get('llm/stream');
+  const upstreamError = new Error('provider connection lost');
+  const start = { type: 'block-start', index: 0, blockType: 'text' };
+  let requests = 0;
+  const iterator = stream({ sessionId: SESSION, tools: TOOLS }, () => {
+    requests++;
+    return (async function* () {
+      yield start;
+      throw upstreamError;
+    })();
+  });
+
+  assert.deepEqual(await iterator.next(), { value: start, done: false });
+  await assert.rejects(iterator.next(), error => error === upstreamError);
+  assert.equal(requests, 1);
+  assert.equal(existsSync(receipts), false);
+});
+
+function testReceipts(t) {
+  const dir = mkdtempSync(join(tmpdir(), 'harnessmm-'));
+  t.after(() => rmSync(dir, { recursive: true, force: true }));
+  return join(dir, 'receipts.jsonl');
 }
 
 test('a two-candidate step asks the selector and runs the letter it answered', async () => {

@@ -45,6 +45,14 @@ export const name = 'harnessmm';
 export const inject = ['systemPrompt', 'tools'];
 
 const SECTION_NAME = 'harnessmm:plan';
+const STATUS_EVENTS = new Map([
+  ['bank', 'banks_authored'],
+  ['substitution-issued', 'substitutions_issued'],
+  ['substitution', 'substitutions_certified'],
+  ['boundary-error', 'boundary_errors'],
+  ['dispatch-rejected', 'dispatch_rejections'],
+]);
+const STATUS_COUNTERS = Object.fromEntries([...STATUS_EVENTS.values()].map(name => [name, 0]));
 // The selector is a memoryless re-read of a frozen plan, so it is the one place a
 // strong model is worth paying for: a flash-tier model tends to answer "?" instead
 // of picking the step the slow thinker already committed to.
@@ -236,9 +244,8 @@ export function apply(ctx, config = {}) {
   };
 
   const record = (entry) => {
-    const path = receiptsPath();
-    if (!path) return;
     try {
+      const path = receiptsPath();
       mkdirSync(dirname(path), { recursive: true });
       appendFileSync(path, `${JSON.stringify({ at: new Date().toISOString(), ...entry })}\n`, { mode: 0o600 });
     } catch {
@@ -255,19 +262,47 @@ export function apply(ctx, config = {}) {
    * carry `exec.agent.id`. A string key is the one identity every mount point
    * can produce.
    */
-  const turns = new Map();
+  const sessions = new Map();
   const STORE_LIMIT = 64;
 
   const storeFor = (sessionId) => {
     const key = String(sessionId ?? 'session');
-    let store = turns.get(key);
+    let store = sessions.get(key);
     if (!store) {
-      store = new Map();
-      turns.set(key, store);
-      while (turns.size > STORE_LIMIT) turns.delete(turns.keys().next().value);
+      store = { turn: null, counters: { ...STATUS_COUNTERS } };
+      sessions.set(key, store);
+      while (sessions.size > STORE_LIMIT) sessions.delete(sessions.keys().next().value);
     }
     return store;
   };
+
+  const recordFor = store => entry => {
+    const counter = STATUS_EVENTS.get(entry.type);
+    if (counter) store.counters[counter]++;
+    record(entry);
+  };
+
+  ctx.tools.register({
+    name: 'harnessmm_status',
+    description: 'Read HarnessMM activity counters for this session. Use when asked about HarnessMM status.',
+    parameters: { type: 'object', properties: {}, additionalProperties: false },
+    output: {
+      schema: {
+        type: 'object',
+        properties: {
+          enabled: { type: 'boolean' },
+          ...Object.fromEntries(Object.keys(STATUS_COUNTERS).map(name => [name, { type: 'integer' }])),
+        },
+        required: ['enabled', ...Object.keys(STATUS_COUNTERS)],
+        additionalProperties: false,
+      },
+      render: (_args, value) => [{ type: 'text', text: JSON.stringify(value) }],
+    },
+    execute: async (_args, exec) => ({
+      enabled: resolvePolicy().enabled,
+      ...(sessions.get(sessionIdOfExecution(exec))?.counters ?? STATUS_COUNTERS),
+    }),
+  });
 
   if (read(config?.planSection, true) !== false) {
     ctx.systemPrompt.section({
@@ -292,8 +327,9 @@ export function apply(ctx, config = {}) {
     // here and never re-enters the boundary it was asked to decide.
     const sessionId = sessionIdOf(options);
     if (!sessionId) return next();
+    const store = storeFor(sessionId);
     return boundaryStream({
-      ctx, options, next, sessionId, policy, selectorConfig, shellTools, storeFor, record,
+      ctx, options, next, sessionId, policy, selectorConfig, shellTools, store, record: recordFor(store),
     });
   });
 
@@ -306,12 +342,13 @@ export function apply(ctx, config = {}) {
     if (!call || typeof call.id !== 'string' || !call.id.startsWith('chisel_')) return next();
     const sessionId = sessionIdOfExecution(payload);
     if (!sessionId) return next();
-    const turn = storeFor(sessionId).get(sessionId);
+    const store = storeFor(sessionId);
+    const turn = store.turn;
     // `tools/execute` carries no message history, so the accepted graph comes
     // from the turn the authoring step recorded, not from a fresh projection.
     const violation = violateDispatch({ projected: null, turn, call, policy });
     if (violation) {
-      record({ type: 'dispatch-rejected', call_id: call.id, reason: violation.violation });
+      recordFor(store)({ type: 'dispatch-rejected', call_id: call.id, reason: violation.violation });
       throw new Error(`HarnessMM rejected a substituted call: ${violation.violation}`);
     }
     if (turn) turn.steps = (turn.steps ?? 0) + 1;
@@ -327,7 +364,8 @@ export function apply(ctx, config = {}) {
     if (!call || typeof call.id !== 'string') return;
     const sessionId = sessionIdOfExecution(exec);
     if (!sessionId) return;
-    const turn = storeFor(sessionId).get(sessionId);
+    const store = storeFor(sessionId);
+    const turn = store.turn;
     if (!turn) return;
     // `tools/result` hands the frozen result as a second argument; the receipt
     // must come from it, never from the execution object, or every stdout guard
@@ -375,7 +413,7 @@ export function apply(ctx, config = {}) {
       native_receipt: receipt,
       amount_substituted_slow_callbacks: 1,
     };
-    record({ type: 'substitution', ...certificate });
+    recordFor(store)({ type: 'substitution', ...certificate });
     turn.certificates = (turn.certificates ?? 0) + 1;
   });
 
@@ -386,21 +424,46 @@ export function apply(ctx, config = {}) {
  * Boundary stream
  * ------------------------------------------------------------------------- */
 
-function boundaryStream({ ctx, options, next, sessionId, policy, selectorConfig, shellTools, storeFor, record }) {
-  const store = storeFor(sessionId);
+async function* boundaryStream({ ctx, options, next, sessionId, policy, selectorConfig, shellTools, store, record }) {
   const key = sessionId;
-  try {
-    return boundaryStreamInner({ ctx, options, next, sessionId, policy, selectorConfig, shellTools, store, key, record });
-  } catch (error) {
-    // A controller fault must degrade to the stock loop, never break a turn.
-    record({ type: 'boundary-error', turn_id: String(key), reason: String(error?.message ?? error) });
+  let stockStarted = false;
+  let emitted = false;
+  const startStock = () => {
+    stockStarted = true;
     return next();
+  };
+  try {
+    const inner = boundaryStreamInner({
+      ctx, options, next: startStock, sessionId, policy, selectorConfig, shellTools, store, key, record,
+    });
+    for await (const chunk of inner) {
+      emitted = true;
+      yield chunk;
+    }
+  } catch (error) {
+    // The host owns provider failures. Re-entering next() could repeat a paid
+    // request, and appending a fresh stream to emitted chunks corrupts the turn.
+    if (stockStarted) throw error;
+    recordBoundaryError(record, key, error);
+    if (emitted) throw error;
+    yield* stockStream(next);
   }
+}
+
+function recordBoundaryError(record, turnId, error) {
+  record({ type: 'boundary-error', turn_id: turnId, reason: String(error?.message ?? error) });
+}
+
+function stockStream(next) {
+  const produced = next();
+  return produced && typeof produced[Symbol.asyncIterator] === 'function'
+    ? produced
+    : produced();
 }
 
 function boundaryStreamInner({ ctx, options, next, sessionId, policy, selectorConfig, shellTools, store, key, record }) {
   const projected = projectTurn(options.messages ?? [], options.tools ?? [], policy);
-  let turn = store.get(key);
+  let turn = store.turn;
 
   if (!projected) {
     // A slow request: fix the boundary facts before any chunk exists, so a
@@ -415,7 +478,7 @@ function boundaryStreamInner({ ctx, options, next, sessionId, policy, selectorCo
       gate: 'slow',
       bypassedCallbackId: options?.metadata?.attemptId ?? options?.requestId ?? null,
     };
-    store.set(key, turn);
+    store.turn = turn;
   }
   if (!turn) {
     // A projected turn whose session was not observed while it was slow — the
@@ -432,7 +495,7 @@ function boundaryStreamInner({ ctx, options, next, sessionId, policy, selectorCo
       gate: 'resumed',
       bypassedCallbackId: options?.metadata?.attemptId ?? options?.requestId ?? null,
     };
-    store.set(key, turn);
+    store.turn = turn;
   }
 
   if (projected) {
@@ -516,32 +579,18 @@ function boundaryStreamInner({ ctx, options, next, sessionId, policy, selectorCo
 }
 
 /** The ordinary slow stream, plus bank extraction when it settled. */
-function authoringStream({ options, next, turn, policy, record }) {
-  // cordis hands `next` as a callback returning the iterable; tolerate a bare
-  // iterable too so the boundary can be driven directly in a harness.
-  const produced = next();
-  const inner = produced && typeof produced[Symbol.asyncIterator] === 'function'
-    ? produced
-    : produced();
-  return (async function* stream() {
-    const chunks = [];
-    for await (const chunk of inner) {
-      chunks.push(chunk);
-      yield chunk;
-    }
+async function* authoringStream({ options, next, turn, policy, record }) {
+  const chunks = [];
+  for await (const chunk of stockStream(next)) {
+    chunks.push(chunk);
+    yield chunk;
+  }
+  // The stock response has already been delivered. Bank bookkeeping can fail
+  // without changing that response or asking the provider to generate it again.
+  try {
     turn.slowTokens = usageOf(chunks);
     turn.bypassedCallbackId = options?.metadata?.attemptId ?? options?.requestId ?? turn.bypassedCallbackId;
-    let bank;
-    try {
-      bank = parseBank(messageOf(chunks), options.tools ?? [], { maxCandidates: policy.maximum_candidates });
-    } catch (error) {
-      if (error instanceof BankContractError) {
-        turn.gate = 'invalid-bank';
-        record({ type: 'invalid-bank', turn_id: turn.turnId, reason: error.message });
-        return;
-      }
-      throw error;
-    }
+    const bank = parseBank(messageOf(chunks), options.tools ?? [], { maxCandidates: policy.maximum_candidates });
     if (!bank || !bank.candidates.length) {
       turn.gate = bank ? 'empty-bank' : 'no-bank';
       return;
@@ -560,7 +609,14 @@ function authoringStream({ options, next, turn, policy, record }) {
       candidates: bank.candidates.length,
       public_bytes: bank.bytes,
     });
-  })();
+  } catch (error) {
+    if (error instanceof BankContractError) {
+      turn.gate = 'invalid-bank';
+      record({ type: 'invalid-bank', turn_id: turn.turnId, reason: error.message });
+    } else {
+      recordBoundaryError(record, turn.turnId, error);
+    }
+  }
 }
 
 function commitStream({ ctx, options, sessionId, turn, decision, policy, record }) {

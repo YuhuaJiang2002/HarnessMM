@@ -183,40 +183,12 @@ The concurrency case, abridged from one receipts file:
 Turn state is keyed by `sessionId`, so overlapping sessions never share a
 pending bank, a step counter or a certificate.
 
-## Live verification checklist
+## Live verification
 
-Use a compatible DSH desktop profile with the plugin enabled and a configured
-provider. Start a fresh session in a disposable workspace. Keep the session
-event log, the provider request trace, and the plugin receipts
-(`~/.dsh/harnessmm/receipts.jsonl` by default).
-
-1. Ask the actor to emit one bare `<CHISEL_PLAN>` in its visible response and make
-   one native shell root call. For example, on a `bash` profile let the root
-   run `printf '%s\n' HMM-ROOT`. The sole candidate `A` should require exit
-   code 0 and exact stdout `HMM-ROOT`, with `exit_code` and `stdout` in
-   `required_receipt_fields`. Its literal command can be
-   `printf '%s\n' HMM-SUBSTITUTED >> hmm-smoke.txt`. Start with that file absent.
-   Confirm that the receipts contain a `bank` entry with one candidate.
-2. Inspect the actual rendered result of the root call. Check that it reports
-   success and renders `HMM-ROOT`, then confirm a `decision` with
-   `kind: "commit"` and `eligible: ["A"]`.
-3. Find the `substitution-issued` receipt with `selector: "deterministic"`.
-   Match its `call_id` to the native shell `tool/call` event and check the
-   exact arguments. Confirm in the provider trace that no model request
-   occurred between the root result and this dispatch. The ordinary slow actor
-   can resume after the substituted tool returns.
-4. Match the `substitution` receipt to the issued action by `turn_id`,
-   `decision_id` and `candidate_id`. Check the
-   `harnessmm-desktop-certificate/v1` schema, the exact native arguments,
-   the successful native receipt and `amount_substituted_slow_callbacks: 1`.
-5. Count the `tool/call` records for the append command in the session log.
-   There should be exactly one record and its ID should match
-   `substitution-issued.call_id`. After the turn, inspect `hmm-smoke.txt`
-   outside the session and check for exactly one marker line. The assistant's
-   summary alone cannot establish how many times the command ran.
-
-A successful check verifies one callback substitution in that desktop session.
-The published HumanEval metrics come from the separate SDK benchmark setup.
+Run the [desktop smoke test](test/live-session.md) in a fresh DSH session to
+check the native substitution, its certificate and the shell side effect.
+Use `harnessmm_status` inside a session to read its in-memory bank, substitution
+and error counters.
 
 ## Install
 
@@ -249,6 +221,7 @@ One JSON object per line:
 | `decision` | the gate received a receipt; lists eligible and rejected candidates with reasons |
 | `substitution-issued` | a native call was emitted in place of the slow callback |
 | `substitution` | the certificate, bound to the exact native result |
+| `boundary-error` | the stream controller failed and recorded the exception |
 | `dispatch-rejected` | `tools/execute` refused a mutated or out-of-graph call |
 | `selector-abstain` / `selector-unmapped` | the selector declined; the slow path resumed |
 
