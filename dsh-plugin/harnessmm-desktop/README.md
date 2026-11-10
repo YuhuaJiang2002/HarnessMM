@@ -185,8 +185,9 @@ pending bank, a step counter or a certificate.
 
 ## Live verification
 
-Run the [desktop smoke test](test/live-session.md) in a fresh DSH session to
-check the native substitution, its certificate and the shell side effect.
+The [DSH smoke test](test/live-session.md) checks the native substitution, its
+certificate and the shell side effect. Run it with a scripted endpoint in a
+headless profile or follow the steps for a desktop session.
 Use `harnessmm_status` inside a session to read its in-memory bank, substitution
 and error counters.
 

@@ -1,4 +1,20 @@
-# DeepSeek Harness desktop smoke test
+# DeepSeek Harness smoke test
+
+## Automated run
+
+On macOS or Linux, run the test from this plugin directory with a DeepSeek
+Harness 0.2.1-rc.5 executable. The test uses an isolated profile and a scripted
+model endpoint on localhost, so it needs no provider account. The DSH agent,
+native Bash executor, and session log are real.
+
+```sh
+node test/live-headless.mjs /path/to/dsh
+```
+
+The test also checks that the substitution bypasses the model request. It
+keeps its temporary profile and logs on failure.
+
+## Desktop session
 
 Use DeepSeek Harness 0.2.1-rc.5 with this checkout's plugin installed in the
 desktop profile, an enabled policy, and a configured model. Open a fresh
