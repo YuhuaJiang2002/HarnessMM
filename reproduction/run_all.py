@@ -1,4 +1,4 @@
-"""Run the four offline cases in isolated processes and check their digests."""
+"""Verify and run the offline JSON cases and desktop controller tests."""
 from pathlib import Path
 import hashlib
 import json
@@ -13,7 +13,7 @@ for item in manifest["files"]:
     if hashlib.sha256(path.read_bytes()).hexdigest() != item["sha256"]:
         raise SystemExit(f"Case file digest mismatch: {item['path']}")
 if shutil.which("node") is None:
-    raise SystemExit("Install Node.js 22 or later and add node to PATH for the Codex case.")
+    raise SystemExit("Install Node.js 22 or later and add node to PATH for the offline checks.")
 for case in manifest["cases"]:
     result = subprocess.run([sys.executable, str(ROOT / case["entrypoint"])],
         cwd=ROOT, capture_output=True, text=True, timeout=60)
@@ -25,3 +25,11 @@ for case in manifest["cases"]:
     if actual != expected:
         raise SystemExit(f"Unexpected output: {case['name']}")
     print(f"PASS {case['name']} ({case['scope']})")
+
+print("Running DeepSeek Harness desktop controller tests (synthetic mechanism)", flush=True)
+subprocess.run(
+    ["node", "--test", "dsh-plugin/harnessmm-desktop/test/controller.test.mjs"],
+    cwd=ROOT,
+    check=True,
+    timeout=60,
+)

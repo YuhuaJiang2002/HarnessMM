@@ -106,6 +106,10 @@ finalization, retries, fallbacks and unsuccessful executions. Offline
 optimization and validation costs are reported separately. See
 [Section 5.3](https://arxiv.org/html/2610.32813v1#S5.SS3).
 
+The MBPP-sanitized row can be recomputed from released aggregates. Both HumanEval
+rows require external evaluation and metering evidence. See the [README result
+map](REPRODUCE.md#readme-benchmark-results) for commands and runner links.
+
 ### Decision reuse and callback substitution
 
 A separate MBPP-sanitized ablation uses the same 257 test tasks and execution
@@ -152,12 +156,11 @@ or token-saving measurements.
 
 ## Reproduction cases
 
-The [reproduction index](reproduction/README.md) now covers HumanEval,
-MBPP-sanitized, Codex native banks, GAIA2 continuations and the visual baseline.
-MBPP recomputes the published execution metrics from archived integer counts;
-the Codex, GAIA2 and visual cases replay synthetic inputs through the released
-implementation. Each runnable case includes inputs and checked expected output.
-See [REPRODUCE.md](REPRODUCE.md) for the result-to-command map.
+The [reproduction index](reproduction/README.md) lists the MBPP aggregate replay
+and the synthetic checks for HumanEval authoring, Codex native banks, GAIA2
+continuations, the visual baseline and the desktop plugin. The offline runner
+checks the four JSON cases and runs the desktop controller tests. See
+[REPRODUCE.md](REPRODUCE.md) for the commands and their scope.
 
 ```bash
 python reproduction/run_all.py

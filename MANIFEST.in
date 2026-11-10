@@ -6,6 +6,8 @@ recursive-include configs *.json
 recursive-include integrations *.mjs
 recursive-include integrations *.md
 recursive-include reproduction *.py *.mjs *.json *.md
+recursive-include dsh-plugin/harnessmm-desktop *.js *.mjs *.json *.md *.yml
+prune dsh-plugin/harnessmm-desktop/node_modules
 prune .venv
 prune outputs
 prune artifacts

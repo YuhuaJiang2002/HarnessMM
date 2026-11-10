@@ -6,7 +6,7 @@ HarnessMM for the DeepSeek Harness desktop app: guarded decision reuse over the
 native tool surface.
 
 The plugin brings the CHISEL / SAR protocol from
-[`integrations/deepseek_harness/`](../integrations/deepseek_harness/) into a
+[`integrations/deepseek_harness/`](../../integrations/deepseek_harness/) into a
 stock DSH desktop profile. It sits on the model-to-tool boundary: it never owns a
 benchmark loop, never replaces the native executor and never scores a result.
 
@@ -183,6 +183,41 @@ The concurrency case, abridged from one receipts file:
 Turn state is keyed by `sessionId`, so overlapping sessions never share a
 pending bank, a step counter or a certificate.
 
+## Live verification checklist
+
+Use a compatible DSH desktop profile with the plugin enabled and a configured
+provider. Start a fresh session in a disposable workspace. Keep the session
+event log, the provider request trace, and the plugin receipts
+(`~/.dsh/harnessmm/receipts.jsonl` by default).
+
+1. Ask the actor to emit one bare `<CHISEL_PLAN>` in its visible response and make
+   one native shell root call. For example, on a `bash` profile let the root
+   run `printf '%s\n' HMM-ROOT`. The sole candidate `A` should require exit
+   code 0 and exact stdout `HMM-ROOT`, with `exit_code` and `stdout` in
+   `required_receipt_fields`. Its literal command can be
+   `printf '%s\n' HMM-SUBSTITUTED >> hmm-smoke.txt`. Start with that file absent.
+   Confirm that the receipts contain a `bank` entry with one candidate.
+2. Inspect the actual rendered result of the root call. Check that it reports
+   success and renders `HMM-ROOT`, then confirm a `decision` with
+   `kind: "commit"` and `eligible: ["A"]`.
+3. Find the `substitution-issued` receipt with `selector: "deterministic"`.
+   Match its `call_id` to the native shell `tool/call` event and check the
+   exact arguments. Confirm in the provider trace that no model request
+   occurred between the root result and this dispatch. The ordinary slow actor
+   can resume after the substituted tool returns.
+4. Match the `substitution` receipt to the issued action by `turn_id`,
+   `decision_id` and `candidate_id`. Check the
+   `harnessmm-desktop-certificate/v1` schema, the exact native arguments,
+   the successful native receipt and `amount_substituted_slow_callbacks: 1`.
+5. Count the `tool/call` records for the append command in the session log.
+   There should be exactly one record and its ID should match
+   `substitution-issued.call_id`. After the turn, inspect `hmm-smoke.txt`
+   outside the session and check for exactly one marker line. The assistant's
+   summary alone cannot establish how many times the command ran.
+
+A successful check verifies one callback substitution in that desktop session.
+The published HumanEval metrics come from the separate SDK benchmark setup.
+
 ## Install
 
 `dsh plugin add` (or the Plugin Manager) links this directory into a profile:
@@ -224,30 +259,22 @@ exit code has been decoded. Guards therefore compare program output, not shells.
 
 ## Tests
 
-```sh
-node --test test/*.test.mjs
-```
-
-`test/controller.test.mjs` covers the pure protocol (bank parsing, receipts,
-guards, admission, projection, dispatch). `test/host.test.mjs` drives
-`lib/index.js` through a fake cordis context and asserts that a deterministic
-commit never calls the slow actor, that a two-candidate step runs the letter the
-selector answered, that the selector reuses the boundary route and asks for a
-reasoning level, that a failed selector hands the turn back (twice, once per
-request shape), that a disabled selector spends no call at all, that the
-certificate carries the native result rather than just the execution object, that
-a restart mid-turn restores the executable graph rather than just the bank hash,
-that the configured `maximum_candidates` bounds the live parse path, that a
-fenced prompt example is never parsed as a declaration, and that a tampered
-argument is rejected. 42 tests pass.
-
-`host.test.mjs` resolves `@deepseek-ai/schemastery` from disk, so it needs that
-package locally. Inside a DSH profile the host supplies it through its own
-internal loader; outside one, provide it before running the host test:
+From the repository root, run the controller suite with Node.js 22 or later.
 
 ```sh
-mkdir -p node_modules/@deepseek-ai/schemastery
-cp -r <extracted-schemastery>/* node_modules/@deepseek-ai/schemastery/
+node --test dsh-plugin/harnessmm-desktop/test/controller.test.mjs
 ```
 
-Without it only `test/controller.test.mjs` (28 pure-protocol tests) runs.
+The simulated-host suite also loads the plugin entry point and needs
+`@deepseek-ai/schemastery`. From the repository root, install the dependency
+and run both suites.
+
+```sh
+npm install --no-save --package-lock=false @deepseek-ai/schemastery@3.18.4
+node --test dsh-plugin/harnessmm-desktop/test/*.test.mjs
+```
+
+The controller suite checks the protocol. The simulated host drives the
+plugin's stream, dispatch and result hooks, including deterministic
+substitution, fallback and certificate generation. After dependency setup,
+both suites run offline without a DSH session or a provider account.

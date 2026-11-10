@@ -36,9 +36,10 @@ scores or require a provider key.
 [REPRODUCE.md](../REPRODUCE.md) maps released results and mechanisms to commands.
 The [case index](../reproduction/README.md) includes MBPP aggregate recomputation,
 Codex native-bank dispatch, GAIA2 public-receipt binding and the visual baseline.
-Run `python reproduction/run_all.py` to verify input/output digests and compare
-all four cases against their expected JSON. The mechanism fixtures make no
-provider calls; the MBPP case uses archived integer aggregates.
+Run `python reproduction/run_all.py` to verify the four JSON cases against their
+checked-in digests and expected outputs, then run the dependency-free desktop
+controller suite. The mechanism fixtures make no provider calls. The MBPP case
+uses archived integer aggregates.
 
 ## Research runner entry points
 
