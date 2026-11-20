@@ -10,11 +10,11 @@
 <p align="center">
   <picture>
     <source media="(prefers-reduced-motion: reduce)" srcset="docs/assets/readme/guarded-reuse.png">
-    <img src="docs/assets/readme/guarded-reuse.gif" width="100%" alt="In the example, the model prepares a file and plans three follow-up actions. Each successful tool result releases the next action: compile, test, then report. The model resumes when the plan ends. On 98 HumanEval tasks, Codex with HarnessMM used 29.54% fewer execution tokens at the same 90.82% success.">
+    <img src="docs/assets/readme/guarded-reuse.gif" width="100%" alt="Execution token savings with HarnessMM: 29.54% for Codex on HumanEval, 87.93% for DeepSeek Harness on HumanEval, and 80.35% for DeepSeek Harness on MBPP-sanitized.">
   </picture>
 </p>
 
-[Run the illustrated example](examples/guarded_reuse.mjs) · [See the coding results](#codex-and-deepseek-coding-harnesses) · [Try the pi extension](pi-harnessmm/)
+[Run the guarded-reuse example](examples/guarded_reuse.mjs) · [See the coding results](#codex-and-deepseek-coding-harnesses) · [Try the pi extension](pi-harnessmm/)
 
 HarnessMM lets an agent plan several tool calls in one model turn. After each
 call, the harness reads the tool result and runs the next planned action when

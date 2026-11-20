@@ -4,10 +4,11 @@
 copied without modification from `figures/harness_rsi_overview_user.png`
 in the manuscript sources. It appears in the README’s “How it works” section.
 
-The homepage animation follows `examples/guarded_reuse.mjs` and ends with the
-Codex HumanEval comparison from `results.json`. Rebuild the GIF and its
-reduced-motion PNG with `python docs/assets/readme/generate_teaser.py` using
-Pillow and either Arial and Menlo or the DejaVu Sans and Mono fonts.
+Each frame of the homepage animation shows the execution tokens per task before
+and after adding HarnessMM to a coding harness. The three comparisons use the
+published savings in `results.json` and share a bar scale. The reduced-motion
+PNG shows all three comparisons together. Rebuild both with
+`python docs/assets/readme/generate_teaser.py` using Pillow and Arial or DejaVu Sans.
 
 Run `python docs/assets/readme/generate.py` from the repository root with
 Matplotlib 3.11.2 and Pillow 13.0.0 installed. Each figure is exported as SVG
