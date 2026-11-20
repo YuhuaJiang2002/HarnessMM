@@ -1,0 +1,12 @@
+pi-harnessmm
+Copyright 2026 jlon
+
+This product ports the runtime mechanism of HarnessMM:
+  HarnessMM: Recursive Self-Improvement for Harness Token Efficiency
+  Yuhua Jiang, Chang Xu, Feifei Gao, Li Zhao
+  https://arxiv.org/abs/2610.32813
+  https://github.com/YuhuaJiang2002/HarnessMM  (Apache-2.0)
+
+The authoring instruction, selector prompts, bank contract, guard semantics,
+admission arithmetic and certificate schema are derived from that project and
+remain under its Apache-2.0 license.

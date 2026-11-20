@@ -1,0 +1,56 @@
+{
+  "name": "pi-harnessmm",
+  "version": "0.1.0",
+  "description": "HarnessMM for pi: guarded decision reuse that runs a chain of dependent tool steps inside one call instead of one model round trip per step.",
+  "license": "Apache-2.0",
+  "author": "jlon",
+  "type": "module",
+  "keywords": [
+    "pi-package",
+    "pi",
+    "pi-extension",
+    "harnessmm",
+    "agent-harness",
+    "token-efficiency",
+    "decision-reuse"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jlon/pi-harnessmm.git"
+  },
+  "homepage": "https://github.com/jlon/pi-harnessmm#readme",
+  "bugs": {
+    "url": "https://github.com/jlon/pi-harnessmm/issues"
+  },
+  "files": [
+    "extensions",
+    "src",
+    "README.md",
+    "CHANGELOG.md",
+    "NOTICE",
+    "LICENSE"
+  ],
+  "pi": {
+    "extensions": [
+      "./extensions/harnessmm.ts"
+    ]
+  },
+  "scripts": {
+    "test": "node --test 'tests/*.test.ts'",
+    "typecheck": "tsc --noEmit",
+    "parity": "node scripts/parity-check.mjs"
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-ai": "*",
+    "@earendil-works/pi-coding-agent": "*",
+    "typebox": "*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "typescript": "5.9"
+  },
+  "engines": {
+    "node": ">=22.19.0",
+    "pi": ">=1.4.0"
+  }
+}

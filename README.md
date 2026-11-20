@@ -7,9 +7,14 @@
   <a href="https://arxiv.org/pdf/2610.32813"><img src="https://img.shields.io/badge/PDF-Download-B31B1B" alt="Download paper PDF"></a>
 </p>
 
-![Figure 1 from the HarnessMM paper: recursive self-improvement refines the execution graph through Guarded Decision Reuse (GDR) and Certified Callback Substitution (CCS).](docs/assets/readme/paper-figure-1.png)
+<p align="center">
+  <picture>
+    <source media="(prefers-reduced-motion: reduce)" srcset="docs/assets/readme/guarded-reuse.png">
+    <img src="docs/assets/readme/guarded-reuse.gif" width="100%" alt="In the example, the model prepares a file and plans three follow-up actions. Each successful tool result releases the next action: compile, test, then report. The model resumes when the plan ends. On 98 HumanEval tasks, Codex with HarnessMM used 29.54% fewer execution tokens at the same 90.82% success.">
+  </picture>
+</p>
 
-*Figure 1. HarnessMM uses task feedback to improve execution graphs, reuse resolved decisions and replace redundant reasoning callbacks with certified native execution.*
+[Run the illustrated example](examples/guarded_reuse.mjs) · [See the coding results](#codex-and-deepseek-coding-harnesses) · [Try the pi extension](pi-harnessmm/)
 
 HarnessMM reduces harness token consumption through guarded decision reuse.
 Its visual extension, **HarnessMM-V**, achieves **higher success and lower
@@ -42,6 +47,10 @@ HarnessMM-V results, separate from the HarnessMM coding experiments in the
 linked paper.
 
 ## How it works
+
+![Figure 1 from the HarnessMM paper: recursive self-improvement refines the execution graph through Guarded Decision Reuse (GDR) and Certified Callback Substitution (CCS).](docs/assets/readme/paper-figure-1.png)
+
+*Figure 1. HarnessMM uses task feedback to improve execution graphs, reuse resolved decisions and replace redundant reasoning callbacks with certified native execution.*
 
 ![HarnessMM overview: the slow actor authors an executable graph, receipt guards select eligible actions, and native execution records callback substitutions. Training, validation and testing remain separate.](docs/assets/readme/overview.svg)
 
@@ -154,6 +163,16 @@ also demonstrates a return to the slow actor after the graph is exhausted.
 These examples demonstrate controller behavior; they are not benchmark scores
 or token-saving measurements.
 
+### Try it in pi
+
+With pi installed, run this from the root of the cloned repository:
+
+```bash
+pi -e ./pi-harnessmm
+```
+
+The extension runs each planned terminal action when the preceding command’s result satisfies its guard. If the result is missing or a command fails, control returns to the model. See the [extension guide](pi-harnessmm/README.md) and [jlon’s upstream project](https://github.com/jlon/pi-harnessmm).
+
 ## Reproduction cases
 
 The [reproduction index](reproduction/README.md) lists the MBPP aggregate replay
@@ -173,6 +192,7 @@ python reproduction/run_all.py
 | `integrations/baseline_harness/` | Original screenshot-based decision boundary, literal action contract and baseline implementation index |
 | `integrations/codex_harness/` | Public exports for the existing official CLI runtime, native MCP/terminal bank adapters and RSI lifecycle |
 | `integrations/deepseek_harness/` | Native streaming bridge, action-bank contract, receipt guards, graph execution and certificates |
+| [`pi-harnessmm/`](pi-harnessmm/) | Community pi extension by jlon, including its TypeScript source and tests |
 | `harnessmm/harness/` | Codex adapters, protected training/selection lifecycle, benchmark-specific controllers and RSI |
 | `harnessmm/learning/` | Residual fitting, cross-fitting, public-evidence contracts, routing and companion configuration methods |
 | `harnessmm/evaluation/` | Native score checks, quality/cost comparisons and complete token accounting |

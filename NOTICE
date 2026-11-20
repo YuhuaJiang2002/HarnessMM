@@ -12,3 +12,8 @@ agent runtimes, benchmarks, datasets, model weights and separately installed
 dependencies are governed by their respective licenses and access terms.
 No upstream model weights, benchmark datasets or native runtime checkouts are
 redistributed in this repository.
+
+pi-harnessmm/ includes the pi extension by jlon (Copyright 2026 jlon),
+from https://github.com/jlon/pi-harnessmm at commit
+8d0a9dab98db4cd83eec2955870ffbf6b2a04946. Its original Apache-2.0
+license and attribution are in pi-harnessmm/LICENSE and pi-harnessmm/NOTICE.
