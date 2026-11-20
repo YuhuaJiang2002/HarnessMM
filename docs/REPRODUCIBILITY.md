@@ -28,8 +28,7 @@ python -m build
 
 Tests use synthetic fixtures and temporary workspaces. They check bank parsing,
 guard behavior, native callback substitution, fallback, split boundaries, RSI
-selection, source seals and accounting. They do not reproduce paper benchmark
-scores or require a provider key.
+selection, source seals and accounting.
 
 ## Reproduction cases
 
@@ -49,15 +48,11 @@ callback and Codex imports with synthetic inputs. The baseline package extracts
 the original visual B0 prompt and action contract; it adds a host callback
 boundary and the shared token-efficiency objective. Its source manifest records
 the original visual workspace file digests. Codex exports retain their original
-class/function identities. These additions make no benchmark or provider calls
-and do not replace benchmark-specific frozen reproduction recipes.
+class/function identities.
 
 The HumanEval DeepSeek Harness configuration is documented separately in
-[DEEPSEEK_REPRODUCTION.md](DEEPSEEK_REPRODUCTION.md). Its archived JavaScript
-modules are in `reproduction/humaneval_v23/`. They are separate from the current
-integration code; changing the current code does not modify the reference
-experiment. The initial source release omitted the structured authoring module.
-This update supplies that module and its frozen JavaScript dependencies.
+[DEEPSEEK_REPRODUCTION.md](DEEPSEEK_REPRODUCTION.md). The frozen v23 authoring adapter and its JavaScript dependencies are in
+`reproduction/humaneval_v23/`.
 
 | Study or component | Entry point |
 | --- | --- |
@@ -77,13 +72,10 @@ These are research entry points with source-bound dependencies, native-runtime
 requirements and deployment admission checks. A new deployment must supply
 valid paths, upstream runtimes, datasets, endpoint configuration and a new
 frozen experiment identity. `/path/to/...` values and `harnessmm-worker-*`
-hostnames are placeholders. Host guards deliberately reject an unconfigured
-machine. Do not disable them and assume that the original run was reproduced.
+hostnames are placeholders. Host guards check those settings at launch.
 
-The two configurations under `configs/` support static regression tests for
-the extracted controllers. Historical source and policy hashes describe the
-original reference configuration; they do not seal the public extraction or
-authorize reusing its old run identity. Freeze new sources before a new run.
+The two files under `configs/` describe the historical protocols used by the
+controller tests. Freeze your source and policy hashes under a new run ID.
 
 ## External dependencies
 
@@ -95,9 +87,8 @@ The optional `analysis` dependency supports numerical analysis; upstream
 runtimes may require additional packages beyond the lightweight core.
 
 Store provider credentials outside the repository and pass their paths through
-the runner's documented configuration. The release contains no credential
-files, datasets, model checkpoints, provider request logs or paid run receipts.
-It does not run or resume an experiment during installation.
+the runner's documented configuration. Supply datasets and checkpoints through the native runtime. Keep provider logs
+and run receipts with the experiment records.
 
 ## Cost and population
 
@@ -108,9 +99,7 @@ within each comparison.
 
 Measure physical input plus output tokens, including shared authorship,
 optimizer and selection work, control, retries, fallback and unsuccessful
-executions within the stated scope. Cached-input accounting must not add
-cached tokens twice. Missing usage remains unknown. A local replacement
-certificate cannot supply missing provider usage.
+executions within the stated scope. Count cached input once. Mark missing provider usage as unknown.
 
 Report `Tokens/task (k) = complete input-plus-output tokens / declared complete
 execution population / 1000`, rounded to two decimal places. Keep raw counts,

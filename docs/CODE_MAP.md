@@ -19,9 +19,8 @@
 | Complete token accounting | `harnessmm/evaluation/deployment_token_accounting.py` | Aggregate declared physical calls without dropping unsuccessful executions |
 
 Instruction optimization, context handling and finalization rules are companion
-configurations. Enabling one does not imply that EDG execution or callback
-substitution occurred. Use actual native substitution certificates to identify
-that mechanism in a run.
+configurations. To identify a callback substitution, look up its native receipt and callback ID
+in the run's substitution certificates.
 
 ## Naming
 
@@ -29,9 +28,4 @@ The project and Python package are named HarnessMM and `harnessmm`. The
 legacy `phiagent` namespace remains an import alias.
 `ChiselConfig`/`CodexChiselController` class names, schema strings, event names
 and the `<CHISEL_PLAN>` envelope keep their existing contracts. `SAR` and `Jev` occur
-in implementation names for graph execution and selection. No scientific
-protocol is renamed by changing the repository title.
-
-The source tree contains successive research implementations. A benchmark run
-must declare its exact modules, protocol version, model and configuration;
-importing the whole package does not select a single deployment policy.
+in implementation names for graph execution and selection. For each benchmark run, record the modules, protocol version, model and configuration.

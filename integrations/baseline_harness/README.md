@@ -40,8 +40,7 @@ declared native mapping, prompt and public observation policy.
 
 This is a reusable decision boundary. Exact paper reproduction also needs the
 selected benchmark recipe, fixed task membership, model, episode limits,
-native scorer and complete workflow ledger. This release does not launch or
-re-evaluate those experiments. The callback example uses synthetic inputs:
+native scorer and complete workflow ledger. To exercise the callback with synthetic inputs, run:
 
 ```bash
 python examples/harness_boundaries.py
@@ -62,6 +61,5 @@ have separate implementations and deployment requirements:
 | SoL-Pi | [`gaia2_solpi.py`](../../harnessmm/harness/gaia2_solpi.py) and [`terminal_solpi.py`](../../scripts/terminal_solpi.py) |
 
 These links identify released research code; benchmark-specific visual
-adapters and upstream optimizers still need their own configurations. RHO,
-HarnessPro and other unlisted visual recipes are not supplied by this package.
+adapters and upstream optimizers still need their own configurations. Obtain the RHO and HarnessPro visual recipes separately.
 See [reproduction](../../docs/REPRODUCIBILITY.md) for deployment boundaries.

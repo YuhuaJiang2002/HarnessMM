@@ -3,8 +3,7 @@
 These JavaScript modules are copied byte-for-byte from the frozen HumanEval
 DeepSeek Harness test configuration. `SOURCE_MANIFEST.json` records their
 archive member names, SHA-256 digests and the complete source archive digest.
-They retain the repository's Apache-2.0 license. They contain no provider
-credentials, task answers, model weights or paid request logs.
+They retain the repository's Apache-2.0 license.
 
 `structured_bank_author.mjs` exports `structuredBankAuthor(ctx, record, policy)`
 and `compactPublicHistory(messages)`. The former wraps a metered SDK
@@ -15,16 +14,13 @@ authorship uses a further paid native fallback. Subsequent boundaries use
 public-history compaction. The archived bridge also configures paid
 public-receipt finalization.
 
-One isolated SDK worker process owns one task. The module's process-scoped
-author-attempt flag deliberately reflects that historical lifecycle. Do not
-share it across unrelated sessions or silently use it as a stock-dsh plugin.
-The workflow has fixed Python commands and is not a general Node.js authoring
-policy. The historical contract includes MBPP wording about public assertions;
-the HumanEval task instruction limits checks to public docstring examples.
-Protected verifier tests must remain outside the actor's context.
+One isolated SDK worker process owns one task. The author-attempt flag lasts for that worker process. Start a fresh worker
+for each task. The SDK adapter runs fixed Python commands. Its historical
+contract mentions MBPP public assertions. For HumanEval, the actor gets the
+public docstring examples and the native evaluator holds the verifier tests.
 
-These historical modules are separate from current runtime repairs. Their
-synthetic tests check schema flow, root/successor projection, abstention costs
-and source digests; they do not execute a benchmark or establish a new saving.
+The synthetic tests check schema flow, root and successor projection, metered
+fallback on abstention, and the digests of the archived sources.
+
 See [the full configuration notes](../../docs/DEEPSEEK_REPRODUCTION.md) for
 native-runtime prerequisites, model identity, policy versions and result scope.

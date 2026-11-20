@@ -4,9 +4,7 @@
 
 DeepSeek Harness 桌面版插件：在原生工具面上做「带守卫的决策复用」。
 
-本插件把 [`integrations/deepseek_harness/`](../integrations/deepseek_harness/) 里的
-CHISEL / SAR 协议搬进标准的 DSH 桌面 profile。它只站在「模型 → 工具」的边界上：既不拥有
-benchmark 循环，也不替换原生执行器，更不给结果打分。
+插件将 [DeepSeek Harness 集成](../../integrations/deepseek_harness/) 中的 CHISEL / SAR 协议接入标准 DSH 桌面配置。插件选择下一次工具调用，宿主负责原生执行和评测。
 
 ## 它做什么
 
@@ -31,23 +29,13 @@ thinking 块，所以这个注记会被接受，并在之后的历史里原样�
 `tools/execute` 会把每个 `chisel_*` 调用重新对照作者声明的字面动作，所以被篡改的参数
 即使出现在流里，也到不了原生执行器。
 
-## 为什么这不等同论文配置
+## 桌面端如何接入
 
-参考实现对接的是 SDK 的 *terminal bridge*。桌面 profile 没有这种桥：它的 shell 面就是
-原生的 `bash` / `pwsh` 工具，可靠的控制点只有 `llm/stream`、`tools/execute`、
-`tools/result` 和系统提示。因此本插件复现的是协议，不是 benchmark 装置：
+桌面插件通过系统提示、`llm/stream`、`tools/execute` 和 `tools/result` 接入原生的 `bash` 和 `pwsh`。[HumanEval 实验配置](../../docs/DEEPSEEK_REPRODUCTION.md) 使用 SDK 的 terminal bridge。
 
-- 守卫只依赖 receipt（`ok`、`exit_code`、`stdout_contains`、`stdout_equals`、
-  `stderr_empty`、`json_equals`），从不做语义判断；
-- 准入阈值（论文默认 `net > 1024` token）可由 `policy.admission_threshold_tokens`
-  配置，token 数量来自宿主自己的用量上报；
-- 选择器调用被限制在 `FAST_CALL_UPPER_TOKENS`（512）token，而不是按作者自己给出的
-  重决策估算，因此一个悲观的 `expected_local_cost` 不会把所有步骤都否掉；
-- 收据 schema 是 `harnessmm-desktop-certificate/v1`，只声称桌面循环内旁路了一次回调 ——
-  不做 episode 级的反事实声明。
-
-不要把这些收据拿去和历史 HumanEval 的 run identity 比较。仓库自己的 README 正是就
-这一点做了警告。
+- 守卫检查工具收据中的字段，包括 `ok`、`exit_code`、`stdout_contains`、`stdout_equals`、`stderr_empty` 和 `json_equals`。
+- 多个候选需要选择时，插件根据宿主上报的 token 用量和 `policy.admission_threshold_tokens` 判断是否执行，默认要求预计净节省超过 1024 token。选择器的成本估算上限由 `FAST_CALL_UPPER_TOKENS` 指定（512 token），独立于模型给出的 `expected_local_cost`。
+- 每条 `harnessmm-desktop-certificate/v1` 收据记录桌面会话中被替换的一次回调。
 
 ## 配置
 
@@ -84,9 +72,8 @@ thinking 块，所以这个注记会被接受，并在之后的历史里原样�
 真的带上推理控制。把 `selector.enabled` 设为 `false` 则完全不花这次调用：多候选步骤
 直接交回慢模型，收据里记 `selector-abstain`，`reason: "selector-disabled"`。
 
-桌面宿主不导出 `DSH_HOME`，所以 `receiptsFile` 留空时会落到
-`~/.dsh/harnessmm/receipts.jsonl`，而不是静默关掉收据。写不进去的 `receiptsFile`
-也绝不会弄坏一轮对话：持久化按设计是尽力而为。
+桌面宿主不导出 `DSH_HOME`。`receiptsFile` 留空时，收据默认写入
+`~/.dsh/harnessmm/receipts.jsonl`。写入失败时，当前对话仍会继续。
 
 ### 准入阈值
 
@@ -131,12 +118,9 @@ thinking 块，所以这个注记会被接受，并在之后的历史里原样�
   程序输出本身。
 
 那次原生调用走的是普通的 `pwsh` 工具，它的输出回到了循环里；下一轮投影得到
-`no-candidates:position=A`，控制权交还慢模型。这正是设计中的形状：替换执行、动作库耗尽、
-判断权归还。
+`no-candidates:position=A`，控制权交还慢模型。
 
-### 真正跑过的行为
-
-下表每一行都在这个桌面宿主里观察到过，而不只是在 fake-host 单测里：
+### 桌面会话记录
 
 | 行为 | 证据 |
 | --- | --- |
@@ -196,7 +180,7 @@ patch 层是整块替换一行的 `config`，不做深合并。要改一个字�
 
 收据里的 `stdout` 与 `stderr` 在守卫看到之前会先规范化：CRLF 变 LF、去掉一个尾部换行；
 渲染器自带的状态尾巴（`[exit code: N]`、`[output truncated; …]`）在退出码解读完成之后
-被移除。因此守卫比较的是程序输出，而不是 shell 的渲染结果。
+被移除。守卫比较规范化后的程序输出。
 
 ## 测试
 

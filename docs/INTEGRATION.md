@@ -1,7 +1,7 @@
 # Native harness integration
 
-The controller sits at a model-to-tool boundary. It does not supply an
-independent benchmark loop or replace the native scorer.
+The controller selects actions at the model-to-tool boundary. The host runs
+the benchmark loop and scores the result with its native evaluator.
 
 The [integration index](../integrations/README.md) lists the three harness
 entry points. Import `VisualBaseline` from `integrations.baseline_harness`
@@ -77,15 +77,13 @@ For prospective v10/11 shell integrations, call `structuredAuthorTool(tool)`
 **when the host registers the tool**, before constructing the provider request.
 It supports `terminal`, `bash` and `pwsh` object schemas, preserves required
 native fields (including `description`), and adds optional `chisel_plan`
-metadata. A stream listener does not change the schema already sent to the
-model. `structuredAuthorStream` removes authored metadata before native
+metadata. `structuredAuthorStream` removes authored metadata before native
 dispatch; absent supported shells take the ordinary slow path. Its audit
 records whether the actual registered schema contains the field.
 
 Use `planInstruction(policy, actualTools)` to bind shell examples and required
 argument names to the host catalog. The one-argument form retains the historical
-prompt. These library checks do not certify a stock-dsh plugin integration;
-see [the compatibility notes](DEEPSEEK_REPRODUCTION.md).
+prompt. See the [SDK and desktop integration notes](DEEPSEEK_REPRODUCTION.md).
 
 The historical `run_with_completion_recovery` handles reasoning-only empty
 finishes. For execution tasks, the optional
@@ -97,8 +95,7 @@ Do not inspect protected benchmark tests or answers in this check.
 
 The helper requests at most two additional native turns in the same session,
 respects native stops, and never executes plan text or invents tool calls.
-Charge every recovery call and keep the existing episode deadline. This helper
-requires explicit host wiring; installing the package does not enable it.
+Charge every recovery call and keep the existing episode deadline. Enable the helper in the host.
 
 ## Experimental boundaries
 
@@ -110,5 +107,4 @@ the same partition.
 
 Receipt guards establish local eligibility for a stored action. Native task
 quality and complete measured costs determine whether the integrated harness
-is beneficial. A certificate records a callback replacement, rather than an
-estimate of an entire counterfactual trajectory's token consumption.
+is beneficial. Each certificate identifies the callback that the native action replaced.

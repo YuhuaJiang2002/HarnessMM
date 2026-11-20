@@ -12,9 +12,7 @@ types and a receipt-bound continuation bank. The runner parses the bank using
 already-consumed action. Opaque current feedback defers with `UNKNOWN`.
 
 Expected: candidates `visible-a` and `visible-b`, then only `visible-b` after
-the first action is consumed. `expected.json` records these outputs. This case
-checks argument construction and candidate eligibility; it dispatches no GAIA2
-tools and does not measure benchmark success, fast-execution rate or savings.
+the first action is consumed. `expected.json` records these outputs. The fixture checks argument construction and candidate eligibility.
 
 Full evaluation needs the native GAIA2 environment and scorer, public tasks,
 frozen disjoint partitions and complete metering. Start with

@@ -16,8 +16,7 @@ packets.
 
 Expected: three native dispatcher calls, two selector calls, one reused action
 and an abstention. `expected.json` fixes the exact actions and callback order.
-Selector usage in this fixture is synthetic test data; it is not a token-saving
-measurement. No filesystem tools or native Codex process are launched.
+The in-memory dispatcher and selector use synthetic receipts and usage counts.
 
 For deployment, replace the callbacks with the original native dispatcher and
 metered selector. Retain the slow actor, tools, task constraints and native

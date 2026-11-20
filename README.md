@@ -16,11 +16,14 @@
 
 [Run the illustrated example](examples/guarded_reuse.mjs) · [See the coding results](#codex-and-deepseek-coding-harnesses) · [Try the pi extension](pi-harnessmm/)
 
-HarnessMM reduces harness token consumption through guarded decision reuse.
-Its visual extension, **HarnessMM-V**, achieves **higher success and lower
-execution cost than HarnessPro, SoL-Pi, Codex Harness and DeepSeek Harness**
-on the same 96 MiniWoB++ test tasks. The coding results below also show lower
-cost with preserved or improved success for Codex and DeepSeek Harness.
+HarnessMM lets an agent plan several tool calls in one model turn. After each
+call, the harness reads the tool result and runs the next planned action when
+its conditions hold. On HumanEval, Codex with HarnessMM used 29.54% fewer
+execution tokens at the same 90.82% success rate.
+
+HarnessMM-V extends this approach to visual tasks. On 96 MiniWoB++ test tasks,
+it solved 60 tasks and used fewer execution tokens than each of the four
+harnesses below.
 
 ## HarnessPro, SoL-Pi, Codex and DeepSeek comparisons
 
@@ -34,17 +37,13 @@ cost with preserved or improved success for Codex and DeepSeek Harness.
 | Codex Harness | 59.38 | 44.77 | **88.67** |
 | DeepSeek Harness | 61.46 | 20.03 | **74.69** |
 
-These additional visual-extension experiments use Qwen3.5-9B, the same full
-test population, native screenshots, tools and scorer, a 15-action limit and
-a 180-second episode allowance. All methods receive the objective of reducing
-complete-task input-plus-output tokens while preserving performance. Costs
-include every test execution call, including authorship, control, fallback,
-compaction and unsuccessful executions; offline learning and training/validation
-verification are separate. HarnessPro uses a configured visual reproduction of
-its Medium tier. See the [protocol and full comparison](docs/VISUAL_COMPARISON.md)
-for all ten methods, runtime details and cost definitions. These are
-HarnessMM-V results, separate from the HarnessMM coding experiments in the
-linked paper.
+Each harness uses Qwen3.5-9B, native screenshots, tools and scoring, with up to
+15 actions and 180 seconds per episode. All methods receive the same objective:
+reduce total input and output tokens per task while preserving performance.
+The comparison counts every test call, including authorship, control, fallback,
+compaction and unsuccessful executions. Offline learning, training checks and
+validation are accounted for separately. HarnessPro uses a visual reproduction
+of its Medium tier. The [full comparison](docs/VISUAL_COMPARISON.md) covers ten methods.
 
 ## How it works
 
@@ -83,24 +82,15 @@ See the [code map](docs/CODE_MAP.md) for the paper-to-code correspondence.
 
 ## Codex and DeepSeek coding harnesses
 
-For the HumanEval result below, **DeepSeek Harness is the host harness;
-the actor is Qwen3.5-4B**, served through a self-hosted endpoint. The selected
-configuration uses a structured `author_bank` adapter, guarded execution,
-public-history compaction and paid finalization. It is different from enabling
-the community plugin on stock dsh with DeepSeek V4.1 Flash/OpenRouter.
-See the [exact configuration and integration notes](docs/DEEPSEEK_REPRODUCTION.md)
-and the [archived HumanEval authoring adapter](reproduction/humaneval_v23/README.md).
+On HumanEval, HarnessMM cut execution tokens by **29.54% with Codex** at the same
+success rate and by **87.93% with DeepSeek Harness** as success rose from 71.43%
+to 85.71%. The DeepSeek Harness run used a self-hosted Qwen3.5-4B actor, a
+structured `author_bank` adapter, guarded execution, public-history compaction
+and metered finalization. The [SDK configuration](docs/DEEPSEEK_REPRODUCTION.md)
+and [archived authoring adapter](reproduction/humaneval_v23/README.md) describe that run.
 
-On HumanEval, HarnessMM uses **29.54% fewer tokens with Codex** at the same
-90.82% success, and **87.93% fewer tokens with DeepSeek Harness** while raising
-success from 71.43% to 85.71%. On MBPP-sanitized, it uses **80.35% fewer tokens
-with DeepSeek Harness (Qwen)** while raising success from 90.27% to 91.83%.
-
-HarnessMM reduces token consumption while preserving or improving coding
-success in these published comparisons. Values show the original harness →
-HarnessMM on the same test tasks. Each pair shares its backbone, tools and
-scorer. All arms receive prompts to reduce complete-task input-plus-output
-tokens while preserving performance.
+Each arrow runs from the original harness to HarnessMM. Both use the same test
+tasks, backbone, tools, scorer and token-efficiency objective.
 
 ![Published benchmark comparisons: HarnessMM reduces tokens per task on HumanEval and MBPP-sanitized while preserving or improving success. Exact values and task counts are in the table below.](docs/assets/readme/benchmark-results.svg)
 
@@ -156,12 +146,9 @@ python -m pytest
 node --test tests/*.test.mjs
 ```
 
-Both examples run locally with synthetic inputs and make no model calls.
-The guarded-reuse example executes three receipt-supported actions through an
-in-memory native dispatcher and prints their substitution certificates. It
-also demonstrates a return to the slow actor after the graph is exhausted.
-These examples demonstrate controller behavior; they are not benchmark scores
-or token-saving measurements.
+Both examples use local fixtures. The guarded-reuse example runs three actions
+through an in-memory dispatcher, prints a certificate for each substitution
+and returns control to the model when the plan ends.
 
 ### Try it in pi
 
@@ -232,21 +219,15 @@ AIME and GAIA2, with method-specific companion configurations. Their original
 module names and protocol constants are retained. See
 [reproduction and deployment](docs/REPRODUCIBILITY.md) before using them.
 
-Benchmark execution requires the corresponding upstream runtime, datasets,
-model access and a new experiment configuration. Several runners retain
-deployment admission checks and source seals. Machine-specific paths and
-worker hostnames have been replaced by explicit placeholders. The reference
-configs describe historical protocols; they are not ready-to-launch jobs.
-Datasets, model weights, provider credentials and paid execution records are
-managed separately.
+To run a benchmark, supply its upstream runtime, dataset and model endpoint.
+Use the reference configs to choose the protocol, replace the deployment
+placeholders and freeze the new configuration before launching the runner.
 
-Every comparison arm should receive the shared objective of reducing
-complete-task input-plus-output token use while preserving task performance.
-Costs include authorship, optimization, selection, control, retries, fallbacks
-and unsuccessful executions within the declared scope. Report
-`Tokens/task (k)` over the complete declared execution population, with two
-decimal places. Execution savings and all-in RSI savings require separate
-accounting; the former alone does not establish the latter.
+Give every arm the same objective of reducing complete-task input and output
+tokens while preserving performance. Report `Tokens/task (k)` over all
+executions to two decimal places. Count authorship, control, retries, fallbacks
+and unsuccessful executions. For total RSI cost, add offline optimization
+and selection to execution cost.
 
 ## Citation
 

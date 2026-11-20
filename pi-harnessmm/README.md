@@ -100,8 +100,7 @@ The certificate carries the paper's six fields: `graph_hash` (the authored graph
 `predecessor_receipt`, `exact_arguments`, `native_receipt_hash` and `bypassed_slow_callback_id`, which names the slow
 callback that did **not** happen (`<authoring-call>:omitted:<n>`), plus the audited counts
 `slow_requests_at_boundary` / `slow_sequence_before` / `slow_sequence_after`. It binds the exact arguments, the exact
-receipt and the absence of an intervening slow request; it never claims anything about task correctness or
-counterfactual tokens. `/harnessmm` reports the ledger for the session:
+receipt and the absence of an intervening slow request. `/harnessmm` reports the ledger for the session:
 banks authored, banks removed from the slow context, certified substitutions, deferrals and selector abstentions.
 
 ## Fidelity to the reference implementation
@@ -124,25 +123,22 @@ npm test                                   # 30 contract tests
 node scripts/parity-check.mjs ../HarnessMM  # differential parity, 0 disagreements
 ```
 
-## Deliberate differences
+## How the pi adapter runs a plan
 
-pi is not a DSH/Chat-completions harness, so three things cannot be ported 1:1:
+1. The controller runs inside the root `terminal` call. It dispatches each
+   admitted successor through `ctx.executeTool`, where pi runs its permission
+   checks and tool hooks. The root call returns the receipts together, and pi
+   records each successor as a nested call.
+2. The selector asks the session model for one of the offered labels. It
+   accepts a valid label and abstains on any other response. The reference
+   selector also uses a token log probability, which pi does not expose.
+3. Policy versions 8 and 10 read offline RSI training results through
+   `HARNESSMM_TRAIN_PRIORS`. The upstream training pipeline is under
+   `phiagent/harness/industrial_*`.
 
-1. **No stream interception.** The reference replaces the next model stream with a compiled tool call. pi has no
-   hook that emits an assistant tool call, so the controller runs *inside* the root `terminal` call: the root and every
-   admitted successor execute there and their receipts are returned together. Same decisions, same certificates, same
-   economics (N dependent steps per model turn), one fewer transcript entry per substitution. Each substitute is
-   dispatched back through the registered `terminal` tool (`ctx.executeTool`), so pi's `tool_call`/`tool_result` hooks
-   and every other extension's permission checks see it, and pi records it as a nested call on the result.
-2. **No logprobs.** The reference selector requires a one-token reply with a native logprob. `pi` exposes no
-   logprobs, so the selector asks the session model for one label, accepts only a label it offered, and treats
-   everything else as abstention.
-3. **No RSI loop.** Recursive self-improvement is an offline training pipeline over datasets and graders
-   (`phiagent/harness/industrial_*`), not a runtime mechanism. This package implements the runtime adapter only;
-   policy versions 8 and 10 consume its output through `HARNESSMM_TRAIN_PRIORS`.
-
-Also not ported: the v5 `PersistentBank` (bank retention across turns), streaming chunk emission, and the
-DeepSeek/Codex provider plumbing. `receiptGuard` is ported for v5 condition strings.
+Banks last for the root call. The adapter supports v5 condition strings through
+`receiptGuard`. Cross-turn v5 bank retention, streaming chunks and the
+DeepSeek/Codex provider integrations are available in the reference implementation.
 
 ## Safety
 

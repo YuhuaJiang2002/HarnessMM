@@ -5,8 +5,7 @@ python reproduction/mbpp_sanitized/run.py
 ```
 
 Requires Python 3.10–3.14 and only the standard library. This command recomputes
-published metrics from archived integer counters. It makes no model calls and
-does not rerun task generation or the native verifier.
+published metrics from archived integer counters. The calculation runs offline.
 
 `aggregate.json` retains the complete three-arm aggregate for the selected
 Qwen3.5-4B / DeepSeek SDK v66 comparison, including the native arm and CoT-only
@@ -33,12 +32,10 @@ Token saving (%) = 100 × (1 - arm_tokens / native_tokens)
 
 `expected.json` fixes these outputs. Execution costs include authoring,
 selection, finalization, retries, fallback and unsuccessful executions.
-Offline optimization and validation are separate. The preserved campaign
-flags describe the original additional acceptance goals; this recomputation
-makes no all-in RSI or mechanism-isolation claim.
+Offline optimization and validation are separate. The campaign flags record the original acceptance criteria. Per-request
+records and verifier inputs are held separately.
 
-The public release supplies aggregate evidence, not per-request logs, task
-answers or verifier tests. A full rerun needs the upstream MBPP-sanitized data,
+A full rerun needs the upstream MBPP-sanitized data,
 isolated evaluator, pinned SDK and actor, frozen 85/85/257 custom partition,
 and complete provider metering under a new run identity. See
 [deployment](../../docs/REPRODUCIBILITY.md) and the

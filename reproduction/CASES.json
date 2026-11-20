@@ -29,7 +29,7 @@
   "files": [
     {
       "path": "reproduction/codex_native_bank/README.md",
-      "sha256": "53f3e328307d75527636d4947013ed109ae73933e8271208b54ace38f9db10b8"
+      "sha256": "058623c272a316b7f6c886f6d5a26104957e4d5eb72e310cc0829f45605b1788"
     },
     {
       "path": "reproduction/codex_native_bank/expected.json",
@@ -45,7 +45,7 @@
     },
     {
       "path": "reproduction/gaia2_continuation/README.md",
-      "sha256": "b3ed5ae9acd49bb1a7a5126d2a274998653c1eb6a30bd9cf97fa796c6e03e074"
+      "sha256": "62101251e7434d6e8a74ee61b1aa934f83918b31b063407b02ada92b155702a7"
     },
     {
       "path": "reproduction/gaia2_continuation/expected.json",
@@ -61,7 +61,7 @@
     },
     {
       "path": "reproduction/mbpp_sanitized/README.md",
-      "sha256": "87056d021d912e874d39a9ec8eadfc35c5dd0d20ccd883505e879d32a9d6c7bd"
+      "sha256": "f7e416f43e01dfeef1856d697362b6b05514b274aabc5a51f6df4ece5f3fb677"
     },
     {
       "path": "reproduction/mbpp_sanitized/aggregate.json",
@@ -77,7 +77,7 @@
     },
     {
       "path": "reproduction/visual_baseline/README.md",
-      "sha256": "849917a7177fa0c2fdc1d3241fb3c75c1d206877fda2cb257c03d61b29e24fa7"
+      "sha256": "1ea0bf2909fe7a909bbe1e788bb5f3e838c178c8eaec158770aaf996c5b60a73"
     },
     {
       "path": "reproduction/visual_baseline/expected.json",

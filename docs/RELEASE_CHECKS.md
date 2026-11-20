@@ -13,8 +13,6 @@
 - The source distribution and wheel build successfully. A clean environment
   installs the wheel and imports both namespaces outside the checkout, including
   the native Node bank contract. All local examples and documentation links pass.
-- This release changes the public Python namespace. Native benchmark scores
-  were not re-evaluated, and new deployments require a new source freeze.
 
 ## 2026-11-03 Codex and baseline entry points
 
@@ -28,8 +26,7 @@
 - The source distribution and wheel build successfully. Both integration
   packages and their documentation are present in the wheel. Imports and the
   Node bank contract work outside the checkout with Python site packages disabled.
-- The synthetic example and README links pass. These are software checks;
-  no benchmark evaluations or provider calls were made.
+- The synthetic example and README links pass.
 
 ## 2026-11-03 integration and reproduction update
 
@@ -41,8 +38,7 @@
   Synthetic checks exercise the real `author_bank` schema and preserve the
   additional paid fallback usage on abstention.
 - The source distribution includes the archived modules and configuration
-  notes. Native benchmark scores and stock-dsh rc.5 compatibility were not
-  re-evaluated by these software checks.
+  notes.
 
 ## Original extraction checks
 
@@ -61,8 +57,7 @@ The 2026-10-26 source extraction passed these local checks on macOS with Python
 
 GitHub Actions runs the test suite and build on Linux with Python 3.10, 3.12
 and 3.14 and Node.js 22. Its current status is available in the repository's
-Actions tab. These checks cover the released software contracts; measured
-benchmark quality and cost require the separately configured native runs.
+Actions tab.
 
 Verify extracted source hashes from the checkout with:
 

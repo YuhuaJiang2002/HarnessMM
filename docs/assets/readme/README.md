@@ -16,8 +16,7 @@ background and use the same navy, slate and teal palette.
 
 `results.json` preserves the published rounded values already in the repository
 README, with source sections and cost scope. The main comparison and ablation
-are separate experiments. No new experiments or uncertainty estimates were
-introduced; all quantitative bar axes begin at zero. The original data tables
+are separate experiments. Quantitative bar axes begin at zero. The original data tables
 and scope statements remain next to the images in the main README.
 
 `visual-comparison.json` separately records all ten complete MiniWoB++ visual
@@ -30,7 +29,7 @@ visual results are separate from the HarnessMM coding paper data in `results.jso
 
 `overview` depicts EDG authorship, GDR receipt checking, CCS native execution,
 the receipt loop, return to the slow actor, and the separate train/validation/test
-lifecycle. Arrows describe control flow and do not encode measured rates.
+lifecycle. Arrows show control flow.
 
 ## Visualization workflow reference
 

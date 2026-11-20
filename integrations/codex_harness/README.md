@@ -48,12 +48,10 @@ and is distinct from the original harness without bank instructions.
 These runners require the upstream CLI, benchmark runtime, a metered provider
 and a newly frozen deployment configuration. Their remote admission checks
 remain active. The historical terminal configuration pins DeepSeek Flash;
-the visual comparison uses a separately configured Qwen actor. Importing this
-package does not change either model or enable a plugin in the desktop app.
+the visual comparison uses a separately configured Qwen actor.
 
-The visual CLI/MCP deployment and benchmark-specific screenshot geometry need
-their original experiment recipe. The exports here do not by themselves
-reproduce the MiniWoB++ or VisualWebArena scores. See
+For MiniWoB++ or VisualWebArena, configure the CLI/MCP deployment and use the
+screenshot geometry from the benchmark recipe. See
 [visual settings](../../docs/VISUAL_COMPARISON.md),
 [integration](../../docs/INTEGRATION.md) and
 [reproduction](../../docs/REPRODUCIBILITY.md).

@@ -7,8 +7,8 @@ native tool surface.
 
 The plugin brings the CHISEL / SAR protocol from
 [`integrations/deepseek_harness/`](../../integrations/deepseek_harness/) into a
-stock DSH desktop profile. It sits on the model-to-tool boundary: it never owns a
-benchmark loop, never replaces the native executor and never scores a result.
+stock DSH desktop profile. The plugin selects the next tool call. The host
+runs that call through its native executor and owns evaluation.
 
 ## What it does
 
@@ -42,27 +42,21 @@ quotes a plan tag, so it cannot be mistaken for an authored bank.
 action, so a mutated argument cannot reach the native executor even if it appears
 in the stream.
 
-## Why this is not the paper configuration
+## Desktop integration
 
-The reference implementation talks to an SDK *terminal bridge*. A desktop profile
-has no such bridge: its shell surface is the stock `bash` / `pwsh` tools, and the
-only durable control points are `llm/stream`, `tools/execute`, `tools/result` and
-the system prompt. This plugin therefore reproduces the protocol, not the
-benchmark harness:
+The desktop plugin uses the native `bash` and `pwsh` tools. It hooks into the
+system prompt, `llm/stream`, `tools/execute` and `tools/result`. The
+[HumanEval reference configuration](../../docs/DEEPSEEK_REPRODUCTION.md) uses
+the SDK terminal bridge.
 
-- guards are receipt-local (`ok`, `exit_code`, `stdout_contains`,
-  `stdout_equals`, `stderr_empty`, `json_equals`), never semantic;
-- the admission threshold (paper default `net > 1024` tokens) is configurable as
-  `policy.admission_threshold_tokens`, and the token count comes from the host's
-  own usage reporting;
-- a selector call is capped at `FAST_CALL_UPPER_TOKENS` (512) tokens rather than
-  at the author's own re-decision estimate, so a pessimistic `expected_local_cost`
-  cannot veto every step;
-- receipts are `harnessmm-desktop-certificate/v1` and claim only one bypassed
-  callback inside the desktop loop — no episode-level counterfactual.
-
-Do not compare these receipts against historical HumanEval run identities. The
-repository's own README warns about exactly that.
+- Guards read fields in the tool receipt: `ok`, `exit_code`, `stdout_contains`,
+  `stdout_equals`, `stderr_empty` and `json_equals`.
+- For a selection, the plugin uses the host's reported token usage and the
+  `policy.admission_threshold_tokens` setting (default: net saving > 1024).
+  It bounds selector cost with `FAST_CALL_UPPER_TOKENS` (512 tokens),
+  independently of the author's `expected_local_cost` estimate.
+- Each `harnessmm-desktop-certificate/v1` receipt identifies one bypassed
+  callback in the desktop session.
 
 ## Configuration
 
@@ -161,13 +155,9 @@ neighbouring live turns bound the behaviour from both sides:
 
 The native call ran through the ordinary `pwsh` tool and its output came back to
 the loop; the next turn then projected to `no-candidates:position=A` and handed
-control back to the slow actor. That is the intended shape: substitution executes,
-the graph exhausts, judgement returns.
+control back to the slow actor.
 
-### What has actually been exercised
-
-Every row below was observed in this desktop host, not only in the fake-host
-tests:
+### Desktop session results
 
 | behaviour | evidence |
 | --- | --- |

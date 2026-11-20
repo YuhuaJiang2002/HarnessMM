@@ -14,8 +14,7 @@ screenshot boundary makes a fresh actor call.
 
 Expected: two clicks, three actor callback invocations including one parsing
 fallback, and zero substitutions. `expected.json` fixes the callback purposes
-and IDs. All responses are synthetic; no browser, vision model, benchmark
-scorer or measured token ledger runs here.
+and IDs. The fixture supplies all actor responses.
 
 For a real visual episode, the host supplies current PNG bytes, original image
 dimensions, metered actor access, native execution, limits and scorer. Charge
