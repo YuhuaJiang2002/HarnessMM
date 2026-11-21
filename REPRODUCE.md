@@ -15,6 +15,11 @@ evaluation and metering evidence, which is outside this release.
 | HumanEval, DeepSeek Harness (98 tasks) | 71.43% → 85.71% success, 96.28 → 11.62 Tokens/task (k), 87.93% saving | External | [HumanEval reference setup](docs/DEEPSEEK_REPRODUCTION.md) and [DeepSeek SDK runner](integrations/deepseek_harness/runner.py) |
 | MBPP-sanitized, DeepSeek Harness (257 tasks) | 90.27% → 91.83% success, 53.98 → 10.61 Tokens/task (k), 80.35% saving | Local | `python reproduction/mbpp_sanitized/run.py` recomputes the archived aggregates |
 
+The three comparisons use Qwen3.5-4B and report test execution costs as in
+Figure 5(b–c) of the November 20, 2026 HarnessMM-V manuscript. The separate
+MBPP-sanitized ablation follows Figure 6 and Table 30. Its four arms have
+their own counts and source records in [results.json](docs/assets/readme/results.json).
+
 The HumanEval links document the configuration or point to research code.
 A fresh evaluation requires the native runtime, model access, frozen task
 partition, scorer and complete cost accounting. The [research-runner

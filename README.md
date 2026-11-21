@@ -90,10 +90,11 @@ structured `author_bank` adapter, guarded execution, public-history compaction
 and metered finalization. The [SDK configuration](docs/DEEPSEEK_REPRODUCTION.md)
 and [archived authoring adapter](reproduction/humaneval_v23/README.md) describe that run.
 
-Each arrow runs from the original harness to HarnessMM. Both use the same test
-tasks, backbone, tools, scorer and token-efficiency objective.
+The three comparisons below use Qwen3.5-4B. Each arrow runs from the original
+harness to its HarnessMM integration on the same test tasks, with the same
+tools, scorer and token-efficiency objective.
 
-![Published benchmark comparisons: HarnessMM reduces tokens per task on HumanEval and MBPP-sanitized while preserving or improving success. Exact values and task counts are in the table below.](docs/assets/readme/benchmark-results.svg)
+![Three Qwen3.5-4B comparisons on HumanEval and MBPP-sanitized. With HarnessMM, Codex preserves HumanEval success and DeepSeek Harness improves success on both benchmarks. The table gives the test execution costs.](docs/assets/readme/benchmark-results.svg)
 
 | Benchmark | Tasks | Harness | Success (%) | Tokens/task (k) | Token saving (%) |
 | --- | ---: | --- | ---: | ---: | ---: |
@@ -106,27 +107,32 @@ finalization, retries, fallbacks and unsuccessful executions. Offline
 optimization and validation costs are reported separately. See
 [Section 5.3](https://arxiv.org/html/2610.32813v1#S5.SS3).
 
-The MBPP-sanitized row can be recomputed from released aggregates. Both HumanEval
-rows require external evaluation and metering evidence. See the [README result
-map](REPRODUCE.md#readme-benchmark-results) for commands and runner links.
+The MBPP-sanitized DeepSeek comparison can be recomputed from released
+aggregates. The HumanEval comparisons require external evaluation and
+metering evidence. See the [reproduction guide](REPRODUCE.md#readme-benchmark-results).
 
 ### Decision reuse and callback substitution
 
-A separate MBPP-sanitized ablation uses the same 257 test tasks and execution
-settings across conditions:
+A separate four-condition ablation uses DeepSeek Harness and Qwen3.5-4B on
+the same 257 MBPP-sanitized test tasks. Every condition retains graph
+authorship. The conditions vary graph execution, persistence or callback
+substitution.
 
-![MBPP-sanitized ablation: HarnessMM reaches 93.77% success with Tokens/task (k) of 13.17; removing GDR or CCS increases token consumption. Exact values are in the table below.](docs/assets/readme/ablation.svg)
+![Four MBPP-sanitized ablation conditions on 257 test tasks. Full HarnessMM-V uses 13.17 Tokens/task (k) at 93.77% success. Disabling EDG execution uses 16.19 Tokens/task (k) at 95.33% success. The table gives all four conditions and their certified substitutions.](docs/assets/readme/ablation.svg)
 
-| Configuration | Success (%) | Tokens/task (k) |
-| --- | ---: | ---: |
-| HarnessMM | 93.77 | 13.17 |
-| W/o GDR (single-use EDG) | 93.00 | 18.03 |
-| W/o CCS (callbacks retained) | 93.39 | 16.37 |
+| Configuration | Success (%) | Tokens/task (k) | Certified callback substitutions |
+| --- | ---: | ---: | ---: |
+| Full HarnessMM-V | 93.77 | 13.17 | 407 |
+| Single-use EDG | 93.00 | 18.03 | 212 |
+| Callback retained | 93.39 | 16.37 | 0 |
+| EDG execution disabled | 95.33 | 16.19 | 0 |
 
-HarnessMM uses **26.91% fewer tokens than single-use graphs** and **19.52%
-fewer than retained callbacks**, with 407 certified callback substitutions.
-See [Section 5.5](https://arxiv.org/html/2610.32813v1#S5.SS5) for the complete
-ablation and paired uncertainty.
+Full HarnessMM-V used 26.91% fewer tokens than single-use EDG, 19.52% fewer
+than the retained-callback condition and 18.62% fewer than the condition
+with EDG execution disabled. The paired cost interval excludes zero for
+the single-use comparison. Figure 6 and Table 30 of the November 20, 2026
+HarnessMM-V manuscript report all four conditions. See the
+[ablation data and source records](docs/assets/readme/results.json).
 
 ## Quick start
 

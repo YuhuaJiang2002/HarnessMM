@@ -127,23 +127,25 @@ def main_results():
 
 
 def ablation():
-    fig, axes = plt.subplots(1, 2, figsize=(14, 5.7))
+    rows = DATA["ablation"]
+    positions = list(range(len(rows) - 1, -1, -1))
+    fig, axes = plt.subplots(1, 2, figsize=(14, 6.2))
     fig.subplots_adjust(left=.18, right=.95, top=.68, bottom=.23, wspace=.22)
-    fig.text(.045, .90, "Decision reuse and callback substitution both contribute.", fontsize=22, weight="bold")
-    fig.text(.045, .81, "MBPP-sanitized · 257 test tasks · separate ablation comparison", fontsize=12, color=MUTED)
-    for y, row in zip([2, 1, 0], DATA["ablation"]):
-        color = TEAL if row["configuration"] == "HarnessMM" else BLUE
+    fig.text(.045, .90, "MBPP-sanitized execution ablation", fontsize=22, weight="bold")
+    fig.text(.045, .81, "DeepSeek Harness · Qwen3.5-4B · 257 test tasks per condition", fontsize=12, color=MUTED)
+    for y, row in zip(positions, rows):
+        color = TEAL if row["configuration"] == "Full HarnessMM-V" else BLUE
         for ax, field in zip(axes, ["tokens", "success"]):
             value = row[field]
             ax.barh(y, value, height=.50, color=color)
             ax.text(value+(.3 if field == "tokens" else 1.5), y, f"{value:.2f}",
                     va="center", fontsize=11, color=color, weight="bold")
-    axes[0].set_yticks([2, 1, 0], [r["configuration"] for r in DATA["ablation"]])
+    axes[0].set_yticks(positions, [row["configuration"] for row in rows])
     axes[1].set_yticks([])
     style_axis(axes[0], 21, "Tokens/task (k)")
     style_axis(axes[1], 112, "Success (%)")
     axes[1].set_xticks([0, 25, 50, 75, 100])
-    fig.text(.18, .085, "GDR: Guarded Decision Reuse     ·     CCS: Certified Callback Substitution", fontsize=11, color=MUTED)
+    fig.text(.18, .085, "EDG: Executable Decision Graph", fontsize=11, color=MUTED)
     export(fig, "ablation")
 
 

@@ -1,15 +1,24 @@
 {
-  "source": "README.md, Main results and Decision reuse and callback substitution; arXiv:2610.32813, Sections 5.3 and 5.5",
+  "source": "November 20, 2026 HarnessMM-V manuscript, Figure 5(b–c) and Table 28 (selected coding comparisons), Figure 6 (bottom) and Table 30 (MBPP-sanitized ablation)",
+  "actor": "Qwen3.5-4B",
   "scope": "Complete-task actor input and output, including authorship, selectors, finalization, retries, fallbacks and unsuccessful executions. Offline optimization and validation are separate.",
-  "precision": "Published values rounded to two decimal places; savings use the published percentages, not ratios of rounded values.",
+  "precision": "Metrics are displayed to two decimals. Savings use exact execution totals.",
+  "source_records": {
+    "HumanEval": {"file": "humaneval_mechanism_attribution_20261007.json", "sha256": "88f6884fd8a5a8eabbeb84d63493a747cda5b5beb1150651bf69ca6ad29433fe"},
+    "MBPP-sanitized (harness comparison)": {"file": "figure3_qwen_mbpp_sdk_v66_test257.json", "sha256": "068d21257a4233f2d003332a86eff71912d7a430332608bc10935f34505a210e"},
+    "MBPP-sanitized (ablation)": {"file": "sar_edg_v5_TEST_GLOBAL_AUDIT_V5.json", "sha256": "3735808e9278674313c9cca46e5f1b6133fb27a16d37d2d7030df4f3b861527b"},
+    "MBPP-sanitized (paired ablation analysis)": {"file": "sar_edg_v5_TEST_PAIRED_ANALYSIS_V5.json", "sha256": "2ccfd1d654b3ca1a3bce32d10aa7222afbb8b0e479f46ebfc704b23927f2183f"}
+  },
   "main": [
     {"benchmark": "HumanEval", "harness": "Codex", "tasks": 98, "tokens": [66.72, 47.02], "success": [90.82, 90.82], "saving": 29.54},
     {"benchmark": "HumanEval", "harness": "DeepSeek Harness", "tasks": 98, "tokens": [96.28, 11.62], "success": [71.43, 85.71], "saving": 87.93},
     {"benchmark": "MBPP-sanitized", "harness": "DeepSeek Harness (Qwen)", "tasks": 257, "tokens": [53.98, 10.61], "success": [90.27, 91.83], "saving": 80.35}
   ],
+  "ablation_protocol": {"benchmark": "MBPP-sanitized", "harness": "DeepSeek Harness", "test_tasks_per_arm": 257},
   "ablation": [
-    {"configuration": "HarnessMM", "tokens": 13.17, "success": 93.77},
-    {"configuration": "W/o GDR", "tokens": 18.03, "success": 93.00},
-    {"configuration": "W/o CCS", "tokens": 16.37, "success": 93.39}
+    {"configuration": "Full HarnessMM-V", "success": 93.77, "tokens": 13.17, "successes": 241, "execution_tokens": 3385856, "certified_substitutions": 407},
+    {"configuration": "Single-use EDG", "success": 93.00, "tokens": 18.03, "successes": 239, "execution_tokens": 4632751, "certified_substitutions": 212},
+    {"configuration": "Callback retained", "success": 93.39, "tokens": 16.37, "successes": 240, "execution_tokens": 4206999, "certified_substitutions": 0},
+    {"configuration": "EDG execution disabled", "success": 95.33, "tokens": 16.19, "successes": 245, "execution_tokens": 4160559, "certified_substitutions": 0}
   ]
 }

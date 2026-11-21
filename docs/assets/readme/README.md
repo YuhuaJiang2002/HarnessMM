@@ -15,10 +15,11 @@ Matplotlib 3.11.2 and Pillow 13.0.0 installed. Each figure is exported as SVG
 for the GitHub README and PNG for inspection. All figures have an opaque white
 background and use the same navy, slate and teal palette.
 
-`results.json` preserves the published rounded values already in the repository
-README, with source sections and cost scope. The main comparison and ablation
-are separate experiments. Quantitative bar axes begin at zero. The original data tables
-and scope statements remain next to the images in the main README.
+`results.json` records the three Qwen3.5-4B coding comparisons shown in the
+README and all four MBPP-sanitized ablation conditions. It identifies the
+November 20, 2026 manuscript panels and the underlying result records.
+The ablation entries include exact execution-token totals and certified
+callback counts. Quantitative bar axes begin at zero.
 
 `visual-comparison.json` separately records all ten complete MiniWoB++ visual
 extension arms, including exact integer task and token totals. The new
