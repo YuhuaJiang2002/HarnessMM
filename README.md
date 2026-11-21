@@ -22,20 +22,21 @@ its conditions hold. On HumanEval, Codex with HarnessMM used 29.54% fewer
 execution tokens at the same 90.82% success rate.
 
 HarnessMM-V extends this approach to visual tasks. On 96 MiniWoB++ test tasks,
-it solved 60 tasks and used fewer execution tokens than each of the four
-harnesses below.
+it solved 62 tasks at 3.98 Tokens/task (k), a 29.56% reduction in test execution
+tokens compared with the baseline harness.
 
 ## HarnessPro, SoL-Pi, Codex and DeepSeek comparisons
 
-![HarnessMM-V on 96 MiniWoB++ test tasks: 62.50% success with Tokens/task (k) of 5.07. Execution token savings are 49.42% versus HarnessPro, 87.92% versus SoL-Pi, 88.67% versus Codex Harness and 74.69% versus DeepSeek Harness; success is higher than all four.](docs/assets/readme/competitor-results.svg)
+![MiniWoB++ test execution on 96 tasks per method. HarnessMM-V reached 64.58% success at 3.98 Tokens/task (k). It used 60.31% fewer tokens than HarnessPro, 85.11% fewer than SoL-Pi, 89.93% fewer than Codex Harness and 80.14% fewer than DeepSeek Harness.](docs/assets/readme/competitor-results.svg)
 
 | Method | Success (%) | Tokens/task (k) | HarnessMM-V token saving (%) |
 | --- | ---: | ---: | ---: |
-| **HarnessMM-V (ours)** | **62.50** | **5.07** | — |
-| HarnessPro | 61.46 | 10.03 | **49.42** |
-| SoL-Pi | 60.42 | 41.99 | **87.92** |
-| Codex Harness | 59.38 | 44.77 | **88.67** |
-| DeepSeek Harness | 61.46 | 20.03 | **74.69** |
+| **HarnessMM-V (ours)** | **64.58** | **3.98** | — |
+| baseline harness | 60.42 | 5.65 | **29.56** |
+| HarnessPro | 61.46 | 10.03 | **60.31** |
+| SoL-Pi | 63.54 | 26.72 | **85.11** |
+| Codex Harness | 63.54 | 39.53 | **89.93** |
+| DeepSeek Harness | 61.46 | 20.03 | **80.14** |
 
 Each harness uses Qwen3.5-9B, native screenshots, tools and scoring, with up to
 15 actions and 180 seconds per episode. All methods receive the same objective:
@@ -43,7 +44,7 @@ reduce total input and output tokens per task while preserving performance.
 The comparison counts every test call, including authorship, control, fallback,
 compaction and unsuccessful executions. Offline learning, training checks and
 validation are accounted for separately. HarnessPro uses a visual reproduction
-of its Medium tier. The [full comparison](docs/VISUAL_COMPARISON.md) covers ten methods.
+of its Medium tier. See the [full ten-method comparison and results update](docs/VISUAL_COMPARISON.md).
 
 ## How it works
 

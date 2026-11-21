@@ -152,8 +152,8 @@ def competitor_results():
     rows = [rows_by_name[name] for name in VISUAL["figure_methods"]]
     ours = rows[0]
     fig = plt.figure(figsize=(14, 8.2))
-    fig.text(.045, .94, "Higher success. Fewer tokens.", fontsize=27, weight="bold")
-    fig.text(.045, .885, "HarnessMM-V visual extension · MiniWoB++ · 96 test tasks per method · Qwen3.5-9B",
+    fig.text(.045, .94, "MiniWoB++ test results", fontsize=27, weight="bold")
+    fig.text(.045, .885, "HarnessMM-V visual extension · 96 test tasks per method · Qwen3.5-9B",
              fontsize=12, color=MUTED)
     cards = fig.add_axes([0, 0, 1, 1], zorder=-1)
     cards.set(xlim=(0, 1), ylim=(0, 1)); cards.axis("off")
