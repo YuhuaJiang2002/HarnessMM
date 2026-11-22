@@ -25,6 +25,8 @@ HarnessMM-V extends this approach to visual tasks. On 96 MiniWoB++ test tasks,
 it solved 62 tasks at 3.98 Tokens/task (k), a 29.56% reduction in test execution
 tokens compared with the baseline harness.
 
+[HarnessMM-R](harnessMM-R/) generates embodied sorting demonstrations in MuJoCo. Run the offline expert on a CPU or let Qwen3.8-27B plan pick-and-place actions on an H200. Each episode includes RGB images, decisions and the underlying control trajectory.
+
 ## HarnessPro, SoL-Pi, Codex and DeepSeek comparisons
 
 ![MiniWoB++ test execution on 96 tasks per method. HarnessMM-V reached 64.58% success at 3.98 Tokens/task (k). It used 60.31% fewer tokens than HarnessPro, 85.11% fewer than SoL-Pi, 89.93% fewer than Codex Harness and 80.14% fewer than DeepSeek Harness.](docs/assets/readme/competitor-results.svg)

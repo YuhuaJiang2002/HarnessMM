@@ -1,0 +1,14 @@
+{
+  "id": "train_000000",
+  "scene_seed": [
+    17,
+    0,
+    0
+  ],
+  "split": "train",
+  "instruction": "Put the red block on the left pad. Put the yellow block on the right pad.",
+  "goals": {
+    "red": "left",
+    "yellow": "right"
+  }
+}

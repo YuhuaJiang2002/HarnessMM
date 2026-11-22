@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "seed": 17,
+  "population": [
+    {
+      "id": "train_000000",
+      "scene_seed": [
+        17,
+        0,
+        0
+      ],
+      "split": "train"
+    },
+    {
+      "id": "validation_000000",
+      "scene_seed": [
+        17,
+        1,
+        0
+      ],
+      "split": "validation"
+    },
+    {
+      "id": "test_000000",
+      "scene_seed": [
+        17,
+        2,
+        0
+      ],
+      "split": "test"
+    },
+    {
+      "id": "test_000001",
+      "scene_seed": [
+        17,
+        2,
+        1
+      ],
+      "split": "test"
+    },
+    {
+      "id": "test_000002",
+      "scene_seed": [
+        17,
+        2,
+        2
+      ],
+      "split": "test"
+    }
+  ],
+  "split": "train",
+  "policy": "expert",
+  "model": null,
+  "max_steps": 10,
+  "control_hz": 50,
+  "block_order": [
+    "red",
+    "blue",
+    "yellow"
+  ],
+  "sha256": {
+    "tabletop.xml": "1c06349c018419f45d27823f886e4cc5f8fe25f94166274236d96a8347f7a57d",
+    "tabletop.py": "6ef0f6de37d4c37b3d60f2ca21614b7db059b29fe39c45d9773d36b7eb2dc03c",
+    "generate.py": "e318a458ba872af52efd1b964cfb31e49c8da4c3732c225b7fabb998bc7b595b",
+    "policies.py": "2f4c7b2a729eab2016102e7d801a3d2f41c51d5238b2a015249996185941c19c"
+  },
+  "mujoco": "3.17.0",
+  "numpy": "1.26.4"
+}

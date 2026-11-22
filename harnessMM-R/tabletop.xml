@@ -1,0 +1,28 @@
+<mujoco model="HarnessMM-R tabletop sorter">
+  <option timestep="0.002" integrator="implicitfast"/>
+  <visual><global offwidth="320" offheight="240"/><headlight ambient=".5 .5 .5"/></visual>
+  <default><geom friction=".8 .01 .001" solref=".006 1"/></default>
+  <worldbody>
+    <light pos="-.12 -.2 .6" dir=".1 .2 -1" directional="true"/>
+    <camera name="overhead" pos="0 0 .58" fovy="43"/>
+    <geom name="table" type="box" pos="0 0 -.012" size=".32 .24 .012" rgba=".55 .52 .47 1"/>
+    <body name="left" pos="-.115 .093 .002">
+      <geom type="box" size=".043 .043 .002" rgba=".85 .85 .86 1"/>
+    </body>
+    <body name="right" pos=".115 .093 .002">
+      <geom type="box" size=".043 .043 .002" rgba=".22 .24 .27 1"/>
+    </body>
+    <body name="red"><freejoint/><geom type="box" size=".016 .016 .016" mass=".04" rgba=".88 .11 .08 1"/></body>
+    <body name="blue"><freejoint/><geom type="box" size=".016 .016 .016" mass=".04" rgba=".07 .36 .90 1"/></body>
+    <body name="yellow"><freejoint/><geom type="box" size=".016 .016 .016" mass=".04" rgba=".96 .68 .06 1"/></body>
+    <body name="tool" mocap="true" pos="0 -.15 .12">
+      <geom type="cylinder" size=".011 .009" rgba=".17 .19 .20 1"/>
+      <geom type="capsule" fromto="0 0 .009 0 -.025 .045" size=".006" rgba=".65 .68 .72 1"/>
+    </body>
+  </worldbody>
+  <equality>
+    <weld name="red" body1="tool" body2="red" relpose="0 0 -.025 1 0 0 0" active="false"/>
+    <weld name="blue" body1="tool" body2="blue" relpose="0 0 -.025 1 0 0 0" active="false"/>
+    <weld name="yellow" body1="tool" body2="yellow" relpose="0 0 -.025 1 0 0 0" active="false"/>
+  </equality>
+</mujoco>

@@ -1,0 +1,15 @@
+{
+  "id": "train_000000",
+  "scene_seed": [
+    17,
+    0,
+    0
+  ],
+  "split": "train",
+  "status": "success",
+  "success": true,
+  "steps": 4,
+  "decisions": 2,
+  "control_ticks": 232,
+  "final_rgb": "004.png"
+}
