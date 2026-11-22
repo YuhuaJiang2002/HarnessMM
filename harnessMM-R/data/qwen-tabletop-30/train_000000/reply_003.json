@@ -1,0 +1,36 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n  \"actions\": [\n    \"pick yellow\",\n    \"place right\"\n  ]\n}"
+      }
+    }
+  ],
+  "created": 1795330402,
+  "model": "Qwen3.8-27B-Q4_K_M",
+  "system_fingerprint": "b12534-ecafc6714",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 25,
+    "prompt_tokens": 610,
+    "total_tokens": 635,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "id": "chatcmpl-4pimJVaOA7p9hvQRgCM3e61FexSn7xK2",
+  "timings": {
+    "cache_n": 0,
+    "prompt_n": 610,
+    "prompt_ms": 824.201,
+    "prompt_per_token_ms": 1.3511491803278688,
+    "prompt_per_second": 740.1107254177076,
+    "predicted_n": 25,
+    "predicted_ms": 853.874,
+    "predicted_per_token_ms": 35.57808333333333,
+    "predicted_per_second": 28.10719145916142
+  }
+}

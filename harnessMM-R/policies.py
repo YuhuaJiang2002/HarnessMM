@@ -3,7 +3,6 @@ import base64
 import json
 from urllib.request import Request, build_opener, ProxyHandler
 
-from tabletop import ACTIONS
 
 
 def expert(goals, observation):
@@ -11,20 +10,20 @@ def expert(goals, observation):
     if held is not None:
         return [f"place {goals[held]}"]
     for block, pad in goals.items():
-        if observation["resting_on"][block] != pad:
+        if observation["resting_on"][block] != pad and pad not in observation["resting_on"].values():
             return [f"pick {block}", f"place {pad}"]
     return []
 
 
-def qwen(instruction, observation, image_path, previous_feedback, model, port):
+def qwen(instruction, observation, image_path, previous_feedback, model, port, actions):
     """Query a loopback llama.cpp vision server and retain its actual answer."""
     image = base64.b64encode(image_path.read_bytes()).decode("ascii")
     prompt = (f"{instruction} Choose one or two successive actions. Use pick to grasp a block "
               "and place to release the held block. Each pad fits one block. "
-              f"Actions: {list(ACTIONS)}. Current simulator observation: {json.dumps(observation)}. "
+              f"Actions: {actions}. Current simulator observation: {json.dumps(observation)}. "
               f"Last execution feedback: {previous_feedback}. Return JSON with the key actions.")
     schema = {"type": "object", "properties": {"actions": {"type": "array", "minItems": 1,
-              "maxItems": 2, "items": {"type": "string", "enum": list(ACTIONS)}}},
+              "maxItems": 2, "items": {"type": "string", "enum": actions}}},
               "required": ["actions"], "additionalProperties": False}
     body = {"model": model, "temperature": 0, "max_tokens": 96,
             "response_format": {"type": "json_schema", "json_schema": {"name": "plan", "schema": schema}},
@@ -37,11 +36,11 @@ def qwen(instruction, observation, image_path, previous_feedback, model, port):
     return reply
 
 
-def parse_plan(reply, model):
+def parse_plan(reply, model, vocabulary):
     if reply.get("model") != model:
         raise ValueError("served model alias differs from the requested model")
     actions = json.loads(reply["choices"][0]["message"]["content"])["actions"]
-    if not isinstance(actions, list) or not 1 <= len(actions) <= 2 or any(a not in ACTIONS for a in actions):
+    if not isinstance(actions, list) or not 1 <= len(actions) <= 2 or any(a not in vocabulary for a in actions):
         raise ValueError("expected one or two valid tabletop actions")
     return actions
 

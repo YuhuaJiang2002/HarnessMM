@@ -1,0 +1,16 @@
+{
+  "id": "train_000000",
+  "scene_seed": [
+    20261122,
+    0,
+    0
+  ],
+  "split": "train",
+  "scene": "sort-three",
+  "status": "success",
+  "success": true,
+  "steps": 6,
+  "decisions": 3,
+  "control_ticks": 348,
+  "final_rgb": "006.png"
+}

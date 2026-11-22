@@ -1,0 +1,31 @@
+{
+  "id": "train_000000",
+  "scene_seed": [
+    20261122,
+    0,
+    0
+  ],
+  "split": "train",
+  "scene": "sort-three",
+  "instruction": "Put the red block on the left pad. Put the blue block on the center pad. Put the yellow block on the right pad.",
+  "goals": {
+    "red": "left",
+    "blue": "center",
+    "yellow": "right"
+  },
+  "block_order": [
+    "red",
+    "blue",
+    "yellow",
+    "green"
+  ],
+  "actions": [
+    "pick red",
+    "pick blue",
+    "pick yellow",
+    "pick green",
+    "place left",
+    "place center",
+    "place right"
+  ]
+}

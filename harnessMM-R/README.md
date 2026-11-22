@@ -1,6 +1,6 @@
 # HarnessMM-R
 
-Generate instruction-conditioned pick-and-place demonstrations in MuJoCo. Each scene has three colored blocks and two landing pads. The agent must select the two requested blocks, pick each one up and release it on the assigned pad. The scene, camera and tool geometry are included.
+Generate instruction-conditioned pick-and-place demonstrations in MuJoCo. The default task has three colored blocks and two landing pads. Two additional recipes introduce a third destination and a pad that must be cleared before it can receive the requested block. The scene, camera and tool geometry are included.
 
 | Initial observation | After the two placements |
 | --- | --- |
@@ -47,6 +47,43 @@ Qwen receives the instruction, the current RGB image, the simulator state and fe
 
 In a smoke test on the two training scenes for seed 17, the CPU expert and Qwen on a shared NVIDIA H200 each completed both scenes. Each episode used two authored plans and four actions.
 
+## Generate a multi-scene batch
+
+The [H200 release](data/qwen-tabletop-30/) includes 30 Qwen trajectories and a frame-indexed video of a complete three-block sorting episode.
+
+Pass a list to `--scenes` to cycle through recipes within each split. The supplied [scene pack](scenes.json) covers:
+
+| Recipe | Task |
+| --- | --- |
+| `sort-two` | Select two of three blocks and fill the left and right pads. |
+| `sort-three` | Select three of four blocks and fill three pads. |
+| `clear-and-refill` | Move a block from an occupied pad to its destination, then refill the vacated pad. |
+
+For another tabletop, copy `scenes.json` and add a named entry. Give each block a name and RGB triple in `blocks`, each pad a name and center in meters in `pads`, and each block a separate starting lane in `source_x_m`. For an occupied destination, add `"occupied_pad": "back"` using one of the pad names. Pass the file with `--scene-pack my-scenes.json --scenes my-layout`. The generator builds the MuJoCo bodies, action vocabulary, instructions, guard inputs and recorder from the recipe. Keep pads on the table, separate their centers by more than 86 mm and leave room for the randomized source blocks. These recipes share the Cartesian pick-and-place tool and contact-based placement reward.
+
+Scale generation by assigning independent episode IDs to workers. This example starts three simulator processes against one local model server. For concurrent inference, the release used `--parallel 3 --ctx-size 12288` when starting llama.cpp.
+
+```bash
+set -e
+pids=()
+for shard in 0 1 2; do
+  python generate.py --out outputs/sort-batch --episodes 30 --seed 20261122 \
+    --scenes sort-three sort-two clear-and-refill --max-steps 12 \
+    --policy qwen --video-episode train_000000 --num-shards 3 --shard-index "$shard" &
+  pids+=("$!")
+done
+rc=0
+for pid in "${pids[@]}"; do wait "$pid" || rc=1; done
+(( rc == 0 ))
+python index_batch.py outputs/sort-batch
+```
+
+Each worker writes one shard on a shared filesystem supporting hard links and advisory locks. To distribute inference across GPUs or hosts, run one worker command per shard with its local model-server port. Use the same model, scene list, seed, population and shard count. For independent storage, gather the shard directories and their identical `batch.json` under one directory before indexing. The index has one relative path per episode, including unsuccessful outcomes.
+
+Add `--resume` to the original worker command after interruption. The worker checks the manifest, skips finished episodes and generates untouched IDs. An interrupted episode directory stays available for inspection and is listed as incomplete. Archiving that directory outside the shard allows a deliberate retry of just that ID. Use a new batch directory when changing the population or configuration.
+
+With `--video-episode ID`, install FFmpeg with the `libx264` encoder on the recording worker. This option captures the live execution at 25 fps in `episode.mp4`. The left view shows the lift and release from the side, and the right view uses the agent's overhead camera. `frames.jsonl` maps frame numbers and video times to simulator time, control row, step and author. Frame zero is the reset observation, followed by one frame per two control ticks.
+
 ## Read a trajectory
 
 Each episode directory contains:
@@ -55,12 +92,12 @@ Each episode directory contains:
 | --- | --- |
 | `task.json` | Language instruction, block-to-pad assignments, scene seed and split. |
 | `steps.jsonl` | One row per attempted high-level action, with before/after observations, RGB paths, the authored plan or reused action, execution feedback, reward and termination flags. |
-| `control.jsonl` | One row per executed 20 ms tick. Each row gives the Cartesian tool target in meters, active suction attachment and measured positions of the red, blue and yellow blocks, in that order. |
+| `control.jsonl` | One row per executed 20 ms tick. Each row gives the Cartesian tool target in meters, active suction attachment and measured positions of the blocks in the order listed in the episode’s `task.json` (`manifest.json` for the original example). |
 | `000.png`, `001.png`, … | 320 × 240 overhead RGB at reset and after each high-level action. |
 | `result.json` | Outcome, decision count, action count, control ticks and final frame. |
 
-Read `control_start` and `control_count` in a step row to find its zero-based slice in `control.jsonl`. RGB is sampled at decision and action boundaries. Control runs at 50 Hz and physics at 500 Hz. The tool is a Cartesian suction end effector with a switchable rigid attachment. After release, MuJoCo integrates gravity and contacts. A goal earns a terminal reward of one when both blocks are released, settled, touching the correct pads and within 24 mm of their centers on both horizontal axes.
+Read `control_start` and `control_count` in a step row to find its zero-based slice in `control.jsonl`. RGB is sampled at decision and action boundaries. Control runs at 50 Hz and physics at 500 Hz. The tool is a Cartesian suction end effector with a switchable rigid attachment. After release, MuJoCo integrates gravity and contacts. A goal earns a terminal reward of one when all requested blocks are released, settled, touching the correct pads and within 24 mm of their centers on both horizontal axes.
 
-The run-level `manifest.json` records the full scene population, selected split, source hashes and simulator version. `--episodes` sets the population size before `--split` filters it. Scenes are assigned 20% to training, 20% to validation and 60% to testing, using largest-remainder rounding with ties in that order. Scene seeds combine the run seed, split index and within-split index, so increasing the population preserves existing scenes in their original splits.
+The run-level `manifest.json` records the worker’s scene population, selected split, source hashes and simulator version. `--episodes` sets the population size before `--split` filters it. Scenes are assigned 20% to training, 20% to validation and 60% to testing, using largest-remainder rounding with ties in that order. Scene seeds combine the run seed, split index and within-split index, so increasing the population preserves existing scenes in their original splits.
 
-Use a fresh output directory for each run. `summary.json` counts all recorded outcomes, including the step limit. A model connection or reply error records `policy_error.json` and ends the run with a nonzero exit code. The remaining scheduled scenes can be identified from the manifest.
+Use a fresh output directory to start a run. Each shard’s `summary.json` counts every recorded outcome. A connection or reply error is saved in the affected episode’s `policy_error.json`. The worker continues with the remaining episodes and returns a nonzero exit code if any such error occurred.
