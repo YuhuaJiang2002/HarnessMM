@@ -1,0 +1,27 @@
+{
+  "id": "train_000000",
+  "scene_seed": [
+    20261123,
+    0,
+    0
+  ],
+  "split": "train",
+  "scene": "clear-and-refill",
+  "instruction": "Put the blue block on the front pad. Put the green block on the back pad.",
+  "goals": {
+    "blue": "front",
+    "green": "back"
+  },
+  "block_order": [
+    "green",
+    "red",
+    "blue"
+  ],
+  "actions": [
+    "pick green",
+    "pick red",
+    "pick blue",
+    "place front",
+    "place back"
+  ]
+}

@@ -1,0 +1,166 @@
+{
+  "original": {
+    "all": {
+      "before": {
+        "episodes": 10,
+        "successes": 2,
+        "attempts": 104,
+        "zero_motion_attempts": 88,
+        "decisions": 100,
+        "control_ticks": 928,
+        "actor_tokens": 54420
+      },
+      "after": {
+        "episodes": 10,
+        "successes": 10,
+        "attempts": 46,
+        "zero_motion_attempts": 6,
+        "decisions": 26,
+        "control_ticks": 2320,
+        "actor_tokens": 15676
+      }
+    },
+    "test": {
+      "before": {
+        "episodes": 6,
+        "successes": 2,
+        "attempts": 56,
+        "zero_motion_attempts": 44,
+        "decisions": 52,
+        "control_ticks": 696,
+        "actor_tokens": 28271
+      },
+      "after": {
+        "episodes": 6,
+        "successes": 6,
+        "attempts": 26,
+        "zero_motion_attempts": 2,
+        "decisions": 14,
+        "control_ticks": 1392,
+        "actor_tokens": 8431
+      }
+    },
+    "train": {
+      "before": {
+        "episodes": 2,
+        "successes": 0,
+        "attempts": 24,
+        "zero_motion_attempts": 22,
+        "decisions": 24,
+        "control_ticks": 116,
+        "actor_tokens": 13072
+      },
+      "after": {
+        "episodes": 2,
+        "successes": 2,
+        "attempts": 10,
+        "zero_motion_attempts": 2,
+        "decisions": 6,
+        "control_ticks": 464,
+        "actor_tokens": 3622
+      }
+    },
+    "validation": {
+      "before": {
+        "episodes": 2,
+        "successes": 0,
+        "attempts": 24,
+        "zero_motion_attempts": 22,
+        "decisions": 24,
+        "control_ticks": 116,
+        "actor_tokens": 13077
+      },
+      "after": {
+        "episodes": 2,
+        "successes": 2,
+        "attempts": 10,
+        "zero_motion_attempts": 2,
+        "decisions": 6,
+        "control_ticks": 464,
+        "actor_tokens": 3623
+      }
+    }
+  },
+  "fresh": {
+    "all": {
+      "before": {
+        "episodes": 30,
+        "successes": 10,
+        "attempts": 282,
+        "zero_motion_attempts": 220,
+        "decisions": 262,
+        "control_ticks": 3596,
+        "actor_tokens": 141689
+      },
+      "after": {
+        "episodes": 30,
+        "successes": 30,
+        "attempts": 133,
+        "zero_motion_attempts": 13,
+        "decisions": 73,
+        "control_ticks": 6960,
+        "actor_tokens": 44115
+      }
+    },
+    "test": {
+      "before": {
+        "episodes": 18,
+        "successes": 3,
+        "attempts": 192,
+        "zero_motion_attempts": 165,
+        "decisions": 186,
+        "control_ticks": 1566,
+        "actor_tokens": 100889
+      },
+      "after": {
+        "episodes": 18,
+        "successes": 18,
+        "attempts": 83,
+        "zero_motion_attempts": 11,
+        "decisions": 47,
+        "control_ticks": 4176,
+        "actor_tokens": 28457
+      }
+    },
+    "train": {
+      "before": {
+        "episodes": 6,
+        "successes": 4,
+        "attempts": 40,
+        "zero_motion_attempts": 22,
+        "decisions": 32,
+        "control_ticks": 1044,
+        "actor_tokens": 17219
+      },
+      "after": {
+        "episodes": 6,
+        "successes": 6,
+        "attempts": 25,
+        "zero_motion_attempts": 1,
+        "decisions": 13,
+        "control_ticks": 1392,
+        "actor_tokens": 7830
+      }
+    },
+    "validation": {
+      "before": {
+        "episodes": 6,
+        "successes": 3,
+        "attempts": 50,
+        "zero_motion_attempts": 33,
+        "decisions": 44,
+        "control_ticks": 986,
+        "actor_tokens": 23581
+      },
+      "after": {
+        "episodes": 6,
+        "successes": 6,
+        "attempts": 25,
+        "zero_motion_attempts": 1,
+        "decisions": 13,
+        "control_ticks": 1392,
+        "actor_tokens": 7828
+      }
+    }
+  }
+}

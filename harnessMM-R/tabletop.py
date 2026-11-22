@@ -69,6 +69,32 @@ class Tabletop:
                 "pad_xyz_m": {p: self.position(p).tolist() for p in self.pads},
                 "resting_on": {b: self.resting_on(b) for b in self.blocks}}
 
+    def transfers(self, observation):
+        """Relate the public instruction to measured pad contacts."""
+        occupant = {pad: block for block, pad in observation["resting_on"].items() if pad is not None}
+        return {block: {"destination": pad, "occupied_by": occupant.get(pad)}
+                for block, pad in self.goals.items()}
+
+    def transfer_rejection(self, verb, name):
+        transfers = self.transfers(self.observe())
+        if verb == "pick":
+            if self.held is not None:
+                return f"Cannot pick {name}: the tool holds {self.held}."
+            if name not in transfers:
+                return f"Block {name} has no destination in this instruction."
+            move = transfers[name]
+            occupant = move["occupied_by"]
+            if occupant == name:
+                return f"Block {name} is already settled on its destination."
+            if occupant is not None:
+                return (f"Cannot pick {name} for {move['destination']}: {occupant} occupies it. "
+                        "Clear that pad while the tool is empty.")
+        elif self.held is None:
+            return f"Cannot place on {name}: the tool is empty."
+        elif name != transfers[self.held]["destination"]:
+            return f"The assigned destination for {self.held} is {transfers[self.held]['destination']}."
+        return None
+
     def rgb(self, camera="overhead"):
         self.renderer.update_scene(self.data, camera=camera)
         return self.renderer.render()
@@ -93,6 +119,11 @@ class Tabletop:
         if action not in self.actions:
             return "unknown action", trace
         verb, name = action.split()
+        check_transfer = self.spec.get("occupied_pad") is not None
+        if check_transfer:
+            reason = self.transfer_rejection(verb, name)
+            if reason is not None:
+                return reason, trace
         destination = self.position(name)
         above = np.array([*destination[:2], .12])
         if verb == "pick":
@@ -112,7 +143,10 @@ class Tabletop:
                 return "pad is occupied", trace
             move(above, 20)
             move(np.array([*destination[:2], .050]), 18)
+            released_block = self.held
             self.data.eq_active[self.model.equality(self.held).id] = False
             self.held = None
         move(above, 20)
+        if check_transfer and verb == "place" and self.resting_on(released_block) != name:
+            return f"Released {released_block}, but settled contact on {name} was not observed.", trace
         return "executed", trace

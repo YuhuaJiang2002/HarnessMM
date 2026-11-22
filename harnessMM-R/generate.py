@@ -72,13 +72,17 @@ def generate_episode(env, case, args, out):
             obs = env.observe()
             reused = bool(pending and feedback == "executed" and can_continue(pending[0], previous, obs))
             source = "guarded_reuse" if reused else args.policy
+            transfers = None
             if not reused:
                 decisions += 1
                 if args.policy == "expert":
                     pending = expert(env.goals, obs)
                 else:
                     try:
-                        reply = qwen(env.instruction, obs, image, feedback, args.model, args.port, env.actions)
+                        if env.spec.get("occupied_pad") is not None:
+                            transfers = env.transfers(obs)
+                        reply = qwen(env.instruction, obs, image, feedback, args.model, args.port,
+                                     env.actions, transfers)
                         reply.pop("__verbose", None)  # Server debug dump duplicates request settings.
                         write_json(folder / f"reply_{decisions:03}.json", reply)
                         pending = parse_plan(reply, args.model, env.actions)
@@ -103,6 +107,8 @@ def generate_episode(env, case, args, out):
                       "control_start": ticks, "control_count": len(trace), "next_observation": after,
                       "next_rgb": next_image.name, "reward": int(done), "terminated": done,
                       "truncated": i + 1 == args.max_steps and not done}
+            if transfers is not None:
+                record["planning_transfers"] = transfers
             steps_file.write(json.dumps(record, allow_nan=False) + "\n")
             ticks += len(trace)
             steps += 1

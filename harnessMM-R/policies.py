@@ -15,13 +15,18 @@ def expert(goals, observation):
     return []
 
 
-def qwen(instruction, observation, image_path, previous_feedback, model, port, actions):
+def qwen(instruction, observation, image_path, previous_feedback, model, port, actions, transfers=None):
     """Query a loopback llama.cpp vision server and retain its actual answer."""
     image = base64.b64encode(image_path.read_bytes()).decode("ascii")
     prompt = (f"{instruction} Choose one or two successive actions. Use pick to grasp a block "
               "and place to release the held block. Each pad fits one block. "
               f"Actions: {actions}. Current simulator observation: {json.dumps(observation)}. "
               f"Last execution feedback: {previous_feedback}. Return JSON with the key actions.")
+    if transfers is not None:
+        prompt += (" The tool carries one block. Check these transfers before picking: "
+                   f"{json.dumps(transfers)}. If another block occupies a destination, first move "
+                   "the occupant to its own free destination. Pick a block whose destination is free "
+                   "and place it there. Leave blocks already on their destinations in place.")
     schema = {"type": "object", "properties": {"actions": {"type": "array", "minItems": 1,
               "maxItems": 2, "items": {"type": "string", "enum": actions}}},
               "required": ["actions"], "additionalProperties": False}

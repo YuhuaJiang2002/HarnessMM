@@ -1,0 +1,16 @@
+{
+  "id": "train_000000",
+  "scene_seed": [
+    20261123,
+    0,
+    0
+  ],
+  "split": "train",
+  "scene": "clear-and-refill",
+  "status": "success",
+  "success": true,
+  "steps": 4,
+  "decisions": 2,
+  "control_ticks": 232,
+  "final_rgb": "004.png"
+}

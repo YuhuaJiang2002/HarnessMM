@@ -59,6 +59,8 @@ Pass a list to `--scenes` to cycle through recipes within each split. The suppli
 | `sort-three` | Select three of four blocks and fill three pads. |
 | `clear-and-refill` | Move a block from an occupied pad to its destination, then refill the vacated pad. |
 
+For occupied-pad tasks, Qwen sees the current occupant of each requested destination. Before a pick, the executor checks that the selected block can be delivered to its assigned pad. After release it checks settled contact. See the [clear-and-refill comparison, paired trajectories and video](data/qwen-clear-refill/).
+
 For another tabletop, copy `scenes.json` and add a named entry. Give each block a name and RGB triple in `blocks`, each pad a name and center in meters in `pads`, and each block a separate starting lane in `source_x_m`. For an occupied destination, add `"occupied_pad": "back"` using one of the pad names. Pass the file with `--scene-pack my-scenes.json --scenes my-layout`. The generator builds the MuJoCo bodies, action vocabulary, instructions, guard inputs and recorder from the recipe. Keep pads on the table, separate their centers by more than 86 mm and leave room for the randomized source blocks. These recipes share the Cartesian pick-and-place tool and contact-based placement reward.
 
 Scale generation by assigning independent episode IDs to workers. This example starts three simulator processes against one local model server. For concurrent inference, the release used `--parallel 3 --ctx-size 12288` when starting llama.cpp.

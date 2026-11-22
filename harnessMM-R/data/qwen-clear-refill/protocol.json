@@ -1,0 +1,65 @@
+{
+  "recipe": "clear-and-refill",
+  "training_diagnosis": [
+    "train_000002",
+    "train_000005"
+  ],
+  "baseline_commit": "d8702419e1871b0cc744cb8ea01271c01d0149d0",
+  "candidate_sha256": {
+    "generate.py": "6fbdc01b1e74136c15ed3b1567b6453509f0af475a6d2afc3dec75ab1b86db0c",
+    "policies.py": "78beddccfec0a9e426df85c87c6ad48db62a6bd110b37f7dc5fc1bffc9983f4b",
+    "tabletop.py": "429438328246dd9657099737e4164d50145619770af769c82ad2e400cff1114d",
+    "tabletop.xml": "1c06349c018419f45d27823f886e4cc5f8fe25f94166274236d96a8347f7a57d",
+    "scenes.py": "3e72bd0016a7945593135dab53ea072aa8bd8be4c2930e7a3f907a5295572bfb",
+    "scenes.json": "ac46e240359a7780b89a25cb7322a0f8aca597cd3af7528182246641ae91948e",
+    "video.py": "7c98330844b7c3eb95df9f5fe6d72eb53c69f37e704682d8baeab2cc151417cd",
+    "index_batch.py": "17c62987c3e9549ee23b83ec88c249438b81e97c87bc131f5d52de69981355fb"
+  },
+  "historical_pairs": {
+    "seed": 20261122,
+    "episodes": 30,
+    "scenes": [
+      "sort-three",
+      "sort-two",
+      "clear-and-refill"
+    ],
+    "num_shards": 3,
+    "shard_index": 2,
+    "membership": "all 10 cases of the named recipe in the published population",
+    "baseline": "adopt original records",
+    "candidate": "one new run per scene"
+  },
+  "fresh_pairs": {
+    "seed": 20261123,
+    "episodes": 30,
+    "scenes": [
+      "clear-and-refill"
+    ],
+    "num_shards": 3,
+    "shard_indices": [
+      0,
+      1,
+      2
+    ],
+    "membership": "all scenes, paired by split and ordinal",
+    "baseline": "one new run per scene",
+    "candidate": "one new run per scene"
+  },
+  "splits": "20/20/60, large-remainder allocation in generate.py",
+  "max_steps": 12,
+  "model": "Qwen3.8-27B-Q4_K_M",
+  "weights_sha256": "1bce504dfecd84153666928a41d8a66706f0158d3a317bc5196b72819d7dc529",
+  "vision_projector_sha256": "cbb841a9ee0636b2ec172f5bb8df2ea8dfeb01e90fe7c6126581d662a0b4e43e",
+  "serving": {
+    "engine": "llama.cpp b12534",
+    "temperature": 0,
+    "max_reply_tokens": 96,
+    "slots": 3,
+    "total_context": 12288,
+    "reasoning": "off"
+  },
+  "selection": "one frozen candidate, no parameter selection",
+  "metric": "all requested blocks released and settled in contact on their assigned pads; full population denominators plus split-level counts",
+  "stopping": "one attempt per case and version, up to 12 high-level actions or first success; preserve every outcome",
+  "video": "record fresh train_000000 live for both arms; publish candidate if successful"
+}
