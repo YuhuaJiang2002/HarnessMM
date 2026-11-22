@@ -1,0 +1,62 @@
+{
+  "id": "train_000000",
+  "scene_seed": [
+    20261124,
+    0,
+    0
+  ],
+  "split": "train",
+  "scene": "clear-and-refill",
+  "instruction": "Put the green block on the front pad. Put the red block on the back pad.",
+  "goals": {
+    "green": "front",
+    "red": "back"
+  },
+  "block_order": [
+    "green",
+    "red",
+    "blue"
+  ],
+  "actions": [
+    "pick green",
+    "pick red",
+    "pick blue",
+    "place front",
+    "place back"
+  ],
+  "recipe": {
+    "blocks": {
+      "green": [
+        0.06,
+        0.57,
+        0.27
+      ],
+      "red": [
+        0.88,
+        0.11,
+        0.08
+      ],
+      "blue": [
+        0.07,
+        0.36,
+        0.9
+      ]
+    },
+    "pads": {
+      "front": [
+        -0.13,
+        0.042
+      ],
+      "back": [
+        0.115,
+        0.108
+      ]
+    },
+    "source_x_m": [
+      -0.14,
+      0,
+      0.14
+    ],
+    "occupied_pad": "back"
+  }
+}

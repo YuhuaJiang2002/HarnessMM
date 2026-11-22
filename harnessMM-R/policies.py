@@ -15,7 +15,7 @@ def expert(goals, observation):
     return []
 
 
-def qwen(instruction, observation, image_path, previous_feedback, model, port, actions, transfers=None):
+def qwen(instruction, observation, image_path, previous_feedback, model, port, actions, transfers=None, wrist_path=None):
     """Query a loopback llama.cpp vision server and retain its actual answer."""
     image = base64.b64encode(image_path.read_bytes()).decode("ascii")
     prompt = (f"{instruction} Choose one or two successive actions. Use pick to grasp a block "
@@ -34,6 +34,12 @@ def qwen(instruction, observation, image_path, previous_feedback, model, port, a
             "response_format": {"type": "json_schema", "json_schema": {"name": "plan", "schema": schema}},
             "messages": [{"role": "user", "content": [{"type": "text", "text": prompt},
                          {"type": "image_url", "image_url": {"url": f"data:image/png;base64,{image}"}}]}]}
+    if wrist_path is not None:
+        content = body["messages"][0]["content"]
+        content.insert(1, {"type": "text", "text": "Fixed overhead camera:"})
+        wrist = base64.b64encode(wrist_path.read_bytes()).decode("ascii")
+        content.extend([{"type": "text", "text": "Tool-mounted wrist camera, same simulation time:"},
+                        {"type": "image_url", "image_url": {"url": f"data:image/png;base64,{wrist}"}}])
     req = Request(f"http://127.0.0.1:{port}/v1/chat/completions", data=json.dumps(body).encode(),
                   headers={"Content-Type": "application/json"})
     with build_opener(ProxyHandler({})).open(req, timeout=120) as response:

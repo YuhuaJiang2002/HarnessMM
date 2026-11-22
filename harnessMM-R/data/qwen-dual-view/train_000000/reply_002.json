@@ -1,0 +1,36 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n  \"actions\": [\n    \"pick red\",\n    \"place back\"\n  ]\n}"
+      }
+    }
+  ],
+  "created": 1795331771,
+  "model": "Qwen3.8-27B-Q4_K_M",
+  "system_fingerprint": "b12534-ecafc6714",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 25,
+    "prompt_tokens": 675,
+    "total_tokens": 700,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "id": "chatcmpl-gTujpML3H4rWdHy2uTBwLh1hpiVb8xFu",
+  "timings": {
+    "cache_n": 0,
+    "prompt_n": 675,
+    "prompt_ms": 1504.169,
+    "prompt_per_token_ms": 2.2283985185185187,
+    "prompt_per_second": 448.75276647770295,
+    "predicted_n": 25,
+    "predicted_ms": 2442.902,
+    "predicted_per_token_ms": 101.78758333333333,
+    "predicted_per_second": 9.824381002594455
+  }
+}

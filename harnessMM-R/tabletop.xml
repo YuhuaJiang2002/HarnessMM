@@ -16,6 +16,7 @@
     <body name="blue"><freejoint/><geom type="box" size=".016 .016 .016" mass=".04" rgba=".07 .36 .90 1"/></body>
     <body name="yellow"><freejoint/><geom type="box" size=".016 .016 .016" mass=".04" rgba=".96 .68 .06 1"/></body>
     <body name="tool" mocap="true" pos="0 -.15 .12">
+      <camera name="wrist" pos="0 -.052 .065" xyaxes="1 0 0 0 .866 .5" fovy="72"/>
       <geom type="cylinder" size=".011 .009" rgba=".17 .19 .20 1"/>
       <geom type="capsule" fromto="0 0 .009 0 -.025 .045" size=".006" rgba=".65 .68 .72 1"/>
     </body>

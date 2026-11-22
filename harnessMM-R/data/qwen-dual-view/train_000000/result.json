@@ -1,0 +1,20 @@
+{
+  "id": "train_000000",
+  "scene_seed": [
+    20261124,
+    0,
+    0
+  ],
+  "split": "train",
+  "scene": "clear-and-refill",
+  "status": "success",
+  "success": true,
+  "steps": 4,
+  "decisions": 2,
+  "control_ticks": 232,
+  "final_rgb": "004.png",
+  "final_views": {
+    "overhead": "004.png",
+    "wrist": "wrist_004.png"
+  }
+}

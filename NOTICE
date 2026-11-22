@@ -17,3 +17,7 @@ pi-harnessmm/ includes the pi extension by jlon (Copyright 2026 jlon),
 from https://github.com/jlon/pi-harnessmm at commit
 8d0a9dab98db4cd83eec2955870ffbf6b2a04946. Its original Apache-2.0
 license and attribution are in pi-harnessmm/LICENSE and pi-harnessmm/NOTICE.
+
+harnessMM-R/rendering/assets/ includes Poly Haven's Workshop HDRI and Wood
+Table 001 texture maps under CC0 1.0. Source and license links are provided
+in harnessMM-R/rendering/assets/README.md.

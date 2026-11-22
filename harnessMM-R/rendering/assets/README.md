@@ -1,0 +1,1 @@
+The illumination is Poly Haven’s [Workshop HDRI](https://polyhaven.com/a/workshop). The color, roughness and OpenGL normal maps are from [Wood Table 001](https://polyhaven.com/a/wood_table_001). These 1K assets are distributed under [CC0](https://polyhaven.com/license). The renderer reads them locally.

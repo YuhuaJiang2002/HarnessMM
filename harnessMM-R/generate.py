@@ -12,7 +12,7 @@ from pathlib import Path
 
 import mujoco
 import numpy as np
-from PIL import Image
+from multiview import Observations, png_pair
 
 from policies import can_continue, expert, parse_plan, qwen
 from tabletop import Tabletop
@@ -51,16 +51,16 @@ def generate_episode(env, case, args, out):
     folder.mkdir()
     env.reset(case["scene_seed"])
     write_json(folder / "task.json", {**case, "instruction": env.instruction, "goals": env.goals,
-                                    "block_order": env.blocks, "actions": env.actions})
+                                    "block_order": env.blocks, "actions": env.actions, "recipe": env.spec})
     pending = []
     previous = ""
     feedback = "reset"
     done = False
     status = "step_limit"
     decisions = steps = ticks = 0
-    image = folder / "000.png"
-    Image.fromarray(env.rgb()).save(image)
+    images = png_pair(env, folder, 0)
     with ExitStack() as stack:
+        streams = Observations(env, folder, stack)
         record_video = case["id"] == args.video_episode
         if record_video:
             video = Recorder(env, folder)
@@ -81,8 +81,8 @@ def generate_episode(env, case, args, out):
                     try:
                         if env.spec.get("occupied_pad") is not None:
                             transfers = env.transfers(obs)
-                        reply = qwen(env.instruction, obs, image, feedback, args.model, args.port,
-                                     env.actions, transfers)
+                        reply = qwen(env.instruction, obs, folder / images["overhead"], feedback, args.model, args.port,
+                                     env.actions, transfers, wrist_path=folder / images["wrist"])
                         reply.pop("__verbose", None)  # Server debug dump duplicates request settings.
                         write_json(folder / f"reply_{decisions:03}.json", reply)
                         pending = parse_plan(reply, args.model, env.actions)
@@ -94,30 +94,33 @@ def generate_episode(env, case, args, out):
             else:
                 plan = None
             action = pending.pop(0)
-            callback = (lambda tick: video.after_tick(i, action, source)) if record_video else None
+            def callback(tick):
+                streams.after_tick(tick, i, action)
+                if record_video:
+                    video.after_tick(i, action, source)
             feedback, trace = env.step(action, callback)
             for tick in trace:
                 control.write(json.dumps({"step": i, **tick}, allow_nan=False) + "\n")
             after = env.observe()
             done = all(after["resting_on"][b] == p for b, p in env.goals.items()) and env.held is None
-            next_image = folder / f"{i+1:03}.png"
-            Image.fromarray(env.rgb()).save(next_image)
+            next_images = png_pair(env, folder, i+1)
+            streams.label_call(i, action, source, decisions, feedback, ticks, obs, after)
             record = {"step": i, "decision": decisions, "source": source, "authored_plan": plan,
-                      "observation": obs, "rgb": image.name, "action": action, "feedback": feedback,
+                      "observation": obs, "rgb": images["overhead"], "views": images, "action": action, "feedback": feedback,
                       "control_start": ticks, "control_count": len(trace), "next_observation": after,
-                      "next_rgb": next_image.name, "reward": int(done), "terminated": done,
+                      "next_rgb": next_images["overhead"], "next_views": next_images, "reward": int(done), "terminated": done,
                       "truncated": i + 1 == args.max_steps and not done}
             if transfers is not None:
                 record["planning_transfers"] = transfers
             steps_file.write(json.dumps(record, allow_nan=False) + "\n")
             ticks += len(trace)
             steps += 1
-            image, previous = next_image, action
+            images, previous = next_images, action
             if done:
                 status = "success"
                 break
     result = {**case, "status": status, "success": done, "steps": steps,
-              "decisions": decisions, "control_ticks": ticks, "final_rgb": image.name}
+              "decisions": decisions, "control_ticks": ticks, "final_rgb": images["overhead"], "final_views": images}
     write_json(folder / "result.json", result)
     return result
 
@@ -155,8 +158,8 @@ def main():
             p.error("video episode ID is outside the selected population")
     root = Path(__file__).parent
     hashes = {f: hashlib.sha256((root / f).read_bytes()).hexdigest()
-              for f in ["tabletop.xml", "tabletop.py", "generate.py", "policies.py", "scenes.py", "video.py"]}
-    manifest = {"schema_version": 2, "seed": args.seed, "episode_count": args.episodes, "population": cases,
+              for f in ["tabletop.xml", "tabletop.py", "generate.py", "policies.py", "scenes.py", "video.py", "multiview.py"]}
+    manifest = {"schema_version": 3, "seed": args.seed, "episode_count": args.episodes, "population": cases,
                 "split": args.split, "shard_index": args.shard_index, "num_shards": args.num_shards,
                 "scenes": args.scenes, "recipes": {name: catalog[name] for name in args.scenes},
                 "policy": args.policy, "model": args.model if args.policy == "qwen" else None,

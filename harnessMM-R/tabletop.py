@@ -103,13 +103,13 @@ class Tabletop:
         """Return execution feedback and the underlying 50 Hz control trajectory."""
         trace = []
 
-        def move(target, ticks):
+        def move(target, ticks, phase):
             start = self.data.mocap_pos[0].copy()
             for i in range(1, ticks + 1):
                 t = i / ticks
                 self.data.mocap_pos[0] = start + (target - start) * (t*t*(3 - 2*t))
                 self.advance(10)
-                trace.append({"time_s": round(self.data.time, 6),
+                trace.append({"phase": phase, "time_s": round(self.data.time, 6),
                               "tool_target_xyz_m": self.data.mocap_pos[0].tolist(),
                               "suction_block": self.held,
                               "block_xyz_m": [self.position(b).tolist() for b in self.blocks]})
@@ -129,10 +129,10 @@ class Tabletop:
         if verb == "pick":
             if self.held:
                 return "tool already holds a block", trace
-            move(above, 20)
-            move(destination + [0, 0, .025], 18)
+            move(above, 20, "approach")
+            move(destination + [0, 0, .025], 18, "descend_to_grasp")
             if np.linalg.norm(self.position("tool") - self.position(name) - [0, 0, .025]) > .004:
-                move(above, 18)
+                move(above, 18, "withdraw_after_miss")
                 return "pickup missed", trace
             self.data.eq_active[self.model.equality(name).id] = True
             self.held = name
@@ -141,12 +141,12 @@ class Tabletop:
                 return "tool is empty", trace
             if any(self.resting_on(b) == name for b in self.blocks):
                 return "pad is occupied", trace
-            move(above, 20)
-            move(np.array([*destination[:2], .050]), 18)
+            move(above, 20, "carry_to_pad")
+            move(np.array([*destination[:2], .050]), 18, "lower_to_pad")
             released_block = self.held
             self.data.eq_active[self.model.equality(self.held).id] = False
             self.held = None
-        move(above, 20)
+        move(above, 20, "lift" if verb == "pick" else "retract_after_release")
         if check_transfer and verb == "place" and self.resting_on(released_block) != name:
             return f"Released {released_block}, but settled contact on {name} was not observed.", trace
         return "executed", trace

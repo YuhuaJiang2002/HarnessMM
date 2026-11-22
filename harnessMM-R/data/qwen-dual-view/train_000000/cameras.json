@@ -1,0 +1,52 @@
+{
+  "resolution": [
+    320,
+    240
+  ],
+  "fps": 25,
+  "units": "meters",
+  "pixel_centers": "integer",
+  "camera_axes": "+X right, +Y up, -Z forward",
+  "views": {
+    "overhead": {
+      "K": [
+        [
+          304.6377474797169,
+          0,
+          159.5
+        ],
+        [
+          0,
+          304.6377474797169,
+          119.5
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "camera_parent": "world"
+    },
+    "wrist": {
+      "K": [
+        [
+          165.16583045654082,
+          0,
+          159.5
+        ],
+        [
+          0,
+          165.16583045654082,
+          119.5
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "camera_parent": "tool"
+    }
+  }
+}

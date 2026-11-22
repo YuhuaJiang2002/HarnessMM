@@ -6,11 +6,11 @@ Generate instruction-conditioned pick-and-place demonstrations in MuJoCo. The de
 | --- | --- |
 | ![Overhead camera before sorting](example/train_000000/000.png) | ![Red block on the left pad and yellow block on the right pad](example/train_000000/004.png) |
 
-The [example episode](example/train_000000/) contains five RGB frames, four high-level actions and 232 control ticks. The default expert runs entirely on a CPU. A second author uses a locally served Qwen3.8-27B vision model. Both use simulator-provided object poses and contact labels. Qwen also receives the overhead image.
+The [example episode](example/train_000000/) contains five RGB frames, four high-level actions and 232 control ticks. The default expert runs entirely on a CPU. A second author uses a locally served Qwen3.8-27B vision model. Both use simulator-provided object poses and contact labels. In new runs Qwen receives synchronized overhead and tool-mounted wrist images. Earlier releases used the overhead image.
 
 ## Run the offline expert
 
-From the repository root, on Linux with Python 3.11:
+From the repository root, on Linux with Python 3.11 and FFmpeg with libx264:
 
 ```sh
 cd harnessMM-R
@@ -18,7 +18,7 @@ python3.11 -m venv .venv
 . .venv/bin/activate
 python -m pip install -r requirements.txt
 # For headless CPU rendering on Debian or Ubuntu:
-sudo apt-get install libosmesa6-dev
+sudo apt-get install libosmesa6-dev ffmpeg
 export MUJOCO_GL=osmesa
 python generate.py --episodes 10 --seed 17 --out outputs/expert
 ```
@@ -43,7 +43,7 @@ python generate.py --policy qwen --port 8080 --episodes 10 --seed 17 \
   --split train --out outputs/qwen-train
 ```
 
-Qwen receives the instruction, the current RGB image, the simulator state and feedback from the last action. It returns up to two actions from the pick/place vocabulary. Each model reply is saved alongside the episode. The generator uses a loopback connection to the model server. [llama.cpp server documentation](https://github.com/ggml-org/llama.cpp/blob/master/tools/server/README.md)
+Qwen receives the instruction, both current camera images, the simulator state and feedback from the last action. It returns up to two actions from the pick/place vocabulary. Each model reply is saved alongside the episode. The generator uses a loopback connection to the model server. [llama.cpp server documentation](https://github.com/ggml-org/llama.cpp/blob/master/tools/server/README.md)
 
 In a smoke test on the two training scenes for seed 17, the CPU expert and Qwen on a shared NVIDIA H200 each completed both scenes. Each episode used two authored plans and four actions.
 
@@ -86,6 +86,16 @@ Add `--resume` to the original worker command after interruption. The worker che
 
 With `--video-episode ID`, install FFmpeg with the `libx264` encoder on the recording worker. This option captures the live execution at 25 fps in `episode.mp4`. The left view shows the lift and release from the side, and the right view uses the agent's overhead camera. `frames.jsonl` maps frame numbers and video times to simulator time, control row, step and author. Frame zero is the reset observation, followed by one frame per two control ticks.
 
+## Dual-view observations and Blender rendering
+
+The [dual-view release](data/qwen-dual-view/) has synchronized overhead and wrist videos, tool calls, phase labels, and Cycles-rendered training images. Every new episode writes `overhead.mp4` and `wrist.mp4` at 25 fps. Qwen receives the lossless PNG pair at each planning call. Both cameras render after the same physics update; the wrist camera is rigidly mounted on the Cartesian end effector.
+
+- `tool_calls.jsonl` records each simulated tool name, arguments, originating model decision, new or reused action, execution feedback, before/after holdings and pad contacts, and start/end timestamps. Control intervals are zero-based and half-open. A rejected action can begin and end on the same frame.
+- `control.jsonl` labels the motion phase at each 50 Hz tick. `poses.jsonl` links each paired video frame to a tool call, control row, active grasp, object and tool poses, and the two camera-to-world transforms. The reset frame precedes control row zero. Body poses use meters and scalar-first quaternions. Camera-local axes are +X right, +Y up and −Z forward.
+- `cameras.json` stores the pinhole intrinsics at the native resolution. `steps.jsonl` links each call’s before and after PNG pair, authored plan, reward and outcome. `task.json` includes the scene recipe for rendering.
+
+Blender is an optional offline rendering stage. It uses the recorded rigid poses and camera transforms, a workshop HDRI, scanned wood maps, and a detailed model of the vacuum tool and Cartesian stage. Instructions cover full videos, individual frames and images at every action boundary. [Rendering guide](rendering/README.md)
+
 ## Read a trajectory
 
 Each episode directory contains:
@@ -98,7 +108,7 @@ Each episode directory contains:
 | `000.png`, `001.png`, … | 320 × 240 overhead RGB at reset and after each high-level action. |
 | `result.json` | Outcome, decision count, action count, control ticks and final frame. |
 
-Read `control_start` and `control_count` in a step row to find its zero-based slice in `control.jsonl`. RGB is sampled at decision and action boundaries. Control runs at 50 Hz and physics at 500 Hz. The tool is a Cartesian suction end effector with a switchable rigid attachment. After release, MuJoCo integrates gravity and contacts. A goal earns a terminal reward of one when all requested blocks are released, settled, touching the correct pads and within 24 mm of their centers on both horizontal axes.
+Read `control_start` and `control_count` in a step row to find its zero-based slice in `control.jsonl`. Lossless observation PNGs are saved at action boundaries. New runs also record the two continuous RGB streams at 25 fps. Control runs at 50 Hz and physics at 500 Hz. The tool is a Cartesian suction end effector with a switchable rigid attachment. After release, MuJoCo integrates gravity and contacts. A goal earns a terminal reward of one when all requested blocks are released, settled, touching the correct pads and within 24 mm of their centers on both horizontal axes.
 
 The run-level `manifest.json` records the worker’s scene population, selected split, source hashes and simulator version. `--episodes` sets the population size before `--split` filters it. Scenes are assigned 20% to training, 20% to validation and 60% to testing, using largest-remainder rounding with ties in that order. Scene seeds combine the run seed, split index and within-split index, so increasing the population preserves existing scenes in their original splits.
 
