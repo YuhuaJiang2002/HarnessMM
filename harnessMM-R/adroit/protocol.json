@@ -1,0 +1,43 @@
+{
+  "id": "adroit-dapg-train-smoke-v1",
+  "benchmark": "Gymnasium-Robotics Adroit Hand v1",
+  "runtime": {"gymnasium": "1.2.3", "gymnasium-robotics": "1.4.2", "mujoco": "3.4.0"},
+  "dapg_source": "9a1de23df6574e1b94e1da742e3326eb1f61c013",
+  "mjrl_source": "3871d93763d3b49c4741e6daeaebbc605fe140dc",
+  "scene_population": "Ten independently seeded native resets per task. Custom 2:2:6 split, assigned prospectively by seed order without scores.",
+  "seeds": {
+    "train": [23101, 23102],
+    "validation": [23103, 23104],
+    "test": [23105, 23106, 23107, 23108, 23109, 23110]
+  },
+  "pilot": {
+    "phase": "train",
+    "modes": ["motor", "agent"],
+    "attempts_per_case_per_mode": 1,
+    "actor": "gpt-6.2-sol",
+    "reasoning_effort": "low",
+    "requests_per_agent_case": 1,
+    "retry": false,
+    "success": "At least one native info.success tick within the default episode. Also record native success at the final tick, count of successful ticks, and termination."
+  },
+  "tasks": [
+    {
+      "skill": "pen",
+      "environment": "AdroitHandPen-v1",
+      "instruction": "Rotate the pen in the hand until it matches the target pose.",
+      "checkpoint_sha256": "061dba4907a76b83139ae5a8d0809faa9774dd028d12ce869036b620bd728740"
+    },
+    {
+      "skill": "door",
+      "environment": "AdroitHandDoor-v1",
+      "instruction": "Operate the latch and swing the door open using the fingers.",
+      "checkpoint_sha256": "288dd2131b905e40852d9eb032595bb9b3aa90b0502e9341e6b0e128b803478f"
+    },
+    {
+      "skill": "relocate",
+      "environment": "AdroitHandRelocate-v1",
+      "instruction": "Pick up the ball and bring it to the target position.",
+      "checkpoint_sha256": "41432c3125c97a8eb101d5d482f062b1f9bb72239a3abccae7428ef0e66413fc"
+    }
+  ]
+}

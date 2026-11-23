@@ -8,6 +8,8 @@ Generate instruction-conditioned pick-and-place demonstrations in MuJoCo. The de
 
 The [example episode](example/train_000000/) contains five RGB frames, four high-level actions and 232 control ticks. The default expert runs entirely on a CPU. A second author uses a locally served Qwen3.8-27B vision model. Both use simulator-provided object poses and contact labels. In new runs Qwen receives synchronized overhead and tool-mounted wrist images. Earlier releases used the overhead image.
 
+The [Adroit pilot](adroit/) adds a Shadow Dexterous Hand with tasks for pen reorientation, door unlatching, and ball relocation.
+
 ## Run the offline expert
 
 From the repository root, on Linux with Python 3.11 and FFmpeg with libx264:
