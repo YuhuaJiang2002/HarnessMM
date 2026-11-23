@@ -25,7 +25,7 @@ HarnessMM-V extends this approach to visual tasks. On 96 MiniWoB++ test tasks,
 it solved 62 tasks at 3.98 Tokens/task (k), a 29.56% reduction in test execution
 tokens compared with the baseline harness.
 
-[HarnessMM-R](harnessMM-R/) generates embodied sorting demonstrations in MuJoCo. Run the offline expert on a CPU or let Qwen3.8-27B plan pick-and-place actions on an H200. Each episode includes RGB images, decisions and the underlying control trajectory.
+[HarnessMM-R](harnessMM-R/) generates robot demonstrations in MuJoCo. For tabletop sorting, run the offline expert on a CPU or let Qwen3.8-27B plan pick-and-place actions on an H200. The [ARX X5 generator and four-view demo](harnessMM-R/#arx-x5-pcb-assembly) cover dual-arm PCB assembly.
 
 ## HarnessPro, SoL-Pi, Codex and DeepSeek comparisons
 

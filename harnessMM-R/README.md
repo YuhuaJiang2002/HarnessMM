@@ -10,6 +10,14 @@ The [example episode](example/train_000000/) contains five RGB frames, four high
 
 The [Adroit pilot](adroit/) adds a Shadow Dexterous Hand with tasks for pen reorientation, door unlatching, and ball relocation.
 
+## ARX X5 PCB assembly
+
+[![Synchronized front, mounted top, left wrist and right wrist views during PCB alignment.](pcb/preview.gif)](pcb/demo.mp4)
+
+[Watch the full 107-second demo](pcb/demo.mp4) · [Generate the dataset](pcb/)
+
+Two ARX X5 arms seat the enclosure, align the board, insert four screws and tighten them with a powered driver. The generator reuses the MuJoCo workcell and scripted kinematic expert from the supplied ARX X5 bundle. It exports 14-dimensional joint and gripper targets, object poses and synchronized RGB streams.
+
 ## Run the offline expert
 
 From the repository root, on Linux with Python 3.11 and FFmpeg with libx264:
