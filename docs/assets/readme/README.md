@@ -1,8 +1,7 @@
 # README figures
 
-`paper-figure-1.png` is the original Figure 1 from the HarnessMM paper,
-copied without modification from `figures/harness_rsi_overview_user.png`
-in the manuscript sources. It appears in the README’s “How it works” section.
+`paper-figure-1.png` is the Figure 1 image shared by the HarnessMM and HarnessMM-V papers.
+The README uses the original manuscript PNG.
 
 Each frame of the homepage animation shows the execution tokens per task before
 and after adding HarnessMM to a coding harness. The three comparisons use the

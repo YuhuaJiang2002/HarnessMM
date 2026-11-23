@@ -50,9 +50,9 @@ of its Medium tier. See the [full ten-method comparison and results update](docs
 
 ## How it works
 
-![Figure 1 from the HarnessMM paper: recursive self-improvement refines the execution graph through Guarded Decision Reuse (GDR) and Certified Callback Substitution (CCS).](docs/assets/readme/paper-figure-1.png)
+![Task feedback guides edits to an execution graph. Before-and-after diagrams show guarded decision reuse and certified callback substitution.](docs/assets/readme/paper-figure-1.png)
 
-*Figure 1. HarnessMM uses task feedback to improve execution graphs, reuse resolved decisions and replace redundant reasoning callbacks with certified native execution.*
+*Figure 1. HarnessMM edits the execution graph using task feedback. In the example, Guarded Decision Reuse adds a path for a resolved decision. Certified Callback Substitution then replaces repeated reasoning and tool use with a native callback.*
 
 ![HarnessMM overview: the slow actor authors an executable graph, receipt guards select eligible actions, and native execution records callback substitutions. Training, validation and testing remain separate.](docs/assets/readme/overview.svg)
 
