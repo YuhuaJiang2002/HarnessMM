@@ -263,3 +263,9 @@ The BibTeX citation is provided in [CITATION.bib](CITATION.bib).
 The extracted project code retains its [Apache-2.0 license](LICENSE).
 Upstream harnesses, benchmarks, datasets and model weights retain their own
 licenses and access requirements. See [NOTICE](NOTICE).
+
+## Benchmark results
+
+![Task performance and tokens per task for HarnessMM and HarnessMM-V across six benchmarks](docs/assets/readme/harnessmm-six-benchmark-results.png)
+
+![Token savings and before-and-after pass rates for Codex and DeepSeek across three actor models on HumanEval and MBPP-sanitized](docs/assets/readme/harnessmm-coding-harness-results.png)
