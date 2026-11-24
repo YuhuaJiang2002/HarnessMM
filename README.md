@@ -10,11 +10,11 @@
 <p align="center">
   <picture>
     <source media="(prefers-reduced-motion: reduce)" srcset="docs/assets/readme/guarded-reuse.png">
-    <img src="docs/assets/readme/guarded-reuse.gif" width="100%" alt="Execution token savings with HarnessMM: 29.54% for Codex on HumanEval, 87.93% for DeepSeek Harness on HumanEval, and 80.35% for DeepSeek Harness on MBPP-sanitized.">
+    <img src="docs/assets/readme/guarded-reuse.gif" width="100%" alt="HarnessMM demonstration. A model writes a graph for a synthetic compile-and-test task. Guarded Decision Reuse checks the compile receipt and Certified Callback Substitution runs the test without another model call. Recursive self-improvement edits the graph and rules using training feedback. On held-out coding tasks with Qwen3.5-4B, execution tokens fell 29.54% for Codex on HumanEval, 87.93% for DeepSeek Harness on HumanEval and 80.35% for DeepSeek Harness on MBPP-sanitized. Success was unchanged or higher in each pair.">
   </picture>
 </p>
 
-[Run the guarded-reuse example](examples/guarded_reuse.mjs) · [See the coding results](#codex-and-deepseek-coding-harnesses) · [Try the pi extension](pi-harnessmm/)
+[Static overview](docs/assets/readme/guarded-reuse.png) · [Run the guarded-reuse example](examples/guarded_reuse.mjs) · [See the coding results](#codex-and-deepseek-coding-harnesses) · [Try the pi extension](pi-harnessmm/)
 
 HarnessMM lets an agent plan several tool calls in one model turn. After each
 call, the harness reads the tool result and runs the next planned action when
@@ -102,7 +102,7 @@ tools, scorer and token-efficiency objective.
 | --- | ---: | --- | ---: | ---: | ---: |
 | HumanEval | 98 | Codex | 90.82 → 90.82 | 66.72 → 47.02 | 29.54 |
 | HumanEval | 98 | DeepSeek Harness | 71.43 → 85.71 | 96.28 → 11.62 | 87.93 |
-| MBPP-sanitized | 257 | DeepSeek Harness (Qwen) | 90.27 → 91.83 | 53.98 → 10.61 | 80.35 |
+| MBPP-sanitized | 257 | DeepSeek Harness | 90.27 → 91.83 | 53.98 → 10.61 | 80.35 |
 
 Costs include complete-task actor input and output, authorship, selectors,
 finalization, retries, fallbacks and unsuccessful executions. Offline

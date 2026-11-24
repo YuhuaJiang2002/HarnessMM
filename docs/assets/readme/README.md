@@ -3,11 +3,17 @@
 `paper-figure-1.png` is the Figure 1 image shared by the HarnessMM and HarnessMM-V papers.
 The README uses the original manuscript PNG.
 
-Each frame of the homepage animation shows the execution tokens per task before
-and after adding HarnessMM to a coding harness. The three comparisons use the
-published savings in `results.json` and share a bar scale. The reduced-motion
-PNG shows all three comparisons together. Rebuild both with
-`python docs/assets/readme/generate_teaser.py` using Pillow and Arial or DejaVu Sans.
+The homepage animation follows a compile-and-test boundary from the
+[synthetic controller example](../../../examples/guarded_reuse.mjs). It shows
+how an authored graph, a successful compile receipt and a substitution
+certificate replace one model callback. The training loop illustrates how
+RSI edits a harness from feedback. The final scene uses the published
+Qwen3.5-4B comparisons in `results.json`, with both success and complete-task
+execution tokens. The static PNG includes the method and all three results.
+
+Rebuild the 1200 × 600 GIF and PNG with
+`python docs/assets/readme/generate_teaser.py` using Pillow 13.0.0 and Arial
+or DejaVu Sans.
 
 Run `python docs/assets/readme/generate.py` from the repository root with
 Matplotlib 3.11.2 and Pillow 13.0.0 installed. Each figure is exported as SVG

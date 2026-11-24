@@ -12,7 +12,7 @@
   "main": [
     {"benchmark": "HumanEval", "harness": "Codex", "tasks": 98, "tokens": [66.72, 47.02], "success": [90.82, 90.82], "saving": 29.54},
     {"benchmark": "HumanEval", "harness": "DeepSeek Harness", "tasks": 98, "tokens": [96.28, 11.62], "success": [71.43, 85.71], "saving": 87.93},
-    {"benchmark": "MBPP-sanitized", "harness": "DeepSeek Harness (Qwen)", "tasks": 257, "tokens": [53.98, 10.61], "success": [90.27, 91.83], "saving": 80.35}
+    {"benchmark": "MBPP-sanitized", "harness": "DeepSeek Harness", "tasks": 257, "tokens": [53.98, 10.61], "success": [90.27, 91.83], "saving": 80.35}
   ],
   "ablation_protocol": {"benchmark": "MBPP-sanitized", "harness": "DeepSeek Harness", "test_tasks_per_arm": 257},
   "ablation": [

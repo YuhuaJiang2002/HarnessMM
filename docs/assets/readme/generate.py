@@ -103,7 +103,7 @@ def main_results():
     fig, axes = plt.subplots(1, 2, figsize=(14, 7.4), gridspec_kw={"width_ratios": [1.1, 1]})
     fig.subplots_adjust(left=.255, right=.95, top=.73, bottom=.18, wspace=.19)
     fig.text(.045, .92, "Fewer tokens. Preserved or improved success.", fontsize=24, weight="bold")
-    fig.text(.045, .855, "Three published comparisons · identical test tasks within each pair", fontsize=12, color=MUTED)
+    fig.text(.045, .855, f"{DATA['actor']} · identical test tasks within each pair", fontsize=12, color=MUTED)
     for ax in axes:
         ax.set_ylim(-.7, 5.4)
     groups = [4.3, 2.3, .3]
