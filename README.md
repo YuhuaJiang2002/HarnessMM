@@ -32,20 +32,17 @@ rules that govern graph authoring and execution. Each accepted configuration
 seeds the next round, and validation selects the configuration for held-out
 evaluation.
 
-The studies summarized here cover **10 benchmarks across five task areas**.
+The studies summarized here cover **eight benchmarks across four task areas**.
 HumanEval, MBPP-sanitized and Terminal-Bench 2 cover coding and terminal work.
 SearchQA covers question answering, and LiveMath and AIME cover mathematical
-reasoning. ALFWorld and GAIA2 test interactive tool use. MiniWoB++ and
-WebArena-Verified test web interaction.
+reasoning. ALFWorld and GAIA2 test interactive tool use.
 
 On HumanEval, adding HarnessMM reduced execution tokens by **29.54% for
 Codex** at the same 90.82% success rate and by **87.93% for DeepSeek Harness**
 as success rose from 71.43% to 85.71%. On 480 GAIA2 test scenarios, HarnessMM
 used **12.41% fewer actor tokens** than the baseline harness and raised
-success from 42.71% to 43.96%. On 96 MiniWoB++ test tasks, HarnessMM-V used
-**29.56% fewer execution tokens** than the baseline harness and raised success
-from 60.42% to 64.58%.
-[Technical report](https://arxiv.org/html/2610.32813v2#S5) · [MiniWoB++ comparison](#harnesspro-sol-pi-codex-and-deepseek-comparisons)
+success from 42.71% to 43.96%.
+[Technical report](https://arxiv.org/html/2610.32813v2#S5)
 
 <p align="center">
   <picture>
@@ -55,29 +52,6 @@ from 60.42% to 64.58%.
 </p>
 
 [Static overview](docs/assets/readme/guarded-reuse.png) · [Run the guarded-reuse example](examples/guarded_reuse.mjs) · [See the coding results](#codex-and-deepseek-coding-harnesses) · [Try the pi extension](pi-harnessmm/)
-
-[HarnessMM-R](harnessMM-R/) generates robot demonstrations in MuJoCo. For tabletop sorting, run the offline expert on a CPU or let Qwen3.8-27B plan pick-and-place actions on an H200. The [ARX X5 generator and four-view demo](harnessMM-R/#arx-x5-pcb-assembly) cover dual-arm PCB assembly.
-
-## HarnessPro, SoL-Pi, Codex and DeepSeek comparisons
-
-![MiniWoB++ test execution on 96 tasks per method. HarnessMM-V reached 64.58% success at 3.98 Tokens/task (k). It used 60.31% fewer tokens than HarnessPro, 85.11% fewer than SoL-Pi, 89.93% fewer than Codex Harness and 80.14% fewer than DeepSeek Harness.](docs/assets/readme/competitor-results.svg)
-
-| Method | Success (%) | Tokens/task (k) | HarnessMM-V token saving (%) |
-| --- | ---: | ---: | ---: |
-| **HarnessMM-V (ours)** | **64.58** | **3.98** | — |
-| baseline harness | 60.42 | 5.65 | **29.56** |
-| HarnessPro | 61.46 | 10.03 | **60.31** |
-| SoL-Pi | 63.54 | 26.72 | **85.11** |
-| Codex Harness | 63.54 | 39.53 | **89.93** |
-| DeepSeek Harness | 61.46 | 20.03 | **80.14** |
-
-Each harness uses Qwen3.5-9B, native screenshots, tools and scoring, with up to
-15 actions and 180 seconds per episode. All methods receive the same objective:
-reduce total input and output tokens per task while preserving performance.
-The comparison counts every test call, including authorship, control, fallback,
-compaction and unsuccessful executions. Offline learning, training checks and
-validation are accounted for separately. HarnessPro uses a visual reproduction
-of its Medium tier. See the [full ten-method comparison and results update](docs/VISUAL_COMPARISON.md).
 
 ## How it works
 
@@ -94,18 +68,15 @@ tool results. It checks each predecessor and guard before dispatching a
 stored action. The original model handles new decisions and cases where the
 available receipts do not support a stored action.
 
-This repository contains the current implementation extracted from the
-[PhiAgent research workspace](https://github.com/YuhuaJiang2002/PhiAgent).
-The Python package is `harnessmm`, matching the project name:
+Import the controller and partition utilities from the `harnessmm` package.
 
 ```python
 from harnessmm.harness.codex_chisel import CodexChiselController
 from harnessmm.harness.benchmark_partition import build_partition
 ```
 
-Existing `phiagent` imports remain supported through a compatibility bridge.
 `CHISEL`, `SAR`, `Jev` and `<CHISEL_PLAN>` retain their internal implementation
-and protocol names. See [package migration](docs/PACKAGE_MIGRATION.md) for details.
+and protocol names.
 See the [code map](docs/CODE_MAP.md) for the paper-to-code correspondence.
 
 ## Codex and DeepSeek coding harnesses
@@ -204,7 +175,6 @@ python reproduction/run_all.py
 | `harnessmm/harness/` | Codex adapters, protected training/selection lifecycle, benchmark-specific controllers and RSI |
 | `harnessmm/learning/` | Residual fitting, cross-fitting, public-evidence contracts, routing and companion configuration methods |
 | `harnessmm/evaluation/` | Native score checks, quality/cost comparisons and complete token accounting |
-| `phiagent/` | Compatibility bridge for older Python imports |
 | `scripts/` | Research runners, preparation, metering and analysis dependencies |
 | `configs/` | Two reference configurations used by the unit tests |
 | `reproduction/` | Frozen HumanEval reference, MBPP result aggregates and runnable mechanism cases |
@@ -277,7 +247,5 @@ Upstream harnesses, benchmarks, datasets and model weights retain their own
 licenses and access requirements. See [NOTICE](NOTICE).
 
 ## Benchmark results
-
-![Task performance and tokens per task for HarnessMM and HarnessMM-V across six benchmarks](docs/assets/readme/harnessmm-six-benchmark-results.png)
 
 ![Token savings and before-and-after pass rates for Codex and DeepSeek across three actor models on HumanEval and MBPP-sanitized](docs/assets/readme/harnessmm-coding-harness-results.png)
