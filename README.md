@@ -1,11 +1,51 @@
-# HarnessMM
+# HarnessMinusMinus (HarnessMM)
 
 **Recursive Self-Improvement for Harness Token Efficiency**
+
+Yuhua Jiang<sup>1</sup>, Chang Xu<sup>2</sup>, Feifei Gao<sup>1</sup>, Li Zhao<sup>2</sup>
+
+<sup>1</sup>Tsinghua University · <sup>2</sup>Microsoft Research Asia
 
 <p align="center">
   <a href="https://arxiv.org/abs/2610.32813"><img src="https://img.shields.io/badge/Paper-arXiv%3A2610.32813-B31B1B?logo=arxiv&amp;logoColor=white" alt="Paper (arXiv:2610.32813)"></a>
   <a href="https://arxiv.org/pdf/2610.32813"><img src="https://img.shields.io/badge/PDF-Download-B31B1B" alt="Download paper PDF"></a>
 </p>
+
+HarnessMinusMinus (HarnessMM) uses recursive self-improvement (RSI) to tune
+an agent harness for a target task or task family. The goal is to use fewer
+tokens while preserving task performance. HarnessMM can start with a simple
+harness that calls the model after each tool result or optimize an existing
+harness such as Codex or DeepSeek Harness. The model weights stay fixed.
+
+HarnessMM represents execution as an **Executable Decision Graph (EDG)**.
+Nodes represent steps such as reasoning and tool calls. Directed edges
+specify which steps can follow and which must finish first. A stored tool
+action carries its exact arguments and a guard. **Guarded Decision Reuse
+(GDR)** opens a path to that action when the tool receipt satisfies the
+guard. **Certified Callback Substitution (CCS)** runs it through the native
+tool interface and records the receipt and the model callback it replaces.
+Control returns to the model when the next step requires a new decision.
+
+RSI uses task outcomes and token counts from training runs to decide where
+to add, remove or edit graph nodes and edges. It also revises the prompts and
+rules that govern graph authoring and execution. Each accepted configuration
+seeds the next round, and validation selects the configuration for held-out
+evaluation.
+
+The studies summarized here cover **10 benchmarks across five task areas**.
+HumanEval, MBPP-sanitized and Terminal-Bench 2 cover coding and terminal work.
+SearchQA covers question answering, and LiveMath and AIME cover mathematical
+reasoning. ALFWorld and GAIA2 test interactive tool use. MiniWoB++ and
+WebArena-Verified test web interaction.
+
+On HumanEval, adding HarnessMM reduced execution tokens by **29.54% for
+Codex** at the same 90.82% success rate and by **87.93% for DeepSeek Harness**
+as success rose from 71.43% to 85.71%. On 480 GAIA2 test scenarios, HarnessMM
+used **12.41% fewer actor tokens** than the baseline harness and raised
+success from 42.71% to 43.96%. On 96 MiniWoB++ test tasks, HarnessMM-V used
+**29.56% fewer execution tokens** than the baseline harness and raised success
+from 60.42% to 64.58%.
+[Technical report](https://arxiv.org/html/2610.32813v2#S5) · [MiniWoB++ comparison](#harnesspro-sol-pi-codex-and-deepseek-comparisons)
 
 <p align="center">
   <picture>
@@ -15,15 +55,6 @@
 </p>
 
 [Static overview](docs/assets/readme/guarded-reuse.png) · [Run the guarded-reuse example](examples/guarded_reuse.mjs) · [See the coding results](#codex-and-deepseek-coding-harnesses) · [Try the pi extension](pi-harnessmm/)
-
-HarnessMM lets an agent plan several tool calls in one model turn. After each
-call, the harness reads the tool result and runs the next planned action when
-its conditions hold. On HumanEval, Codex with HarnessMM used 29.54% fewer
-execution tokens at the same 90.82% success rate.
-
-HarnessMM-V extends this approach to visual tasks. On 96 MiniWoB++ test tasks,
-it solved 62 tasks at 3.98 Tokens/task (k), a 29.56% reduction in test execution
-tokens compared with the baseline harness.
 
 [HarnessMM-R](harnessMM-R/) generates robot demonstrations in MuJoCo. For tabletop sorting, run the offline expert on a CPU or let Qwen3.8-27B plan pick-and-place actions on an H200. The [ARX X5 generator and four-view demo](harnessMM-R/#arx-x5-pcb-assembly) cover dual-arm PCB assembly.
 
@@ -52,22 +83,16 @@ of its Medium tier. See the [full ten-method comparison and results update](docs
 
 ![Task feedback guides edits to an execution graph. Before-and-after diagrams show guarded decision reuse and certified callback substitution.](docs/assets/readme/paper-figure-1.png)
 
-*Figure 1. HarnessMM edits the execution graph using task feedback. In the example, Guarded Decision Reuse adds a path for a resolved decision. Certified Callback Substitution then replaces repeated reasoning and tool use with a native callback.*
+*Figure 1. GDR adds a guarded path for a resolved action. CCS executes the
+stored action through the native tool interface and records the model callback
+it bypasses.*
 
 ![HarnessMM overview: the slow actor authors an executable graph, receipt guards select eligible actions, and native execution records callback substitutions. Training, validation and testing remain separate.](docs/assets/readme/overview.svg)
 
-HarnessMM (Harness Minus Minus) reuses decisions that an agent has already made.
-A slow model call writes exact future tool actions into an Executable Decision
-Graph (EDG). After each tool result, Guarded Decision Reuse (GDR) checks whether
-the observed receipt supports a stored action. Certified Callback Substitution
-(CCS) sends that action through the native tool interface and records the
-reasoning callback it replaced. The original actor resumes when new reasoning
-is needed.
-
-Recursive self-improvement (RSI) refines companion prompts, context settings and
-adapter rules using training feedback. Validation selects among frozen
-training-derived candidates; the selected configuration is frozen before test.
-Model weights stay fixed.
+During execution, the controller can reuse the same graph across several
+tool results. It checks each predecessor and guard before dispatching a
+stored action. The original model handles new decisions and cases where the
+available receipts do not support a stored action.
 
 This repository contains the current implementation extracted from the
 [PhiAgent research workspace](https://github.com/YuhuaJiang2002/PhiAgent).
@@ -115,26 +140,13 @@ metering evidence. See the [reproduction guide](REPRODUCE.md#readme-benchmark-re
 
 ### Decision reuse and callback substitution
 
-A separate four-condition ablation uses DeepSeek Harness and Qwen3.5-4B on
-the same 257 MBPP-sanitized test tasks. Every condition retains graph
-authorship. The conditions vary graph execution, persistence or callback
-substitution.
-
-![Four MBPP-sanitized ablation conditions on 257 test tasks. Full HarnessMM-V uses 13.17 Tokens/task (k) at 93.77% success. Disabling EDG execution uses 16.19 Tokens/task (k) at 95.33% success. The table gives all four conditions and their certified substitutions.](docs/assets/readme/ablation.svg)
-
-| Configuration | Success (%) | Tokens/task (k) | Certified callback substitutions |
-| --- | ---: | ---: | ---: |
-| Full HarnessMM-V | 93.77 | 13.17 | 407 |
-| Single-use EDG | 93.00 | 18.03 | 212 |
-| Callback retained | 93.39 | 16.37 | 0 |
-| EDG execution disabled | 95.33 | 16.19 | 0 |
-
-Full HarnessMM-V used 26.91% fewer tokens than single-use EDG, 19.52% fewer
-than the retained-callback condition and 18.62% fewer than the condition
-with EDG execution disabled. The paired cost interval excludes zero for
-the single-use comparison. Figure 6 and Table 30 of the November 20, 2026
-HarnessMM-V manuscript report all four conditions. See the
-[ablation data and source records](docs/assets/readme/results.json).
+On 257 MBPP-sanitized test tasks with DeepSeek Harness and Qwen3.5-4B,
+retaining the decision graph across tool results reduced Tokens/task (k)
+from **18.03 to 13.17** (**26.91% fewer**) compared with discarding the graph
+after one use. Observed success was 93.00% with single-use graphs and 93.77%
+with persistent graphs. The adjusted 98.33% paired interval for the token
+reduction was 4.01% to 45.57%.
+[Full ablation data and source records](docs/assets/readme/results.json).
 
 ## Quick start
 
