@@ -11,6 +11,15 @@ Yuhua Jiang<sup>1</sup>, Chang Xu<sup>2</sup>, Feifei Gao<sup>1</sup>, Li Zhao<s
   <a href="https://arxiv.org/pdf/2610.32813"><img src="https://img.shields.io/badge/PDF-Download-B31B1B" alt="Download paper PDF"></a>
 </p>
 
+<p align="center">
+  <picture>
+    <source media="(prefers-reduced-motion: reduce)" srcset="docs/assets/readme/guarded-reuse.png">
+    <img src="docs/assets/readme/guarded-reuse.gif" width="100%" alt="HarnessMM demonstration. A model writes a graph for a synthetic compile-and-test task. Guarded Decision Reuse checks the compile receipt and Certified Callback Substitution runs the test without another model call. Recursive self-improvement edits the graph and rules using training feedback. On held-out coding tasks with Qwen3.5-4B, execution tokens fell 29.54% for Codex on HumanEval, 87.93% for DeepSeek Harness on HumanEval and 80.35% for DeepSeek Harness on MBPP-sanitized. Success was unchanged or higher in each pair.">
+  </picture>
+</p>
+
+[Static overview](docs/assets/readme/guarded-reuse.png) · [Run the guarded-reuse example](examples/guarded_reuse.mjs) · [See the coding results](#codex-and-deepseek-coding-harnesses) · [Try the pi extension](pi-harnessmm/)
+
 HarnessMinusMinus (HarnessMM) uses recursive self-improvement (RSI) to tune
 an agent harness for a target task or task family. The goal is to use fewer
 tokens while preserving task performance. HarnessMM can start with a simple
@@ -44,15 +53,6 @@ used **12.41% fewer actor tokens** than the baseline harness and raised
 success from 42.71% to 43.96%.
 [Technical report](https://arxiv.org/html/2610.32813v2#S5)
 
-<p align="center">
-  <picture>
-    <source media="(prefers-reduced-motion: reduce)" srcset="docs/assets/readme/guarded-reuse.png">
-    <img src="docs/assets/readme/guarded-reuse.gif" width="100%" alt="HarnessMM demonstration. A model writes a graph for a synthetic compile-and-test task. Guarded Decision Reuse checks the compile receipt and Certified Callback Substitution runs the test without another model call. Recursive self-improvement edits the graph and rules using training feedback. On held-out coding tasks with Qwen3.5-4B, execution tokens fell 29.54% for Codex on HumanEval, 87.93% for DeepSeek Harness on HumanEval and 80.35% for DeepSeek Harness on MBPP-sanitized. Success was unchanged or higher in each pair.">
-  </picture>
-</p>
-
-[Static overview](docs/assets/readme/guarded-reuse.png) · [Run the guarded-reuse example](examples/guarded_reuse.mjs) · [See the coding results](#codex-and-deepseek-coding-harnesses) · [Try the pi extension](pi-harnessmm/)
-
 ## How it works
 
 ![Task feedback guides edits to an execution graph. Before-and-after diagrams show guarded decision reuse and certified callback substitution.](docs/assets/readme/paper-figure-1.png)
@@ -60,8 +60,6 @@ success from 42.71% to 43.96%.
 *Figure 1. GDR adds a guarded path for a resolved action. CCS executes the
 stored action through the native tool interface and records the model callback
 it bypasses.*
-
-![HarnessMM overview: the slow actor authors an executable graph, receipt guards select eligible actions, and native execution records callback substitutions. Training, validation and testing remain separate.](docs/assets/readme/overview.svg)
 
 During execution, the controller can reuse the same graph across several
 tool results. It checks each predecessor and guard before dispatching a
