@@ -18,7 +18,7 @@ Yuhua Jiang<sup>1</sup>, Chang Xu<sup>2</sup>, Feifei Gao<sup>1</sup>, Li Zhao<s
   </picture>
 </p>
 
-[Static overview](docs/assets/readme/guarded-reuse.png) · [Run the guarded-reuse example](examples/guarded_reuse.mjs) · [See the coding results](#codex-and-deepseek-coding-harnesses) · [Try the pi extension](pi-harnessmm/)
+[Static overview](docs/assets/readme/guarded-reuse.png) · [Run the guarded-reuse example](examples/guarded_reuse.mjs) · [See the coding results](#codex-and-deepseek-coding-harnesses) · [Try the DeepSeek harness extension](dsh-plugin/harnessmm-desktop/README.md#install)
 
 HarnessMinusMinus (HarnessMM) uses recursive self-improvement (RSI) to tune
 an agent harness for a target task or task family. The goal is to use fewer
@@ -140,15 +140,17 @@ Both examples use local fixtures. The guarded-reuse example runs three actions
 through an in-memory dispatcher, prints a certificate for each substitution
 and returns control to the model when the plan ends.
 
-### Try it in pi
+### DeepSeek Harness extension
 
-With pi installed, run this from the root of the cloned repository:
+Run this command from the root of the cloned repository to add the extension
+to your DeepSeek Harness desktop profile.
 
-```bash
-pi -e ./pi-harnessmm
+```sh
+dsh plugin --profile desktop add ./dsh-plugin/harnessmm-desktop
 ```
 
-The extension runs each planned terminal action when the preceding command’s result satisfies its guard. If the result is missing or a command fails, control returns to the model. See the [extension guide](pi-harnessmm/README.md) and [jlon’s upstream project](https://github.com/jlon/pi-harnessmm).
+See the [extension guide](dsh-plugin/harnessmm-desktop/README.md#install) for
+setup and configuration.
 
 ## Reproduction cases
 
