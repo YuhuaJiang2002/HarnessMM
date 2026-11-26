@@ -1,6 +1,6 @@
 {
   "snapshot_date": "2026-10-26",
-  "origin": "https://github.com/YuhuaJiang2002/PhiAgent",
+  "origin": "Local PhiAgent research workspace; extracted on 2026-10-26",
   "description": "Current local HarnessMM source, including uncommitted research code. This is a new repository without parent Git history.",
   "release_changes": "Deployment paths and worker hostnames use placeholders; scientific policies, model identities and algorithm constants retain their source values. The package namespace initializer omits unrelated robotics exports.",
   "files": [
@@ -6537,14 +6537,14 @@
       ],
       "source_files": [
         {
-          "repository": "cvpr_vigrace_2027",
           "path": "scripts/run_miniwob.py",
-          "sha256": "916dfa376ace14963d5516304eb488e404fb98ec2a1de6376a7bff9623190989"
+          "sha256": "916dfa376ace14963d5516304eb488e404fb98ec2a1de6376a7bff9623190989",
+          "historical_workspace": "visual-agent research workspace"
         },
         {
-          "repository": "cvpr_vigrace_2027",
           "path": "src/vigrace/core.py",
-          "sha256": "e565965fa1977768295c045e68e7d3117215c32630899e2b59270bf8e76c7ff5"
+          "sha256": "e565965fa1977768295c045e68e7d3117215c32630899e2b59270bf8e76c7ff5",
+          "historical_workspace": "visual-agent research workspace"
         }
       ]
     },
@@ -6600,7 +6600,9 @@
     "pyproject.toml",
     "scripts/__init__.py",
     "scripts/verify_release.py",
-    "tests/__init__.py"
+    "tests/__init__.py",
+    "scripts/check_self_contained.py",
+    "docs/SELF_CONTAINED.md"
   ],
   "updates": [
     {

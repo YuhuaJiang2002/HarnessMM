@@ -50,7 +50,7 @@ uses fixed Python commands through the terminal bridge.
 
 ## Stock dsh and community plugins
 
-The [community dsh plugin](https://github.com/DSH-Extensions-list/dsh-harnessmm)
+The [bundled dsh plugin](../dsh-plugin/harnessmm-desktop/README.md)
 runs in the desktop host. A stock headless session exposes tools such as
 `bash`, `read`, `write` and `edit`. The HumanEval run used the SDK terminal
 bridge and the Qwen actor listed above.

@@ -1,8 +1,10 @@
 # pi-harnessmm
 
-HarnessMM ([arXiv 2610.32813](https://arxiv.org/abs/2610.32813)) as a [pi](https://github.com/earendil-works/pi) extension: a port of
-[YuhuaJiang2002/HarnessMM](https://github.com/YuhuaJiang2002/HarnessMM) that removes repeated reasoning calls by executing
-decisions the slow actor already resolved.
+A bundled pi extension for [HarnessMM](../README.md)
+([arXiv 2610.32813](https://arxiv.org/abs/2610.32813)). It removes repeated
+reasoning calls by executing decisions the slow actor already resolved. The
+extension source, tests and reference implementation are included in this
+checkout. Original port attribution is preserved in [NOTICE](NOTICE).
 
 A slow turn authors an Executable Decision Graph in `<CHISEL_PLAN>`, then makes one root `terminal` call. Each
 successor whose guard holds on the **immediately preceding native receipt** executes through the same terminal
@@ -20,10 +22,10 @@ model turn N   ── <CHISEL_PLAN> A→B→C  +  root command
 ## Install
 
 ```bash
-pi install git:github.com/jlon/pi-harnessmm
+pi install ./pi-harnessmm
 ```
 
-Or try it without adding it to settings:
+Run this from the repository root. Or try it without adding it to settings:
 
 ```bash
 pi -e ./pi-harnessmm
@@ -119,8 +121,10 @@ Ported from `integrations/deepseek_harness/{cot_jev,sar_v2,sar_admission}.mjs`:
 Reproduce:
 
 ```bash
-npm test                                   # 30 contract tests
-node scripts/parity-check.mjs ../HarnessMM  # differential parity, 0 disagreements
+cd pi-harnessmm
+npm ci
+npm test
+npm run parity  # compares against the reference modules in this checkout
 ```
 
 ## How the pi adapter runs a plan

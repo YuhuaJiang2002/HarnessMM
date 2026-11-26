@@ -6,20 +6,21 @@
  * randomized inputs, and fails on the first disagreement. Run it after changing
  * anything in src/bank.ts, src/guard.ts or src/admission.ts:
  *
- *   node scripts/parity-check.mjs /path/to/HarnessMM
+ *   npm run parity
  */
 import assert from "node:assert/strict";
+import { resolve } from "node:path";
+import { pathToFileURL } from "node:url";
 
-const root = process.argv[2] ?? process.env.HARNESSMM_REFERENCE ?? "";
-if (!root) {
-  console.error("usage: node scripts/parity-check.mjs <path to HarnessMM checkout>");
-  process.exit(2);
-}
-
+// Resolve from this script so a single checkout works from any current directory.
+const referenceRoot = process.argv[2] ?? process.env.HARNESSMM_REFERENCE;
+const root = referenceRoot
+  ? pathToFileURL(`${resolve(referenceRoot)}/`)
+  : new URL("../../", import.meta.url);
 const ref = {
-  cot: await import(`${root}/integrations/deepseek_harness/cot_jev.mjs`),
-  sar: await import(`${root}/integrations/deepseek_harness/sar_v2.mjs`),
-  admission: await import(`${root}/integrations/deepseek_harness/sar_admission.mjs`),
+  cot: await import(new URL("integrations/deepseek_harness/cot_jev.mjs", root)),
+  sar: await import(new URL("integrations/deepseek_harness/sar_v2.mjs", root)),
+  admission: await import(new URL("integrations/deepseek_harness/sar_admission.mjs", root)),
 };
 const port = {
   bank: await import("../src/bank.ts"),

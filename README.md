@@ -177,7 +177,7 @@ With pi installed, run this from the root of the cloned repository:
 pi -e ./pi-harnessmm
 ```
 
-The extension runs each planned terminal action when the preceding command’s result satisfies its guard. If the result is missing or a command fails, control returns to the model. See the [extension guide](pi-harnessmm/README.md) and [jlon’s upstream project](https://github.com/jlon/pi-harnessmm).
+The extension runs each planned terminal action when the preceding command’s result satisfies its guard. If the result is missing or a command fails, control returns to the model. See the [extension guide](pi-harnessmm/README.md); attribution is in [NOTICE](pi-harnessmm/NOTICE).
 
 ## Reproduction cases
 

@@ -16,11 +16,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jlon/pi-harnessmm.git"
+    "url": "git+https://github.com/YuhuaJiang2002/HarnessMM.git",
+    "directory": "pi-harnessmm"
   },
-  "homepage": "https://github.com/jlon/pi-harnessmm#readme",
+  "homepage": "https://github.com/YuhuaJiang2002/HarnessMM/tree/main/pi-harnessmm#readme",
   "bugs": {
-    "url": "https://github.com/jlon/pi-harnessmm/issues"
+    "url": "https://github.com/YuhuaJiang2002/HarnessMM/issues"
   },
   "files": [
     "extensions",

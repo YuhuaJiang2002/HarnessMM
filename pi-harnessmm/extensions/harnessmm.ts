@@ -7,7 +7,7 @@
  * terminal interface, and certifies the reasoning callback it replaced. Control
  * returns to the model on exhaustion, unknown evidence, native error or abstention.
  *
- * Ported from https://github.com/YuhuaJiang2002/HarnessMM:
+ * Ported from the reference modules bundled in this repository:
  *   integrations/deepseek_harness/cot_jev.mjs, sar_v2.mjs, sar_admission.mjs
  */
 import { AsyncLocalStorage } from "node:async_hooks";

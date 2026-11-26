@@ -15,6 +15,8 @@ supported. The [migration guide](PACKAGE_MIGRATION.md) describes source paths
 and compatibility. Original experimental workspaces and paid records remain
 outside this repository.
 
+See [single-checkout checks](SELF_CONTAINED.md) for source and dependency validation.
+
 ## Local checks
 
 ```bash

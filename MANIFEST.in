@@ -1,4 +1,4 @@
-include REPRODUCE.md LICENSE NOTICE CITATION.cff SOURCE_MANIFEST.json package.json
+include REPRODUCE.md LICENSE NOTICE CITATION.bib SOURCE_MANIFEST.json package.json
 recursive-include docs *.md
 recursive-include examples *.py *.mjs
 recursive-include tests *.py *.mjs
@@ -8,6 +8,8 @@ recursive-include integrations *.md
 recursive-include reproduction *.py *.mjs *.json *.md
 recursive-include dsh-plugin/harnessmm-desktop *.js *.mjs *.json *.md *.yml
 prune dsh-plugin/harnessmm-desktop/node_modules
+recursive-include pi-harnessmm *.ts *.mjs *.json *.md LICENSE NOTICE
+prune pi-harnessmm/node_modules
 prune .venv
 prune outputs
 prune artifacts
