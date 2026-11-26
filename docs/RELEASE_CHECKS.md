@@ -1,5 +1,22 @@
 # Release checks
 
+## 2026-11-26 repository-local source provenance
+
+- Component-quality and SearchQA source freezes share the local provenance
+  module. Receipts use the current repository identity and validate timestamps,
+  Git hashes and tracked-status digests. SearchQA binds the helper's bytes in
+  its source snapshot.
+- 722 Python tests and 92 Node.js tests passed locally, including 22 new
+  provenance and source-freeze tests. The examples, four reproduction cases
+  and 28 desktop controller tests also passed.
+- All 451 source-manifest entries and eight archived HumanEval modules pass
+  digest verification. The extraction origin remains historical attribution.
+- The wheel and source distribution build successfully. A clean wheel install
+  imports both runners with Python site packages disabled and accepts a
+  HarnessMM receipt without a source Git checkout or another project checkout.
+- Component initialization requires an explicit `--config`; the unpublished
+  historical configuration is no longer an implicit input.
+
 ## 2026-11-03 Python namespace migration
 
 - Version 0.2.0 uses `harnessmm` for source files, imports and documentation.

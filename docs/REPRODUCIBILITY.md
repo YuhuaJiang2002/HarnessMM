@@ -77,6 +77,35 @@ hostnames are placeholders. Host guards check those settings at launch.
 The two files under `configs/` describe the historical protocols used by the
 controller tests. Freeze your source and policy hashes under a new run ID.
 
+### SearchQA and component-quality source freezes
+
+Both runners use `harnessmm/source_provenance.py` from this repository. Git
+receipts record the current checkout's HEAD, branch, tracked-status digest and
+repository identity from `origin`. SSH and HTTPS remotes and fork identities are
+supported. Capture reads local Git metadata and makes no network requests.
+
+For a deployment that copies source files without `.git`, create a receipt in
+the source checkout before copying:
+
+```bash
+python -m harnessmm.source_provenance --root . > /path/to/source-git-state.json
+```
+
+Pass the receipt with `--source-git-state /path/to/source-git-state.json` to
+`scripts/run_searchqa_residual_meta_campaign.py freeze` or
+`scripts/run_chisel_component_quality.py init`. A source archive uses the
+HarnessMM release identity. A Git checkout uses its own `origin` identity.
+Both runners validate the receipt's repository, fields, hashes and timestamp
+before accepting it. The component controller records the receipt's original
+bytes; SearchQA also snapshots and checks the local provenance helper.
+
+The component controller requires `--config` with an explicit frozen MRQA
+component design. Supply its prompts, data manifest and service manifest as
+deployment inputs. No private research results directory or separate project
+checkout is a default configuration source. `SOURCE_MANIFEST.json` retains the
+historical extraction origin as attribution; its published hashes verify files
+inside this repository.
+
 ## External dependencies
 
 Obtain each benchmark and native harness from its upstream distribution and

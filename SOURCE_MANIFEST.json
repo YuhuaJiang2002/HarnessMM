@@ -4786,19 +4786,25 @@
     {
       "path": "scripts/run_chisel_component_quality.py",
       "source_sha256": "74737e7013ff3c5d143127a9a3b4f56c0a7ecfac8499974399a484a67835ab08",
-      "published_sha256": "35c7d5828a8f2f443acd020ef4e89b31f739f45d58e2e77b11ded5c1c3890107",
+      "published_sha256": "3da40608729b3ac4a8c05f8e7309fe220edf81802e74cdcf5ef9d28df1dbfe92",
       "release_edits": [
         {
           "category": "deployment-placeholder",
           "occurrences": 1
         },
-        "2026-11-03 public Python namespace migration to harnessmm; preserve historical protocol identifiers and original source digests."
+        "2026-11-03 public Python namespace migration to harnessmm; preserve historical protocol identifiers and original source digests.",
+        "2026-11-26 repository-local source provenance; remove the cross-project repository identity requirement."
       ],
       "published_history": [
         {
           "path": "scripts/run_chisel_component_quality.py",
           "sha256": "de27ba7f33b0931673023fd9133af69a2fe5cf794437b76b3510d145cfff3f10",
           "reference": "082305ddfaf9d50b76b1367b9c61cbd82733b269"
+        },
+        {
+          "path": "scripts/run_chisel_component_quality.py",
+          "sha256": "35c7d5828a8f2f443acd020ef4e89b31f739f45d58e2e77b11ded5c1c3890107",
+          "reference": "d36298874f28248cbd4acd87070c420cb807c37c"
         }
       ],
       "source_path": "scripts/run_chisel_component_quality.py"
@@ -5428,15 +5434,21 @@
     {
       "path": "scripts/run_searchqa_residual_meta_campaign.py",
       "source_sha256": "3fdb8af8a74a6e6a4126fbead6a6e3a4b0360f18f53d73abd876ccca5d705700",
-      "published_sha256": "22bb0e330e9897f82ba5a0b3513517c41ab3b90318fd524a2a190527196a3dda",
+      "published_sha256": "dfe408840eebe018863917022b03072818fac7d5b92acc6c42febda643ffc060",
       "release_edits": [
-        "2026-11-03 public Python namespace migration to harnessmm; preserve historical protocol identifiers and original source digests."
+        "2026-11-03 public Python namespace migration to harnessmm; preserve historical protocol identifiers and original source digests.",
+        "2026-11-26 repository-local source provenance; remove the cross-project repository identity requirement."
       ],
       "published_history": [
         {
           "path": "scripts/run_searchqa_residual_meta_campaign.py",
           "sha256": "3fdb8af8a74a6e6a4126fbead6a6e3a4b0360f18f53d73abd876ccca5d705700",
           "reference": "082305ddfaf9d50b76b1367b9c61cbd82733b269"
+        },
+        {
+          "path": "scripts/run_searchqa_residual_meta_campaign.py",
+          "sha256": "22bb0e330e9897f82ba5a0b3513517c41ab3b90318fd524a2a190527196a3dda",
+          "reference": "d36298874f28248cbd4acd87070c420cb807c37c"
         }
       ],
       "source_path": "scripts/run_searchqa_residual_meta_campaign.py"
@@ -6549,6 +6561,20 @@
       "source_sha256": "1be839c6dee33502b0d89a70c92620b5366d75edcc446dc0f10ae32a634d6338",
       "published_sha256": "1be839c6dee33502b0d89a70c92620b5366d75edcc446dc0f10ae32a634d6338",
       "release_edits": []
+    },
+    {
+      "path": "harnessmm/source_provenance.py",
+      "source_kind": "release-authored",
+      "source_sha256": "b47d67a0c1b33a16efedd6f8e66e3334da4de05909468fd869ec720df3ac5297",
+      "published_sha256": "b47d67a0c1b33a16efedd6f8e66e3334da4de05909468fd869ec720df3ac5297",
+      "release_edits": []
+    },
+    {
+      "path": "tests/test_source_provenance.py",
+      "source_kind": "release-authored",
+      "source_sha256": "731275b352ea55feae9e3461ea540e3ca12932da8873ac66d9e565aadede276e",
+      "published_sha256": "731275b352ea55feae9e3461ea540e3ca12932da8873ac66d9e565aadede276e",
+      "release_edits": []
     }
   ],
   "release_only_files": [
@@ -6599,6 +6625,18 @@
         "reproduction/humaneval_v23/sar_v2.mjs",
         "reproduction/humaneval_v23/structured_bank_author.mjs"
       ]
+    },
+    {
+      "date": "2026-11-26",
+      "description": "Use repository-local Git provenance in the component-quality and SearchQA runners, bind the helper in source freezes, and require an explicit component configuration. Historical extraction origins and experiment records are unchanged.",
+      "changed_extracted_files": [
+        "scripts/run_chisel_component_quality.py",
+        "scripts/run_searchqa_residual_meta_campaign.py"
+      ],
+      "new_source_files": [
+        "harnessmm/source_provenance.py",
+        "tests/test_source_provenance.py"
+      ]
     }
   ],
   "namespace_migrations": [
@@ -6610,5 +6648,7 @@
       "compatibility": "Legacy imports alias canonical module objects; historical protocols and archived reproduction files are unchanged.",
       "source_freeze": "Renamed public sources require a new experiment source freeze."
     }
-  ]
+  ],
+  "repository": "https://github.com/YuhuaJiang2002/HarnessMM",
+  "origin_role": "Historical extraction attribution only; current runtime code and source checks are maintained in this repository."
 }

@@ -56,6 +56,12 @@ from harnessmm.learning.chisel_component_quality import (  # noqa: E402
     freeze_quality_routes,
 )
 from harnessmm.learning.residual_meta_harness import canonical_hash, canonical_json  # noqa: E402
+from harnessmm.source_provenance import (  # noqa: E402
+    SourceProvenanceError,
+    capture_git_state,
+    repository_identity,
+    validate_git_state,
+)
 from scripts.probe_chisel_model_fidelity import response_identity  # noqa: E402
 from scripts.run_searchqa_residual_meta_campaign import (  # noqa: E402
     FEATURE_SCHEMA,
@@ -162,29 +168,25 @@ def package_versions() -> dict:
 
 def git_provenance(root: Path, source_state: Path | None) -> dict:
     if source_state is None:
+        state = capture_git_state(ROOT)
         return {
             "git_state_source": "current_working_tree",
-            "git_head": capture(["git", "rev-parse", "HEAD"]).strip(),
+            "git_repository": state["repository"],
+            "git_head": state["head"],
+            "git_branch": state["branch"],
             "git_status": capture(["git", "--no-pager", "status", "--porcelain"]),
             "git_diff": capture(["git", "--no-pager", "diff", "--binary", "HEAD"]),
         }
-    state = read_json(source_state)
-    expected = {"captured_at_utc", "repository", "head", "branch", "tracked_status_sha256"}
-    if (not isinstance(state, dict) or set(state) != expected
-            or state["repository"] != "YuhuaJiang2002/PhiAgent"
-            or not isinstance(state["branch"], str) or not state["branch"]):
-        raise ProtocolError("external source Git state has an invalid identity")
-    for field, length in (("head", 40), ("tracked_status_sha256", 64)):
-        value = state[field]
-        if (not isinstance(value, str) or len(value) != length
-                or any(character not in "0123456789abcdef" for character in value)):
-            raise ProtocolError(f"external source Git state has an invalid {field}")
-    captured = datetime.fromisoformat(state["captured_at_utc"].replace("Z", "+00:00"))
-    if captured.tzinfo is None:
-        raise ProtocolError("external source Git state requires an explicit timezone")
+    try:
+        state = validate_git_state(
+            read_json(source_state), expected_repository=repository_identity(ROOT),
+        )
+    except SourceProvenanceError as error:
+        raise ProtocolError(str(error)) from error
     freeze_bytes(root / "source-git-state.json", source_state.read_bytes())
     return {
         "git_state_source": "explicit_external_source_snapshot",
+        "git_repository": state["repository"],
         "git_head": state["head"], "git_branch": state["branch"],
         "source_git_state": state,
         "source_git_state_sha256": file_sha256(root / "source-git-state.json"),
@@ -2101,7 +2103,8 @@ def main(argv: list[str] | None = None) -> int:
     subparsers = parser.add_subparsers(dest="command", required=True)
     prepare = subparsers.add_parser("init", help="create a new immutable remote experiment")
     prepare.add_argument("--experiment-dir", type=Path, required=True)
-    prepare.add_argument("--config", type=Path, default=ROOT / "configs/chisel_component_quality_mrqa_v1.json")
+    prepare.add_argument("--config", type=Path, required=True,
+                         help="explicit frozen MRQA component design JSON")
     prepare.add_argument("--data-manifest", type=Path, required=True)
     prepare.add_argument("--service-manifest", type=Path, required=True)
     prepare.add_argument("--source-git-state", type=Path,

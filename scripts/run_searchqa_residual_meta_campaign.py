@@ -53,6 +53,7 @@ from harnessmm.learning.searchqa_grounded_features import (  # noqa: E402
     grounded_anchors,
     named_feature_field,
 )
+from harnessmm import source_provenance  # noqa: E402
 
 
 PROTOCOL_SCHEMA = "phiagent-searchqa-residual-meta-campaign/v1"
@@ -354,23 +355,7 @@ def score_response(text: str, answers: Sequence[str]) -> dict[str, Any]:
 
 
 def _git_state() -> dict[str, Any]:
-    def capture(*arguments: str) -> str:
-        result = subprocess.run(
-            ["git", *arguments],
-            cwd=ROOT,
-            check=False,
-            capture_output=True,
-            text=True,
-        )
-        return result.stdout.strip()
-
-    return {
-        "captured_at_utc": utc_now(),
-        "repository": "YuhuaJiang2002/PhiAgent",
-        "head": capture("rev-parse", "HEAD"),
-        "branch": capture("branch", "--show-current"),
-        "tracked_status_sha256": hashlib.sha256(capture("status", "--short").encode()).hexdigest(),
-    }
+    return source_provenance.capture_git_state(ROOT)
 
 
 def _load_service_manifest(path: Path) -> dict[str, Any]:
@@ -418,6 +403,14 @@ def freeze(args: argparse.Namespace) -> int:
     output = args.experiment_dir.resolve()
     if output.exists():
         raise FileExistsError(output)
+    source_state = (
+        source_provenance.validate_git_state(
+            read_json(args.source_git_state.resolve()),
+            expected_repository=source_provenance.repository_identity(ROOT),
+        )
+        if args.source_git_state is not None
+        else _git_state()
+    )
     service = _load_service_manifest(args.service_manifest.resolve())
     selected_router_spec = ROUTER_SPECS[args.static_incumbent]
     split_sizes = split_sizes_from_args(args)
@@ -471,6 +464,10 @@ def freeze(args: argparse.Namespace) -> int:
     snapshot = output / "source_snapshot"
     snapshot.mkdir()
     shutil.copy2(Path(__file__).resolve(), snapshot / Path(__file__).name)
+    provenance_source = Path(source_provenance.__file__).resolve()
+    provenance_target = snapshot / "harnessmm" / provenance_source.name
+    provenance_target.parent.mkdir()
+    shutil.copy2(provenance_source, provenance_target)
     service_target = snapshot / args.service_manifest.name
     shutil.copy2(args.service_manifest.resolve(), service_target)
     remainder_target = snapshot / args.remainder_ids.name
@@ -482,13 +479,6 @@ def freeze(args: argparse.Namespace) -> int:
         text=True,
     ).stdout
     (output / "packages.freeze.txt").write_text(packages, encoding="utf-8")
-    source_state = (
-        read_json(args.source_git_state.resolve())
-        if args.source_git_state is not None
-        else _git_state()
-    )
-    if not isinstance(source_state, Mapping):
-        raise TypeError("source Git state must be an object")
     write_json(output / "git-state.json", source_state, new=True)
 
     protocol: dict[str, Any] = {
@@ -571,6 +561,7 @@ def freeze(args: argparse.Namespace) -> int:
         "execution": {
             "hostname": socket.gethostname(),
             "runner_sha256": file_sha256(Path(__file__).resolve()),
+            "provenance_source_sha256": file_sha256(provenance_target),
             "workers": args.workers,
             "seed": args.seed,
             "remote_only": True,
@@ -598,6 +589,13 @@ def load_protocol(root: Path) -> dict[str, Any]:
         raise RuntimeError("unsupported protocol schema")
     if file_sha256(Path(__file__).resolve()) != value["execution"]["runner_sha256"]:
         raise RuntimeError("runner differs from frozen source SHA-256")
+    expected_provenance = value["execution"]["provenance_source_sha256"]
+    for path in (
+        Path(source_provenance.__file__).resolve(),
+        root / "source_snapshot" / "harnessmm" / "source_provenance.py",
+    ):
+        if file_sha256(path) != expected_provenance:
+            raise RuntimeError("provenance helper differs from frozen source SHA-256")
     for variant, record in value["response_matrix"]["prompts"].items():
         if file_sha256(root / "prompts" / f"{variant}.system.txt") != record["sha256"]:
             raise RuntimeError(f"frozen prompt differs for {variant}")
