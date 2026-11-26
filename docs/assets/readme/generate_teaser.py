@@ -4,7 +4,7 @@ from functools import lru_cache
 import json
 from pathlib import Path
 
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFont, ImageOps
 
 HERE = Path(__file__).resolve().parent
 SIZE = (1200, 600)
@@ -31,7 +31,7 @@ REUSE_STEPS = (
 
 @lru_cache(None)
 def font(size, bold):
-    names = ("Arial Bold.ttf", "DejaVuSans-Bold.ttf") if bold else ("Arial.ttf", "DejaVuSans.ttf")
+    names = ("Arial Bold.ttf", "arialbd.ttf", "DejaVuSans-Bold.ttf") if bold else ("Arial.ttf", "arial.ttf", "DejaVuSans.ttf")
     for name in names:
         try:
             return ImageFont.truetype(name, size)
@@ -196,5 +196,61 @@ def render():
     results(rows, actor, reduced_motion=True).save(HERE / "guarded-reuse.png", optimize=True)
 
 
+def title_card():
+    image = Image.new("RGB", SIZE, PAPER)
+    draw = ImageDraw.Draw(image)
+    cx = SIZE[0] // 2
+    face = font(88, True)
+    first, second = "Harness", "MinusMinus"
+    x = cx - (draw.textlength(first, font=face) + draw.textlength(second, font=face)) / 2
+    draw.text((x, 191), first, font=face, fill=INK, anchor="lm")
+    draw.text((x + draw.textlength(first, font=face), 191), second,
+              font=face, fill=TEAL, anchor="lm")
+    draw.line((cx - 36, 263, cx + 36, 263), fill=TEAL, width=3)
+    label(draw, cx, 320, "Recursive Self-Improvement for Harness Token Efficiency",
+          33, INK, anchor="mm")
+    label(draw, cx, 393, "Minus Overhead, Minus Cost", 26, MUTED, anchor="mm")
+    left, right = "Tsinghua University", "Microsoft Research Asia"
+    face = font(24, False)
+    left_width = 58 + 12 + draw.textlength(left, font=face)
+    right_width = 42 + 12 + draw.textlength(right, font=face)
+    x = round((SIZE[0] - left_width - 65 - right_width) / 2)
+    with Image.open(HERE / "tsinghua-emblem.png") as source:
+        emblem = source.convert("RGBA")
+        emblem.thumbnail((58, 58), Image.Resampling.LANCZOS)
+        image.paste(emblem, (x, 495 - emblem.height // 2), emblem)
+    label(draw, x + 70, 495, left, 24, INK)
+    x += round(left_width) + 65
+    for dx, dy, color in ((0, 0, "#F25022"), (22, 0, "#7FBA00"),
+                          (0, 22, "#00A4EF"), (22, 22, "#FFB900")):
+        draw.rectangle((x + dx, 474 + dy, x + dx + 19, 493 + dy), fill=color)
+    label(draw, x + 54, 495, right, 24, INK)
+    return image
+
+
+def split_readme_animations():
+    with Image.open(HERE / "guarded-reuse.gif") as original:
+        frames, durations = [], []
+        for i in range(original.n_frames):
+            original.seek(i)
+            frames.append(original.convert("RGB"))
+            durations.append(original.info["duration"])
+
+    def save(name, scenes, delays):
+        scenes[0].save(HERE / name, save_all=True, append_images=scenes[1:],
+                       duration=delays, loop=0, optimize=True)
+
+    with Image.open(HERE / "harnessmm-six-benchmark-results.png") as chart:
+        benchmarks = ImageOps.pad(chart.convert("RGB"), SIZE,
+                                  method=Image.Resampling.LANCZOS, color=WHITE)
+    save("rsi-results.gif", [title_card(), *frames[7:10], frames[11], benchmarks],
+         [1200, 1000, 1000, 1000, 2600, 3200])
+    with Image.open(HERE / "overview.png") as overview:
+        final = ImageOps.pad(overview.convert("RGB"), SIZE,
+                             method=Image.Resampling.LANCZOS, color=WHITE)
+    save("guarded-reuse-overview.gif", [*frames[:7], final], [*durations[:7], 6500])
+
+
 if __name__ == "__main__":
     render()
+    split_readme_animations()

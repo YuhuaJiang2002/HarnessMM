@@ -1,15 +1,23 @@
 # README figures
 
 `paper-figure-1.png` is the Figure 1 image shared by the HarnessMM and HarnessMM-V papers.
-The README uses the original manuscript PNG.
+The README uses `harness-overview-domain.png`, a copy with the feedback label
+changed from “Visual signals” to “Domain signal”. The manuscript PNG is unchanged.
 
-The homepage animation follows a compile-and-test boundary from the
+The ten-second opening animation (`rsi-results.gif`) starts with a 1.2-second project
+title card, then shows frames 8–10 of the original demo: three RSI steps
+at one second each. The original coding-results table follows for 2.6 seconds,
+and the six-benchmark chart closes the loop for 3.2 seconds.
+The cover identifies the author affiliations with the [Tsinghua University
+emblem](https://commons.wikimedia.org/wiki/File:Tsinghua_University_Logo.svg)
+and the [Microsoft symbol](https://commons.wikimedia.org/wiki/File:Microsoft_logo.svg)
+beside the Microsoft Research Asia name.
+Below Figure 1, `guarded-reuse-overview.gif` shows frames 1–7 followed by
+the workflow overview. The compile-and-test sequence comes from the
 [synthetic controller example](../../../examples/guarded_reuse.mjs). It shows
 how an authored graph, a successful compile receipt and a substitution
-certificate replace one model callback. The training loop illustrates how
-RSI edits a harness from feedback. The final scene uses the published
-Qwen3.5-4B comparisons in `results.json`, with both success and complete-task
-execution tokens. The static PNG includes the method and all three results.
+certificate replace one model callback. The original static overview
+(`guarded-reuse.png`) includes the method and three Qwen3.5-4B comparisons.
 
 Rebuild the 1200 × 600 GIF and PNG with
 `python docs/assets/readme/generate_teaser.py` using Pillow 13.0.0 and Arial
